@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Reconstruction metadata extracted from the historical G-code files before those generated machine files were excluded from version control.",
+  "reconstructionScope": "Retains source STL, instance count, Cura profile overrides, post-processing state, and reference output statistics. Re-sliced G-code is expected to be functionally equivalent rather than byte-for-byte identical.",
+  "cura": {
+    "engineVersion": "5.13.0",
+    "machineName": "Creality CR-20 Pro",
+    "machineDefinition": "creality_cr20pro",
+    "profileName": "Standard Quality #2",
+    "qualityType": "standard",
+    "settingVersion": 27,
+    "layerHeightMm": 0.2
+  },
+  "arcWelder": {
+    "version": "1.2.0",
+    "resolutionMm": 0.05,
+    "pathTolerancePercent": 5.0,
+    "maximumRadiusMm": 9999.0,
+    "xyzPrecision": 3,
+    "extrusionPrecision": 5,
+    "extrusionRateVariancePercent": 5.0
+  },
+  "jobs": [
+    {
+      "historicalGcode": "Crossover coil bracket x2.gcode",
+      "sourceStl": "Crossover coil bracket.stl",
+      "instances": 2,
+      "arcWelderProcessed": false,
+      "globalOverrides": {
+        "adhesion_type": "none",
+        "material_bed_temperature": 60.0,
+        "material_bed_temperature_layer_0": 60,
+        "support_enable": false,
+        "support_structure": "normal"
+      },
+      "extruderOverrides": {
+        "cool_fan_full_layer": 6,
+        "infill_sparse_density": 25,
+        "material_print_temperature": 220,
+        "material_print_temperature_layer_0": 225
+      },
+      "referenceOutput": {
+        "timeSeconds": 8544,
+        "filamentMetres": 4.80189,
+        "minimumMm": [72.7, 87.7, 0.2],
+        "maximumMm": [126.072, 132.3, 47.0]
+      }
+    },
+    {
+      "historicalGcode": "Crossover coil former small.gcode",
+      "sourceStl": "Crossover coil former small.stl",
+      "instances": 2,
+      "arcWelderProcessed": true,
+      "globalOverrides": {
+        "adhesion_type": "none",
+        "arcwelder_enable": true,
+        "material_bed_temperature": 60.0,
+        "material_bed_temperature_layer_0": 60,
+        "support_enable": false,
+        "support_structure": "normal"
+      },
+      "extruderOverrides": {
+        "cool_fan_full_layer": 6,
+        "infill_sparse_density": 25,
+        "material_print_temperature": 220,
+        "material_print_temperature_layer_0": 225
+      },
+      "referenceOutput": {
+        "timeSeconds": 15985,
+        "filamentMetres": 9.09694,
+        "minimumMm": [80.201, 80.2, 0.2],
+        "maximumMm": [149.591, 200.336, 33.0]
+      }
+    },
+    {
+      "historicalGcode": "Crossover coil former x2.gcode",
+      "sourceStl": "Crossover coil former.stl",
+      "instances": 4,
+      "arcWelderProcessed": true,
+      "globalOverrides": {
+        "adhesion_type": "none",
+        "arcwelder_enable": true,
+        "material_bed_temperature": 50,
+        "material_bed_temperature_layer_0": 60,
+        "support_enable": false,
+        "support_structure": "normal"
+      },
+      "extruderOverrides": {
+        "infill_sparse_density": 25,
+        "initial_layer_line_width_factor": 120,
+        "material_print_temperature": 220,
+        "material_print_temperature_layer_0": 225
+      },
+      "referenceOutput": {
+        "timeSeconds": 36710,
+        "filamentMetres": 21.5602,
+        "minimumMm": [24.741, 56.701, 0.2],
+        "maximumMm": [213.744, 195.26, 33.0]
+      }
+    },
+    {
+      "historicalGcode": "Crossover coil former.gcode",
+      "sourceStl": "Crossover coil former.stl",
+      "instances": 2,
+      "arcWelderProcessed": true,
+      "globalOverrides": {
+        "adhesion_type": "none",
+        "arcwelder_enable": true,
+        "material_bed_temperature": 45,
+        "material_bed_temperature_layer_0": 50,
+        "support_enable": false,
+        "support_structure": "normal"
+      },
+      "extruderOverrides": {
+        "infill_sparse_density": 25,
+        "speed_layer_0": 25,
+        "speed_print": 65.0,
+        "speed_wall": 40.0
+      },
+      "referenceOutput": {
+        "timeSeconds": 15211,
+        "filamentMetres": 10.781,
+        "minimumMm": [75.201, 41.072, 0.2],
+        "maximumMm": [145.719, 184.152, 33.0]
+      }
+    },
+    {
+      "historicalGcode": "Tweeter inner ring template.gcode",
+      "sourceStl": "Tweeter inner ring template.stl",
+      "instances": 1,
+      "arcWelderProcessed": true,
+      "globalOverrides": {
+        "adhesion_type": "none",
+        "arcwelder_enable": true,
+        "material_bed_temperature": 45,
+        "material_bed_temperature_layer_0": 50,
+        "support_enable": false,
+        "support_structure": "normal"
+      },
+      "extruderOverrides": {
+        "infill_sparse_density": 15,
+        "speed_layer_0": 25.0,
+        "speed_print": 60,
+        "speed_wall": 30
+      },
+      "referenceOutput": {
+        "timeSeconds": 12772,
+        "filamentMetres": 10.284,
+        "minimumMm": [55.549, 55.549, 0.2],
+        "maximumMm": [164.447, 164.447, 17.0]
+      }
+    },
+    {
+      "historicalGcode": "Tweeter outer template segment.gcode",
+      "sourceStl": "Tweeter outer template segment.stl",
+      "instances": 2,
+      "arcWelderProcessed": true,
+      "globalOverrides": {
+        "adhesion_type": "none",
+        "arcwelder_enable": true,
+        "support_enable": false,
+        "support_structure": "normal"
+      },
+      "extruderOverrides": {
+        "infill_sparse_density": 15,
+        "speed_layer_0": 25.0,
+        "speed_print": 60,
+        "speed_wall": 30
+      },
+      "referenceOutput": {
+        "timeSeconds": 21346,
+        "filamentMetres": 20.7253,
+        "minimumMm": [34.052, 16.732, 0.2],
+        "maximumMm": [202.624, 203.54, 11.0]
+      }
+    },
+    {
+      "historicalGcode": "Woofer inner ring template.gcode",
+      "sourceStl": "Woofer inner ring template.stl",
+      "instances": 1,
+      "arcWelderProcessed": true,
+      "globalOverrides": {
+        "adhesion_type": "none",
+        "arcwelder_enable": true,
+        "material_bed_temperature": 45,
+        "material_bed_temperature_layer_0": 50,
+        "support_enable": false,
+        "support_structure": "normal"
+      },
+      "extruderOverrides": {
+        "infill_sparse_density": 15,
+        "speed_layer_0": 25.0,
+        "speed_print": 60,
+        "speed_wall": 30
+      },
+      "referenceOutput": {
+        "timeSeconds": 19017,
+        "filamentMetres": 14.5433,
+        "minimumMm": [22.049, 22.049, 0.2],
+        "maximumMm": [197.947, 197.947, 17.4]
+      }
+    },
+    {
+      "historicalGcode": "Woofer outer template segment.gcode",
+      "sourceStl": "Woofer outer template segment.stl",
+      "instances": 2,
+      "arcWelderProcessed": true,
+      "globalOverrides": {
+        "adhesion_type": "none",
+        "arcwelder_enable": true,
+        "material_bed_temperature": 50,
+        "material_bed_temperature_layer_0": 55,
+        "support_enable": false,
+        "support_structure": "normal"
+      },
+      "extruderOverrides": {
+        "infill_sparse_density": 15,
+        "speed_layer_0": 25.0,
+        "speed_print": 60,
+        "speed_wall": 30
+      },
+      "referenceOutput": {
+        "timeSeconds": 27469,
+        "filamentMetres": 26.7608,
+        "minimumMm": [26.68, 8.556, 0.2],
+        "maximumMm": [211.74, 210.472, 11.0]
+      }
+    }
+  ]
+}

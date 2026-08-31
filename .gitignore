@@ -1,0 +1,97 @@
+# This repository deliberately retains measurements, manually authored CAD,
+# fabrication STLs, spreadsheets, PDFs, and reference images. Do not add broad
+# rules for those formats: several contain information that cannot presently be
+# regenerated from another committed source.
+
+# Project-local disposable workspaces and reconstructed environments
+/.venv/
+/tmp/
+/outputs/
+
+# Python caches, test state, and package/build products
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+.eggs/
+/build/
+/dist/
+
+# Installed dependency trees and tool caches
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/cache/
+.parcel-cache/
+.cache/
+.ipynb_checkpoints/
+
+# 3D-printer machine code. Printable STL geometry is retained; the settings
+# needed to re-slice current jobs are preserved in 3d_models/PRINT_SETTINGS.json.
+*.gcode
+*.gco
+*.bgcode
+*.ufp
+
+# Reconstructible 3D-model exports. These rules are intentionally explicit so
+# a future imported or hand-authored DAE/PNG is not hidden accidentally.
+/3d_models/M4x10_Type_D_Flanged_Threaded_Insert/*.dae
+/3d_models/M4x10_Type_D_Flanged_Threaded_Insert/*_preview.png
+/3d_models/M4x10_Type_D_Flanged_Threaded_Insert_LowPoly/*.dae
+/3d_models/M4x10_Type_D_Flanged_Threaded_Insert_LowPoly/*_preview.png
+/3d_models/M4x10_Type_E_NonFlanged_Threaded_Insert/*.dae
+/3d_models/M4x10_Type_E_NonFlanged_Threaded_Insert/*_preview.png
+/3d_models/M4x30_Countersunk_Machine_Screw_Black/*.dae
+/3d_models/M4x30_Countersunk_Machine_Screw_Black/*_preview.png
+/3d_models/Neutrik_NL4MPXX/*.dae
+/3d_models/Neutrik_NL4MPXX/*_preview.png
+/3d_models/No4x3-4in_2.9x19mm_Pozi_Countersunk_Self_Tapping_Screw_Black_Passivated/*.dae
+/3d_models/No4x3-4in_2.9x19mm_Pozi_Countersunk_Self_Tapping_Screw_Black_Passivated/*_preview.png
+/3d_models/No8x1in_4.2x25mm_Pozi_Countersunk_Self_Tapping_Screw_Black/*.dae
+/3d_models/No8x1in_4.2x25mm_Pozi_Countersunk_Self_Tapping_Screw_Black/*_preview.png
+/3d_models/SB_Acoustics_SB17NRX2C35-8/*.dae
+/3d_models/SB_Acoustics_SB17NRX2C35-8/*_preview.png
+/3d_models/SB_Acoustics_SB26STWGC-4/*.dae
+/3d_models/SB_Acoustics_SB26STWGC-4/*_preview.png
+
+# Compiler intermediates and conventional build roots
+*.o
+*.pdb
+*.ilk
+/Debug/
+/Release/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# Deliberately not ignored globally: final binaries may be imported/vendor
+# inputs, while .obj and .lib are also legitimate 3D-model and EDA-library
+# source formats. Generated binaries should live under a build directory.
+
+# Editor, office-suite, and operating-system transient files
+*.swp
+*.swo
+*~
+*.tmp
+*.temp
+*.orig
+*.rej
+~$*
+.~lock.*#
+.vs/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/shelf/
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/

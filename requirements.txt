@@ -1,0 +1,4 @@
+# Pinned dependencies used by src/3d_models/render_preview.py.
+# The geometry generators themselves use only the Python standard library.
+numpy==2.5.1
+Pillow==12.3.0
