@@ -56,7 +56,7 @@ intended to remain responsive when used repeatedly in a SketchUp assembly.
 
 From the project root, regenerate the DAE and preview with:
 
-```powershell
+```console
 python src/3d_models/No8x1in_4.2x25mm_Pozi_Countersunk_Self_Tapping_Screw_Black/generate_no8x1in_pozi_countersunk_self_tapping_screw.py
 python src/3d_models/render_preview.py No8x1in_4.2x25mm_Pozi_Countersunk_Self_Tapping_Screw_Black
 ```

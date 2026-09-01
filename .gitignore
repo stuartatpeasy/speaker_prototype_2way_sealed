@@ -5,6 +5,7 @@
 
 # Project-local disposable workspaces and reconstructed environments
 /.venv/
+/.venv-wsl/
 /tmp/
 /outputs/
 

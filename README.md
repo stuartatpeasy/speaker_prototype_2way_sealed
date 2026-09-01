@@ -65,6 +65,32 @@ Three-way, open-baffle, transmission-line, horn, and reflex alternatives are out
 - **Amplifier loopback/reference work:** this file + `rew/SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md`; do not connect a powered amplifier output to the interface before its unpowered checks pass.
 - **Repository or generated-artifact maintenance:** this file + `AGENTS.md` + `.gitignore`; add `src/3d_models/README.md` for model, preview, or printer-output reconstruction.
 
+### 4.2 Local tooling environment
+
+The supported local workflow is deliberately dual-environment:
+
+- Windows applications such as REW, VituixCAD, SketchUp, and Cura continue to
+  use the repository at
+  `C:\Users\swallace\Projects\Speaker prototype`;
+- WSL2 automation and command-line work use the same files through
+  `/mnt/c/Users/swallace/Projects/Speaker prototype`;
+- keep the repository on the Windows drive unless a deliberate migration also
+  updates the absolute impedance-file paths in
+  `vituixcad/Prototype loudspeaker.vxp` and verifies every Windows application;
+- the reconstructed Windows Python environment is `.venv`; the separate WSL
+  environment is `.venv-wsl`. Neither environment is committed;
+- GitHub CLI authentication is environment-specific. Connecting the Codex
+  GitHub plugin does not authenticate the separate `gh` installation in WSL;
+- Git-over-SSH in WSL uses a user-level `codex-ssh-agent.service` with the
+  stable socket `~/.ssh/agent.sock`. The relevant GitHub host entry in
+  `~/.ssh/config` selects that socket with `IdentityAgent`. After a complete
+  WSL shutdown or service restart, load the encrypted GitHub key into the new
+  agent once with
+  `SSH_AUTH_SOCK="$HOME/.ssh/agent.sock" ssh-add "$HOME/.ssh/<github-private-key>"`.
+
+Use [src/3d_models/README.md](src/3d_models/README.md) for the exact
+cross-platform Python bootstrap and verification procedure.
+
 ## 5. Current design summary
 
 ### 5.1 Drivers

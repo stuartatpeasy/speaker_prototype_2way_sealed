@@ -62,7 +62,7 @@ model contains 8,068 triangles.
 The Python generator now produces the `.dae` only; the existing STL is a
 legacy fallback. From the project root, regenerate the model and preview with:
 
-```powershell
+```console
 python src/3d_models/SB_Acoustics_SB17NRX2C35-8/generate_sb17nrx2c35_8.py
 python src/3d_models/render_preview.py SB_Acoustics_SB17NRX2C35-8
 ```

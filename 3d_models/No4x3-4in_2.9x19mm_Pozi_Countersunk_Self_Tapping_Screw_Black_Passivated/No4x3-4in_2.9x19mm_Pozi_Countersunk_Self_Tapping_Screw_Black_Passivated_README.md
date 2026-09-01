@@ -59,7 +59,7 @@ the established No. 8 model's lightweight geometry budget.
 
 From the project root, regenerate the DAE and preview with:
 
-```powershell
+```console
 python src/3d_models/No4x3-4in_2.9x19mm_Pozi_Countersunk_Self_Tapping_Screw_Black_Passivated/generate_no4x3_4in_pozi_countersunk_self_tapping_screw.py
 python src/3d_models/render_preview.py No4x3-4in_2.9x19mm_Pozi_Countersunk_Self_Tapping_Screw_Black_Passivated
 ```

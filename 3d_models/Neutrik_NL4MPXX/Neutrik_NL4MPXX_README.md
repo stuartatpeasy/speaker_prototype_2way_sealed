@@ -39,7 +39,7 @@ AA7DDF218941F2284EE6E9C9E7E2591CA32B3B0ED0E6CA1A27EAEDB660CD6748
 
 The converter requires the no-VTK OpenCascade bindings:
 
-```powershell
+```console
 python -m pip install cadquery-ocp-novtk
 python src/3d_models/Neutrik_NL4MPXX/generate_neutrik_nl4mpxx.py
 python src/3d_models/render_preview.py Neutrik_NL4MPXX

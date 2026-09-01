@@ -54,7 +54,7 @@ approximately 0.036 mm.
 
 From the project root, regenerate the DAE and preview with:
 
-```powershell
+```console
 python src/3d_models/M4x10_Type_E_NonFlanged_Threaded_Insert/generate_m4_type_e_insert.py
 python src/3d_models/render_preview.py M4x10_Type_E_NonFlanged_Threaded_Insert
 ```

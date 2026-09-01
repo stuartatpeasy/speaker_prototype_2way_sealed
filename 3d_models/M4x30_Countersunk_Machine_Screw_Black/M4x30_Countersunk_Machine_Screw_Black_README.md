@@ -51,7 +51,7 @@ retaining a readable thread and drive at enclosure-design scale.
 
 From the project root, regenerate the DAE and preview with:
 
-```powershell
+```console
 python src/3d_models/M4x30_Countersunk_Machine_Screw_Black/generate_m4x30_countersunk_machine_screw.py
 python src/3d_models/render_preview.py M4x30_Countersunk_Machine_Screw_Black
 ```

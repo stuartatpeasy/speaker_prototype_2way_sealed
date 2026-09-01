@@ -48,14 +48,14 @@ and a maximum chord-to-true-circle deviation of 0.036 mm.
 The Python generators now produce COLLADA only; the existing STL files are
 legacy fallbacks. From the project root, regenerate the models with:
 
-```powershell
+```console
 python src/3d_models/M4x10_Type_D_Flanged_Threaded_Insert/generate_m4_type_d_insert.py
 python src/3d_models/M4x10_Type_D_Flanged_Threaded_Insert_LowPoly/generate_m4_type_d_insert_low_poly.py
 ```
 
 The common preview entry point accepts either model-folder name:
 
-```powershell
+```console
 python src/3d_models/render_preview.py M4x10_Type_D_Flanged_Threaded_Insert
 python src/3d_models/render_preview.py M4x10_Type_D_Flanged_Threaded_Insert_LowPoly
 ```

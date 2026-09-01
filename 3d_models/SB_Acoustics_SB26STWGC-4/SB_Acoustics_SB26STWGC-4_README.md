@@ -67,7 +67,7 @@ contains 5,714 triangles and the generator reports no degenerate triangles.
 
 From the project root, regenerate the model and preview with:
 
-```powershell
+```console
 python src/3d_models/SB_Acoustics_SB26STWGC-4/generate_sb26stwgc_4.py
 python src/3d_models/render_preview.py SB_Acoustics_SB26STWGC-4
 ```
