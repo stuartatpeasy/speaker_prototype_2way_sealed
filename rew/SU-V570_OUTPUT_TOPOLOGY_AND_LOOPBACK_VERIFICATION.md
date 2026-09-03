@@ -2,19 +2,21 @@
 
 Date prepared: 2026-08-31
 
-Status: **SCHEMATIC ASSESSMENT ONLY - EXTERNAL VERIFICATION PENDING**
+Last revised: 2026-09-03
+
+Status: **UNPOWERED COMMON-GROUND CHECK PASSED - COMPLETE FIXTURE NOT YET APPROVED**
 
 ## 1. Purpose
 
 Determine whether the Technics SU-V570 loudspeaker outputs are conventional
-common-ground outputs suitable for the protected UMC202HD driver-terminal
-reference described in
-[`FRD_MEASUREMENT_SETUP_TEST.md`](FRD_MEASUREMENT_SETUP_TEST.md).
+common-ground outputs suitable for the protected amplifier-output reference
+fixture specified in
+[`SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md`](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md).
 
 This document deliberately separates:
 
 - what the supplied schematic strongly indicates;
-- what must still be established by external measurements;
+- what has now been established by external measurements;
 - the optional powered confirmation that may follow a successful unpowered
   test;
 - the connection that remains prohibited even if the amplifier passes.
@@ -54,8 +56,10 @@ Evidence:
    connector or mechanical boundary. Electrical connections enter individual
    terminals horizontally.
 
-This is strong evidence, but the conclusion must remain provisional until the
-unpowered resistance measurements in Section 6 have been recorded.
+This was strong schematic evidence. The 2026-09-01 resistance measurements in
+Section 6 now externally support the common-ground conclusion. That result does
+not by itself approve connection to the UMC202HD; the complete fixture has its
+own construction, test, and release gates.
 
 ## 4. What C712 Does Not Mean
 
@@ -85,6 +89,14 @@ not evidence of a floating or bridged speaker output. Signal `0 V`, chassis,
 protective earth, and speaker negative are related concepts but need not be the
 same physical node.
 
+**VERIFIED MEASUREMENT, 2026-09-01:** with the meter lead resistance nulled,
+speaker negative measured approximately `0.10 ohm` to exposed bare-metal
+chassis. If that was the settled reading after any charging transient, the
+complete amplifier presents an effective low-resistance DC path between those
+points in the tested, fully disconnected condition. The measurement does not
+identify that path, and it does not change `C712` into the loudspeaker-current
+return; a `10 nF` capacitor cannot explain a settled `0.10 ohm` DC result.
+
 ## 5. Safety Conditions For External Testing
 
 For all resistance and continuity measurements:
@@ -112,10 +124,12 @@ off and capacitors to be discharged:
 
 Short the probes firmly together and record the reading. If the meter has a
 relative or zero function, it may be used, but retain the original reading in
-the table.
+the table. If the reading is then nulled, compare subsequent measurements with
+approximately `0 ohm`, not with the original lead reading.
 
 ```text
-R_lead = __________ ohm
+R_lead = 0.050 ohm
+Math Null applied before the measurements in Section 6.2: YES
 ```
 
 ### 6.2 Measure the speaker-return network
@@ -124,11 +138,11 @@ Use the exposed metal of the binding posts, not paint or oxidised surfaces.
 
 | Test | Measured resistance | Expected result |
 | --- | ---: | --- |
-| Left A negative to Left B negative |  | Approximately `R_lead` |
-| Left A negative to Right A negative |  | Approximately `R_lead` |
-| Left A negative to Right B negative |  | Approximately `R_lead` |
-| Any speaker negative to AUX/CD RCA outer shell |  | Approximately `R_lead` |
-| Any speaker negative to bare metal chassis |  | May rise or show `OL` |
+| Left A negative to Left B negative | `0.002 ohm` after null | Approximately `0 ohm` after null |
+| Left A negative to Right A negative | `0.045 ohm` after null | Approximately `0 ohm` after null |
+| Left A negative to Right B negative | `0.045 ohm` after null | Approximately `0 ohm` after null |
+| Any speaker negative to AUX/CD RCA outer shell | `0.120-0.150 ohm`; mean `0.130 ohm`, after null | Low, stable DC resistance after null |
+| Any speaker negative to bare metal chassis | `0.100 ohm` after null | May be low, rise, or show `OL`; not a pass criterion |
 
 Repeat questionable readings after reversing the probes and improving contact.
 An in-circuit capacitor can cause a changing reading while it charges. That is
@@ -138,10 +152,15 @@ particularly relevant to the chassis measurement and is not itself a failure.
 
 Treat the common-ground topology as externally supported if:
 
-- all four negative speaker terminals are mutually continuous at approximately
-  the meter-lead resistance; and
-- a speaker negative is continuous to an input RCA outer shell at approximately
-  the meter-lead resistance.
+- all four negative speaker terminals are mutually continuous at very low,
+  stable resistance; and
+- a speaker negative has similarly unambiguous low-resistance DC continuity to
+  an input RCA outer shell.
+
+Without a meter null, very low readings should be approximately the meter-lead
+resistance plus contact and internal path resistance. With a meter null, as in
+the 2026-09-01 measurements, the displayed result should instead be near zero
+plus contact and internal path resistance.
 
 The speaker-negative-to-chassis reading is not a pass criterion. A high,
 changing, or open DC reading is compatible with the `C712` RF bond.
@@ -155,11 +174,40 @@ Stop and reassess the schematic if:
 
 Do not proceed to a powered test until the unpowered readings have been reviewed.
 
+### 6.4 2026-09-01 review result
+
+**VERIFIED MEASUREMENT:** all speaker-negative terminals are mutually
+continuous. The `0.002 ohm` same-channel A-to-B result is effectively zero for
+this two-wire measurement. The `0.045 ohm` cross-channel results are still a
+very low metallic path and may include binding-post contact, internal wiring,
+PCB trace, and probe-contact resistance.
+
+**VERIFIED MEASUREMENT:** every speaker negative has stable low-resistance DC
+continuity to AUX/CD RCA signal ground. The `0.120-0.150 ohm` range is far below
+a value that could plausibly represent only capacitive coupling or incidental
+leakage. Its small spread is consistent with ordinary two-wire contact and path
+variation.
+
+The Keysight U1282A `60 ohm` range has `0.001 ohm` resolution and specified
+accuracy of `+/- (0.15% of reading + 20 counts)` after Math Null, or about
+`+/-0.020 ohm` for these readings under the datasheet conditions. The exact
+milliohm differences should therefore not be over-interpreted; the topology
+distinction is nevertheless decisive.
+
+**DECISION:** Section 6 passes. The measurements externally support a
+conventional common-signal-ground output and rule against treating the SU-V570
+as a bridged or floating-output amplifier for this measurement plan.
+
 ## 7. Optional Low-Voltage Powered Confirmation
 
 This section is optional and should be performed only after Section 6 passes.
 Keep the amplifier closed and use a battery-powered, electrically isolated
 multimeter.
+
+**USER DECISION, 2026-09-01:** this optional confirmation is waived. The
+successful unpowered gate is accepted as sufficient evidence for the present
+measurement plan. Waiving this test does not waive the UMC202HD phantom-
+isolation or complete-fixture construction and commissioning gates.
 
 1. Reconnect one woofer or a suitable load to one selected speaker output.
 2. Connect a line-level source and apply a 1 kHz sine wave.
@@ -213,23 +261,53 @@ Do not:
 - use a USB-connected meter for the powered topology check;
 - attach an earth-grounded oscilloscope ground clip to either speaker terminal;
 - infer a safe connection merely because the amplifier plays normally;
-- bypass the divider's voltage clamps or commissioning measurements.
+- bypass the fixture's voltage clamps or commissioning measurements.
 
 ## 9. Consequence For The UMC202HD Loopback
 
 If Section 6 passes, the SU-V570 is suitable in principle for the protected
-full-dual reference. Continue to use the two-leg high-value divider specified in
-[`FRD_MEASUREMENT_SETUP_TEST.md`](FRD_MEASUREMENT_SETUP_TEST.md), rather than
-hard-connecting speaker negative to the UMC202HD sleeve.
+full-dual reference. Continue to use the complete two-leg high-value fixture
+specified in
+[`SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md`](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md),
+rather than hard-connecting speaker negative to the UMC202HD sleeve.
 
-That choice remains preferable even for a common-ground amplifier because the
-UMC202HD-output-to-Technics-RCA cable already provides a signal-ground
-connection. The two high-value divider legs avoid adding a second low-resistance
-ground path and exploit the UMC202HD balanced line input.
+That fixture file is the detailed authority for its cable-to-TRS construction,
+component calculations, phantom prerequisite, ground-path audit, integrated DC
+clamp test, AC transfer commissioning, and release gate. The remainder of this
+section records only the amplifier-topology consequences.
 
-The divider and interface must still pass the low-voltage electrical
-commissioning procedure before the reference is connected across a driven
-loudspeaker.
+That choice remains preferable even for a common-ground amplifier. Its two
+high-value legs avoid creating a second low-resistance ground bond and use the
+UMC202HD balanced line input. The playback cable may already reference the
+amplifier's audio ground to the PC, but the actual system bonds must be measured
+rather than inferred from connector shells. The fixture record owns that audit
+and explains the earth-reference consequence.
+
+**VERIFIED MEASUREMENT, 2026-09-02:** the interface/USB/PC portion of that audit
+now confirms low-resistance bonds from UMC202HD Input 2 sleeve to PC chassis and
+to the protective-earth pin of the PC's disconnected mains plug. The existing
+disconnected post-stress matrix also closes the fixture-alone check; only the
+connected playback path remains to be measured before the complete path is
+accepted.
+
+**PLAYBACK-CABLE COMPATIBILITY PASS, 2026-09-03:** the proposed cable maps
+correctly as mono TS-to-RCA, and powered driven-channel measurements verify
+that both UMC202HD rear outputs are ring-grounded. Output 1 measured
+`78.69/0.002/78.73 mV` and Output 2 measured `78.9/0.000/78.84 mV` tip-sleeve/
+ring-sleeve/tip-ring. Its TS sleeve therefore adds no new short of an active
+cold output when used on Output 1. Output 2 must supply the fixture-transfer
+test from tip and sleeve rather than as two active balanced legs. The connected
+playback path itself remains to be measured under the fixture authority.
+
+The amplifier's approximately `+/-45.5 V` rails define the fixture's design
+envelope. The dedicated fixture record derives its attenuation, component
+ratings, and clamp choice from that envelope.
+
+**CURRENT GATE, 2026-09-03:** the amplifier topology gate has passed and the
+optional powered confirmation has been waived. This document makes no separate
+approval of the attenuator, clamps, interface, or complete loopback. Complete
+the fixture physical record, remaining ground-path audit, AC commissioning, and
+release gate before using the acoustic procedure.
 
 ## 10. Final Status Record
 
@@ -237,21 +315,30 @@ Complete this only after reviewing the measurements.
 
 ```text
 Schematic assessment:       LIKELY COMMON-GROUND
-Unpowered measurements:     PENDING
-Powered confirmation:       NOT PERFORMED
-Divider commissioning:      NOT PERFORMED
+Unpowered measurements:     PASS - 2026-09-01
+Powered confirmation:       WAIVED - optional, 2026-09-01
+Complete-fixture authority: SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md
+Fixture release status:     NO
 Approved for full-dual use: NO
 
-Reviewed by: _______________
-Date:        _______________
+Reviewed by: Codex review of user-reported readings and ground-path analysis
+Date:        2026-09-03
 Notes:
-________________________________________________________________________
-________________________________________________________________________
+Section 6 passes and externally supports the schematic common-ground
+assessment. The optional powered confirmation was waived. All fixture-specific
+evidence and remaining gates are maintained in the separate fixture record.
 ```
 
-## 11. Supporting Source
+## 11. Supporting Sources
 
-Behringer specifies two XLR/TRS microphone/line/instrument inputs and a maximum
-line-input level of approximately `+20 dBu` for the UMC202HD. That headroom does
-not remove the requirement for an attenuating and fault-protected divider:
-<https://mediadl.musictribe.com/media/sys_master/h1f/h9b/8849476255774.pdf>
+Keysight specifies the U1282A low-resistance range, resolution, accuracy after
+Math Null, and null procedure in the U1280 Series data sheet:
+<https://www.keysight.com/us/en/assets/7018-04867/data-sheets/5992-0847.pdf>
+
+The Technics operating instructions show normal line-level interconnection and
+direct users to connect the AC power cord only after the other cables:
+<https://www.manualslib.com/manual/3432378/Technics-Su-V570.html?page=5>
+
+The Technics SU-V570 service manual gives the power-amplifier rail notation and
+output topology used in the schematic assessment:
+<https://audiocircuit.dk/downloads/technics/Technics-SUV570-int-sm.pdf>

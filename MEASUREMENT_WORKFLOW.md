@@ -72,7 +72,8 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 - [Driver run-in and stabilisation](DRIVER_RUNIN.md)
 - [Driver evidence and impedance analysis](DRIVER_ANALYSIS.md)
 - [Installed acoustic-response setup test](rew/FRD_MEASUREMENT_SETUP_TEST.md)
-- [Amplifier output topology and protected loopback verification](rew/SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md)
+- [SU-V570 output-topology and amplifier-suitability verification](rew/SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md)
+- [Complete SU-V570-to-UMC202HD reference fixture](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md)
 - [Room geometry and placement evidence](ROOM_DETAILS.md)
 
 ## 6. Evidence and documentation loop
