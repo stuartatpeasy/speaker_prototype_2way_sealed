@@ -54,18 +54,21 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 2. Record cabinet fill/lining, driver mounting, ambient conditions, and cold electrical baselines.
 3. Complete controlled driver conditioning under [DRIVER_RUNIN.md](DRIVER_RUNIN.md), if still required.
 4. Establish cooled installed impedance baselines for woofer and tweeter.
-5. Measure each driver acoustically in the actual baffle with common timing.
-6. Obtain gated far-field measurements around the crossover region.
-7. Obtain near-field woofer measurements for bass and merge only with documented scaling and phase treatment.
-8. Acquire useful horizontal off-axis responses using fixed geometry.
-9. Measure distortion at progressively realistic levels while respecting woofer excursion and tweeter protection.
-10. Import the current phase-bearing FRD and ZMA data into VituixCAD.
-11. Design a realizable passive network for acoustic slopes, summed response, directivity, impedance, sensitivity, and component limits.
-12. Wind, measure, tap, and label oversized development inductors; build the crossover externally using measured capacitor combinations and accessible inductor-tap terminals.
-13. Measure individual filtered drivers, normal-polarity sum, reverse-polarity null, impedance/EPDR, distortion, and off-axis behaviour.
-14. Adjust one controlled crossover, damping, or placement variable at a time and repeat the decisive measurements.
-15. After the acoustic network is stable, wind or trim matched final inductors, verify every component value and DCR, and move the crossover inside only after the complete assembly remains stable under measurement and thermal testing.
-16. Repeat final installed-system measurements in the intended near-wall room placement.
+5. Before full-dual acoustic work, pass the
+   [reference-fixture AC gate](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md) and
+   [installed setup repeatability test](rew/FRD_MEASUREMENT_SETUP_TEST.md).
+6. Measure each driver acoustically in the actual baffle with common timing.
+7. Obtain gated far-field measurements around the crossover region.
+8. Obtain near-field woofer measurements for bass and merge only with documented scaling and phase treatment.
+9. Acquire useful horizontal off-axis responses using fixed geometry.
+10. Measure distortion at progressively realistic levels while respecting woofer excursion and tweeter protection.
+11. Import the current phase-bearing FRD and ZMA data into VituixCAD.
+12. Design a realizable passive network for acoustic slopes, summed response, directivity, impedance, sensitivity, and component limits.
+13. Wind, measure, tap, and label oversized development inductors; build the crossover externally using measured capacitor combinations and accessible inductor-tap terminals.
+14. Measure individual filtered drivers, normal-polarity sum, reverse-polarity null, impedance/EPDR, distortion, and off-axis behaviour.
+15. Adjust one controlled crossover, damping, or placement variable at a time and repeat the decisive measurements.
+16. After the acoustic network is stable, wind or trim matched final inductors, verify every component value and DCR, and move the crossover inside only after the complete assembly remains stable under measurement and thermal testing.
+17. Repeat final installed-system measurements in the intended near-wall room placement.
 
 ## 5. Specialised procedures
 
@@ -74,6 +77,8 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 - [Installed acoustic-response setup test](rew/FRD_MEASUREMENT_SETUP_TEST.md)
 - [SU-V570 output-topology and amplifier-suitability verification](rew/SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md)
 - [Complete SU-V570-to-UMC202HD reference fixture](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md)
+- [Completed reference-fixture qualification evidence](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md)
+- [Current reference-fixture AC commissioning](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md)
 - [Room geometry and placement evidence](ROOM_DETAILS.md)
 
 ## 6. Evidence and documentation loop

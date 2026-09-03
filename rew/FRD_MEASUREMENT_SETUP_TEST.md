@@ -4,46 +4,24 @@ Date prepared: 2026-08-30
 
 Last revised: 2026-09-03
 
-Status: **PROVISIONAL ACOUSTIC SETUP-VALIDATION PROCEDURE; REFERENCE FIXTURE
-NOT YET COMMISSIONED**
+Status: **PROVISIONAL ACOUSTIC SETUP-VALIDATION PROCEDURE; BLOCKED ONLY BY
+REFERENCE-FIXTURE AC COMMISSIONING**
 
-The SU-V570 output-topology and UMC202HD Input 2 TRS phantom-isolation gates
-have passed. The reference fixture's post-rebuild complete-unit resistance
-matrix has passed. All four powered DC curves pass clamp, symmetry, current,
-CV, and thermal checks with an explicitly accepted `45.5 V` soft-knee deviation
-from the approximate `1%` target. The cooled post-stress resistance matrix also
-passes, closing the integrated DC gate. The physical record now passes for
-controlled bench use; AC transfer/noise commissioning remains open. The
-ground-path audit has verified a
-`0.035 ohm` Input 2 sleeve-to-USB-shell bond and, using a `0.013 ohm` positive
-control, DC isolation of the enclosure from that node. The interface-alone
-stage passes, and the intended USB cable has `0.130 ohm` shell-to-shell
-continuity. The isolated-PC stage also passes: Input 2 sleeve measures
-`0.412 ohm` to PC chassis and `0.379 ohm` directly to the free mains plug's PE
-pin. The mapped playback cable is mono TS-to-RCA; it was placed on hold because
-its TS plug connects the output jack's ring contact to sleeve. Powered driven-
-channel tests now verify that both rear outputs are already ring-grounded: Output 1
-measured `78.69/0.002/78.73 mV` and Output 2 measured
-`78.9/0.000/78.84 mV` tip-sleeve/ring-sleeve/tip-ring. The mapped TS cable
-therefore adds no new cold-leg short, and its output-compatibility hold is
-lifted. Internal inspection further shows that the distinct ring and sleeve
-pads of both physical TRS output sockets share the same PCB copper fill: the
-rear outputs have electrically TS, tip-plus-common topology. Use Output 2 tip
-and the R/S common for the fixture-transfer source; do not treat it as a two-
-active-leg balanced output. The fixture-alone ground check is
-already satisfied by the disconnected post-stress matrix's `10.130 kohm` and
-`10.146 kohm` input-to-sleeve readings. The connected playback path also passes:
-with the intended dual cable fitted between the otherwise isolated, unpowered
-devices, Input 2 sleeve measured `0.061 ohm` to the corresponding SU-V570 RCA
-shell and `0.174 ohm` to the corresponding speaker-negative terminal. The
-complete unpowered ground-path audit is therefore closed. The physical record
-now records and accepts the individually insulated, multilayer heat-shrink
-construction and its
-approximately `5 cm` unscreened twisted output tail. That tail requires an
-explicit no-signal pickup comparison during the remaining AC commissioning. Do
-not use the full-dual connection until the fixture record marks it approved.
-This procedure validates the woofer measurement chain; it is not a raw-tweeter
-test or the final polar-measurement procedure.
+Every prerequisite before AC transfer/noise commissioning has passed: SU-V570
+common-ground topology, UMC202HD Input 2 phantom isolation, complete-fixture
+resistance/DC/physical qualification, the unpowered ground audit, and rear-
+output topology. The inspected rear outputs are mechanically TRS but
+electrically tip plus a ring/sleeve common. The fixture's short unscreened tail
+requires the specified matched no-signal comparison.
+
+Do not make the full-dual amplifier connection until
+[REFERENCE_FIXTURE_AC_COMMISSIONING.md](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
+passes and the fixture authority explicitly says
+`Approved for amplifier use: YES`. The exact current resume point is mapping
+the Output 2 source adaptor and
+female-to-male inline TRS breakout. This procedure begins only after that gate
+and validates the woofer measurement chain; it is not a raw-tweeter or final
+polar-measurement procedure.
 
 ## 1. Purpose And Pass Criteria
 
@@ -74,8 +52,8 @@ prerequisite.
 | Output 1 / USB output L | SU-V570 and woofer under test |
 | Output 2 / USB output R | Physically unconnected |
 
-Use REW's `Use loopback as cal and timing reference` mode with `Merge loopback
-response into IR` enabled. Input 2 then references the acoustic response to the
+Use REW's `Use loopback as cal and timing reference` mode with
+`Merge loopback response into IR` enabled. Input 2 then references the acoustic response to the
 voltage at the selected SU-V570 rear speaker terminals and supplies common
 timing.
 
@@ -90,13 +68,15 @@ If the complete fixture is not approved, do not connect either amplifier
 terminal to the UMC202HD. Instead use:
 
 ```text
-UMC202HD Output 2 -> balanced TRS patch cable -> UMC202HD Input 2, LINE
+UMC202HD Output 2 -> straight-through TRS patch cable -> UMC202HD Input 2, LINE
 ```
 
 Select `Use loopback as timing reference`. This preserves common timing but
 leaves DAC and amplifier response in the acoustic measurement. Do not mix
 semi-dual and full-dual data in a final driver set without first demonstrating
-equivalent results.
+equivalent results. The cable retains separate TRS contacts because Input 2
+ring is distinct, even though this interface's Output 2 ring and sleeve are
+internally common.
 
 ## 3. Prerequisites And Equipment
 
@@ -106,15 +86,14 @@ Before making the full-dual connection, confirm:
 
 1. the SU-V570 record passes the unpowered common-ground topology gate;
 2. the UMC202HD Input 2 central-TRS phantom-isolation gate passes;
-3. every construction, resistance, integrated DC clamp, ground-path, and AC
-   transfer gate in
-   [`SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md`](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md)
+3. the remaining AC transfer/noise gate in
+   [`REFERENCE_FIXTURE_AC_COMMISSIONING.md`](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
    passes; and
 4. the fixture record explicitly says `Approved for amplifier use: YES`.
 
-The fixture file is the sole detailed authority for its schematic, component
-values, wiring, test history, and commissioning. This procedure does not repeat
-those details.
+The fixture file owns its schematic, component values, wiring, and release
+state; the qualification archive owns completed test evidence. This acoustic
+procedure does not repeat either.
 
 ### 3.2 Required Equipment
 
@@ -366,6 +345,10 @@ Primary references:
 
 - Complete reference-fixture authority:
   [`SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md`](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md)
+- Remaining fixture AC commissioning:
+  [`REFERENCE_FIXTURE_AC_COMMISSIONING.md`](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
+- Completed fixture qualification evidence:
+  [`SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md`](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md)
 - SU-V570 output-topology gate:
   [`SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md`](SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md)
 - Project-wide measurement workflow:

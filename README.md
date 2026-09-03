@@ -11,6 +11,9 @@ This is the high-level source of truth and entry point for the sealed passive tw
 - Both drivers remain provisionally retained.
 - The passive crossover remains exploratory. Installed-baffle acoustic magnitude, common timing/phase, directivity, and distortion measurements are still required before topology or component values can be frozen.
 - The intended acoustic crossover region remains approximately **2.2–2.4 kHz**, probably using fourth-order Linkwitz–Riley-like acoustic slopes, subject to measurement.
+- The amplifier-reference fixture has passed every topology, construction, DC,
+  and ground-path gate. AC commissioning is the sole remaining electrical gate;
+  full-dual amplifier use is not yet approved.
 
 ## 2. Project goal and engineering principles
 
@@ -54,7 +57,9 @@ Three-way, open-baffle, transmission-line, horn, and reflex alternatives are out
 | [src/3d_models/README.md](src/3d_models/README.md) | Source/generated boundary and reconstruction procedure for scripted 3D models, previews, and printer machine code. |
 | [rew/FRD_MEASUREMENT_SETUP_TEST.md](rew/FRD_MEASUREMENT_SETUP_TEST.md) | Detailed installed acoustic-response and common-timing setup. |
 | [rew/SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md](rew/SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md) | SU-V570 schematic assessment, unpowered common-ground test, and amplifier-suitability gate. |
-| [rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md) | Complete cable-to-TRS reference fixture: rationale, schematic, construction, calculations, test history, PL310QMD commissioning, and release gate. |
+| [rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md) | Current cable-to-TRS fixture authority: rationale, construction, calculations, qualification summary, and release gate. |
+| [rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md) | Completed phantom, resistance, DC clamp, construction, ground-path, and UMC202HD output-topology evidence. Read for audit/history, not the next procedure. |
+| [rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md) | Live interconnect preflight and matched AC transfer/noise procedure; this is the exact signal-path-testing resume point. |
 
 ### 4.1 Minimal reading routes
 
@@ -64,11 +69,11 @@ Three-way, open-baffle, transmission-line, horn, and reflex alternatives are out
 - **Acoustic measurements:** this file + `MEASUREMENT_WORKFLOW.md` + the relevant procedure under `rew/`.
 - **Room or placement work:** this file + `ROOM_DETAILS.md`; re-inspect the current `3d_models/Listening room.dae` after any geometry change.
 - **Amplifier loopback/reference work:** this file +
-  `rew/SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md` +
-  `rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md`; add
-  `rew/FRD_MEASUREMENT_SETUP_TEST.md` only for the subsequent acoustic setup.
-  Do not connect a powered amplifier output until the fixture release gate says
-  `YES`.
+  `rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md`. Add the SU-V570 topology
+  record or qualification record only to audit those completed gates. For the
+  current signal-path work, add `rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md`;
+  add `rew/FRD_MEASUREMENT_SETUP_TEST.md` only after fixture release. Do not
+  connect a powered amplifier output until the fixture gate says `YES`.
 - **Repository or generated-artifact maintenance:** this file + `AGENTS.md` + `.gitignore`; add `src/3d_models/README.md` for model, preview, or printer-output reconstruction.
 
 ### 4.2 Local tooling environment
@@ -137,72 +142,26 @@ The current 2.2–2.4 kHz LR4-like acoustic direction is a development hypothesi
 - `rew/SB17NRX2C35-8 runin 30Hz 4Vrms 1h 48kHz.zma`: matched-rate post-conditioning comparison; shows lower $F_c$ but contains an approximately 0.34 Ω broadband series-resistance offset and is not yet a cold crossover baseline.
 - `rew/SB26STWGC-4 installed.zma`: current tweeter impedance baseline.
 - Installed-baffle phase-bearing FRD, horizontal off-axis, distortion/compression, filtered-driver, reverse-null, and final-system impedance/EPDR measurements remain outstanding.
-- The SU-V570 unpowered output-topology checks pass and externally support a
-  conventional common-ground output. The UMC202HD Input 2 central-TRS phantom-
-  isolation gate also passes: under equal `100 kohm` loads, all three contact
-  pairs remained at a displayed `0.000 V` while `+48 V` was individually
-  switched on and off. The complete amplifier-output reference fixture now has
-  its own authority. It begins with user-reported `2 m`, `1.5 mm^2` red/black
-  cable at the rear amplifier terminals and ends at the UMC202HD Input 2 TRS
-  plug. The post-rebuild, pre-stress complete-unit resistance matrix passes: all six
-  redundant path sums close within `0-2 ohm`, and the derived unloaded
-  differential gain is `-20.094 dB`. The installed zeners are marked
-  `BZX 5V1`, each measured close to `5 V` at `2 mA`, and are installed as two
-  anode-to-anode pairs. Their exact manufacturer/family suffix is unknown, but
-  this is sufficient for bounded qualification. All four powered DC curves pass
-  clamp action, polarity symmetry, current, CV, and thermal checks. At maximum
-  source, every node is `0.860-0.918 V` below its unclamped prediction and the
-  four magnitudes span only `5.463-5.520 V`; the ring pair both measure
-  `5.515 V`. Near `45.5 V`, the four departures are `0.99-1.24%`, so three do
-  not meet the stated approximate `1%` target exactly. This is accepted as a
-  characterized soft-knee deviation rather than hidden: all curves remain
-  within `0.45%` through `40 V`, then bend smoothly and symmetrically. Both
-  current limits were `10 mA`; the supply remained in CV mode, indicated `6 mA`
-  maximum, and caused only expected mild fixture warming. The cooled post-stress
-  matrix also passes: every direct path changed by only `0-4 ohm`, and all
-  redundant sums still close within `0-2 ohm`. The integrated DC gate is
-  therefore complete. The unpowered ground-path audit now passes:
-  UMC202HD Input 2 sleeve to USB shell measures `0.035 ohm`; a `0.013 ohm`
-  chassis-to-chassis positive control validates both open enclosure readings.
-  The interface-alone stage therefore establishes DC isolation of the enclosure
-  from the hard-bonded sleeve/USB-shell node. The intended USB cable also has
-  `0.130 ohm` shell-to-shell continuity. With the PC isolated from every other
-  cable and mains, its USB shell to chassis measures `0.170 ohm`, chassis to the
-  free mains plug's protective-earth pin `0.245 ohm`, Input 2 sleeve to PC
-  chassis `0.412 ohm`, and sleeve directly to that PE pin `0.379 ohm`. These
-  topology readings confirm the USB/PC earth-reference path without constituting
-  a protective-conductor safety test. The intended playback cable maps cleanly
-  as TS tip-to-RCA-centre (`0.244 ohm`) and sleeve-to-shell (`0.078 ohm`), but a
-  TS plug grounds the UMC202HD TRS output's ring contact. Both powered, driven
-  rear outputs are now verified ring-grounded: Output 1 measured
-  `78.69/0.002/78.73 mV` and Output 2 measured `78.9/0.000/78.84 mV` tip-
-  sleeve/ring-sleeve/tip-ring. User inspection inside this specific interface
-  additionally found each rear output's separate ring and sleeve socket pads
-  connected by four-spoke thermals to the same PCB copper fill. The sockets are
-  therefore mechanically TRS but electrically tip-plus-common, equivalent to
-  TS signal topology. The mapped TS playback cable therefore adds no new short
-  of an active cold leg, and its compatibility hold is lifted.
-  With the intended dual playback cable connected between the otherwise
-  isolated, unpowered devices, Input 2 sleeve measures `0.061 ohm` to the
-  corresponding SU-V570 RCA shell and `0.174 ohm` to the corresponding speaker-
-  negative terminal. This closes the connected playback-path check, and the
-  post-stress matrix also satisfies the fixture-alone ground check. The physical
-  construction record now passes for controlled bench use: the network is
-  individually insulated inside an approximately `6 cm` multilayer heat-shrink
-  body with load-relieving wire returns, and the approximately `5 cm` output
-  tail uses three twisted `14/0.7` insulated conductors rather than screened
-  cable. The unscreened tail must therefore pass an explicit no-signal pickup
-  check during AC commissioning. AC transfer/noise commissioning is the sole
-  remaining electrical release gate, so full-dual use remains `NO`.
+- The protected amplifier-reference path has passed the SU-V570 common-ground,
+  UMC202HD phantom-isolation, fixture resistance/DC/physical, full unpowered
+  ground-path, and rear-output-topology gates. Both inspected rear output
+  sockets are mechanically TRS but electrically tip plus a ring/sleeve common,
+  so the mapped Output 1 TS-to-RCA playback lead is compatible and Output 2
+  drives the fixture test asymmetrically.
+- The direct-baseline TRS cable passes. Before any powered-amplifier connection,
+  map the Output 2 source adaptor and inline TRS breakout, then complete the
+  matched transfer/noise test in
+  [`rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md`](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md).
+  Full-dual approval remains **NO**. Completed raw readings are retained only in
+  the [qualification record](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md).
 
 ## 7. Immediate development sequence
 
-1. Complete woofer stabilisation under [DRIVER_RUNIN.md](DRIVER_RUNIN.md) and obtain a cooled reproducible 48 kHz ZMA.
-2. Retain the tweeter without dedicated run-in; confirm its installed impedance before acoustic work.
-3. With the SU-V570 unpowered topology and UMC202HD TRS phantom-isolation gates
-   passed, and the unpowered ground-path and physical-construction records
-   complete, perform the remaining AC transfer/noise release gate in the
-   dedicated amplifier-output reference-fixture procedure.
+1. Complete the source-adaptor/breakout preflight and matched transfer/noise
+   release gate in
+   [`rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md`](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md).
+2. Complete woofer stabilisation under [DRIVER_RUNIN.md](DRIVER_RUNIN.md) and obtain a cooled reproducible 48 kHz ZMA.
+3. Retain the tweeter without dedicated run-in; confirm its installed impedance before acoustic work.
 4. Acquire installed-baffle magnitude and phase for both drivers with common timing and fixed geometry.
 5. Acquire horizontal off-axis and controlled distortion measurements.
 6. Import current ZMA/FRD sources into VituixCAD and optimise only within realizable component and load constraints.

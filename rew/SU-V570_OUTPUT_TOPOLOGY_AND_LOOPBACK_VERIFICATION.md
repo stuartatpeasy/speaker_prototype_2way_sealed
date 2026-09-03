@@ -4,7 +4,8 @@ Date prepared: 2026-08-31
 
 Last revised: 2026-09-03
 
-Status: **UNPOWERED COMMON-GROUND CHECK PASSED - COMPLETE FIXTURE NOT YET APPROVED**
+Status: **UNPOWERED COMMON-GROUND CHECK PASSED; OPTIONAL POWERED CHECK WAIVED;
+REFERENCE-FIXTURE AC GATE PENDING**
 
 ## 1. Purpose
 
@@ -17,9 +18,8 @@ This document deliberately separates:
 
 - what the supplied schematic strongly indicates;
 - what has now been established by external measurements;
-- the optional powered confirmation that may follow a successful unpowered
-  test;
-- the connection that remains prohibited even if the amplifier passes.
+- the optional powered confirmation, which was subsequently waived; and
+- the connection that remains prohibited even though the amplifier passes.
 
 ## 2. Preserved Schematic Evidence
 
@@ -33,7 +33,7 @@ SHA-256:
 
 ![Technics SU-V570 power amplifier and speaker output schematic](SU-V570_power_amp_output_schematic.png)
 
-## 3. Provisional Schematic Conclusion
+## 3. Schematic Assessment
 
 The drawing strongly indicates a conventional common-signal-ground amplifier,
 not a bridged or floating loudspeaker output.
@@ -198,59 +198,13 @@ distinction is nevertheless decisive.
 conventional common-signal-ground output and rule against treating the SU-V570
 as a bridged or floating-output amplifier for this measurement plan.
 
-## 7. Optional Low-Voltage Powered Confirmation
+## 7. Optional Powered Confirmation - Waived
 
-This section is optional and should be performed only after Section 6 passes.
-Keep the amplifier closed and use a battery-powered, electrically isolated
-multimeter.
-
-**USER DECISION, 2026-09-01:** this optional confirmation is waived. The
-successful unpowered gate is accepted as sufficient evidence for the present
-measurement plan. Waiving this test does not waive the UMC202HD phantom-
-isolation or complete-fixture construction and commissioning gates.
-
-1. Reconnect one woofer or a suitable load to one selected speaker output.
-2. Connect a line-level source and apply a 1 kHz sine wave.
-3. Establish approximately `1.00 V RMS` across the speaker terminals.
-4. Keep the meter in AC-voltage mode with its leads in `COM` and `V/ohm`.
-5. Put the black probe on the outer shell of the selected line-input RCA socket.
-6. Measure AC voltage from speaker negative to the RCA shell.
-7. Measure AC voltage from speaker positive to the RCA shell.
-8. Finally, measure directly across speaker positive and negative.
-
-Expected common-ground result:
-
-| Test | Expected result |
-| --- | --- |
-| Speaker negative to RCA shell | Near the meter's noise floor |
-| Speaker positive to RCA shell | Approximately `1.00 V RMS` |
-| Speaker positive to speaker negative | Approximately `1.00 V RMS` |
-
-Calculate:
-
-```text
-r = V(negative to RCA ground) / V(positive to negative)
-```
-
-For a conventional common-ground output, `r` should be at the meter's noise
-floor and comfortably below `0.01` or 1%. A bridged amplifier would normally
-show substantial AC voltage on both speaker terminals relative to signal ground.
-
-As a separate amplifier-health observation, measure DC voltage directly across
-the speaker terminals with no signal. Low tens of millivolts are unsurprising;
-hundreds of millivolts warrant stopping and investigating the amplifier. This DC
-offset check is not, by itself, a topology test.
-
-### 7.1 Powered-test record
-
-| Quantity | Result |
-| --- | ---: |
-| Test frequency |  Hz |
-| Speaker-terminal voltage |  V RMS |
-| Negative-to-RCA-shell voltage |  V RMS |
-| Positive-to-RCA-shell voltage |  V RMS |
-| Ratio `r` |  |
-| DC offset across speaker output |  mV DC |
+**USER DECISION, 2026-09-01:** the successful unpowered gate is accepted as
+sufficient evidence for this measurement plan, so the optional low-voltage
+powered topology confirmation will not be performed. This does not waive the
+separate UMC202HD, fixture, or AC release gates. No blank result sheet or
+superseded procedure is retained.
 
 ## 8. Prohibited Test Connections
 
@@ -263,80 +217,44 @@ Do not:
 - infer a safe connection merely because the amplifier plays normally;
 - bypass the fixture's voltage clamps or commissioning measurements.
 
-## 9. Consequence For The UMC202HD Loopback
+## 9. Consequence For The UMC202HD Reference
 
-If Section 6 passes, the SU-V570 is suitable in principle for the protected
-full-dual reference. Continue to use the complete two-leg high-value fixture
-specified in
-[`SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md`](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md),
-rather than hard-connecting speaker negative to the UMC202HD sleeve.
+The passed Section 6 gate makes the SU-V570 suitable in principle for the
+protected amplifier-output reference. It does not authorize a direct
+speaker-output-to-interface connection. Use the symmetric two-leg high-value
+fixture in
+[SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md);
+neither speaker lead is hard-connected to UMC202HD sleeve.
 
-That fixture file is the detailed authority for its cable-to-TRS construction,
-component calculations, phantom prerequisite, ground-path audit, integrated DC
-clamp test, AC transfer commissioning, and release gate. The remainder of this
-section records only the amplifier-topology consequences.
+That arrangement remains preferable for this common-ground amplifier because it
+avoids a second low-resistance bond through the reference input. The separately
+audited playback path already provides the expected SU-V570-to-UMC202HD signal
+ground and references it through USB and the Class-I PC to protective earth.
+These are signal-path findings, not an appliance-safety or protective-conductor
+test.
 
-That choice remains preferable even for a common-ground amplifier. Its two
-high-value legs avoid creating a second low-resistance ground bond and use the
-UMC202HD balanced line input. The playback cable may already reference the
-amplifier's audio ground to the PC, but the actual system bonds must be measured
-rather than inferred from connector shells. The fixture record owns that audit
-and explains the earth-reference consequence.
+The completed ground readings, UMC202HD rear-output tests, PCB inspection, and
+TS playback-cable decision are retained without duplication in
+[the qualification record](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md).
+The rear sockets are mechanically TRS but electrically tip plus a permanent
+ring/sleeve common, so the mapped TS-to-RCA playback cable is compatible with
+these specific outputs. The amplifier's approximately `+/-45.5 V` rails define
+the fixture design envelope.
 
-**VERIFIED MEASUREMENT, 2026-09-02:** the interface/USB/PC portion of that audit
-now confirms low-resistance bonds from UMC202HD Input 2 sleeve to PC chassis and
-to the protective-earth pin of the PC's disconnected mains plug. The existing
-disconnected post-stress matrix also closes the fixture-alone check.
-
-**PLAYBACK-CABLE COMPATIBILITY PASS, 2026-09-03:** the proposed cable maps
-correctly as mono TS-to-RCA, and powered driven-channel measurements verify
-that both UMC202HD rear outputs are ring-grounded. Output 1 measured
-`78.69/0.002/78.73 mV` and Output 2 measured `78.9/0.000/78.84 mV` tip-sleeve/
-ring-sleeve/tip-ring. Its TS sleeve therefore adds no new short of an active
-cold output when used on Output 1. Output 2 must supply the fixture-transfer
-test from tip and sleeve rather than as two active balanced legs.
-
-**USER-REPORTED INTERNAL PCB INSPECTION, 2026-09-03:** each rear output uses a
-physical three-contact TRS socket with all three through-hole terminals
-soldered. On both socket footprints, the separate ring and sleeve terminals
-connect through four-spoke thermal reliefs to the same copper fill. Combined
-with the unpowered `0.021 ohm` ring-to-sleeve reading and the powered AC maps,
-this verifies a permanent tip-plus-common, electrically TS output topology; it
-is not a state-dependent grounded cold output. The connectors remain
-mechanically TRS and may still accept a TRS cable. A TS plug merely contacts two
-PCB nodes—tip and the already-common R/S node—and is therefore compatible with
-these specific inspected outputs.
-
-**CONNECTED PLAYBACK-PATH PASS, 2026-09-03:** with the UMC202HD and SU-V570
-unpowered, isolated from mains, USB disconnected, and the intended dual analogue
-playback cable fitted, Input 2 sleeve measured `0.061 ohm` to the corresponding
-SU-V570 RCA shell and `0.174 ohm` to the corresponding speaker-negative
-terminal. The implied `0.113 ohm` RCA-shell-to-speaker-negative portion agrees
-with the earlier `0.120-0.150 ohm` direct measurements within low-resistance
-contact uncertainty and possible parallel dual-cable ground paths. The fixture
-authority therefore marks the complete unpowered ground-path audit `PASS`.
-
-The amplifier's approximately `+/-45.5 V` rails define the fixture's design
-envelope. The dedicated fixture record derives its attenuation, component
-ratings, and clamp choice from that envelope.
-
-**CURRENT GATE, 2026-09-03:** the amplifier topology gate has passed and the
-optional powered confirmation has been waived. This document makes no separate
-approval of the attenuator, clamps, interface, or complete loopback. Complete
-the fixture AC transfer/noise commissioning and release gate before using the
-acoustic procedure. Its physical construction record now passes for controlled
-bench use with the heat-shrink body and short unscreened output tail explicitly
-documented.
+**CURRENT GATE, 2026-09-03:** amplifier topology passes and the optional powered
+confirmation is waived. Complete
+[the fixture AC transfer/noise gate](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
+before powered-amplifier or full-dual use.
 
 ## 10. Final Status Record
-
-Complete this only after reviewing the measurements.
 
 ```text
 Schematic assessment:       LIKELY COMMON-GROUND
 Unpowered measurements:     PASS - 2026-09-01
 Powered confirmation:       WAIVED - optional, 2026-09-01
 Complete-fixture authority: SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md
+Completed evidence:          SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md
+Remaining electrical gate:  REFERENCE_FIXTURE_AC_COMMISSIONING.md
 Fixture release status:     NO
 Approved for full-dual use: NO
 
@@ -344,8 +262,9 @@ Reviewed by: Codex review of user-reported readings and ground-path analysis
 Date:        2026-09-03
 Notes:
 Section 6 passes and externally supports the schematic common-ground
-assessment. The optional powered confirmation was waived. All fixture-specific
-evidence and remaining gates are maintained in the separate fixture record.
+assessment. The optional powered confirmation was waived. Fixture construction,
+completed evidence, and remaining AC work are separated into the three records
+named above.
 ```
 
 ## 11. Supporting Sources
