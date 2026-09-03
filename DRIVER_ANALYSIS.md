@@ -237,7 +237,7 @@ These response figures are **DERIVED**, not acoustic measurements. They assume t
 
 **VERIFIED FROM CURRENT ZMA**
 
-| Frequency | |Z| | Phase |
+| Frequency | \|Z\| | Phase |
 |---:|---:|---:|
 | 2199.83 Hz | 7.9687 ohm | +10.425 degrees |
 | 2297.23 Hz | 7.9767 ohm | +10.753 degrees |
@@ -333,7 +333,7 @@ The magnitude maximum occurs a few hertz below the bandwidth-derived resonance b
 
 **VERIFIED FROM CURRENT ZMA**
 
-| Frequency | |Z| | Phase |
+| Frequency | \|Z\| | Phase |
 |---:|---:|---:|
 | 2199.83 Hz | 3.4884 ohm | -5.699 degrees |
 | 2297.23 Hz | 3.4768 ohm | -5.032 degrees |
