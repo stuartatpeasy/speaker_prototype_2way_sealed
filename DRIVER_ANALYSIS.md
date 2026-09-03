@@ -68,11 +68,24 @@ Both drivers were correctly mounted in the sealed prototype enclosure in their n
   grounded: Output 1 measured `78.69/0.002/78.73 mV` and Output 2 measured
   `78.9/0.000/78.84 mV` tip-sleeve/ring-sleeve/tip-ring. The mapped mono TS-
   to-RCA playback cable therefore adds no new short of an active cold leg, and
-  its compatibility hold is lifted. The post-stress matrix's `10.130 kohm` and
+  its compatibility hold is lifted. User inspection now also establishes that
+  each rear socket's separate ring and sleeve contacts terminate through
+  four-spoke thermals on the same PCB copper fill. These are mechanically TRS
+  sockets with an electrically TS, tip-plus-common output topology. The post-
+  stress matrix's `10.130 kohm` and
   `10.146 kohm` input-to-sleeve paths also satisfy the fixture-alone ground
-  check. Remaining physical details, the connected playback-path portion of the
-  unpowered ground audit, and AC transfer commissioning remain open. Full-dual
-  use is therefore not approved.
+  check. The connected playback path now also passes: with the intended dual
+  cable fitted between the otherwise isolated, unpowered devices, Input 2 sleeve
+  measured `0.061 ohm` to the corresponding SU-V570 RCA shell and `0.174 ohm`
+  to the corresponding speaker-negative terminal. The complete unpowered
+  ground-path audit is therefore closed. The physical construction record also
+  passes for controlled bench use: every component and junction is individually
+  heat-shrink insulated inside an approximately `6 cm` multilayer body with
+  load-relieving wire returns. Its approximately `5 cm` output tail uses three
+  twisted `14/0.7` insulated conductors rather than screened cable, so the AC
+  gate must include an explicit no-signal pickup comparison. AC transfer/noise
+  commissioning is the remaining electrical gate, so full-dual use is not yet
+  approved.
 
 ### 1.4 Project file-location convention
 
@@ -411,15 +424,13 @@ Matching complete installed behaviour matters more than reproducing every datash
 1. Complete the bounded woofer conditioning/cooldown loop in [DRIVER_RUNIN.md](DRIVER_RUNIN.md), then promote a reproducible cooled 48 kHz ZMA to the modelling baseline.
 2. Record the present enclosure fill/lining state, ambient temperature, terminal voltage, and mounting condition so this baseline can be reproduced.
 3. Having passed the SU-V570 topology, UMC202HD Input 2 TRS phantom-isolation,
-   and post-rebuild complete-fixture resistance checks, complete the fixture's
-   physical record, the in-progress unpowered ground-path audit, and AC transfer
-   gate before connecting it to a powered amplifier. The interface-alone stage,
-   USB-cable map, and isolated-PC/PE stage have passed. The present mono TS-to-
-   RCA playback cable grounds the UMC202HD output ring, but both powered,
-   driven outputs are now verified ring-grounded. The TS plug therefore adds no
-   new short of an active conductor and its compatibility hold is lifted.
-   The existing disconnected post-stress matrix also closes the fixture-alone
-   resistance check. Complete the connected playback-path check.
+   post-rebuild complete-fixture resistance, and complete unpowered ground-path
+   checks, and having documented the physical construction for controlled bench
+   use, complete the AC transfer/noise gate before connecting the fixture to a
+   powered amplifier. The present mono TS-to-RCA playback cable grounds the
+   UMC202HD output ring, but powered tests and direct PCB inspection verify the
+   ring/sleeve common connection, so the plug adds no new short of an active
+   conductor.
 4. Acquire installed-baffle acoustic magnitude and phase for both drivers using common loopback timing.
 5. Acquire horizontal off-axis responses using fixed microphone and rotation geometry.
 6. Measure distortion at progressively realistic levels while respecting tweeter protection and woofer excursion.
@@ -455,10 +466,23 @@ Matching complete installed behaviour matters more than reproducing every datash
   outputs as ring-grounded. Output 1 measured `78.69/0.002/78.73 mV` and Output
   2 measured `78.9/0.000/78.84 mV` tip-sleeve/ring-sleeve/tip-ring. The TS plug
   therefore adds no new short of an active cold leg and the compatibility hold
-  is lifted. Output 2 must supply the fixture-transfer test from tip and sleeve,
-  not as two active balanced legs. The disconnected post-stress matrix already
-  verifies the two fixture-alone input-to-sleeve paths. Remaining mechanical
-  details, the connected playback-path check, and AC transfer remain unverified.
+  is lifted. Subsequent internal inspection found each physical TRS socket's
+  separate ring and sleeve pads connected to the same PCB copper fill,
+  confirming permanent electrically TS topology rather than a state-dependent
+  grounded output. Output 2 must supply the fixture-transfer test from tip and
+  the R/S common, not as two active balanced legs. The disconnected post-stress
+  matrix already verifies the two fixture-alone input-to-sleeve paths. With the
+  intended dual playback cable fitted between the otherwise isolated, unpowered
+  UMC202HD and
+  SU-V570, Input 2 sleeve measures `0.061 ohm` to the corresponding RCA shell
+  and `0.174 ohm` to the corresponding speaker-negative terminal. The implied
+  `0.113 ohm` amplifier portion agrees with the earlier `0.120-0.150 ohm`
+  direct range within contact uncertainty and possible parallel dual-cable
+  paths, so the unpowered ground-path audit now passes in full. Remaining
+  mechanical details are now recorded and pass for controlled bench use. The
+  approximately `5 cm` output tail is three twisted insulated wires rather than
+  screened cable; its effect on hum/noise pickup is explicitly deferred to the
+  AC transfer/noise test, which remains unverified.
   The exact clamp manufacturer/family remains unknown but is accepted through
   the bounded installed-function qualification and is not a release blocker.
   The current amplifier-terminal
@@ -1181,3 +1205,167 @@ preserve the measurement history and must not be used as current evidence.
   commissioning. The existing disconnected post-stress matrix closes the
   fixture-alone ground check with `10.130 kohm` and `10.146 kohm` input-to-
   sleeve paths.
+
+### 11.34 2026-09-03 - connected playback path passes; ground audit complete
+
+- **USER-REPORTED MEASUREMENT:** with the Agilent U1282A in auto-ranging
+  resistance mode and its leads nulled, the UMC202HD and SU-V570 were unpowered
+  and disconnected from mains. USB and every unrelated port were disconnected;
+  the intended dual analogue playback cable joined UMC202HD rear Outputs 1 and
+  2 to the corresponding SU-V570 RCA input channels. Input 2 sleeve measured
+  `0.061 ohm` to the corresponding RCA shell and `0.174 ohm` to the
+  corresponding speaker-negative terminal. The user's term "rear inputs 1 and
+  2" is interpreted as the UMC202HD rear outputs because those are the sockets
+  feeding the amplifier RCA inputs.
+- **DERIVED:** subtracting the directly measured sleeve-to-RCA value leaves
+  `0.174 - 0.061 = 0.113 ohm` from that shell to speaker negative. This agrees
+  with the earlier direct `0.120-0.150 ohm` range (mean `0.130 ohm`) within
+  remade-contact and meter uncertainty. The two connected cable shields may
+  also place common signal-ground routes in parallel.
+- **VERIFIED MEASUREMENT:** the connected devices provide the expected stable,
+  low-resistance playback ground from UMC202HD Input 2 sleeve through to the
+  SU-V570 signal ground and speaker-negative node.
+- **DECISION:** pass the connected-playback stage and close the complete
+  unpowered system ground-path audit. Ordinary SU-V570 wiring may now be
+  restored with the amplifier switched off and disconnected from mains. Do not
+  connect the reference fixture to a powered amplifier or use full-dual mode
+  until the physical construction record and AC transfer commissioning also
+  pass.
+
+### 11.35 2026-09-03 - physical construction recorded for controlled bench use
+
+- **USER-REPORTED CONSTRUCTION:** the `2 m`, `1.5 mm^2` red/black figure-of-eight
+  input cable has no printed markings. It remains joined except for approximately
+  `5 cm` at its secure, insulated, strand-free bare-wire speaker termination and
+  `2 cm` at the fixture. Colour convention permanently identifies red positive
+  and black negative; the SU-V570 terminals accept none of the proposed ring,
+  spade, or banana alternatives.
+- **USER-REPORTED CONSTRUCTION:** each free-air-soldered component, exposed leg,
+  and junction is individually heat-shrink insulated before further overlapping
+  layers form an approximately `6 cm`, normally inflexible body. Tapered layers
+  and internal wire returns provide strain relief; a moderate pull reaches no
+  solder joint. Both joined-anode zener midpoints are separately insulated and
+  unused. Sleeve is the common junction for both `1 kohm` shunts, both clamp
+  endpoints, and the output-tail sleeve conductor.
+- **USER-REPORTED CONSTRUCTION:** the output tail is approximately `5 cm` of
+  three twisted, individually insulated `14/0.7` hookup wires rather than a
+  screened cable. The unknown-make all-metal TRS plug has distinct tip/ring/
+  sleeve contacts, a plastic cylindrical terminal insulator, standard clamp-
+  jaw strain relief, a sleeve-bonded body, and an appropriate Input 2 `LINE`
+  label.
+- **USER-REPORTED COMPONENT EVIDENCE:** all four resistors are 1% metal-film
+  axial parts. The `9.1 kohm` parts are `0.5 W` with working voltage above
+  `100 V`; the `1 kohm` parts are `0.25 W`. They were sourced from Mouser, but
+  manufacturer and part numbers were not retained.
+- **ENGINEERING REVIEW:** the multilayer heat-shrink construction provides the
+  reported insulation, load transfer, and light mechanical protection expected
+  of a bench fixture, but no tubing-specific dielectric, temperature, flame, or
+  abrasion rating can be claimed. The completed assembly has already passed
+  `64.5 V DC` operation and post-stress resistance checks. The unscreened output
+  tail is primarily a pickup/performance deviation; its short length and
+  moderate node impedance make acceptance plausible but do not prove it quiet.
+- **DECISION:** pass the physical construction record for careful, inspected,
+  controlled bench use. Do not treat it as rugged, permanent, unattended, or
+  production construction. Add a matched direct-versus-fixture no-signal
+  spectrum comparison to AC commissioning; no rebuild is required unless that
+  test reveals material hum, coherent pickup, or movement-sensitive noise.
+
+### 11.36 2026-09-03 - direct-baseline TRS patch cable passes
+
+- **USER-REPORTED MEASUREMENT:** with nulled Agilent U1282A leads in resistance
+  mode, the approximately `1 m`, lightweight Sony male-to-male TRS patch cable
+  measured tip-to-tip `0.345 ohm`, ring-to-ring `0.337 ohm`, and sleeve/shield-
+  to-sleeve/shield `0.320 ohm`. Every cross-contact path was open.
+- **DERIVED:** mean conductor resistance is `0.334 ohm`, with a `0.025 ohm`
+  maximum spread. The direct differential signal loop has
+  `0.345 + 0.337 = 0.682 ohm` series resistance. Even with a hypothetical
+  `1 kohm` input load, that would introduce only approximately `0.068%` or
+  `0.0059 dB` attenuation, well below the provisional `0.1 dB` relative-
+  transfer tolerance.
+- **DECISION:** pass the direct-baseline cable topology and resistance for AC
+  commissioning. The Output 2 source-adaptor and female-to-male inline-
+  breakout maps remain pending, followed by direct-versus-fixture transfer and
+  no-signal testing. Full-dual approval remains `NO` until those remaining AC
+  commissioning gates pass.
+
+### 11.37 2026-09-03 - Configuration B breakout construction approved provisionally
+
+- **USER-PROPOSED CONSTRUCTION:** a female inline TRS socket feeds screened
+  cable, a three-position screw-terminal test junction separately exposes tip,
+  ring, and sleeve, and a second screened cable terminates at a male TRS plug.
+  Both cable screens join the sleeve node.
+- **DERIVED:** with the source active, the measured fixture branches give
+  approximately `1.002 kohm || 9.127 kohm = 0.903 kohm` at tip and
+  `1.004 kohm || 9.141 kohm = 0.905 kohm` at ring, or about `1.808 kohm`
+  differential source resistance. An illustrative added `100 pF` directly
+  between tip and ring would put a single-pole corner near `880 kHz` and cause
+  only about `0.009 dB` magnitude loss at `41 kHz`.
+- **PROVISIONAL DECISION:** approve the electrical topology, provided it uses
+  two-core screened cable, short stripped lengths, independent T/R/S nodes,
+  strain relief, and an enclosed rather than loose bare terminal block.
+  Prefer a sleeve-bonded conductive enclosure with insulated recessed or
+  shrouded test sockets. Fit the same mapped breakout between the source patch
+  cable and Input 2 during the direct baseline, then leave it connected to
+  Input 2 for the fixture run so its transfer largely cancels. This is a build
+  approval, not a completed preflight: continuity/isolation and AC pickup remain
+  to be measured. Full-dual approval remains `NO`.
+
+### 11.38 2026-09-03 - unenclosed Configuration B terminal block accepted
+
+- **USER-REQUESTED REVIEW:** the proposed breakout would expose only about
+  `5 cm` of compact geometry at a convenient three-node screw-terminal block.
+  Providing the previously preferred conductive enclosure would require
+  disproportionate machining, mounting, cable-entry, and bonding work.
+- **DERIVED:** even a pessimistic `1 ohm` of added series resistance in each
+  signal conductor would introduce only about `0.017 dB` loss into a
+  hypothetical `1 kohm` load. Actual mapped contact resistance should be much
+  lower, and the breakout remains common to both comparison traces.
+- **DERIVED:** for an illustrative `1 cm^2` effective loop at `50 Hz`, magnetic
+  pickup is `0.031 uV` at `1 uT`, `0.314 uV` at `10 uT`, and `3.14 uV` at
+  `100 uT`; these are approximately `-130`, `-110`, and `-90 dB` relative to
+  the intended `100 mV` reference. An ordinary conductive enclosure would
+  chiefly suppress electric-field/RF coupling, not this low-frequency magnetic
+  term.
+- **DERIVED:** a deliberately severe electric-coupling model using the
+  approximately `0.9 kohm` leg impedance, `230 V RMS`, and `50 Hz` gives
+  `0.65 uV`, `6.5 uV`, and `65 uV` for respective capacitance imbalances of
+  `0.01 pF`, `0.10 pF`, and `1.00 pF`. This bounds sensitivity but does not
+  predict the actual field or coupling. Placement, short geometry, and T/R
+  symmetry reduce the risk, while the required matched no-signal spectra test
+  the completed arrangement directly.
+- **SUPERSEDING DECISION:** withdraw the enclosure as a prerequisite. Accept a
+  restrained, strain-relieved, unenclosed insulating terminal block for this
+  controlled low-voltage commissioning accessory. Keep it away from mains and
+  magnetic components, attach insulated probes only with the signal stopped,
+  and add a removable insulated sleeve-bonded electrostatic screen only if the
+  no-signal or movement test reveals material pickup. Continuity/isolation and
+  AC commissioning remain pending; full-dual approval remains `NO`.
+
+### 11.39 2026-09-03 - rear-output PCB inspection confirms TS electrical topology
+
+- **USER-REPORTED INTERNAL INSPECTION:** after opening the UMC202HD, the user
+  identified both rear output sockets as physical three-contact TRS parts with
+  three through-hole clip terminals, all soldered to the PCB. On each socket,
+  the distinct ring and sleeve pads connect through four-spoke thermal reliefs
+  to the same copper fill; all four R/S pads across the two outputs share it.
+  The user's phrase "rear TRS input jacks" is interpreted as **rear output
+  jacks**, consistent with the UMC202HD connector layout and the sockets under
+  investigation.
+- **CORROBORATING MEASUREMENTS:** the previously measured `0.021 ohm` unpowered
+  ring-to-sleeve path and the powered driven-channel results—Output 1
+  `78.69/0.002/78.73 mV` and Output 2 `78.9/0.000/78.84 mV` for tip-sleeve,
+  ring-sleeve, and tip-ring—independently agree with the PCB observation.
+- **VERIFIED TOPOLOGY:** the rear sockets remain mechanically TRS, with
+  separate contacts that accept a TRS plug, but electrically each output is
+  tip signal plus an R/S common node: TS signal topology. The copper connection
+  rules out a power-state-dependent mute or protection switch as the cause of
+  the ring-to-sleeve bond.
+- **DECISION:** the mapped TS-to-RCA playback cable is definitively compatible
+  with these two inspected output sockets with respect to the former cold-leg-
+  short concern. The temporary Output 2 source adaptor may use a TS plug, or a
+  TRS plug with ring either unused or deliberately joined to sleeve; in every
+  case tip drives fixture red and the R/S common drives fixture black. Retain a
+  TRS-to-TRS cable for the direct Output 2-to-front-Input 2 baseline because
+  Input 2 ring must remain a distinct signal-return contact. This finding does
+  not alter the passed Input 2 phantom-isolation result or complete the pending
+  fixture AC commissioning gate.

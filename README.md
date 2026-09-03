@@ -161,7 +161,7 @@ The current 2.2–2.4 kHz LR4-like acoustic direction is a development hypothesi
   maximum, and caused only expected mild fixture warming. The cooled post-stress
   matrix also passes: every direct path changed by only `0-4 ohm`, and all
   redundant sums still close within `0-2 ohm`. The integrated DC gate is
-  therefore complete. The unpowered ground-path audit is now in progress:
+  therefore complete. The unpowered ground-path audit now passes:
   UMC202HD Input 2 sleeve to USB shell measures `0.035 ohm`; a `0.013 ohm`
   chassis-to-chassis positive control validates both open enclosure readings.
   The interface-alone stage therefore establishes DC isolation of the enclosure
@@ -176,20 +176,33 @@ The current 2.2–2.4 kHz LR4-like acoustic direction is a development hypothesi
   TS plug grounds the UMC202HD TRS output's ring contact. Both powered, driven
   rear outputs are now verified ring-grounded: Output 1 measured
   `78.69/0.002/78.73 mV` and Output 2 measured `78.9/0.000/78.84 mV` tip-
-  sleeve/ring-sleeve/tip-ring. The mapped TS playback cable therefore adds no
-  new short of an active cold leg, and its compatibility hold is lifted.
-  The post-stress matrix also satisfies the fixture-alone ground check. Remaining
-  physical details, the connected playback-path check, and AC transfer
-  commissioning remain open, so full-dual use remains `NO`.
+  sleeve/ring-sleeve/tip-ring. User inspection inside this specific interface
+  additionally found each rear output's separate ring and sleeve socket pads
+  connected by four-spoke thermals to the same PCB copper fill. The sockets are
+  therefore mechanically TRS but electrically tip-plus-common, equivalent to
+  TS signal topology. The mapped TS playback cable therefore adds no new short
+  of an active cold leg, and its compatibility hold is lifted.
+  With the intended dual playback cable connected between the otherwise
+  isolated, unpowered devices, Input 2 sleeve measures `0.061 ohm` to the
+  corresponding SU-V570 RCA shell and `0.174 ohm` to the corresponding speaker-
+  negative terminal. This closes the connected playback-path check, and the
+  post-stress matrix also satisfies the fixture-alone ground check. The physical
+  construction record now passes for controlled bench use: the network is
+  individually insulated inside an approximately `6 cm` multilayer heat-shrink
+  body with load-relieving wire returns, and the approximately `5 cm` output
+  tail uses three twisted `14/0.7` insulated conductors rather than screened
+  cable. The unscreened tail must therefore pass an explicit no-signal pickup
+  check during AC commissioning. AC transfer/noise commissioning is the sole
+  remaining electrical release gate, so full-dual use remains `NO`.
 
 ## 7. Immediate development sequence
 
 1. Complete woofer stabilisation under [DRIVER_RUNIN.md](DRIVER_RUNIN.md) and obtain a cooled reproducible 48 kHz ZMA.
 2. Retain the tweeter without dedicated run-in; confirm its installed impedance before acoustic work.
 3. With the SU-V570 unpowered topology and UMC202HD TRS phantom-isolation gates
-   passed, complete the construction record, the in-progress ground-path audit,
-   and the remaining AC release gate in the dedicated amplifier-output
-   reference-fixture procedure.
+   passed, and the unpowered ground-path and physical-construction records
+   complete, perform the remaining AC transfer/noise release gate in the
+   dedicated amplifier-output reference-fixture procedure.
 4. Acquire installed-baffle magnitude and phase for both drivers with common timing and fixed geometry.
 5. Acquire horizontal off-axis and controlled distortion measurements.
 6. Import current ZMA/FRD sources into VituixCAD and optimise only within realizable component and load constraints.

@@ -12,8 +12,9 @@ have passed. The reference fixture's post-rebuild complete-unit resistance
 matrix has passed. All four powered DC curves pass clamp, symmetry, current,
 CV, and thermal checks with an explicitly accepted `45.5 V` soft-knee deviation
 from the approximate `1%` target. The cooled post-stress resistance matrix also
-passes, closing the integrated DC gate. The physical record, ground-path audit,
-and AC transfer commissioning remain open. The ground-path audit has verified a
+passes, closing the integrated DC gate. The physical record now passes for
+controlled bench use; AC transfer/noise commissioning remains open. The
+ground-path audit has verified a
 `0.035 ohm` Input 2 sleeve-to-USB-shell bond and, using a `0.013 ohm` positive
 control, DC isolation of the enclosure from that node. The interface-alone
 stage passes, and the intended USB cable has `0.130 ohm` shell-to-shell
@@ -25,14 +26,24 @@ channel tests now verify that both rear outputs are already ring-grounded: Outpu
 measured `78.69/0.002/78.73 mV` and Output 2 measured
 `78.9/0.000/78.84 mV` tip-sleeve/ring-sleeve/tip-ring. The mapped TS cable
 therefore adds no new cold-leg short, and its output-compatibility hold is
-lifted. Use Output 2 tip and sleeve for the fixture-transfer source; do not
-treat it as a two-active-leg balanced output. The fixture-alone ground check is
+lifted. Internal inspection further shows that the distinct ring and sleeve
+pads of both physical TRS output sockets share the same PCB copper fill: the
+rear outputs have electrically TS, tip-plus-common topology. Use Output 2 tip
+and the R/S common for the fixture-transfer source; do not treat it as a two-
+active-leg balanced output. The fixture-alone ground check is
 already satisfied by the disconnected post-stress matrix's `10.130 kohm` and
-`10.146 kohm` input-to-sleeve readings. Only the connected playback-path check
-remains in the ground audit. Do not use the full-dual
-connection until the fixture record marks it approved. This procedure validates
-the woofer measurement chain; it is not a raw-tweeter test or the final polar-
-measurement procedure.
+`10.146 kohm` input-to-sleeve readings. The connected playback path also passes:
+with the intended dual cable fitted between the otherwise isolated, unpowered
+devices, Input 2 sleeve measured `0.061 ohm` to the corresponding SU-V570 RCA
+shell and `0.174 ohm` to the corresponding speaker-negative terminal. The
+complete unpowered ground-path audit is therefore closed. The physical record
+now records and accepts the individually insulated, multilayer heat-shrink
+construction and its
+approximately `5 cm` unscreened twisted output tail. That tail requires an
+explicit no-signal pickup comparison during the remaining AC commissioning. Do
+not use the full-dual connection until the fixture record marks it approved.
+This procedure validates the woofer measurement chain; it is not a raw-tweeter
+test or the final polar-measurement procedure.
 
 ## 1. Purpose And Pass Criteria
 
@@ -246,9 +257,14 @@ SU-V570 rear speaker terminals -> commissioned reference fixture
    repeatable, low-noise source setting.
 3. In REW Generator select a `1 kHz` sine, Output L, at `-10 dBFS`.
 4. Place the true-RMS meter directly across the woofer terminals.
-5. Start the generator, switch on the SU-V570, and select the intended input and
-   speaker bank.
-6. Raise SU-V570 volume slowly until the meter reads `1.00 V RMS`, then stop the
+5. With the generator stopped, switch on the SU-V570 and select the intended
+   input and speaker bank. Observe the Input 2 no-signal spectrum using the same
+   RTA/FFT settings retained from fixture commissioning. Stop and investigate
+   any new `50/100 Hz` family, coherent spur, instability, or noise rise that
+   materially reduces reference-channel margin; the UMC202HD-only fixture test
+   cannot reveal pickup introduced only by the powered complete system.
+6. Start the generator and raise SU-V570 volume slowly until the meter reads
+   `1.00 V RMS`, then stop the
    generator immediately.
 7. Confirm the amplifier-output reference is close to `99 mV RMS`, allowing for
    any small speaker-cable drop between the fixture and voltmeter reference

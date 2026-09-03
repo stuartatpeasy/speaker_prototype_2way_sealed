@@ -286,9 +286,7 @@ and explains the earth-reference consequence.
 **VERIFIED MEASUREMENT, 2026-09-02:** the interface/USB/PC portion of that audit
 now confirms low-resistance bonds from UMC202HD Input 2 sleeve to PC chassis and
 to the protective-earth pin of the PC's disconnected mains plug. The existing
-disconnected post-stress matrix also closes the fixture-alone check; only the
-connected playback path remains to be measured before the complete path is
-accepted.
+disconnected post-stress matrix also closes the fixture-alone check.
 
 **PLAYBACK-CABLE COMPATIBILITY PASS, 2026-09-03:** the proposed cable maps
 correctly as mono TS-to-RCA, and powered driven-channel measurements verify
@@ -296,8 +294,27 @@ that both UMC202HD rear outputs are ring-grounded. Output 1 measured
 `78.69/0.002/78.73 mV` and Output 2 measured `78.9/0.000/78.84 mV` tip-sleeve/
 ring-sleeve/tip-ring. Its TS sleeve therefore adds no new short of an active
 cold output when used on Output 1. Output 2 must supply the fixture-transfer
-test from tip and sleeve rather than as two active balanced legs. The connected
-playback path itself remains to be measured under the fixture authority.
+test from tip and sleeve rather than as two active balanced legs.
+
+**USER-REPORTED INTERNAL PCB INSPECTION, 2026-09-03:** each rear output uses a
+physical three-contact TRS socket with all three through-hole terminals
+soldered. On both socket footprints, the separate ring and sleeve terminals
+connect through four-spoke thermal reliefs to the same copper fill. Combined
+with the unpowered `0.021 ohm` ring-to-sleeve reading and the powered AC maps,
+this verifies a permanent tip-plus-common, electrically TS output topology; it
+is not a state-dependent grounded cold output. The connectors remain
+mechanically TRS and may still accept a TRS cable. A TS plug merely contacts two
+PCB nodes—tip and the already-common R/S node—and is therefore compatible with
+these specific inspected outputs.
+
+**CONNECTED PLAYBACK-PATH PASS, 2026-09-03:** with the UMC202HD and SU-V570
+unpowered, isolated from mains, USB disconnected, and the intended dual analogue
+playback cable fitted, Input 2 sleeve measured `0.061 ohm` to the corresponding
+SU-V570 RCA shell and `0.174 ohm` to the corresponding speaker-negative
+terminal. The implied `0.113 ohm` RCA-shell-to-speaker-negative portion agrees
+with the earlier `0.120-0.150 ohm` direct measurements within low-resistance
+contact uncertainty and possible parallel dual-cable ground paths. The fixture
+authority therefore marks the complete unpowered ground-path audit `PASS`.
 
 The amplifier's approximately `+/-45.5 V` rails define the fixture's design
 envelope. The dedicated fixture record derives its attenuation, component
@@ -306,8 +323,10 @@ ratings, and clamp choice from that envelope.
 **CURRENT GATE, 2026-09-03:** the amplifier topology gate has passed and the
 optional powered confirmation has been waived. This document makes no separate
 approval of the attenuator, clamps, interface, or complete loopback. Complete
-the fixture physical record, remaining ground-path audit, AC commissioning, and
-release gate before using the acoustic procedure.
+the fixture AC transfer/noise commissioning and release gate before using the
+acoustic procedure. Its physical construction record now passes for controlled
+bench use with the heat-shrink body and short unscreened output tail explicitly
+documented.
 
 ## 10. Final Status Record
 

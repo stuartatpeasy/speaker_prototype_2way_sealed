@@ -6,11 +6,10 @@ Last revised: 2026-09-03
 
 Status: **PRE- AND POST-STRESS RESISTANCE MATRICES PASS; THE INTEGRATED DC TEST
 PASSES CLAMP, SYMMETRY, CURRENT, CV, AND THERMAL CHECKS WITH AN ACCEPTED,
-CHARACTERIZED 45.5 V LINEARITY DEVIATION; GROUND-PATH AUDIT IN PROGRESS WITH
-INTERFACE-ALONE, USB-CABLE, ISOLATED-PC/PE, AND PLAYBACK-CABLE COMPATIBILITY
-STAGES PASSED; BOTH POWERED REAR OUTPUTS ARE VERIFIED RING-GROUNDED; PHYSICAL
-RECORD, CONNECTED PLAYBACK PATH, AND AC TRANSFER CHECKS REMAIN; NOT APPROVED FOR
-AMPLIFIER USE**
+CHARACTERIZED 45.5 V LINEARITY DEVIATION; ALL UNPOWERED GROUND-PATH STAGES PASS;
+BOTH POWERED REAR OUTPUTS ARE VERIFIED RING-GROUNDED; PHYSICAL RECORD PASSES FOR
+CONTROLLED BENCH USE WITH A DOCUMENTED HEAT-SHRINK BODY AND UNSCREENED 5 CM
+OUTPUT TAIL; AC TRANSFER/NOISE CHECK REMAINS; NOT APPROVED FOR AMPLIFIER USE**
 
 ## 1. Scope And Authority
 
@@ -19,16 +18,20 @@ fixture between one Technics SU-V570 speaker-output pair and the Behringer
 UMC202HD Input 2 central TRS jack. In this file, *fixture* means all of:
 
 1. the two-conductor cable attached to the selected SU-V570 speaker terminals;
-2. the enclosed attenuator and voltage-clamp network;
-3. the shielded output cable; and
+2. the insulated attenuator and voltage-clamp network;
+3. the short three-conductor output tail; and
 4. the 1/4-inch TRS plug inserted into the central jack of UMC202HD Input 2.
 
 The current amplifier-end cable is user-reported as `2 m` of red-and-black
 `1.5 mm^2` two-conductor DC power cable. Red is amplifier positive and black is
-the corresponding amplifier negative. The exact speaker-terminal termination,
-fixture enclosure, shielded-output-cable type and length, TRS plug, resistor
-part numbers, and zener manufacturer/family suffix remain to be recorded. The
-installed zener body marking and individual analyser result are recorded below.
+the corresponding amplifier negative. It has no printed markings and terminates
+in secure, fully inserted bare wire at the SU-V570. The network is individually
+insulated and encapsulated in a tapered, approximately `6 cm` multilayer heat-
+shrink body. Its output tail is approximately `5 cm` of three twisted `14/0.7`
+hookup wires carrying tip, ring, and sleeve to an all-metal TRS plug. Component
+part numbers, plug make/model, cable manufacturer, heat-shrink type/rating, and
+zener manufacturer/family suffix are unknown and are recorded as such rather
+than inferred.
 
 This document owns the fixture rationale, construction, calculations,
 inspection, electrical tests, test history, and release gate. Related documents
@@ -110,8 +113,8 @@ common-cathode pair would be electrically equivalent. The joined midpoint of
 each pair is insulated and connected nowhere else.
 
 ```text
-         2 m, 1.5 mm^2                         SHIELDED OUTPUT CABLE
-       RED amplifier lead                         TO 1/4-INCH TRS
+         2 m, 1.5 mm^2                    ~5 cm TWISTED T/R/S WIRES
+       RED amplifier lead                       TO 1/4-INCH TRS
 
 SU + o================o-- R1 9.1 kohm, 0.5 W --+---------- T (tip)
                                                 |
@@ -129,7 +132,7 @@ SU - o================o-- R2 9.1 kohm, 0.5 W --+---------- R (ring)
 
       BLACK amplifier lead
 
-Fixture sleeve/shield is NOT hard-connected to the black amplifier lead.
+Fixture sleeve/return is NOT hard-connected to the black amplifier lead.
 UMC202HD Input 2 outer XLR contacts 1, 2, and 3 remain unused.
 ```
 
@@ -137,15 +140,15 @@ UMC202HD Input 2 outer XLR contacts 1, 2, and 3 remain unused.
 
 | Ref. | Requirement | Present evidence/status |
 | --- | --- | --- |
-| Input cable | `2 m`, two-conductor, red/black, `1.5 mm^2`; insulation suitable for the `64 V DC` commissioning test | User-reported cable; exact markings and terminations unrecorded |
-| R1 | `9.1 kohm`, 1%, metal-film, at least `0.5 W`, working voltage at least `100 V` | Rating user-confirmed; complete path `9.125 kohm` pre-stress and `9.127 kohm` post-stress |
-| R2 | `9.1 kohm`, 1%, metal-film, at least `0.5 W`, working voltage at least `100 V` | Rating user-confirmed; complete path `9.139 kohm` pre-stress and `9.141 kohm` post-stress |
-| R3 | `1.0 kohm`, 1%, metal-film, at least `0.25 W` | Measured `1.002 kohm` both pre- and post-stress |
-| R4 | `1.0 kohm`, 1%, metal-film, at least `0.25 W` | Measured `1.003 kohm` pre-stress and `1.004 kohm` post-stress |
+| Input cable | `2 m`, two-conductor, red/black, `1.5 mm^2`; insulation suitable for the `64 V DC` commissioning test | No printed markings; figure-of-eight insulation remains joined except approximately `5 cm` at the bare-wire speaker end and `2 cm` at the fixture; secure, insulated, strand-free termination; complete fixture passed `64.5 V DC` qualification |
+| R1 | `9.1 kohm`, 1%, metal-film, at least `0.5 W`, working voltage at least `100 V` | User-confirmed 1% metal-film, `0.5 W`, working voltage above `100 V`; no retained part number; sourced from Mouser; complete path `9.125 kohm` pre-stress and `9.127 kohm` post-stress |
+| R2 | `9.1 kohm`, 1%, metal-film, at least `0.5 W`, working voltage at least `100 V` | User-confirmed 1% metal-film, `0.5 W`, working voltage above `100 V`; no retained part number; sourced from Mouser; complete path `9.139 kohm` pre-stress and `9.141 kohm` post-stress |
+| R3 | `1.0 kohm`, 1%, metal-film, at least `0.25 W` | User-confirmed 1% metal-film, `0.25 W`; no retained part number; sourced from Mouser; measured `1.002 kohm` both pre- and post-stress |
+| R4 | `1.0 kohm`, 1%, metal-film, at least `0.25 W` | User-confirmed 1% metal-film, `0.25 W`; no retained part number; sourced from Mouser; measured `1.003 kohm` pre-stress and `1.004 kohm` post-stress |
 | D1-D4 | Four matched `5.1 V` small-signal zeners in two series-opposed pairs; traceable `BZX55B5V1` or `BZX55C5V1` remains preferred for a reproducible build | Marked `BZX 5V1`; exact manufacturer, family suffix, tolerance, and rating unknown; each individually measured close to `5 V` at `2 mA`; installed anode-to-anode; bidirectional installed function passed |
-| Output cable | Shielded balanced two-conductor cable | Type and length unrecorded |
-| Output plug | 1/4-inch TRS; tip/ring/sleeve wired exactly as shown | Contact mapping confirmed by the resistance matrices and four powered polarity tests |
-| Enclosure | Insulating enclosure preferred; strain relief at both cables; no exposed conductive joints | Construction details unrecorded |
+| Output tail | Shielded balanced two-conductor cable preferred; a very short twisted tip/ring/sleeve tail requires explicit AC noise verification | Approximately `5 cm`; three individually insulated `14/0.7` hookup wires twisted together; no overall electrostatic screen; sleeve wire soldered between the fixture star point and plug sleeve |
+| Output plug | 1/4-inch TRS; tip/ring/sleeve wired exactly as shown | Make/model unknown; quality all-metal three-contact plug; internal plastic insulating cylinder; standard cable-clamp jaws; body bonded to sleeve; labelled for UMC202HD Input 2 `LINE`; mapping confirmed electrically |
+| Fixture body | Insulating enclosure preferred; strain relief at both cables; no exposed conductive joints | Approximately `6 cm` multilayer heat-shrink cylinder; every component, leg, and junction individually insulated before overall encapsulation; tapered ends and internal wire returns provide strain relief; moderate pull reaches no solder joint; bench-only construction |
 
 Do not substitute a large power TVS without redesigning and remeasuring the
 fixture. Its voltage may be specified at a surge current that this network
@@ -156,19 +159,75 @@ cannot supply, and its capacitance may disturb the high-frequency reference.
 1. Keep the red and black input conductors together for their whole run. Do not
    route either conductor separately around the room.
 2. Place R1 and R2 where their bodies and leads cannot contact one another,
-   cable shield, enclosure hardware, or the zener network.
+   the sleeve conductor, enclosure hardware, or the zener network.
 3. Make sleeve the local star point for R3, R4, both clamp endpoints, and the
-   output-cable shield only.
+   output-tail sleeve conductor only.
 4. Put each clamp pair close to its TRS node and sleeve connection.
 5. Insulate the joined zener midpoint. Do not use it as a test point or ground.
-6. Provide independent strain relief for the heavy input cable and the smaller
-   shielded cable; solder joints must carry no cable tension.
+6. Provide independent strain relief, or a mechanically equivalent load-
+   relieving arrangement, for the heavy input cable and the smaller output
+   tail; solder joints must carry no cable tension.
 7. Permanently mark the amplifier end `RED +` and `BLACK -`, and mark the TRS
    plug `UMC202HD INPUT 2 - CENTRAL TRS - LINE`.
 8. Use fully insulated or shrouded connections during the `64 V DC` test.
 9. Use an amplifier-end termination that remains mechanically secure beside
    the separate loudspeaker cable. No loose strand or exposed conductor may
    bridge adjacent binding posts; inspect and pull-test both leads before use.
+
+### 3.4 Recorded Physical-Construction Outcome
+
+**USER-REPORTED INSPECTION - 2026-09-03:** the red and black `1.5 mm^2`
+conductors retain their joined figure-of-eight insulation over the complete
+`2 m` run except for approximately `5 cm` at the bare-wire speaker-terminal end
+and `2 cm` at the fixture end. Colour provides the permanent polarity marking.
+The bare-wire termination is secure, insulated, fully captured, and free of
+stray strands; the SU-V570 terminals do not accept ring, spade, or banana
+terminations.
+
+The components are soldered as a free-air network, each body and exposed lead
+is individually heat-shrink insulated, every junction has additional insulation,
+and the complete assembly has further overlapping heat-shrink layers forming an
+approximately `6 cm` stiff cylinder. Layer count tapers at both ends. Internal
+wire returns transfer a moderate cable pull into the encapsulation rather than
+the solder joints. All component conductors are inaccessible. The two joined-
+anode zener midpoints are separately insulated and connected nowhere else, and
+sleeve is confirmed as the common junction for both `1 kohm` shunts, both clamp
+endpoints, and the output-tail sleeve conductor.
+
+The output tail is not screened cable. It comprises approximately `5 cm` of
+three twisted, individually insulated `14/0.7` hookup wires for tip, ring, and
+sleeve. The sleeve conductor is soldered directly between the fixture star and
+the TRS sleeve. The all-metal TRS body is intentionally bonded to sleeve; its
+tip/ring/sleeve terminals are otherwise separated by the supplied cylindrical
+plastic insulator, and the cable is gripped by the plug's normal clamp jaws.
+The plug is appropriately labelled.
+
+**ENGINEERING REVIEW:** heat-shrink tubing is legitimately used for electrical
+insulation, strain relief, and mechanical protection, but the unknown tubing
+identity means no specific dielectric, temperature, abrasion, or flame rating
+is claimed. The assembled fixture has nevertheless survived the controlled
+`64.5 V DC` test and the post-stress matrix without electrical change, excessive
+heating, or observed insulation failure. At the intended approximately `1 V RMS`
+amplifier level, internal resistor dissipation is negligible compared with the
+already completed DC qualification. The heat-shrink body is therefore accepted
+for careful bench handling, not for permanent installation, crushing, abrasion,
+unattended use, or use after visible or tactile damage.
+
+The unscreened output tail is a performance deviation rather than a direct
+electrical-safety failure. Its `5 cm` length and twisted conductors keep exposed
+loop area small, while the approximately `1 kohm` shunts keep both signal nodes
+at moderate impedance. It is not electrically equivalent to two conductors
+inside an electrostatic shield, so Section 10 must explicitly compare the direct
+and fixture-connected no-signal spectra for mains-frequency or other pickup.
+
+**DECISION - PHYSICAL RECORD PASS FOR CONTROLLED BENCH USE:** construction,
+polarity marking, insulation, junction isolation, strain relief, component
+ratings, plug mapping, and the deliberate output-tail deviation are now
+recorded. No rebuild is required on the present evidence. Inspect the bare-wire
+termination, outer heat-shrink, both cable exits, and TRS clamp before every use;
+stop on looseness, a stray strand, cut, abrasion, softening, discoloration, or
+exposed internal structure. Final approval remains gated by AC transfer and
+noise commissioning.
 
 ## 4. Component-Value Calculations
 
@@ -1105,7 +1164,7 @@ Record the audit in stages:
 | Playback cable map | TS sleeve to RCA centre / shell | `OPEN` / `0.078 ohm` |
 | Isolated UMC202HD, unpowered | Tested rear output ring to sleeve/shield through verified TRS breakout | `0.021 ohm`; breakout alone reads `OPEN` |
 | Playback cable output compatibility | TS sleeve grounds the UMC202HD TRS jack's ring contact when inserted | PASS - both powered, driven outputs are ring-grounded, so the TS plug adds no new cold-leg short |
-| UMC202HD and SU-V570 joined only by playback cable | Input 2 sleeve to RCA shell and speaker negative | PENDING |
+| UMC202HD and SU-V570 joined only by playback cable | Input 2 sleeve to RCA shell and corresponding speaker negative | PASS - `0.061 ohm` to RCA shell; `0.174 ohm` to speaker negative |
 | Fixture alone | Each amplifier lead to sleeve | PASS - post-stress matrix gives In+ `10.130 kohm` and In- `10.146 kohm` to sleeve |
 
 **PASS:** every path is explained by the measured cable map; the playback path
@@ -1227,9 +1286,39 @@ same two paths required by audit step 6. Repeating them without an intervening
 wiring change would add no information, so the existing matrix closes the
 fixture-alone stage.
 
-**CURRENT DECISION:** `IN PROGRESS - INTERFACE-ALONE, USB-CABLE, ISOLATED-PC/PE,
-PLAYBACK-CABLE COMPATIBILITY, AND FIXTURE-ALONE STAGES PASS; CONNECTED PLAYBACK
-PATH CONFIRMATION PENDING`.
+**USER-REPORTED CONNECTED-PLAYBACK MEASUREMENT - 2026-09-03:** with the Agilent
+U1282A in auto-ranging resistance mode and its leads nulled, the UMC202HD and
+SU-V570 were unpowered and disconnected from mains. The UMC202HD had no USB or
+other external connection apart from the intended dual analogue playback cable
+to the corresponding SU-V570 RCA input channels and the breakout used to reach
+Input 2 sleeve. Input 2 sleeve measured `0.061 ohm` to the corresponding RCA
+shell and `0.174 ohm` to the corresponding SU-V570 speaker-negative terminal.
+The user's reference to UMC202HD rear "inputs 1 and 2" is interpreted here as
+rear **Outputs 1 and 2**, because those are the rear analogue sockets connected
+to the amplifier's RCA inputs.
+
+**DERIVED:** the resistance attributable beyond the measured RCA shell is
+approximately
+
+```text
+0.174 ohm - 0.061 ohm = 0.113 ohm.
+```
+
+That agrees closely with the earlier direct `0.120-0.150 ohm` speaker-negative-
+to-RCA-shell range (mean `0.130 ohm`). The `0.007 ohm` difference from the
+earlier minimum and `0.017 ohm` difference from its mean are immaterial beside
+remade probe contacts and the U1282A's low-ohms uncertainty. With both channels
+of a dual playback cable fitted, parallel shield and common signal-ground paths
+can also make the end-to-end value slightly lower than a simple sum of isolated
+measurements.
+
+**DECISION - UNPOWERED SYSTEM GROUND-PATH AUDIT PASS:** both connected readings
+are stable low-resistance metallic paths and agree with the independently mapped
+playback cable and SU-V570 common-signal-ground measurements. Every audit path
+is now explained, while the fixture-alone matrix still proves that neither
+amplifier lead is hard-connected to sleeve. This closes Section 9. It does not
+approve powered amplifier use: Section 10 AC transfer/noise commissioning
+remains open.
 
 ## 10. AC Transfer, Polarity, And Linearity Commissioning
 
@@ -1305,6 +1394,24 @@ adds no new short of an active conductor. For the Section 10.2 source, drive
 fixture red from Output 2 tip and black from sleeve; do not treat Output 2 as a
 two-active-leg balanced source.
 
+**USER-REPORTED INTERNAL PCB INSPECTION - 2026-09-03:** both rear output
+sockets are physical three-contact TRS parts with three soldered through-hole
+clip terminals. On both footprints, the separate ring and sleeve pads connect
+through four-spoke thermal reliefs to the same PCB copper fill; all four R/S
+pads share that fill. This agrees independently with the `0.021 ohm` unpowered
+ring-to-sleeve reading and both powered AC output maps. The copper connection
+also removes the former possibility that a muting or protection state created
+the bond only under particular power conditions.
+
+**SUPERSEDING TOPOLOGY WORDING:** call these mechanically TRS sockets with
+electrically TS, tip-plus-common output topology. They are not literally
+two-contact sockets: a TRS plug still contacts ring and sleeve separately, but
+the PCB joins those contacts permanently. A TS plug therefore creates no new
+output connection. The temporary asymmetric source adaptor may use a TS plug,
+or a TRS plug with ring either unused or joined to sleeve. The direct baseline
+must remain TRS-to-TRS because the front Input 2 ring is a distinct balanced-
+input signal contact.
+
 With tip-to-sleeve adjusted into the `50-100 mV RMS` region, classify an output
 as single-ended or ring-grounded for this purpose if ring-to-sleeve is no more
 than `1 mV RMS` and tip-to-ring agrees with tip-to-sleeve within the greater of
@@ -1315,29 +1422,222 @@ ambiguous, or unexpectedly large reading.
 
 ### 10.2 Fixture Transfer Procedure
 
+#### 10.2.1 Measurement Principle
+
+This is a low-voltage fixture characterization, not a rehearsal of the complete
+amplifier/loudspeaker setup. UMC202HD Output 2 temporarily substitutes for the
+SU-V570 speaker output and drives the fixture at a safe signal level. The
+SU-V570, loudspeaker, microphone, and normal playback path are deliberately
+absent.
+
+Let `O(f)` represent the UMC202HD Output 2 path, `I(f)` the Input 2 path,
+`P(f)` the direct TRS patch cable, `B(f)` the inline measurement breakout,
+`A(f)` the asymmetric source adaptor, and `Hfixture(f)` the complete fixture.
+With the same breakout left at Input 2 and unchanged interface and REW settings,
+the two measurements are approximately:
+
+```text
+Direct run:   D(f) = O(f) x P(f) x B(f) x I(f)
+Fixture run:  F(f) = O(f) x A(f) x Hfixture(f) x B(f) x I(f)
+
+Therefore:    F(f) / D(f) = Hfixture(f) x A(f) / P(f)
+```
+
+Equivalently, subtract the direct trace from the fixture trace in decibels and
+subtract their phases. The common UMC202HD output, inline-breakout, and input
+responses cancel. The short, mapped source adaptor and direct patch cable do
+not algebraically cancel, but their small residual difference is bounded by
+construction and the interconnect preflight; investigate it if the measured
+transfer approaches a pass limit.
+
+This establishes the fixture's actual attenuation while loaded by Input 2,
+frequency and phase flatness, polarity, linearity at the intended reference
+level, clamp inactivity, and susceptibility to pickup from its unscreened tail.
+It does not test the SU-V570 response, loudspeaker, microphone, acoustic path,
+or hum that may arise only when the complete amplifier/PC system is powered.
+Those belong to the later full-dual setup check; the amplifier is absent here so
+it cannot obscure a fixture fault or expose the interface to amplifier voltage
+before this final fixture gate passes.
+
+#### 10.2.2 Connections And Procedure
+
 Perform this only after Sections 7-9 pass. Keep the SU-V570, loudspeaker, and
 microphone disconnected. Keep UMC202HD phantom power off.
+
+Two different temporary signal paths are used sequentially; do not combine
+them:
+
+1. **Direct baseline:** a conventional male-to-male balanced TRS patch cable
+   connects UMC202HD Output 2 to the female end of the inline measurement
+   breakout. The breakout's male plug connects to the central TRS of Input 2.
+   The fixture is completely absent from this path.
+2. **Fixture measurement:** remove that patch cable. A source adaptor connects
+   Output 2 tip/sleeve to fixture red/black, while the fixture's existing male
+   TRS plug connects to the same breakout female socket. Leave the breakout's
+   male plug connected to Input 2 throughout both measurements.
+
+The male-to-male patch cable is therefore not an extension for the fixture and
+must not be interposed between its plug and Input 2. The inline breakout is a
+common temporary measurement accessory, not a permanent part of the fixture.
 
 Output 2 is verified ring-grounded. Use an insulated temporary source adaptor
 in which Output 2 tip drives fixture red and sleeve drives fixture black; do not
 describe or wire it as a balanced source. Use an insulated inline TRS
-breakout at the fixture output so tip, ring, and sleeve can be measured while
-the fixture remains connected to Input 2. Source and reference sleeves must
-follow the measured interface-ground arrangement. Do not short an output
-conductor to sleeve unless that exact mapping has been separately shown safe
-for the UMC202HD output.
+breakout comprising a female TRS socket for the fixture plug and a male TRS
+plug for Input 2, wired straight through, so tip, ring, and sleeve can be
+measured under load. Source and reference sleeves must follow the measured
+interface-ground arrangement. Do not short an output conductor to sleeve unless
+that exact mapping has been separately shown safe for the UMC202HD output.
+
+**PROVISIONAL BREAKOUT CONSTRUCTION DECISION - 2026-09-03:** the proposed
+female TRS socket -> screened cable -> three-node tip/ring/sleeve test junction
+-> screened cable -> male TRS plug topology is electrically acceptable with
+the following construction controls:
+
+- use two-insulated-core screened cable: tip and ring use the two cores, while
+  the screens from both cable sections join only the sleeve node;
+- keep both cable sections and every stripped or unscreened length as short as
+  practical; approximately `0.5 m` maximum total cable is a construction target,
+  not a separately verified electrical limit;
+- mount the three independent junctions on a restrained, insulating terminal
+  block and provide strain relief on both cable sections. A conductive
+  enclosure is optional rather than required; if later used, bond it only to
+  sleeve and insulate tip and ring from it;
+- ensure no screw, enclosure surface, cable screen, or loose strand can bridge
+  tip to ring or either signal contact to sleeve; and
+- attach and remove insulated meter leads only with the signal stopped. Do not
+  leave hand-held probes or exposed clip leads where movement can short the
+  contacts during a powered measurement.
+
+The terminal block's resistance and capacitance are not expected to limit this
+audio-band test. From the post-stress values, the driven fixture presents
+approximately `1.002 kohm || 9.127 kohm = 0.903 kohm` at tip and
+`1.004 kohm || 9.141 kohm = 0.905 kohm` at ring, or about `1.808 kohm`
+differential source resistance. As an intentionally conservative illustration,
+an added `100 pF` directly between tip and ring would place the corresponding
+single-pole corner near:
+
+```text
+f = 1 / (2 pi x 1.808 kohm x 100 pF) = 880 kHz
+```
+
+That illustrative capacitance would cause only about `0.009 dB` magnitude loss
+at `41 kHz`. It is not a claim about the unknown cable capacitance: the actual
+continuity map and direct-versus-fixture sweep remain the acceptance evidence.
+Keeping the breakout unchanged in both runs removes most of its response from
+the comparison; the no-signal comparison still exposes pickup that becomes
+material with the fixture's higher output impedance.
+
+**SUPERSEDING PROPORTIONALITY REVIEW - 2026-09-03:** a machined screened
+enclosure is not required for the proposed approximately `5 cm` compact
+terminal-block break. The earlier enclosure preference over-weighted a
+plausible but directly testable electrostatic-pickup risk. Even an intentionally
+pessimistic `1 ohm` of added series resistance in each signal conductor would
+add only `2 ohm` to the differential loop and lose about `0.017 dB` into a
+hypothetical `1 kohm` load; the actual mapped resistance should be much smaller,
+and the unchanged breakout is common to both traces. For an illustrative
+effective differential loop area of `1 cm^2`, sinusoidal magnetic pickup at
+`50 Hz` is:
+
+```text
+Vinduced = 2 pi f A B
+
+B =   1 uT:  Vinduced = 0.031 uV  (-130 dB relative to 100 mV)
+B =  10 uT:  Vinduced = 0.314 uV  (-110 dB relative to 100 mV)
+B = 100 uT:  Vinduced = 3.14  uV  ( -90 dB relative to 100 mV)
+```
+
+These values scale directly with loop area and field strength. A normal
+conductive screening box would chiefly screen electric fields and RF; unless
+made from suitable high-permeability material, it would not eliminate this
+low-frequency magnetic term.
+
+Electrostatic pickup is harder to predict because it depends on placement and
+capacitance imbalance. A deliberately severe model, coupling a `230 V RMS`,
+`50 Hz` conductor through unequal capacitance to one approximately `0.9 kohm`
+leg, gives:
+
+```text
+Vhum = 2 pi f R Vline delta-C
+
+delta-C = 0.01 pF:  Vhum =  0.65 uV  (-104 dB relative to 100 mV)
+delta-C = 0.10 pF:  Vhum =  6.5  uV  ( -84 dB relative to 100 mV)
+delta-C = 1.00 pF:  Vhum = 65    uV  ( -64 dB relative to 100 mV)
+```
+
+That is a sensitivity illustration, not a prediction that the terminal block
+will see the full mains potential or those capacitances. Keep tip and ring
+compact and geometrically similar, keep the breakout away from mains leads,
+power bricks, and transformers, and restrain it on a non-conductive surface.
+Proceed first with the simple unenclosed block. Add a removable insulated,
+sleeve-bonded electrostatic screen only if the matched no-signal test reveals
+material hum or position/hand-sensitive pickup. This empirical stop condition
+is more proportionate than requiring a screened enclosure in advance.
+
+Before connecting USB or generating a signal, resistance-map the AC-test
+interconnects while every item is loose on the bench. With nulled meter leads:
+
+- the direct-baseline male-to-male balanced TRS patch cable must give low
+  resistance from tip to tip, ring to ring, and sleeve to sleeve, with every
+  cross-contact path open;
+- the temporary source adaptor, tested by itself, must give low resistance from
+  its Output 2 plug tip to its red fixture-side contact and from its output-
+  common contact to its black fixture-side contact, with no red-black or other
+  unintended cross-contact short. For a TS plug, the long sleeve is output
+  common; for a TRS plug, ring may be open or deliberately joined to sleeve but
+  must never connect to red. Record which implementation was built; and
+- the female-to-male inline fixture-output breakout must carry tip, ring, and
+  sleeve straight through independently at low resistance, with every cross-
+  contact path open.
+
+An unsecured exposed clip-lead arrangement is not acceptable while energized.
+Insulate every permanent joint; keep the three intended terminal-block test
+points physically separated, and attach insulated meter leads only while the
+signal is stopped. Do not reuse the phantom-isolation adaptor containing the
+`100 kohm` loads as a straight-through AC breakout. Record the actual mapping
+before proceeding.
+
+The loose-bench interconnect preflight is being recorded as follows:
+
+| Interconnect | Same-contact resistance | Cross-contact paths | Decision |
+| --- | --- | --- | --- |
+| Direct-baseline male-to-male TRS patch cable | Tip `0.345 ohm`; ring `0.337 ohm`; sleeve/shield `0.320 ohm` | All open | PASS (`2026-09-03`) |
+| Output 2 source adaptor | PENDING | PENDING | PENDING |
+| Female-to-male inline fixture-output breakout | PENDING | PENDING | PENDING |
+
+For the first row, the user reports an approximately `1 m`, lightweight Sony
+headphone-extension cable, measured with nulled Agilent U1282A leads. The three
+conductors average `0.334 ohm` and span only `0.025 ohm`. The direct signal loop
+uses the tip and ring conductors, so its measured series resistance is
+`0.345 + 0.337 = 0.682 ohm`; even against a deliberately conservative
+hypothetical `1 kohm` load, this would cause only about `0.068%` or `0.0059 dB`
+of attenuation. It is therefore negligible relative to the `0.1 dB` transfer-
+flatness criterion, and every unintended path being open establishes the
+required contact topology. The cable passes; the other two adaptor maps remain
+required before USB connection or signal generation.
 
 1. Set Input 2 to `LINE`, `PAD` off, `GAIN 2` fully down, `DIRECT MONITOR` off,
    and `OUTPUT` fully down.
-2. Connect Output 2 directly to Input 2 with a normal balanced TRS patch cable.
+2. Connect Output 2 through the normal balanced TRS patch cable and the mapped
+   inline breakout to Input 2. Leave the breakout connected to Input 2 for both
+   runs.
 3. At low level, capture and save a direct `5 Hz-41 kHz`, `88.2 kHz` REW trace.
-   Confirm correct channel identity and no clipping.
-4. Stop the signal. Without changing digital level, Output, Gain 2, or REW
-   settings, replace the direct cable with the complete fixture and temporary
-   balanced source adaptor.
-5. Insert the fixture TRS plug into the central Input 2 jack and capture a
-   second trace.
-6. At `1 kHz`, use the true-RMS meter to measure differential input voltage
+   Confirm correct channel identity and no clipping. Stop the generator and,
+   without changing any gain or output setting, also save a direct-cable Input 2
+   no-signal spectrum using fixed RTA/FFT settings that can be repeated.
+4. Stop the signal. Without changing digital level, Output, Gain 2, REW
+   settings, or the breakout-to-Input 2 connection, remove the direct patch
+   cable. Connect the complete fixture through the temporary asymmetric source
+   adaptor, and insert the fixture TRS plug into the breakout female socket.
+5. Capture a second trace.
+6. With the generator stopped and all gain/output settings unchanged, use REW's
+   spectrum or RTA view to record the Input 2 no-signal spectrum with the
+   fixture connected. Compare it with a direct-cable no-signal capture made
+   under the same settings. In particular, inspect `50 Hz`, `100 Hz`, their
+   harmonics, broadband noise, and any movement-sensitive spikes. The fixture's
+   approximately `5 cm` output tail has no electrostatic screen, so this is a
+   required installed-performance check rather than an optional diagnostic.
+7. At `1 kHz`, use the true-RMS meter to measure differential input voltage
    from red to black and differential output voltage from tip to ring. Calculate
    the interface-loaded ratio and gain:
 
@@ -1346,17 +1646,18 @@ for the UMC202HD output.
    A_loaded = 20 log10(k_loaded)
    ```
 
-7. Confirm correct polarity, smooth relative magnitude and phase, and no
+8. Confirm correct polarity, smooth relative magnitude and phase, and no
    unexpected high-frequency roll-off or resonance. The loaded gain should not
    exceed the unloaded `-20.094 dB` prediction beyond measurement uncertainty;
    extra attenuation is possible because the UMC202HD `LINE` input impedance is
    unpublished. Investigate more than approximately `1 dB` of extra attenuation
    and account for it explicitly rather than adjusting the resistor model.
-8. Increase only far enough to approach the intended approximately `100 mV RMS`
+9. Increase only far enough to approach the intended approximately `100 mV RMS`
    fixture output. Confirm linear scaling and no clamp conduction.
-9. Record the DMM-derived and REW-relative `1 kHz` attenuation, their agreement,
-   and the largest relative transfer variation over `5 Hz-41 kHz`. Save the
-   direct and fixture traces together.
+10. Record the DMM-derived and REW-relative `1 kHz` attenuation, their agreement,
+    the largest relative transfer variation over `5 Hz-41 kHz`, and the direct-
+    versus-fixture noise comparison. Save the direct, fixture, and no-signal
+    traces together.
 
 Provisional pass targets are correct polarity, DMM and REW `1 kHz` attenuation
 agreeing within `0.2 dB`, no gain above the passive unloaded prediction beyond
@@ -1364,7 +1665,11 @@ measurement uncertainty, adequate reference headroom at the normal test level,
 no discontinuity, and no unexplained relative magnitude variation greater than
 `0.1 dB` over `20 Hz-20 kHz`. Review actual phase and ultrasonic behaviour
 before accepting the `5 Hz-41 kHz` endpoints; the clamp junction capacitance is
-part of what this test must measure.
+part of what this test must measure. The unscreened tail also passes only if it
+adds no material `50/100 Hz` family or other coherent pickup, no intermittent
+movement-sensitive noise, and leaves enough reference-channel signal-to-noise
+margin to meet the transfer-repeatability targets. Review the measured spectra
+rather than assigning an unsupported microvolt limit in advance.
 
 | AC check | Result |
 | --- | --- |
@@ -1375,6 +1680,8 @@ part of what this test must measure.
 | REW-relative gain at `1 kHz` | PENDING |
 | DMM/REW agreement | PENDING |
 | Relative variation, `20 Hz-20 kHz` | PENDING |
+| Direct-versus-fixture no-signal spectrum | PENDING |
+| `50/100 Hz` family or movement-sensitive pickup | PENDING |
 | Polarity | PENDING |
 | Clamp inactive near `100 mV RMS` | PENDING |
 | Overall AC decision | NOT PERFORMED |
@@ -1409,13 +1716,13 @@ SU-V570 unpowered topology:       PASS - 2026-09-01
 Powered topology confirmation:   WAIVED - optional, 2026-09-01
 Input 2 TRS phantom isolation:   PASS - 2026-09-01
 Pre-stress resistance matrix:    PASS - complete unit, 2026-09-02
-Fixture physical record:         INCOMPLETE
+Fixture physical record:         PASS - CONTROLLED BENCH USE; HEAT-SHRINK BODY AND UNSCREENED 5 CM TAIL RECORDED, 2026-09-03
 Clamp component evidence:        PASS - BZX 5V1, ~5 V AT 2 mA, A-A PAIRS, INSTALLED FUNCTION VERIFIED
 Bidirectional clamp function:    PASS - BOTH LEGS, BOTH POLARITIES, 2026-09-02
 Four powered DC curves:          PASS WITH CHARACTERIZED 45.5 V LINEARITY DEVIATION
 Post-stress resistance matrix:   PASS - ALL PATHS WITHIN 0-4 OHM OF BASELINE, 2026-09-02
 Integrated PL310QMD DC test:     PASS WITH CHARACTERIZED 45.5 V LINEARITY DEVIATION
-Unpowered system ground audit:   IN PROGRESS - ALL STAGES PASS EXCEPT CONNECTED PLAYBACK PATH
+Unpowered system ground audit:   PASS - ALL STAGES, 2026-09-03
 Rear-output topology:            PASS - BOTH POWERED, DRIVEN OUTPUTS RING-GROUNDED, 2026-09-03
 AC transfer commissioning:       NOT PERFORMED
 Approved for amplifier use:      NO
