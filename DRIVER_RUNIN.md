@@ -67,23 +67,23 @@ If a reliable cold-DCR reference is unavailable, wait at least 60 minutes and us
 
 ### 2.4 Analysis and repeat/stop decision
 
-Use the bandwidth-derived sealed-system resonance \(F_c\), not merely the discrete frequency bin containing maximum impedance. The reproducible method is defined in [DRIVER_ANALYSIS.md](DRIVER_ANALYSIS.md).
+Use the bandwidth-derived sealed-system resonance $F_c$, not merely the discrete frequency bin containing maximum impedance. The reproducible method is defined in [DRIVER_ANALYSIS.md](DRIVER_ANALYSIS.md).
 
 For successive **cooled, controlled 48 kHz** measurements:
 
-\[
+$$
 \Delta F_c(\%)=100\frac{F_{c,n}-F_{c,n-1}}{F_{c,n-1}}.
-\]
+$$
 
-1. If \(F_c\) decreases by **1% or more**, and the trace remains otherwise healthy, perform another one-hour interval starting at Section 2.1.
+1. If $F_c$ decreases by **1% or more**, and the trace remains otherwise healthy, perform another one-hour interval starting at Section 2.1.
 2. If the magnitude of the change is **less than 1%**, do not add another conditioning hour automatically. Repeat the low-level impedance sweep after at least 10 minutes with no further drive; if the traces overlay within normal measurement scatter, stop the conditioning loop.
 3. At the first stop decision—and before promoting a new crossover baseline—leave the driver unpowered for **12–24 hours** at a reasonably stable ambient temperature, recheck DCR, and repeat the 48 kHz sweep. Treat this rested result as the evidence of durable change. If it differs materially from the short-cool result, base any future run/stop comparison on similarly rested measurements.
 4. Stop and investigate rather than continuing automatically if:
-   - \(F_c\) rises materially;
+   - $F_c$ rises materially;
    - a second resonance, phase discontinuity, or unexpected trace-shape change appears;
    - cooled DCR does not recover;
    - rubbing, knocking, asymmetry, compression, or amplifier clipping occurs.
-5. After **four total one-hour 30 Hz sine intervals**, stop the automatic loop and review the accumulated trend even if \(F_c\) is still moving. Do not pursue the published 36.5 Hz value as a conditioning target.
+5. After **four total one-hour 30 Hz sine intervals**, stop the automatic loop and review the accumulated trend even if $F_c$ is still moving. Do not pursue the published 36.5 Hz value as a conditioning target.
 6. Append the new measurement and conclusion to [DRIVER_ANALYSIS.md](DRIVER_ANALYSIS.md). Promote a new woofer ZMA to crossover-baseline status only after the rested trace is reproducible.
 
 ## 3. Tweeter procedure
@@ -138,10 +138,10 @@ This contingency is not authorised by the present evidence and should not be per
 | REW sample rate / level / sweep length | |
 | Calibration status | |
 | ZMA filename | |
-| \(Z_{max}\), peak-bin frequency | |
-| Bandwidth-derived \(F_c\) | |
-| \(Q_{mc}\), \(Q_{ec}\), \(Q_{tc}\) | |
-| Change from previous cooled \(F_c\) | |
+| $Z_{max}$, peak-bin frequency | |
+| Bandwidth-derived $F_c$ | |
+| $Q_{mc}$, $Q_{ec}$, $Q_{tc}$ | |
+| Change from previous cooled $F_c$ | |
 | Noise, smell, asymmetry, or other observations | |
 | Decision: repeat / confirm / stop / investigate | |
 

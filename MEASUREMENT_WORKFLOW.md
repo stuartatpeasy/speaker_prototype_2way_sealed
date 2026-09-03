@@ -39,7 +39,7 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 - Retain headers, decimal points, frequency/magnitude/phase columns, dense unsmoothed data, and descriptive filenames.
 - Record actual driver-terminal voltage; dBFS alone does not establish driver excitation when a series sense resistor is present.
 - Record cold DCR, ambient temperature, elapsed cooldown, cabinet damping state, driver mounting, screw condition, and any wiring changes.
-- Treat points below the validated low-frequency range as artefacts rather than using them for \(R_e\), Q, or alignment estimates.
+- Treat points below the validated low-frequency range as artefacts rather than using them for $R_e$, Q, or alignment estimates.
 
 ### 3.3 Acoustic measurements
 

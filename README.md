@@ -101,7 +101,7 @@ cross-platform Python bootstrap and verification procedure.
 
 ### 5.1 Drivers
 
-The selected woofer is the **SB17NRX2C35-8**, nominally 8 Ω with published \(F_s=36.5\ \mathrm{Hz}\), \(Q_{ts}=0.42\), \(V_{as}=27\ \mathrm{L}\), and \(X_{max}=\pm5.5\ \mathrm{mm}\). The real sample's measured resonance remains higher than published; use the living analysis record rather than these nominal values for modelling.
+The selected woofer is the **SB17NRX2C35-8**, nominally 8 Ω with published $F_s=36.5\ \mathrm{Hz}$, $Q_{ts}=0.42$, $V_{as}=27\ \mathrm{L}$, and $X_{max}=\pm5.5\ \mathrm{mm}$. The real sample's measured resonance remains higher than published; use the living analysis record rather than these nominal values for modelling.
 
 The selected tweeter is the **SB26STWGC-4**, nominally 4 Ω with an integrated waveguide and substantial sensitivity headroom. It will require attenuation and must be protected by the complete validated high-pass network. Its conditional power rating must not be treated as an unfiltered rating.
 
@@ -134,7 +134,7 @@ The current 2.2–2.4 kHz LR4-like acoustic direction is a development hypothesi
 ## 6. Current measurement state
 
 - `rew/SB17NRX2C35-8 installed.zma`: controlled 48 kHz pre-conditioning woofer trace and current crossover-model baseline until a cooled replacement is validated.
-- `rew/SB17NRX2C35-8 runin 30Hz 4Vrms 1h 48kHz.zma`: matched-rate post-conditioning comparison; shows lower \(F_c\) but contains an approximately 0.34 Ω broadband series-resistance offset and is not yet a cold crossover baseline.
+- `rew/SB17NRX2C35-8 runin 30Hz 4Vrms 1h 48kHz.zma`: matched-rate post-conditioning comparison; shows lower $F_c$ but contains an approximately 0.34 Ω broadband series-resistance offset and is not yet a cold crossover baseline.
 - `rew/SB26STWGC-4 installed.zma`: current tweeter impedance baseline.
 - Installed-baffle phase-bearing FRD, horizontal off-axis, distortion/compression, filtered-driver, reverse-null, and final-system impedance/EPDR measurements remain outstanding.
 - The SU-V570 unpowered output-topology checks pass and externally support a

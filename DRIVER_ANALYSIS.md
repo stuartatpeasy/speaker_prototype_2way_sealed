@@ -109,33 +109,33 @@ Both files are valid, densely sampled ZMA exports with frequency, impedance magn
 
 ### 2.3 Reproducible impedance-peak calculation
 
-The fitted Q values below use a curve-consistent baseline resistance, \(R_0\), estimated from the real part of impedance at 10 Hz:
+The fitted Q values below use a curve-consistent baseline resistance, $R_0$, estimated from the real part of impedance at 10 Hz:
 
-\[
+$$
 R_0=|Z|\cos\phi.
-\]
+$$
 
 For a single dominant impedance resonance, define the bandwidth level and crossing frequencies by
 
-\[
+$$
 Z_{th}=\sqrt{R_0Z_{max}},
-\]
+$$
 
-with \(f_1\) and \(f_2\) at the rising and falling crossings of that magnitude. Log-frequency interpolation between adjacent measured points is used. Then
+with $f_1$ and $f_2$ at the rising and falling crossings of that magnitude. Log-frequency interpolation between adjacent measured points is used. Then
 
-\[
+$$
 f_0=\sqrt{f_1f_2},
-\]
+$$
 
-\[
+$$
 Q_m=\frac{f_0}{f_2-f_1}\sqrt{\frac{Z_{max}}{R_0}},
 \qquad
 Q_e=\frac{Q_m}{Z_{max}/R_0-1},
 \qquad
 Q_t=\frac{Q_m}{Z_{max}/R_0}.
-\]
+$$
 
-For the installed woofer these are box-system quantities \(Q_{mc}\), \(Q_{ec}\), and \(Q_{tc}\). For the tweeter, whose own rear chamber defines its mechanical system, they are reported conventionally as \(Q_{ms}\), \(Q_{es}\), and \(Q_{ts}\). They are approximate equivalent-circuit fits, not independent direct measurements of every loss mechanism.
+For the installed woofer these are box-system quantities $Q_{mc}$, $Q_{ec}$, and $Q_{tc}$. For the tweeter, whose own rear chamber defines its mechanical system, they are reported conventionally as $Q_{ms}$, $Q_{es}$, and $Q_{ts}$. They are approximate equivalent-circuit fits, not independent direct measurements of every loss mechanism.
 
 ## 3. Woofer published reference data
 
@@ -146,29 +146,29 @@ For the installed woofer these are box-system quantities \(Q_{mc}\), \(Q_{ec}\),
 | Parameter | Published value |
 |---|---:|
 | Nominal impedance | 8 ohm |
-| DC resistance, \(R_e\) | 5.7 ohm |
-| Voice-coil inductance, \(L_e\) | 0.15 mH |
-| Effective diaphragm area, \(S_d\) | 118 cm2 |
-| Free-air resonance, \(F_s\) | 36.5 Hz |
+| DC resistance, $R_e$ | 5.7 ohm |
+| Voice-coil inductance, $L_e$ | 0.15 mH |
+| Effective diaphragm area, $S_d$ | 118 cm2 |
+| Free-air resonance, $F_s$ | 36.5 Hz |
 | Sensitivity | 87 dB at 2.83 V/1 m |
-| \(Q_{ms}\) | 4.55 |
-| \(Q_{es}\) | 0.47 |
-| \(Q_{ts}\) | 0.42 |
-| Moving mass, \(M_{ms}\) | 13.9 g |
-| Force factor, \(Bl\) | 6.25 T m |
-| Equivalent compliance volume, \(V_{as}\) | 27 L |
-| Suspension compliance, \(C_{ms}\) | 1.37 mm/N |
-| Mechanical resistance, \(R_{ms}\) | 0.7 kg/s |
-| Linear excursion, \(X_{max}\) | +/-5.5 mm |
+| $Q_{ms}$ | 4.55 |
+| $Q_{es}$ | 0.47 |
+| $Q_{ts}$ | 0.42 |
+| Moving mass, $M_{ms}$ | 13.9 g |
+| Force factor, $Bl$ | 6.25 T m |
+| Equivalent compliance volume, $V_{as}$ | 27 L |
+| Suspension compliance, $C_{ms}$ | 1.37 mm/N |
+| Mechanical resistance, $R_{ms}$ | 0.7 kg/s |
+| Linear excursion, $X_{max}$ | +/-5.5 mm |
 | Rated power | 50 W |
 
 ### 3.2 Published-parameter enclosure prediction
 
-Using the published \(F_s=36.5\) Hz, \(Q_{ts}=0.42\), \(V_{as}=27\) L, and the approximately 21.7 L geometric net volume gives:
+Using the published $F_s=36.5$ Hz, $Q_{ts}=0.42$, $V_{as}=27$ L, and the approximately 21.7 L geometric net volume gives:
 
-- **DERIVED:** \(F_c\approx54.7\) Hz;
-- **DERIVED:** \(Q_{tc}\approx0.63\);
-- **DERIVED:** ideal anechoic small-signal \(F_3\approx62.3\) Hz;
+- **DERIVED:** $F_c\approx54.7$ Hz;
+- **DERIVED:** $Q_{tc}\approx0.63$;
+- **DERIVED:** ideal anechoic small-signal $F_3\approx62.3$ Hz;
 - no response peak from the nominal second-order sealed alignment.
 
 These remain a record of the datasheet-based design case, not a description of the completed prototype.
@@ -181,21 +181,21 @@ These remain a record of the datasheet-based design case, not a description of t
 
 | Quantity | Result |
 |---|---:|
-| Curve-consistent \(R_0\) estimate | 5.645 ohm |
+| Curve-consistent $R_0$ estimate | 5.645 ohm |
 | Impedance magnitude maximum | 96.544 ohm at 67.272 Hz |
-| Bandwidth threshold, \(Z_{th}\) | 23.345 ohm |
-| Lower threshold crossing, \(f_1\) | 57.811 Hz |
-| Upper threshold crossing, \(f_2\) | 77.583 Hz |
-| Derived sealed-system resonance, \(F_c\) | 66.971 Hz |
-| \(Q_{mc}\) | 14.008 |
-| \(Q_{ec}\) | 0.870 |
-| \(Q_{tc}\) | 0.819 |
+| Bandwidth threshold, $Z_{th}$ | 23.345 ohm |
+| Lower threshold crossing, $f_1$ | 57.811 Hz |
+| Upper threshold crossing, $f_2$ | 77.583 Hz |
+| Derived sealed-system resonance, $F_c$ | 66.971 Hz |
+| $Q_{mc}$ | 14.008 |
+| $Q_{ec}$ | 0.870 |
+| $Q_{tc}$ | 0.819 |
 | Positive phase maximum | +61.79 degrees at 57.81 Hz |
 | Negative phase minimum | -63.54 degrees at 77.16 Hz |
 
 The impedance maximum is a magnitude in **ohms**, not an inductance. Its height mainly reflects motional back-EMF and the balance of mechanical and electrical damping. High impedance at resonance is not an amplifier-current hazard.
 
-The close agreement between the curve-derived \(R_0\approx5.645\) ohm and the published \(R_e=5.7\) ohm is reassuring. A nulled cold-DCR measurement taken with this setup would still be preferable when an exact series-resistance model is required.
+The close agreement between the curve-derived $R_0\approx5.645$ ohm and the published $R_e=5.7$ ohm is reassuring. A nulled cold-DCR measurement taken with this setup would still be preferable when an exact series-resistance model is required.
 
 ### 4.2 The secondary-resonance question
 
@@ -207,18 +207,18 @@ This is strong evidence that a distinct feature near 83 Hz is not inherent to th
 
 For a normalized second-order sealed high-pass response,
 
-\[
+$$
 |H(x)|^2=\frac{x^4}{(1-x^2)^2+x^2/Q_{tc}^2},
 \qquad x=\frac{f}{F_c}.
-\]
+$$
 
-Using the measured \(F_c=66.97\) Hz and derived \(Q_{tc}=0.819\):
+Using the measured $F_c=66.97$ Hz and derived $Q_{tc}=0.819$:
 
-- **DERIVED:** ideal anechoic small-signal \(F_3\approx59.0\) Hz;
+- **DERIVED:** ideal anechoic small-signal $F_3\approx59.0$ Hz;
 - **DERIVED:** a modest maximum of approximately **+0.29 dB near 133 Hz**;
-- \(F_3\) lies below \(F_c\), as expected because \(Q_{tc}>0.707\).
+- $F_3$ lies below $F_c$, as expected because $Q_{tc}>0.707$.
 
-The apparently similar or slightly lower \(F_3\) than the published-parameter design case does not mean equal deep-bass behaviour. With both responses normalized at high frequency, the idealized installed alignment differs approximately as follows:
+The apparently similar or slightly lower $F_3$ than the published-parameter design case does not mean equal deep-bass behaviour. With both responses normalized at high frequency, the idealized installed alignment differs approximately as follows:
 
 | Frequency | Installed minus published-parameter case |
 |---:|---:|
@@ -244,7 +244,7 @@ These response figures are **DERIVED**, not acoustic measurements. They assume t
 | 2398.93 Hz | 8.0119 ohm | +11.068 degrees |
 | 2505.14 Hz | 8.0403 ohm | +11.499 degrees |
 
-The woofer is close to 8 ohm in magnitude around the intended crossover, but it is not an 8 ohm resistor. At 2297 Hz its rectangular equivalent is approximately \(7.84+j1.49\) ohm. The full ZMA should therefore be used in VituixCAD.
+The woofer is close to 8 ohm in magnitude around the intended crossover, but it is not an 8 ohm resistor. At 2297 Hz its rectangular equivalent is approximately $7.84+j1.49$ ohm. The full ZMA should therefore be used in VituixCAD.
 
 There is no strong electrical anomaly in the 2.2-2.5 kHz region. Small higher-frequency impedance structure cannot establish cone-breakup amplitude or acoustic suitability; the installed FRD and distortion measurements remain decisive.
 
@@ -252,7 +252,7 @@ There is no strong electrical anomaly in the 2.2-2.5 kHz region. Small higher-fr
 
 **PROVISIONAL DECISION:** retain the SB17NRX2C35-8 in the present enclosure.
 
-The measured \(Q_{tc}\approx0.82\) sits inside the project's broadly manageable **0.75-0.95** development range. The alignment is warmer than the published-parameter design case but is not severely resonant. No additional low-frequency mode survives normal installation, and the impedance near the intended crossover is smooth and convenient to model.
+The measured $Q_{tc}\approx0.82$ sits inside the project's broadly manageable **0.75-0.95** development range. The alignment is warmer than the published-parameter design case but is not severely resonant. No additional low-frequency mode survives normal installation, and the impedance near the intended crossover is smooth and convenient to model.
 
 This does not yet establish acoustic smoothness, maximum output, distortion, compression, or suitability for pair matching.
 
@@ -260,15 +260,15 @@ This does not yet establish acoustic smoothness, maximum output, distortion, com
 
 **USER-REPORTED TEST CONDITION:** the installed woofer is currently being driven with a **45 Hz sine wave at 3.44 V RMS measured at its terminals**.
 
-**DERIVED FROM THE CURRENT INSTALLED ZMA:** near 45 Hz the measured load is approximately **10.42 ohm at +50.6 degrees**. The present condition is therefore approximately **0.330 A RMS**, **1.14 VA apparent power**, and **0.72 W real electrical input**. The nominal-resistor shorthand \(V^2/8=1.48\ \mathrm{W}\) does not describe this reactive, frequency-dependent load.
+**DERIVED FROM THE CURRENT INSTALLED ZMA:** near 45 Hz the measured load is approximately **10.42 ohm at +50.6 degrees**. The present condition is therefore approximately **0.330 A RMS**, **1.14 VA apparent power**, and **0.72 W real electrical input**. The nominal-resistor shorthand $V^2/8=1.48\ \mathrm{W}$ does not describe this reactive, frequency-dependent load.
 
-Using the measured complex impedance together with the published \(R_e=5.7\ \mathrm{ohm}\), \(L_e=0.15\ \mathrm{mH}\), and \(Bl=6.25\ \mathrm{T\,m}\) gives an **estimated** diaphragm travel of approximately **2.13 mm peak (4.27 mm peak-to-peak)** at the present setting. This is a linear equivalent-circuit estimate, not a displacement measurement; it becomes less certain as suspension and motor nonlinearities increase.
+Using the measured complex impedance together with the published $R_e=5.7\ \mathrm{ohm}$, $L_e=0.15\ \mathrm{mH}$, and $Bl=6.25\ \mathrm{T\,m}$ gives an **estimated** diaphragm travel of approximately **2.13 mm peak (4.27 mm peak-to-peak)** at the present setting. This is a linear equivalent-circuit estimate, not a displacement measurement; it becomes less certain as suspension and motor nonlinearities increase.
 
-**PROVISIONAL CONDITIONING PROCEDURE:** use approximately **30 Hz at 4.0 V RMS** at the woofer terminals, with the tweeter disconnected. The current ZMA predicts approximately **0.565 A RMS**, **1.9 W real input**, and **2.6 mm peak diaphragm travel**, about 47% of the published +/-5.5 mm linear excursion. If motion is clean and symmetric, a cautious upper development setting is **4.5 V RMS**, predicting approximately **2.9 mm peak** and **2.4 W real input**. There is no project justification for deliberately approaching \(X_{max}\) during conditioning.
+**PROVISIONAL CONDITIONING PROCEDURE:** use approximately **30 Hz at 4.0 V RMS** at the woofer terminals, with the tweeter disconnected. The current ZMA predicts approximately **0.565 A RMS**, **1.9 W real input**, and **2.6 mm peak diaphragm travel**, about 47% of the published +/-5.5 mm linear excursion. If motion is clean and symmetric, a cautious upper development setting is **4.5 V RMS**, predicting approximately **2.9 mm peak** and **2.4 W real input**. There is no project justification for deliberately approaching $X_{max}$ during conditioning.
 
 Below the measured approximately 67 Hz sealed-system resonance, terminal voltage required for a given displacement is nearly flat from approximately 20-50 Hz. At equal displacement, 30 Hz has approximately 7 dB less idealized far-field pressure than 45 Hz, while producing two-thirds as many displacement cycles per hour. The exact conditioning frequency is therefore a nuisance-versus-time choice rather than a unique driver optimum; approximately 25-35 Hz is the preferred quiet range, avoiding any frequency that excites an observed room or structure rattle.
 
-Run in bounded intervals, inspect for rubbing, knocking, asymmetry, amplifier clipping, or abnormal heating, and stop immediately if any appears. After full return to the same ambient/voice-coil temperature, repeat the installed impedance measurement under matched mounting, fill, and drive conditions. Continue only while the cooled \(F_c\), \(Q_{tc}\), or trace shape is still changing materially; a practical stopping rule is less than approximately **1% change in \(F_c\)** across two successive cooled checks. Archive each conditioning duration, voltage, frequency, orientation, ambient temperature, and resulting ZMA.
+Run in bounded intervals, inspect for rubbing, knocking, asymmetry, amplifier clipping, or abnormal heating, and stop immediately if any appears. After full return to the same ambient/voice-coil temperature, repeat the installed impedance measurement under matched mounting, fill, and drive conditions. Continue only while the cooled $F_c$, $Q_{tc}$, or trace shape is still changing materially; a practical stopping rule is less than approximately **1% change in $F_c$** across two successive cooled checks. Archive each conditioning duration, voltage, frequency, orientation, ambient temperature, and resulting ZMA.
 
 The operational steps in this provisional note are superseded by the controlled procedure in [DRIVER_RUNIN.md](DRIVER_RUNIN.md), which adds a cold-DCR cooldown gate, fixed 48 kHz calibration, a 12-24 hour rested confirmation before baseline promotion, and a bounded review point.
 
@@ -278,9 +278,9 @@ The operational steps in this provisional note are superseded by the controlled 
 
 **VERIFIED MEASUREMENT / DERIVED:** both traces use a 48 kHz sample rate and otherwise matched REW impedance settings. The bandwidth-derived sealed-system resonance changed from **66.9712 Hz** to **65.7115 Hz**, a change of **-1.2597 Hz (-1.881%)**. Interpreted as a stiffness/compliance change at effectively constant moving mass, this corresponds to approximately **+3.87% total system compliance**.
 
-The raw impedance maximum changed only from approximately **96.54 ohm** to **96.85 ohm**, while the post-run trace contains approximately **+0.342 ohm** of nearly frequency-independent real series resistance from 300 Hz to 10 kHz and essentially unchanged reactance there. If that offset were entirely voice-coil copper resistance, it would correspond to roughly a **15 °C** temperature rise; changed lead or contact resistance could contribute instead. Subtracting the series offset gives a post-run peak of approximately **96.50 ohm**, \(Q_{mc}\approx13.8\), \(Q_{ec}\approx0.86\), and \(Q_{tc}\approx0.81\). There is therefore no persuasive evidence of a durable resonance-peak or damping change in this pair of files.
+The raw impedance maximum changed only from approximately **96.54 ohm** to **96.85 ohm**, while the post-run trace contains approximately **+0.342 ohm** of nearly frequency-independent real series resistance from 300 Hz to 10 kHz and essentially unchanged reactance there. If that offset were entirely voice-coil copper resistance, it would correspond to roughly a **15 °C** temperature rise; changed lead or contact resistance could contribute instead. Subtracting the series offset gives a post-run peak of approximately **96.50 ohm**, $Q_{mc}\approx13.8$, $Q_{ec}\approx0.86$, and $Q_{tc}\approx0.81$. There is therefore no persuasive evidence of a durable resonance-peak or damping change in this pair of files.
 
-**INFERRED:** combining the pre-run free-air estimate \(F_s\approx54.22\ \mathrm{Hz}\), the fixed-box stiffness contribution derived from the earlier installed measurement, and the new \(F_c\) gives an effective post-conditioning free-air resonance of approximately **52.66 Hz**. That is approximately **2.9% below** the pre-run estimate and implies approximately **6.0% greater driver compliance**, but it remains roughly **44% above** the published 36.5 Hz value. This is an indirect estimate, not a current free-air measurement.
+**INFERRED:** combining the pre-run free-air estimate $F_s\approx54.22\ \mathrm{Hz}$, the fixed-box stiffness contribution derived from the earlier installed measurement, and the new $F_c$ gives an effective post-conditioning free-air resonance of approximately **52.66 Hz**. That is approximately **2.9% below** the pre-run estimate and implies approximately **6.0% greater driver compliance**, but it remains roughly **44% above** the published 36.5 Hz value. This is an indirect estimate, not a current free-air measurement.
 
 **PROVISIONAL DECISION:** treat the downward resonance-frequency movement as encouraging, but retain the original cooled installed ZMA as the crossover baseline. Repeat the post-run measurement only after the cold-DCR and matched-condition gates in [DRIVER_RUNIN.md](DRIVER_RUNIN.md) have been met.
 
@@ -293,17 +293,17 @@ The raw impedance maximum changed only from approximately **96.54 ohm** to **96.
 | Parameter | Published value |
 |---|---:|
 | Nominal impedance | 4 ohm |
-| DC resistance, \(R_e\) | 3.2 ohm |
-| Voice-coil inductance, \(L_e\) | 0.04 mH |
-| Effective diaphragm area, \(S_d\) | 6.2 cm2 |
-| Resonance, \(F_s\) | 780 Hz |
+| DC resistance, $R_e$ | 3.2 ohm |
+| Voice-coil inductance, $L_e$ | 0.04 mH |
+| Effective diaphragm area, $S_d$ | 6.2 cm2 |
+| Resonance, $F_s$ | 780 Hz |
 | Sensitivity | 93 dB at 2.83 V/1 m |
-| \(Q_{ms}\) | 2.8 |
-| \(Q_{es}\) | 2.1 |
-| \(Q_{ts}\) | 1.2 |
-| Force factor, \(Bl\) | 1.6 T m |
-| Moving mass, \(M_{ms}\) | 0.3 g |
-| Linear excursion, \(X_{max}\) | +/-0.6 mm |
+| $Q_{ms}$ | 2.8 |
+| $Q_{es}$ | 2.1 |
+| $Q_{ts}$ | 1.2 |
+| Force factor, $Bl$ | 1.6 T m |
+| Moving mass, $M_{ms}$ | 0.3 g |
+| Linear excursion, $X_{max}$ | +/-0.6 mm |
 | Rated power statement | 120 W with the manufacturer's stated 2.6 kHz, 12 dB/octave Butterworth high-pass condition |
 
 The 120 W figure is conditional, not an unconditional broadband power rating.
@@ -316,12 +316,12 @@ The 120 W figure is conditional, not an unconditional broadband power rating.
 
 | Quantity | Installed result | Published |
 |---|---:|---:|
-| Curve-consistent \(R_0\) estimate | 3.274 ohm | \(R_e=3.2\) ohm |
+| Curve-consistent $R_0$ estimate | 3.274 ohm | $R_e=3.2$ ohm |
 | Impedance magnitude maximum | 7.557 ohm at 755.62 Hz | not stated |
-| Bandwidth-derived \(F_s\) | 760.91 Hz | 780 Hz |
-| \(Q_{ms}\) | 2.622 | 2.8 |
-| \(Q_{es}\) | 2.005 | 2.1 |
-| \(Q_{ts}\) | 1.136 | 1.2 |
+| Bandwidth-derived $F_s$ | 760.91 Hz | 780 Hz |
+| $Q_{ms}$ | 2.622 | 2.8 |
+| $Q_{es}$ | 2.005 | 2.1 |
+| $Q_{ts}$ | 1.136 | 1.2 |
 | Positive phase maximum | +24.04 degrees at 574.31 Hz | not stated |
 | Negative phase minimum | -22.32 degrees at 979.91 Hz | not stated |
 
@@ -340,7 +340,7 @@ The magnitude maximum occurs a few hertz below the bandwidth-derived resonance b
 | 2398.93 Hz | 3.4786 ohm | -4.445 degrees |
 | 2505.14 Hz | 3.4787 ohm | -3.725 degrees |
 
-Around the intended crossover the tweeter is approximately **3.48 ohm**, nearly resistive but mildly capacitive. At 2297 Hz its rectangular equivalent is approximately \(3.46-j0.30\) ohm. It must not be modelled as a frequency-independent 4 ohm resistor.
+Around the intended crossover the tweeter is approximately **3.48 ohm**, nearly resistive but mildly capacitive. At 2297 Hz its rectangular equivalent is approximately $3.46-j0.30$ ohm. It must not be modelled as a frequency-independent 4 ohm resistor.
 
 There are no suspicious secondary impedance peaks. The normal installed mounting has not introduced an evident rear-cavity or front-cavity electrical resonance.
 
@@ -365,8 +365,8 @@ The post-conditioning woofer file remains comparison evidence only until a fully
 
 The useful crossover-region loads are therefore approximately:
 
-- Woofer: \(7.98\) ohm at \(+10.8\) degrees near 2.30 kHz;
-- Tweeter: \(3.48\) ohm at \(-5.0\) degrees near 2.30 kHz.
+- Woofer: $7.98$ ohm at $+10.8$ degrees near 2.30 kHz;
+- Tweeter: $3.48$ ohm at $-5.0$ degrees near 2.30 kHz.
 
 This makes the impedance side of the model substantially more defensible. It does **not** make crossover optimization defensible in the absence of installed-baffle FRD data with common timing.
 
@@ -424,7 +424,7 @@ Matching complete installed behaviour matters more than reproducing every datash
 5. Acquire horizontal off-axis responses using fixed microphone and rotation geometry.
 6. Measure distortion at progressively realistic levels while respecting tweeter protection and woofer excursion.
 7. Build and validate the crossover from the installed ZMA/FRD data.
-8. Repeat woofer impedance after adding the actual crossover series resistance and after any damping-material change; compare \(F_c\), \(Q_{tc}\), and peak shape.
+8. Repeat woofer impedance after adding the actual crossover series resistance and after any damping-material change; compare $F_c$, $Q_{tc}$, and peak shape.
 9. Measure final system impedance, phase, and EPDR.
 
 ### 9.2 Remaining uncertainties
@@ -432,7 +432,7 @@ Matching complete installed behaviour matters more than reproducing every datash
 - Installed acoustic magnitude, phase, and directivity of both drivers.
 - Woofer and tweeter distortion/compression at the required listening levels.
 - The effect of the documented final damping configuration on the sealed alignment.
-- The effect of the as-built woofer-series inductor DCR on \(Q_{tc}\).
+- The effect of the as-built woofer-series inductor DCR on $Q_{tc}$.
 - Final crossover topology, component values, acoustic polarity, and reverse-null quality.
 - The SU-V570 common speaker-return topology is externally supported by the
   unpowered resistance readings, and the UMC202HD Input 2 central-TRS phantom-
@@ -502,7 +502,7 @@ Matching complete installed behaviour matters more than reproducing every datash
 ### 11.1 2026-08-30 - installed-driver baseline
 
 - Established the two correctly installed ZMA exports as the sole current impedance baseline.
-- Recorded the woofer's single approximately 67 Hz sealed-box resonance and derived \(Q_{tc}\approx0.82\).
+- Recorded the woofer's single approximately 67 Hz sealed-box resonance and derived $Q_{tc}\approx0.82$.
 - Recorded the absence of a separate approximately 83 Hz resonance under normal mounting.
 - Recorded the tweeter's approximately 761 Hz resonance and close agreement with published Q values.
 - Replaced nominal crossover-region loads with the current installed magnitude and phase values.

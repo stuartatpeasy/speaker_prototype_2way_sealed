@@ -167,7 +167,7 @@ Do not design for routine operation at rated Xmax:
 - brief peaks may approach Xmax;
 - Xmech/Xlim remain emergency limits, not operating targets.
 
-Account for \(Bl\), suspension and inductance variation, harmonic and intermodulation distortion, and thermal compression. The sealed near-wall alignment is not intended to extract heroic deep bass from one 6.5-inch midwoofer.
+Account for $Bl$, suspension and inductance variation, harmonic and intermodulation distortion, and thermal compression. The sealed near-wall alignment is not intended to extract heroic deep bass from one 6.5-inch midwoofer.
 
 Tweeter power ratings must always be read with their specified high-pass condition. Do not apply an unfiltered broadband or low-frequency signal to the bare tweeter.
 
