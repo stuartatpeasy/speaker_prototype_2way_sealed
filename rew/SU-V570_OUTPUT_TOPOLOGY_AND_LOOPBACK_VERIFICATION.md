@@ -5,7 +5,7 @@ Date prepared: 2026-08-31
 Last revised: 2026-09-03
 
 Status: **UNPOWERED COMMON-GROUND CHECK PASSED; OPTIONAL POWERED CHECK WAIVED;
-REFERENCE-FIXTURE AC GATE PENDING**
+REFERENCE FIXTURE RELEASED FOR CONTROLLED FULL-DUAL USE**
 
 ## 1. Purpose
 
@@ -241,10 +241,11 @@ ring/sleeve common, so the mapped TS-to-RCA playback cable is compatible with
 these specific outputs. The amplifier's approximately `+/-45.5 V` rails define
 the fixture design envelope.
 
-**CURRENT GATE, 2026-09-03:** amplifier topology passes and the optional powered
-confirmation is waived. Complete
-[the fixture AC transfer/noise gate](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
-before powered-amplifier or full-dual use.
+**CURRENT GATE, 2026-09-03:** amplifier topology passes, the optional powered
+confirmation is waived, and
+[the proportionate fixture AC release](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
+passes. Controlled powered-amplifier/full-dual use is approved under the
+fixture and acoustic-checkout startup and stop rules.
 
 ## 10. Final Status Record
 
@@ -254,17 +255,18 @@ Unpowered measurements:     PASS - 2026-09-01
 Powered confirmation:       WAIVED - optional, 2026-09-01
 Complete-fixture authority: SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md
 Completed evidence:          SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md
-Remaining electrical gate:  REFERENCE_FIXTURE_AC_COMMISSIONING.md
-Fixture release status:     NO
-Approved for full-dual use: NO
+AC release record:          REFERENCE_FIXTURE_AC_COMMISSIONING.md - PASS
+Fixture release status:     YES - controlled bench use
+Approved for full-dual use: YES - under documented startup/stop rules
 
 Reviewed by: Codex review of user-reported readings and ground-path analysis
 Date:        2026-09-03
 Notes:
 Section 6 passes and externally supports the schematic common-ground
 assessment. The optional powered confirmation was waived. Fixture construction,
-completed evidence, and remaining AC work are separated into the three records
-named above.
+completed evidence, and the proportionate AC release decision are separated
+into the three records named above. Exact reference level, noise, and dropout
+behaviour remain first-full-dual measurement-quality checks.
 ```
 
 ## 11. Supporting Sources

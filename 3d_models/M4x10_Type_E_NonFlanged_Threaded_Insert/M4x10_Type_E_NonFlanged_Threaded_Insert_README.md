@@ -6,7 +6,7 @@ retains a visible coarse external helix, an open 4 mm hex drive, and a through
 M4 bore. Unlike a Type D insert, it has no sealing flange and can therefore be
 driven below the wood surface.
 
-## Import and placement
+## 1. Import And Placement
 
 - In SketchUp, use **File > Import > COLLADA (`*.dae`)**.
 - The DAE declares millimetres and Z-up coordinates.
@@ -15,7 +15,7 @@ driven below the wood surface.
 - Make the imported object a SketchUp component before placing multiple
   instances.
 
-## Manufacturer-published dimensions
+## 2. Manufacturer-Published Dimensions
 
 | Feature | Dimension |
 |---|---:|
@@ -34,7 +34,7 @@ Primary source:
 The supplier describes Type E as an unheaded insert without a sealing flange,
 allowing it to bottom out or be installed below the material surface.
 
-## Model scope and polygon budget
+## 3. Model Scope And Polygon Budget
 
 The external thread pitch, crest form, bottom runout, hex depth, and drive-to-
 bore transition are not dimensioned in the product table. They are visually

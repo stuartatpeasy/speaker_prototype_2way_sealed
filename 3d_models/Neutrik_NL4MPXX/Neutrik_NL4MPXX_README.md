@@ -4,7 +4,7 @@ The SketchUp import file is `Neutrik_NL4MPXX.dae`. It is a direct
 OpenCascade tessellation of the Creo-generated `nl4mpxx.stp` supplied in the
 project root.
 
-## Import and placement
+## 1. Import And Placement
 
 - In SketchUp, use **File > Import > COLLADA (`*.dae`)**.
 - The DAE explicitly declares millimetres and Z-up coordinates.
@@ -16,7 +16,7 @@ project root.
 - Make the imported object a SketchUp component before placing multiple
   instances.
 
-## Conversion details
+## 2. Conversion Details
 
 The source identifies itself as `NL4MPXX-4`, authored in Creo Parametric, and
 declares millimetres. OpenCascade reads it as one valid solid containing 1,108
@@ -35,7 +35,7 @@ Source STEP SHA-256:
 AA7DDF218941F2284EE6E9C9E7E2591CA32B3B0ED0E6CA1A27EAEDB660CD6748
 ```
 
-## Regeneration
+## 3. Regeneration
 
 The converter requires the no-VTK OpenCascade bindings:
 

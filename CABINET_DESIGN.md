@@ -4,7 +4,7 @@ This file is the detailed mechanical source for the prototype enclosure. The hig
 
 ## 1. Prototype mechanical baseline
 
-The enclosure geometry in **`3d_models/Prototype loudspeaker cabinet.dae`** is accepted as the **initial prototype design target**. The 430 mm-high mechanical design is sufficiently complete for construction; further enclosure resizing or structural redesign is not planned before measurement of the first build.
+The enclosure geometry in **`3d_models/Prototype loudspeaker cabinet.dae`** records the design basis of the completed acoustically representative prototype. Further enclosure resizing or structural redesign is not planned before measurement of this build.
 
 The prototype itself remains the dimensional authority for details that depend on actual purchased parts or manufacturing. Countersinks will be fitted to the actual screws, tweeter body and terminal clearance will be adjusted empirically, and the rear-panel centre landing will be fitted to the measured working compression of the actual gasket. Confirmed adjustments should be back-annotated into the CAD model.
 
@@ -80,7 +80,7 @@ The woofer fasteners need only compress the flange gasket evenly. They should no
 
 ### 4.4 Final machining checks
 
-Before cutting the final baffle:
+Before cutting a repeat or final baffle:
 
 - measure the actual physical drivers;
 - make test rebates in scrap;

@@ -96,3 +96,6 @@ cmake_install.cmake
 Thumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+
+# LatencyMon outputs disclose private, project-irrelevant host details.
+rew/*LatencyMon*.txt

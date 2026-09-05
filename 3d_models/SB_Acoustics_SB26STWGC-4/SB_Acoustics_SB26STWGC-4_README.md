@@ -3,7 +3,7 @@
 The model file is `SB_Acoustics_SB26STWGC-4.dae`. COLLADA retains the model's
 material colours and imports natively into SketchUp.
 
-## Import and placement
+## 1. Import And Placement
 
 - In SketchUp, use **File > Import > COLLADA (`*.dae`)**.
 - Units are declared as millimetres.
@@ -14,7 +14,7 @@ material colours and imports natively into SketchUp.
 - Placing Z = 0 on the baffle surface puts the rear limit at exactly
   Z = -42.1 mm.
 
-## Manufacturer-published dimensions used unchanged
+## 2. Manufacturer-Published Dimensions Used Unchanged
 
 | Feature | Dimension |
 |---|---:|
@@ -39,7 +39,7 @@ Sources:
 - Public multi-angle product imagery:
   <https://www.soundimports.eu/en/sb-acoustics-sb26stwgc-4.html>
 
-## Model scope and inferred details
+## 3. Model Scope And Inferred Details
 
 The waveguide curvature, dome/surround profiles, central adapter-boss shape,
 motor plate thicknesses, rear chamber, pole vent, terminal construction and

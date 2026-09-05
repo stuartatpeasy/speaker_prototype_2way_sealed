@@ -8,7 +8,7 @@ external thread in approximately 1,900 triangles.  The original
 thread and is intended for close-up rendering.  Matching `.stl` files are
 included as fallbacks for SketchUp installations with the STL importer enabled.
 
-## Placement and units
+## 1. Placement And Units
 
 - Units: millimetres (`.dae` declares millimetres explicitly; `.stl` units are
   implicit but its coordinates are in millimetres).
@@ -20,7 +20,7 @@ included as fallbacks for SketchUp installations with the STL importer enabled.
 - After import, make the object a SketchUp component before copying it to all
   mounting positions; component instances keep the enclosure model lighter.
 
-## Modelled dimensions
+## 2. Modelled Dimensions
 
 | Feature | Dimension |
 |---|---:|

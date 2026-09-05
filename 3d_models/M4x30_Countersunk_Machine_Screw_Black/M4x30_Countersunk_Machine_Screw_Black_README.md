@@ -4,7 +4,7 @@ The SketchUp import file is
 `M4x30_Countersunk_Machine_Screw_Black.dae`. It is a low-polygon model of the
 common black M4 x 30 mm DIN 965-style Pozidriv countersunk machine screw.
 
-## Import and placement
+## 1. Import And Placement
 
 - In SketchUp, use **File > Import > COLLADA (`*.dae`)**.
 - The DAE declares millimetres and Z-up coordinates.
@@ -14,7 +14,7 @@ common black M4 x 30 mm DIN 965-style Pozidriv countersunk machine screw.
 - Make the imported object a SketchUp component before placing multiple
   instances.
 
-## Controlling dimensions
+## 2. Controlling Dimensions
 
 | Feature | Dimension |
 |---|---:|
@@ -37,7 +37,7 @@ Sources:
 - Westfield Fasteners, M4 DIN 965 dimensions:
   <https://www.westfieldfasteners.co.uk/Bolts-Screws-Metric/Machine-Screw-Phillips-Countersunk-M4x75-A2-Stainless.html>
 
-## Model scope and polygon budget
+## 3. Model Scope And Polygon Budget
 
 The 24-sided head retains the exact 7.5 mm X/Y envelope. The right-hand
 external thread is a continuous geometric helix with a flat, lightly

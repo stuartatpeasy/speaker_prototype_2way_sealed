@@ -2,10 +2,10 @@
 
 Date prepared: 2026-09-02
 
-Last revised: 2026-09-03
+Last revised: 2026-09-05
 
-Status: **CONSTRUCTION, DC, AND GROUND-PATH QUALIFICATION PASS; AC COMMISSIONING
-PENDING; NOT APPROVED FOR AMPLIFIER USE**
+Status: **ALL PROPORTIONATE SAFETY/CONNECTIVITY GATES PASS; APPROVED FOR
+CONTROLLED POWERED-AMPLIFIER BENCH USE**
 
 ## 1. Scope And Authority
 
@@ -38,11 +38,17 @@ have narrower authority:
 - [`SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md`](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md)
   retains completed test readings and qualification reasoning;
 - [`REFERENCE_FIXTURE_AC_COMMISSIONING.md`](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
-  is the current procedure and result sheet for the remaining electrical gate;
+  retains the low-voltage observations and completed proportional AC release
+  decision;
 - [`FRD_MEASUREMENT_SETUP_TEST.md`](FRD_MEASUREMENT_SETUP_TEST.md) consumes an
   already commissioned fixture in the acoustic repeatability test; and
 - [`../DRIVER_ANALYSIS.md`](../DRIVER_ANALYSIS.md) retains the dated project
   evidence and decision history.
+
+The release in this file is explicitly for UMC202HD Input 2. Reusing the
+passive fixture with a UMC22 does not transfer the UMC202HD contact, phantom, or
+input-level qualification. That bounded alternative is controlled by
+[`UMC22_RISK_ACCEPTED_FRD_FALLBACK.md`](UMC22_RISK_ACCEPTED_FRD_FALLBACK.md).
 
 Never connect this fixture to a powered amplifier until Section 7 explicitly
 says `Approved for amplifier use: YES`.
@@ -69,8 +75,9 @@ the separate speaker cable. The true-RMS meter still sets `1.00 V RMS` at the
 woofer terminals. A low-resistance, unchanged speaker cable makes the difference
 small and repeatable, but its impedance remains part of the measured acoustic
 path. If driver-terminal rather than amplifier-terminal normalization later
-becomes necessary, connect the same fixture red and black leads at the driver
-terminals and document that changed reference plane.
+becomes necessary, connect the same clamp/attenuator `In+` (red) and `In-`
+(black) leads at the driver terminals and document that changed reference
+plane.
 
 ### 2.2 Why The Fixture Uses Two High-Value Legs
 
@@ -217,10 +224,10 @@ The unscreened output tail is a performance deviation rather than a direct
 electrical-safety failure. Its `5 cm` length and twisted conductors keep exposed
 loop area small, while the approximately `1 kohm` shunts keep both signal nodes
 at moderate impedance. It is not electrically equivalent to two conductors
-inside an electrostatic shield, so the remaining
-[AC commissioning](REFERENCE_FIXTURE_AC_COMMISSIONING.md) must explicitly
-compare the direct and fixture-connected no-signal spectra for mains-frequency
-or other pickup.
+inside an electrostatic shield. Check actual no-signal reference-channel noise
+in the first powered full-dual setup, where the amplifier and final cable
+placement are present; this is a measurement-quality check rather than a
+standalone electrical-release gate.
 
 **DECISION - PHYSICAL RECORD PASS FOR CONTROLLED BENCH USE:** construction,
 polarity marking, insulation, junction isolation, strain relief, component
@@ -228,8 +235,8 @@ ratings, plug mapping, and the deliberate output-tail deviation are now
 recorded. No rebuild is required on the present evidence. Inspect the bare-wire
 termination, outer heat-shrink, both cable exits, and TRS clamp before every use;
 stop on looseness, a stray strand, cut, abrasion, softening, discoloration, or
-exposed internal structure. Final approval remains gated by AC transfer and
-noise commissioning.
+exposed internal structure. The later proportionate AC sanity/release review
+passed; actual powered no-signal behaviour is a measurement-quality check.
 
 ## 4. Component-Value Calculations
 
@@ -286,9 +293,9 @@ k_floating = (1.002 + 1.003)
 These are unloaded fixture predictions. Behringer's published UMC202HD
 specifications do not state the `LINE` input impedance, so a defensible
 interface-loaded ratio cannot be calculated from published data. Input loading
-can only add attenuation to this passive network. The final AC transfer
-measurement, not the resistor calculation, decides the installed gain and
-frequency response.
+can only add attenuation to this passive network. The actual full-dual reference
+level decides the installed gain for measurement purposes; sub-decibel
+agreement with the unloaded calculation is not a safety condition.
 
 ### 4.3 Amplifier Loading
 
@@ -337,7 +344,7 @@ Vline,peak = 7.75 V x sqrt(2)      = 10.96 V peak
 ```
 
 This is a product performance limit, not an absolute-damage specification, but
-the rail-bound fixture output is still approximately `7.7 dB` below it.
+the rail-bound clamp/attenuator output is still approximately `7.7 dB` below it.
 
 For the harsher sustained `45.5 V DC` fault with the shunt intact:
 
@@ -408,10 +415,10 @@ the primary current limiter.
 
 For this one-off prototype, the missing manufacturer suffix is not a release
 blocker because the four completed DC curves demonstrate the required
-bidirectional clamp knee; the pending AC test still has to demonstrate
-acceptable capacitance and linearity. Retain the parts as measured, unidentified
-`BZX 5V1` devices. A reproducible future build should use fully traceable
-components.
+bidirectional clamp knee. Audio-band response and repeatability are checked in
+the first complete full-dual measurement chain rather than by further low-level
+DMM metrology. Retain the parts as measured, unidentified `BZX 5V1` devices. A
+reproducible future build should use fully traceable components.
 
 Do not use anticipated loudness or volume-control position as protection. The
 SU-V570 line-input sensitivity is `150 mV` for rated output. The UMC202HD's
@@ -429,8 +436,9 @@ Perform the following in order:
 4. commission both complete attenuator/clamp legs with the current-limited
    PL310QMD DC test;
 5. audit the complete unpowered system ground and cable paths;
-6. measure the fixture's AC gain, polarity, and frequency response; and
-7. only then connect the fixture to a powered amplifier.
+6. complete the proportionate AC sanity and release review; and
+7. only then connect the fixture to a powered amplifier under the documented
+   controlled startup.
 
 Stop immediately for a shorted series resistor, unexplained continuity, wrong
 TRS contact, unstable DC result, unexpected current-limit operation, excessive
@@ -458,11 +466,11 @@ changes.
 | Cooled post-stress resistance matrix | PASS - every path changed by only `0-4 ohm`, 2026-09-02 |
 | Unpowered system ground-path audit | PASS - all stages, 2026-09-03 |
 | UMC202HD rear-output topology | PASS - mechanically TRS, electrically TS; R/S pads share PCB copper, 2026-09-03 |
-| Direct-baseline TRS patch cable | PASS - T/T `0.345 ohm`, R/R `0.337 ohm`, S/S `0.320 ohm`; all cross-paths open, 2026-09-03 |
-| Output 2 source adaptor map | PENDING |
-| Female-to-male inline breakout map | PENDING |
-| [AC transfer/noise commissioning](REFERENCE_FIXTURE_AC_COMMISSIONING.md) | NOT PERFORMED |
-| Approved for amplifier use | **NO** |
+| Straight-through cable map | PASS - T/T `0.345 ohm`, R/R `0.337 ohm`, S/S `0.320 ohm`; all cross-paths open, 2026-09-03 |
+| Output 2 source adaptor map | PASS - TRS with ring unconnected; T/`In+` `0.400 ohm`, S/`In-` `0.370 ohm`; all prohibited paths open, 2026-09-03 |
+| Breakout-cable map | PASS - through passed straight-through cable: T/T `0.345 ohm`, R/R `0.328 ohm`, S/S `0.328 ohm`; all cross-paths open; breakout residual below approximately `0.01 ohm` comparison repeatability, 2026-09-03 |
+| [AC sanity and proportionality review](REFERENCE_FIXTURE_AC_COMMISSIONING.md) | PASS FOR RELEASE - corrected low-voltage path gives raw `-20.45 dB`, consistent with the calculated `-20.094 dB`; precision DMM/noise work moved to practical full-dual checks, 2026-09-03 |
+| Approved for amplifier use | **YES - controlled bench use under the documented startup and stop rules** |
 
 The current resistance baseline after DC stress is:
 
@@ -497,25 +505,30 @@ front Input 2 ring is a distinct signal-return contact.
 
 ## 7. Installation And Release Gate
 
-Current release state: **Approved for amplifier use: NO**.
+Current release state: **Approved for amplifier use: YES, for controlled bench
+use under the connection, startup, inspection, and stop rules below**.
 
-The only unfinished electrical gate is
-[REFERENCE_FIXTURE_AC_COMMISSIONING.md](REFERENCE_FIXTURE_AC_COMMISSIONING.md).
-Its exact resume point is the resistance mapping of the Output 2 source adaptor
-and female-to-male inline TRS breakout, followed by the matched direct/fixture
-AC transfer and no-signal measurements. Do not connect the fixture to a powered
-amplifier until that record passes and this release state is changed to
-**YES**.
+The proportionality review in
+[REFERENCE_FIXTURE_AC_COMMISSIONING.md](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
+closes the standalone electrical gate. The resistance and DC evidence establish
+the protection function, and the corrected low-voltage result is an adequate
+gross AC sanity check. Exact attenuation, powered-system noise, headroom, and
+dropout behaviour are measurement-quality checks in the first full-dual setup.
+That checkout subsequently reached a clean `1.00 V RMS` at the woofer but found
+brief recurring source-stream mutes. Sweeps are paused for REW/ASIO/USB/UMC
+diagnosis; the passive fixture's controlled-use safety release remains valid.
 
 After release, make every amplifier, loudspeaker, fixture, and TRS connection
 with the SU-V570 switched off:
 
 1. turn SU-V570 volume fully down;
-2. connect fixture red to positive and black to negative on the same channel and
-   speaker bank as the woofer;
+2. connect clamp/attenuator `In+` (red) to positive and `In-` (black) to
+   negative on the same channel and speaker bank as the woofer;
 3. connect the loudspeaker separately to that output pair; the fixture cable
    must not carry loudspeaker current;
-4. insert the fixture plug only into the central TRS jack of UMC202HD Input 2;
+4. insert the clamp/attenuator output plug only into the central TRS jack of
+   UMC202HD Input 2, directly for normal use or through the passed breakout
+   cable for the first gross reference-level check;
 5. set Input 2 to `LINE`, `PAD` off, and `GAIN 2` fully down; leave its XLR
    contacts unused;
 6. connect the verified Output 1 TS-to-RCA playback cable; and
@@ -531,7 +544,7 @@ cable exits, and TRS strain relief before every use.
 
 - Completed fixture qualification evidence:
   [SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md)
-- Remaining AC commissioning procedure:
+- Completed AC commissioning and release rationale:
   [REFERENCE_FIXTURE_AC_COMMISSIONING.md](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
 - SU-V570 output-topology evidence:
   [SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md](SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md)

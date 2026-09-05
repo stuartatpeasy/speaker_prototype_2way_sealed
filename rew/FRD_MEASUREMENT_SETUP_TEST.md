@@ -2,26 +2,30 @@
 
 Date prepared: 2026-08-30
 
-Last revised: 2026-09-03
+Last revised: 2026-09-05
 
-Status: **PROVISIONAL ACOUSTIC SETUP-VALIDATION PROCEDURE; BLOCKED ONLY BY
-REFERENCE-FIXTURE AC COMMISSIONING**
+Status: **UMC202HD PROCEDURE SUSPENDED BY DESKTOP DROPOUT; FIXTURE RELEASE
+REMAINS VALID; UMC22 FALLBACK IS AT ITS UNPOWERED CONTACT-MAP GATE**
 
-Every prerequisite before AC transfer/noise commissioning has passed: SU-V570
-common-ground topology, UMC202HD Input 2 phantom isolation, complete-fixture
+Every electrical release prerequisite has passed: SU-V570 common-ground
+topology, UMC202HD Input 2 phantom isolation, complete-fixture
 resistance/DC/physical qualification, the unpowered ground audit, and rear-
 output topology. The inspected rear outputs are mechanically TRS but
 electrically tip plus a ring/sleeve common. The fixture's short unscreened tail
-requires the specified matched no-signal comparison.
+was included in the powered no-signal pass.
 
-Do not make the full-dual amplifier connection until
+The proportionate safety/connectivity review in
 [REFERENCE_FIXTURE_AC_COMMISSIONING.md](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
-passes and the fixture authority explicitly says
-`Approved for amplifier use: YES`. The exact current resume point is mapping
-the Output 2 source adaptor and
-female-to-male inline TRS breakout. This procedure begins only after that gate
-and validates the woofer measurement chain; it is not a raw-tweeter or final
-polar-measurement procedure.
+passes, and the fixture authority says `Approved for amplifier use: YES` for
+controlled UMC202HD bench work. That electrical release remains valid, but
+UMC202HD measurement use is suspended by the separate dropout. This is not a
+raw-tweeter or final polar-measurement procedure.
+
+This procedure's current settings and release statements are UMC202HD-specific.
+The risk-accepted UMC22 alternative is eligible only after the separate gates
+in [UMC22_RISK_ACCEPTED_FRD_FALLBACK.md](UMC22_RISK_ACCEPTED_FRD_FALLBACK.md)
+pass; its `48 kHz` configuration, contact mapping, calibration, and measured
+reference level must then supersede the corresponding UMC202HD details below.
 
 ## 1. Purpose And Pass Criteria
 
@@ -86,7 +90,7 @@ Before making the full-dual connection, confirm:
 
 1. the SU-V570 record passes the unpowered common-ground topology gate;
 2. the UMC202HD Input 2 central-TRS phantom-isolation gate passes;
-3. the remaining AC transfer/noise gate in
+3. the proportionate AC sanity/release gate in
    [`REFERENCE_FIXTURE_AC_COMMISSIONING.md`](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
    passes; and
 4. the fixture record explicitly says `Approved for amplifier use: YES`.
@@ -99,7 +103,9 @@ procedure does not repeat either.
 
 - Behringer ECM8000 and XLR microphone cable;
 - Behringer UMC202HD and USB cable;
-- current Behringer Windows driver;
+- an interface driver/host path that has first passed the separate stability
+  diagnosis; the former Behringer Windows driver is uninstalled and is not a
+  current prerequisite;
 - measured cable from UMC202HD Output 1 to the selected SU-V570 line input;
 - fully commissioned SU-V570-to-UMC202HD reference fixture;
 - Technics SU-V570;
@@ -110,7 +116,15 @@ procedure does not repeat either.
 
 Do not use the UMC202HD headphone output to drive a loudspeaker.
 
-## 4. UMC202HD And REW Configuration
+## 4. Suspended UMC202HD Checkout Configuration
+
+The settings below preserve the exact configuration used for the completed
+2026-09-03 checkout. They are not a current instruction to reinstall the
+Behringer driver or resume UMC202HD sweeps. Re-establish this path only after
+the stability issue in
+[UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md](UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md)
+has been resolved and the selected driver/host combination has passed a
+dropout-free control.
 
 ### 4.1 Interface Controls
 
@@ -131,21 +145,21 @@ The `88.2 kHz` rate permits a nearly full-band `5 Hz-41 kHz` reference sweep.
 It does not improve the low-frequency resolution of the short reflection-free
 window.
 
-### 4.2 Initial REW Settings
+### 4.2 Historical REW Checkout Settings
 
 | Setting | Value |
 | --- | --- |
 | Driver | Behringer UMC ASIO driver |
-| Sample format | `24 bit` |
+| Converter/sample handling | UMC202HD `24 bit`; `Treat 32-bit data as 24-bit` enabled if the ASIO driver presents a 32-bit container |
 | Sample rate | `88.2 kHz` |
 | Measurement input | Input L / UMC202HD Input 1 |
 | Measurement output | Output L / UMC202HD Output 1 |
-| Reference input | Input R / UMC202HD Input 2 |
-| Reference output | Output R / UMC202HD Output 2 |
+| Loopback input | Input R / UMC202HD Input 2 |
+| Timing-reference output | Output R / UMC202HD Output 2 |
 | Timing mode | Use loopback as cal and timing reference |
 | Merge loopback response into IR | Enabled |
 | Separate soundcard calibration file | None |
-| Timing offset | `2.915 ms` for `1000 mm` at `343 m/s` |
+| Timing offset | `0.000 ms` for the first checkout; after validating the first impulse, apply one verified offset consistently to the repeat series (nominal time of flight `2.915 ms` for `1000 mm` at `343 m/s`) |
 | Sweep range | `5 Hz-41 kHz` |
 | Initial sweep level | `-20 dBFS` |
 | Final level after voltage setting | `-10 dBFS` |
@@ -153,11 +167,60 @@ window.
 | Repetitions | `1` |
 | Abort if heavy input clipping occurs | Enabled |
 
+In REW V5.40 Beta 133, the physical input/output routing is on
+`Preferences -> Soundcard`, while the timing-reference mode and loopback-
+response treatment are selected on the main `Measure` panel. Choose
+`Use loopback as cal and timing reference`; then choose
+`Merge loopback response into IR` rather than making calibration data from the
+loopback response. The `Preferences -> Analysis` tab contains related
+post-processing choices such as `Adjust clock with loopback`, but does not
+enable the loopback measurement mode in this beta.
+
+**VERIFIED REW ROUTING - 2026-09-03:** the user's Soundcard screenshot shows
+the UMC ASIO driver at `88.2 kHz`, measurement Output `1: Out 1`, measurement
+Input `1: In 1`, timing-reference output `2: Out 2`, loopback input `2: In 2`,
+`Treat 32-bit data as 24-bit` enabled, and soundcard calibration `None`. The
+displayed sweep level was `-12.0 dBFS`; because the amplifier remained off and
+no signal was requested, this is only a dormant setting and must be changed to
+the documented initial level before excitation.
+
+**CORRECTED UI LOCATION - 2026-09-03:** a subsequent screenshot of the complete
+Analysis tab confirmed that neither timing-reference mode nor loopback-response
+merge selection is present there in V5.40 Beta 133. The earlier instruction to
+find them under Analysis is superseded by the Measure-panel route above. No
+signal was generated while locating the controls.
+
+**VERIFIED MEASURE-PANEL STATE - 2026-09-03:** the Measure dialog exposes two
+dropdowns beside `Timing`; they initially showed `No timing reference` and
+`Set t=0 at IR peak`. The same screenshot confirms SPL/sweep mode, `1M`, one
+repetition, `-20 dBFS`, `88.2 kHz`, single measurement, Output `1: Out 1`,
+Input `In 1`, noise-floor capture enabled, and clipping abort enabled. The
+displayed `0-24 kHz` range and inherited run-in measurement name are dormant
+old values and are not approved as the full-dual measurement settings. No
+signal was generated.
+
+**VERIFIED LOOPBACK SELECTION - 2026-09-03:** the Measure panel subsequently
+showed `Use loopback as cal and timing reference`, `Merge loopback response into
+IR`, timing offset `0.0000 ms`, Ref output `2: Out 2`, and Ref input `2: In 2`.
+The secondary output remained disabled. This is the correct full-dual routing.
+The first checkout deliberately retains zero timing offset; establish and
+inspect one valid impulse before applying a common propagation-time correction
+to the repeat series. The inherited name and `0-24 kHz` range remain to be
+replaced before measurement. No signal was generated at this checkpoint.
+
+**VERIFIED DORMANT MEASUREMENT SETTINGS - 2026-09-03:** before any amplifier
+power or signal generation, the user confirmed the inherited fields were
+replaced with name `SB17 UMC202HD checkout 1`, range `5-41000 Hz`, level
+`-20 dBFS`, and timing offset `0.0000 ms`. All previously verified loopback,
+channel, sample-rate, sweep-length, repetition, noise-floor, and clipping-abort
+settings remained in place.
+
 REW sends the sweep to both selected outputs when loopback reference is used.
 Output 2 remains physically unconnected in the full-dual arrangement; Input 2
-receives the amplifier-output reference instead. The timing offset removes the
-nominal `1000 mm` propagation time while retaining the driver's physical delay.
-Do not independently align woofer and tweeter impulse peaks later.
+receives the amplifier-output reference instead. After the first impulse is
+validated, one common timing offset removes the chosen reference-plane
+propagation time while retaining relative driver delay. Do not independently
+align woofer and tweeter impulse peaks later.
 
 ## 5. Physical Setup And Cabling
 
@@ -190,6 +253,29 @@ calculated floor reflection is approximately `3.34 ms`.
 7. Disable tone and loudness processing, or use Power Amp Direct if appropriate.
 8. Reconfirm the fixture release gate before connecting it.
 
+**VERIFIED SETUP STATE - 2026-09-03:** the user confirmed the generator
+stopped; UMC202HD `OUTPUT`, `GAIN 1`, and `GAIN 2` fully down; phantom off; USB
+disconnected; SU-V570 off with volume fully down; Output 2 source adaptor
+removed; and the passed breakout cable retained between the clamp/attenuator
+output and Input 2. No powered-amplifier connection had yet been made at this
+checkpoint.
+
+**VERIFIED UNPOWERED CONNECTION STATE - 2026-09-03:** UMC202HD Output 1 is
+connected to the SU-V570 `AUX` left line input. The woofer and
+clamp/attenuator are connected in parallel to speaker-bank `B` left, with
+`In+`/red on positive and `In-`/black on negative. The user reported all
+connections secure. The SU-V570 remained off; no powered result is inferred.
+The input was initially reported as `TAPE 1`, then corrected by the user before
+measurement: `AUX` was the intentional physical connection and will remain in
+use. The current setup fact is therefore `AUX`, not `TAPE 1`.
+
+**VERIFIED INTERFACE POWER-UP STATE - 2026-09-03:** with the SU-V570 still off,
+the ECM8000 was connected to Input 1 before USB power and `+48 V` were enabled.
+The phantom indicator illuminated, neither clip LED illuminated, Output 2
+remained physically empty, and Input 2 remained `LINE`, pad off, gain fully
+down. `DIRECT MONITOR` remained off; both gain controls and `OUTPUT` remained
+fully down as specified.
+
 ### 5.3 Full-Dual Connections
 
 Make every amplifier, loudspeaker, fixture, and TRS connection with the
@@ -197,9 +283,13 @@ SU-V570 off:
 
 1. Connect UMC202HD Output 1 to the selected SU-V570 line input.
 2. Connect the matching SU-V570 speaker-output pair to the woofer.
-3. At those same rear amplifier terminals, connect fixture red to positive and
-   fixture black to negative. Do not use another channel or speaker bank.
-4. Insert the fixture TRS plug into the central jack of UMC202HD Input 2.
+3. At those same rear amplifier terminals, connect clamp/attenuator `In+` (red)
+   to positive and `In-` (black) to negative. Do not use another channel or
+   speaker bank.
+4. For the first checkout, retain the passed breakout cable between the
+   clamp/attenuator TRS output plug and UMC202HD Input 2 so its T/R nodes remain
+   accessible for the gross reference-level check. Restrain and insulate the
+   terminal block.
 5. Connect the ECM8000 to Input 1 by XLR.
 6. Leave UMC202HD Output 2 physically unconnected.
 7. Connect USB, enable `+48 V`, and reconfirm Input 2 `LINE` and Direct Monitor
@@ -211,6 +301,7 @@ ECM8000 -> UMC202HD Input 1 / USB input L -> REW measurement input
 REW output L -> UMC202HD Output 1 -> SU-V570 -> speaker cable -> woofer
 
 SU-V570 rear speaker terminals -> commissioned reference fixture
+                                -> passed breakout cable (first check only)
                                 -> UMC202HD Input 2 / USB input R
                                 -> REW calibration and timing reference
 ```
@@ -237,23 +328,52 @@ SU-V570 rear speaker terminals -> commissioned reference fixture
 3. In REW Generator select a `1 kHz` sine, Output L, at `-10 dBFS`.
 4. Place the true-RMS meter directly across the woofer terminals.
 5. With the generator stopped, switch on the SU-V570 and select the intended
-   input and speaker bank. Observe the Input 2 no-signal spectrum using the same
-   RTA/FFT settings retained from fixture commissioning. Stop and investigate
-   any new `50/100 Hz` family, coherent spur, instability, or noise rise that
-   materially reduces reference-channel margin; the UMC202HD-only fixture test
-   cannot reveal pickup introduced only by the powered complete system.
+   input and speaker bank. Check for sustained audible hum/buzz and for an Input
+   2 clip indication. If REW provides an active no-signal RTA/FFT view, retain
+   it for comparison; an inactive Preferences bargraph is not a failure and
+   does not justify separate UI troubleshooting. Stop and investigate any
+   audible problem, clipping, or clearly active instability that materially
+   reduces reference-channel margin.
 6. Start the generator and raise SU-V570 volume slowly until the meter reads
-   `1.00 V RMS`, then stop the
-   generator immediately.
-7. Confirm the amplifier-output reference is close to `99 mV RMS`, allowing for
-   any small speaker-cable drop between the fixture and voltmeter reference
-   planes. Stop for gross disagreement or clipping.
+   `1.00 V RMS`, then stop the generator immediately.
+7. Stop the generator before moving the meter. Move it to breakout T/R, restart
+   the same tone without changing any level control, and confirm the reference
+   is broadly `0.10 V RMS` (approximately `99 mV` predicted). This is a gross
+   range check, not a tenth-of-a-decibel calibration. Stop for a reading outside
+   `80-120 mV RMS`, clipping, or an observable reference dropout. Stop the tone
+   and return the meter to the woofer before any further level change.
 8. Mark the SU-V570 volume position with removable tape. Do not move it or the
    UMC202HD Output control during the series.
+9. With the generator stopped, switch the SU-V570 off. Remove the breakout
+   cable and connect the clamp/attenuator output plug directly to Input 2 for
+   the repeatability measurements.
+10. Switch the SU-V570 on again with the generator still stopped and repeat the
+    Input 2 no-signal observation. Proceed only if the direct final connection
+    has useful margin and no clipping, dropout, or material noise problem.
 
 The fixture reference does not replace the true-RMS meter for absolute driver
 voltage. REW removes the fixture's constant gain from relative response, but
 the acoustic excitation still requires an independent voltage setting.
+
+**VERIFIED UMC202HD CHECKOUT RESULT - 2026-09-03:** the powered no-signal
+observation passed: the woofer was silent, no clip indicator illuminated, and
+switching the SU-V570 on/off produced no observed instability. The level-setting
+check then reached a clean `1.00 V RMS` across the woofer, but the source stream
+muted for roughly `100-300 ms` every `1-3 s`. This blocks UMC202HD sweeps but
+does not revoke the passive fixture's electrical release.
+
+The subsequent diagnosis is maintained in
+[UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md](UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md).
+In summary, the same fault occurred with REW ASIO, REW Java/WASAPI, and ordinary
+Windows music; it survived rate, buffer, USB-port, cable, peripheral, disk, and
+power-plan controls. The same UMC202HD played continuously on a Windows 11
+laptop. Microsoft's desktop UAC2 driver reduced but did not eliminate the
+fault. A live-Linux boot on the desktop is the next useful discriminator.
+
+Do not reinstall the Behringer driver or resume UMC202HD sweeps merely to follow
+the dormant settings below. The risk-accepted UMC22 path is now the acoustic-
+work critical path and remains at Gate A in
+[UMC22_RISK_ACCEPTED_FRD_FALLBACK.md](UMC22_RISK_ACCEPTED_FRD_FALLBACK.md).
 
 ### 6.2 Set Input Gains
 
@@ -325,11 +445,13 @@ Check, in order:
 2. REW input L is the microphone and input R is the reference.
 3. `Use loopback as cal and timing reference` and response merging are enabled.
 4. Both inputs have adequate level and neither clips.
-5. Sample rate, ASIO device, and channel selections remain unchanged.
+5. Sample rate, selected audio device/driver, and channel selections remain
+   unchanged.
 6. Interface output, both input gains, and amplifier volume have not moved.
 7. Microphone, cabinet, cables, fixture, and stands have not moved.
-8. The fixture record shows the commissioned attenuation, polarity, and smooth
-   `5 Hz-41 kHz` response.
+8. The fixture record shows release approval, and the actual Input 2 reference
+   is close to the expected `0.10 V RMS` at `1.00 V RMS` speaker output without
+   clipping or dropout.
 9. The impulse does not contain multiple comparable synchronization peaks.
 10. Repeat with a `512k` single sweep if noise or the long sweep is problematic.
 11. Repeat with the safe semi-dual connection. If semi-dual is repeatable but
@@ -345,7 +467,7 @@ Primary references:
 
 - Complete reference-fixture authority:
   [`SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md`](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md)
-- Remaining fixture AC commissioning:
+- Completed fixture AC commissioning:
   [`REFERENCE_FIXTURE_AC_COMMISSIONING.md`](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
 - Completed fixture qualification evidence:
   [`SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md`](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md)
@@ -357,5 +479,7 @@ Primary references:
   <https://mediadl.musictribe.com/media/PLM/data/docs/UMC/QSG_BE_0805-AAR_U-PHORIA-Series_WW.pdf>
 - REW measurement and loopback-reference documentation:
   <https://www.roomeqwizard.com/help/help_en-GB/html/makingmeasurements.html>
+- REW soundcard and ASIO sample-rate guidance:
+  <https://www.roomeqwizard.com/help/help_en-GB/html/calsoundcard.html>
 - VituixCAD REW measurement guide:
   <https://kimmosaunisto.net/Software/VituixCAD/VituixCAD_Measurement_REW.pdf>

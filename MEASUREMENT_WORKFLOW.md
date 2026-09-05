@@ -56,7 +56,9 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 4. Establish cooled installed impedance baselines for woofer and tweeter.
 5. Before full-dual acoustic work, pass the
    [reference-fixture AC gate](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md) and
-   [installed setup repeatability test](rew/FRD_MEASUREMENT_SETUP_TEST.md).
+   [installed setup repeatability test](rew/FRD_MEASUREMENT_SETUP_TEST.md). If
+   using the UMC22 fallback, first pass its interface-specific gates in
+   [UMC22_RISK_ACCEPTED_FRD_FALLBACK.md](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md).
 6. Measure each driver acoustically in the actual baffle with common timing.
 7. Obtain gated far-field measurements around the crossover region.
 8. Obtain near-field woofer measurements for bass and merge only with documented scaling and phase treatment.
@@ -78,7 +80,8 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 - [SU-V570 output-topology and amplifier-suitability verification](rew/SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md)
 - [Complete SU-V570-to-UMC202HD reference fixture](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md)
 - [Completed reference-fixture qualification evidence](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md)
-- [Current reference-fixture AC commissioning](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md)
+- [Completed reference-fixture AC commissioning](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md)
+- [UMC22 risk-accepted FRD fallback](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md)
 - [Room geometry and placement evidence](ROOM_DETAILS.md)
 
 ## 6. Evidence and documentation loop

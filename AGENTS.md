@@ -33,7 +33,38 @@ need rebuilding. Do not over-simplify the engineering ideas, but avoid
 unexplained mathematical jumps. If a concept does not settle immediately, park
 it and revisit it from another direction later.
 
-## 3. Keep Markdown current in the same turn
+## 3. Proportionate project process and safety
+
+1. Keep every proposed test procedure, measurement, safety verification, and
+   other commissioning step proportionate to, and justified by, the nature and
+   intended use of this project.
+2. The objective is not laboratory-grade assurance or a product proven against
+   every potentially applicable safety standard. It is a system that works
+   well, can be reproduced at very limited scale, and has basic electrical and
+   mechanical safety.
+3. Before proposing any activity or process step, consider its likely practical
+   value, the uncertainty or credible risk it addresses, and its cost in time,
+   effort, complexity, and enjoyment. Do not add work merely because a more
+   exhaustive or more precise process is possible.
+4. Preserve checks that address credible electrical, mechanical, equipment, or
+   personal-safety hazards, but distinguish those checks explicitly from
+   optional characterisation, optimisation, or marginal confidence-building.
+5. Treat this as a pleasant and absorbing hobby intended to produce work to a
+   good standard. Do not turn it into tedious unpaid work by pursuing immaterial
+   improvements or the last hundredth of a percent without a project-relevant
+   justification.
+
+## 4. Agent delegation
+
+1. Use agents when independent or parallel work would materially reduce the
+   wall-clock time needed to complete a task.
+2. Select each agent's model and effort level deliberately to match the
+   complexity, uncertainty, and consequence of its assigned work.
+3. Do not delegate when coordination and review overhead would outweigh the
+   likely time saving. The primary agent remains responsible for integrating
+   and checking delegated results.
+
+## 5. Keep Markdown current in the same turn
 
 1. For every project task, identify whether the work changes any documented
    fact, measurement baseline, calculation, decision, procedure, filename,
@@ -66,7 +97,7 @@ it and revisit it from another direction later.
    otherwise identified dependencies, configuration, command, and the expected
    verification result.
 
-## 4. Keep `.gitignore` current without losing information
+## 6. Keep `.gitignore` current without losing information
 
 1. Reassess [`.gitignore`](.gitignore) whenever work introduces a new tool,
    dependency manager, cache, temporary workspace, build directory, generated
@@ -102,7 +133,10 @@ it and revisit it from another direction later.
     retained/ignored boundary. Remove or revise an ignore rule if its generator
     or reconstruction source ceases to exist.
 
-## 5. Completion checks
+## 7. Completion checks
+
+For a user-requested comprehensive documentation review or handover, follow
+[`DOCUMENTATION_REVIEW.md`](DOCUMENTATION_REVIEW.md) in addition to this file.
 
 Before completing any task that changes project files:
 

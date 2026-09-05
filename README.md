@@ -11,9 +11,23 @@ This is the high-level source of truth and entry point for the sealed passive tw
 - Both drivers remain provisionally retained.
 - The passive crossover remains exploratory. Installed-baffle acoustic magnitude, common timing/phase, directivity, and distortion measurements are still required before topology or component values can be frozen.
 - The intended acoustic crossover region remains approximately **2.2–2.4 kHz**, probably using fourth-order Linkwitz–Riley-like acoustic slopes, subject to measurement.
-- The amplifier-reference fixture has passed every topology, construction, DC,
-  and ground-path gate. AC commissioning is the sole remaining electrical gate;
-  full-dual amplifier use is not yet approved.
+- The SU-V570 reference fixture has passed topology, construction, resistance,
+  four-polarity DC clamp, ground-path, interconnect, and proportionate AC gates.
+  It is released for controlled UMC202HD bench use under the documented startup
+  and stop rules. The rear outputs are mechanically TRS but electrically TS;
+  the source adaptor, straight-through cable, and breakout cable are mapped.
+- The first UMC202HD full-dual checkout passed the powered no-signal check and
+  reached a clean `1.00 V RMS` at the woofer, but recurring source-stream mutes
+  block its sweeps on the desktop. The interface plays continuously on a
+  Windows 11 laptop, and substituting the UMC22's known-good cable did not alter
+  the desktop fault. A live-Linux boot is the next useful discriminator. See
+  [`rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md`](rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md).
+- A risk-accepted UMC22 fallback is now the FRD critical path. Normal predicted
+  reference level is `0.09892 V RMS`, about `19.9 dB` below its published
+  `+2 dBu` instrument-input maximum, but fault-level survival is not guaranteed.
+  Powered-amplifier use is not yet approved: resume at the unpowered Input 2
+  contact map in
+  [`rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md`](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md).
 
 ## 2. Project goal and engineering principles
 
@@ -46,7 +60,8 @@ Three-way, open-baffle, transmission-line, horn, and reflex alternatives are out
 | File | Authority and when to read it |
 |---|---|
 | [README.md](README.md) | High-level project state, locked architecture, document map, and open decisions. Start here. |
-| [AGENTS.md](AGENTS.md) | Standing collaboration instructions, including same-turn Markdown maintenance, conservative ignore policy, and completion checks. |
+| [AGENTS.md](AGENTS.md) | Standing collaboration instructions, including proportionate testing and commissioning, agent delegation, same-turn Markdown maintenance, conservative ignore policy, and completion checks. |
+| [DOCUMENTATION_REVIEW.md](DOCUMENTATION_REVIEW.md) | Reusable comprehensive documentation-review and handover procedure. |
 | [.gitignore](.gitignore) | Current committed/generated boundary for caches, machine outputs, scripted exports, and irreplaceable project artefacts. |
 | [DRIVER_ANALYSIS.md](DRIVER_ANALYSIS.md) | Living driver evidence record: published data, valid impedance baselines, alignment calculations, conditioning results, and driver-retention gates. |
 | [DRIVER_RUNIN.md](DRIVER_RUNIN.md) | Controlled installed-cabinet woofer stabilisation, cooldown gates, REW settings, repeat/stop rule, and the no-dedicated-tweeter-run-in decision. |
@@ -59,7 +74,9 @@ Three-way, open-baffle, transmission-line, horn, and reflex alternatives are out
 | [rew/SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md](rew/SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md) | SU-V570 schematic assessment, unpowered common-ground test, and amplifier-suitability gate. |
 | [rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md) | Current cable-to-TRS fixture authority: rationale, construction, calculations, qualification summary, and release gate. |
 | [rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md) | Completed phantom, resistance, DC clamp, construction, ground-path, and UMC202HD output-topology evidence. Read for audit/history, not the next procedure. |
-| [rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md) | Live interconnect preflight and matched AC transfer/noise procedure; this is the exact signal-path-testing resume point. |
+| [rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md) | Completed interconnect preflight, low-voltage observations, and proportionate AC release decision. |
+| [rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md) | Conditional UMC22 fallback: risk boundary, level calculations, minimum connector/phantom/ground/full-duplex gates, and release state. |
+| [rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md](rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md) | Single authority for the desktop UMC202HD dropout evidence, closed causes, remaining boundary, and live-Linux next test. |
 
 ### 4.1 Minimal reading routes
 
@@ -71,9 +88,16 @@ Three-way, open-baffle, transmission-line, horn, and reflex alternatives are out
 - **Amplifier loopback/reference work:** this file +
   `rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md`. Add the SU-V570 topology
   record or qualification record only to audit those completed gates. For the
-  current signal-path work, add `rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md`;
-  add `rew/FRD_MEASUREMENT_SETUP_TEST.md` only after fixture release. Do not
-  connect a powered amplifier output until the fixture gate says `YES`.
+  release rationale, add `rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md`. The
+  fixture gate now says `YES` for controlled bench use; add
+  `rew/FRD_MEASUREMENT_SETUP_TEST.md` for the switched-off full-dual connection,
+  minimum-volume startup, and practical performance checks.
+  If substituting the UMC22, also read
+  `rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md`; the UMC202HD release does not
+  automatically qualify the UMC22 connector or phantom behaviour.
+- **UMC202HD desktop-dropout diagnosis:** this file +
+  `rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md`; do not load the fixture
+  qualification archive unless raw electrical evidence is needed.
 - **Repository or generated-artifact maintenance:** this file + `AGENTS.md` + `.gitignore`; add `src/3d_models/README.md` for model, preview, or printer-output reconstruction.
 
 ### 4.2 Local tooling environment
@@ -141,25 +165,20 @@ The current 2.2–2.4 kHz LR4-like acoustic direction is a development hypothesi
 - `rew/SB17NRX2C35-8 installed.zma`: controlled 48 kHz pre-conditioning woofer trace and current crossover-model baseline until a cooled replacement is validated.
 - `rew/SB17NRX2C35-8 runin 30Hz 4Vrms 1h 48kHz.zma`: matched-rate post-conditioning comparison; shows lower $F_c$ but contains an approximately 0.34 Ω broadband series-resistance offset and is not yet a cold crossover baseline.
 - `rew/SB26STWGC-4 installed.zma`: current tweeter impedance baseline.
+- Raw LatencyMon text exports are intentionally local-only because they disclose
+  private, project-irrelevant host details. Decision-relevant results are in
+  `rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md`.
 - Installed-baffle phase-bearing FRD, horizontal off-axis, distortion/compression, filtered-driver, reverse-null, and final-system impedance/EPDR measurements remain outstanding.
-- The protected amplifier-reference path has passed the SU-V570 common-ground,
-  UMC202HD phantom-isolation, fixture resistance/DC/physical, full unpowered
-  ground-path, and rear-output-topology gates. Both inspected rear output
-  sockets are mechanically TRS but electrically tip plus a ring/sleeve common,
-  so the mapped Output 1 TS-to-RCA playback lead is compatible and Output 2
-  drives the fixture test asymmetrically.
-- The direct-baseline TRS cable passes. Before any powered-amplifier connection,
-  map the Output 2 source adaptor and inline TRS breakout, then complete the
-  matched transfer/noise test in
-  [`rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md`](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md).
-  Full-dual approval remains **NO**. Completed raw readings are retained only in
-  the [qualification record](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md).
+- The UMC202HD reference fixture is electrically released, but that interface
+  remains blocked for measurement by the desktop dropout. The UMC22 fallback
+  remains unpowered and paused at its first contact-map gate.
 
 ## 7. Immediate development sequence
 
-1. Complete the source-adaptor/breakout preflight and matched transfer/noise
-   release gate in
-   [`rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md`](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md).
+1. Qualify the risk-accepted UMC22 fallback under
+   [`rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md`](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md),
+   then complete the controlled full-dual three-repeat checkout. Continue the
+   desktop-specific UMC202HD live-Linux diagnosis independently.
 2. Complete woofer stabilisation under [DRIVER_RUNIN.md](DRIVER_RUNIN.md) and obtain a cooled reproducible 48 kHz ZMA.
 3. Retain the tweeter without dedicated run-in; confirm its installed impedance before acoustic work.
 4. Acquire installed-baffle magnitude and phase for both drivers with common timing and fixed geometry.

@@ -4,7 +4,7 @@
 **Woofer:** SB Acoustics **SB17NRX2C35-8**  
 **Tweeter:** SB Acoustics **SB26STWGC-4**  
 **Record created:** 2026-08-27  
-**Last updated:** 2026-09-03
+**Last updated:** 2026-09-05
 
 > **Standing instruction for future conversations:** Read this file before doing any work that concerns the drivers, enclosure alignment, crossover, or related measurements. Update it whenever new conditioning, electrical or acoustic measurements, calculations, simulations, crossover tuning, pair matching, procurement decisions, or superseding conclusions materially change the picture. Date each addition and label facts according to the evidence categories below. When the measurement baseline is explicitly replaced, remove obsolete source references and every numerical conclusion that depends on them. If a finding changes a project decision, update the main README as well.
 
@@ -40,18 +40,34 @@ Both drivers were correctly mounted in the sealed prototype enclosure in their n
 - The tweeter's installed impedance remains close to its published electrical parameters and contains no suspicious additional resonance.
 - The intended crossover remains a measurement-developed acoustic fourth-order Linkwitz-Riley alignment in the approximate **2.2-2.4 kHz** region. That frequency and all component values remain provisional until installed-baffle acoustic magnitude, phase, directivity, and distortion data exist.
 - Both drivers remain provisionally retained.
-- The protected amplifier-reference path has passed the SU-V570 common-ground,
-  UMC202HD Input 2 phantom-isolation, complete-fixture resistance/DC/physical,
-  ground-path, and interface-output-topology gates. The inspected UMC202HD rear
-  outputs are mechanically TRS but electrically tip plus a ring/sleeve common.
-  The fixture's short unscreened output tail still requires the specified
-  no-signal comparison. Its sole remaining electrical gate is AC commissioning,
-  beginning with the Output 2 source-adaptor and inline-breakout resistance
-  maps; full-dual amplifier use remains unapproved. Use
-  [the active AC procedure](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md) for the
-  exact resume point and
-  [the qualification record](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md)
-  for all completed readings and calculations.
+- The SU-V570 reference fixture is electrically released for controlled
+  UMC202HD bench use. Its topology, phantom isolation, construction,
+  resistance, DC clamp, ground path, connector maps, and proportionate AC
+  sanity gate all pass. The full evidence remains in the fixture authority and
+  qualification records rather than this driver summary.
+- The first UMC202HD checkout passed powered no-signal behaviour and reached a
+  clean `1.00 V RMS` at the woofer, but a desktop-specific output-stream dropout
+  prevents stable sweeps. The same interface is stable on a Windows 11 laptop;
+  extensive desktop controls have closed REW, ASIO, sample rate, tested ports
+  and cables, practical peripheral removal, legacy disks, and broad power-plan
+  changes as useful causes. The current Microsoft UAC2 binding improved but did
+  not eliminate the fault. See
+  [`rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md`](rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md)
+  for the evidence matrix and deferred live-Linux test.
+- **CORRECTED HISTORICAL PROVENANCE - 2026-09-04:** all earlier uninterrupted
+  REW impedance sweeps used the StarTech `ICUSBAUDIO2D`, not the UMC22. The
+  UMC22's clean evidence comprises extensive ordinary playback plus a current
+  matched five-minute music control with zero dropouts; no UMC22 REW full-
+  duplex sweep has yet passed.
+- **PROVISIONAL DECISION - 2026-09-05:** pursue the risk-accepted UMC22 route so
+  FRD is no longer blocked on the UMC202HD diagnosis. At `1.00 V RMS` across the
+  woofer the fixture predicts `0.09892 V RMS`, about `19.9 dB` below the UMC22
+  instrument input's published `+2 dBu` maximum. A rail-bounded fault can exceed
+  that published level by about `10.3 dB`; the user accepts the unquantified
+  possibility of UMC22 damage. Powered use remains unapproved until the contact,
+  phantom, ground-path, and low-voltage full-duplex gates in
+  [`rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md`](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md)
+  pass. The exact next action is its unpowered Input 2 contact map.
 
 ### 1.4 Project file-location convention
 
@@ -387,10 +403,12 @@ Matching complete installed behaviour matters more than reproducing every datash
 
 ### 9.1 Highest-priority work
 
-1. Complete the remaining
-   [reference-fixture AC commissioning](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md),
-   beginning with the source-adaptor and inline-breakout maps, before connecting
-   the fixture to a powered amplifier.
+1. Complete the UMC22-specific contact, phantom, ground-path, and low-voltage
+   full-duplex gates in
+   [the fallback procedure](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md), then
+   verify the approximately `0.10 V RMS` reference level and complete the
+   three-repeat woofer checkout. Continue the UMC202HD live-Linux diagnosis in
+   parallel rather than blocking FRD on it.
 2. Complete the bounded woofer conditioning/cooldown loop in [DRIVER_RUNIN.md](DRIVER_RUNIN.md), then promote a reproducible cooled 48 kHz ZMA to the modelling baseline.
 3. Record the present enclosure fill/lining state, ambient temperature, terminal voltage, and mounting condition so this baseline can be reproduced.
 4. Acquire installed-baffle acoustic magnitude and phase for both drivers using common loopback timing.
@@ -407,12 +425,10 @@ Matching complete installed behaviour matters more than reproducing every datash
 - The effect of the documented final damping configuration on the sealed alignment.
 - The effect of the as-built woofer-series inductor DCR on $Q_{tc}$.
 - Final crossover topology, component values, acoustic polarity, and reverse-null quality.
-- Reference-fixture AC transfer/noise commissioning remains unverified; every
-  earlier electrical and physical gate passes. The amplifier-terminal reference
-  plane excludes the separate loudspeaker-cable drop, so keep that cable fixed
-  and record any later move to driver-terminal normalization. Exact completed
-  readings and remaining actions are delegated to the two fixture records
-  linked in Section 10.3.
+- The UMC22 Input 2 contact/phantom topology and its REW full-duplex stability
+  remain unverified. The fixture itself is released; the fallback record owns
+  the remaining gates. Keep the loudspeaker cable fixed because the reference
+  plane is at the amplifier terminals, not the driver terminals.
 - Production spread and stereo-pair matching.
 - Individual free-air T/S parameters, if later required to explain the installed alignment rather than simply design from it.
 
@@ -429,11 +445,7 @@ Matching complete installed behaviour matters more than reproducing every datash
 - [SB17NRX2C35-8 datasheet](https://sbacoustics.com/wp-content/uploads/2020/02/6in-SB17NRX2C35-8.pdf)
 - [SB26STWGC-4 product page](https://sbacoustics.com/product/sb26stwgc-4-fabric/)
 - [SB26STWGC-4 datasheet](https://sbacoustics.com/wp-content/uploads/2020/05/SB26STWGC-4.pdf)
-- [Keysight U1280 Series data sheet](https://www.keysight.com/content/dam/keysight/en/doc/ungate/data-sheets/5992-0847.pdf)
-- [Behringer UMC202HD quick-start guide](https://mediadl.musictribe.com/media/sys_master/h1f/h9b/8849476255774.pdf)
-- [Technics SU-V570 service manual](https://audiocircuit.dk/downloads/technics/Technics-SUV570-int-sm.pdf)
-- [Vishay BZX55 small-signal zener data sheet](https://www.vishay.com/docs/85604/bzx55.pdf)
-- [Thurlby Thandar PL-series data, including PL310QMD series operation](https://www.farnell.com/datasheets/99860.pdf)
+- [Behringer U-PHORIA series quick-start guide, including UMC22 specifications](https://mediadl.musictribe.com/media/PLM/data/docs/UMC/QSG_BE_0805-AAR_U-PHORIA-Series_WW.pdf)
 - [Klippel, *Mechanical Fatigue and Load-Induced Aging of Loudspeaker Suspension*](https://www.klippel.de/fileadmin/klippel/Bilder/Know-How/Literature/Papers/Aging%20of%20loudspeaker%20suspension_Klippel.pdf)
 - [REW impedance-measurement documentation](https://www.roomeqwizard.com/help/help_en-GB/html/impedancemeasurement.html)
 
@@ -445,6 +457,8 @@ Matching complete installed behaviour matters more than reproducing every datash
 - [`rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md`](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md)
 - [`rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md`](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md)
 - [`rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md`](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md)
+- [`rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md`](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md)
+- [`rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md`](rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md)
 - [`rew/SU-V570_power_amp_output_schematic.png`](rew/SU-V570_power_amp_output_schematic.png)
 
 ## 11. Change log
@@ -495,35 +509,36 @@ Matching complete installed behaviour matters more than reproducing every datash
 - Linked the formal bounded conditioning, cooldown, measurement, and stopping procedure in `DRIVER_RUNIN.md`.
 - Recorded that no dedicated tweeter run-in is presently justified.
 
-### 11.6 2026-09-01 to 2026-09-03 - reference-path qualification
+### 11.6 2026-09-01 to 2026-09-04 - reference-path qualification and checkout
 
-- Passed the SU-V570 common-ground gate from nulled low-resistance readings:
-  negative terminals `0.002-0.045 ohm`, speaker negative to RCA shell
-  `0.120-0.150 ohm` (mean `0.130 ohm`), and speaker negative to chassis
-  `0.100 ohm`. The optional powered confirmation was waived.
-- Passed Input 2 central-TRS phantom isolation under equal `100 kohm` loads;
-  every pair displayed `0.000 V` through individual `+48 V` switching.
-- Rejected the original one-leg attenuator, then qualified the rebuilt symmetric
-  two-leg fixture. Its pre- and post-stress matrices, four-polarity `64.5 V`
-  PL310QMD curves, accepted `45.5 V` soft-knee deviation, component evidence,
-  heat-shrink construction, and short unscreened tail are preserved in the
-  dedicated qualification record.
-- Completed the unpowered ground audit through the UMC202HD, USB cable, Class-I
-  PC, mapped TS-to-RCA playback cable, SU-V570 RCA shell, and speaker-negative
-  node. The path is a signal reference to protective earth, not a protective-
-  conductor test; the fixture retains `10.130/10.146 kohm` from its two inputs
-  to sleeve.
-- Verified both UMC202HD rear outputs as mechanically TRS but electrically TS.
-  Powered driven-channel results, an unpowered `0.021 ohm` ring/sleeve reading,
-  and direct inspection of both R/S pads on one copper fill agree. The mapped
-  TS playback cable is compatible; Output 2 supplies the fixture test from tip
-  and common.
-- Passed the direct-baseline TRS cable (`0.345/0.337/0.320 ohm` T/R/S;
-  cross-paths open) and accepted a short, restrained, unenclosed inline
-  terminal-block breakout subject to mapping and matched no-signal testing.
-- Consolidated the former event-by-event entries into
-  [`rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md`](rew/SU-V570_TO_UMC202HD_REFERENCE_FIXTURE_QUALIFICATION.md),
-  avoiding duplicate authority while preserving the evidence. The exact next
-  action is to map the Output 2 source adaptor and inline breakout under
-  [`rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md`](rew/REFERENCE_FIXTURE_AC_COMMISSIONING.md).
-  Full-dual amplifier use remains unapproved until that AC gate passes.
+- Passed SU-V570 common-ground topology, UMC202HD Input 2 phantom isolation,
+  fixture construction/resistance, four-polarity DC clamp, full ground-path,
+  rear-output topology, and interconnect maps. Raw evidence is retained in the
+  fixture qualification record.
+- Established the rear outputs as mechanically TRS but electrically TS and
+  corrected the installed amplifier input to `AUX` left, speaker bank `B` left.
+- Accepted the corrected low-voltage `105.3 mV` input / `10.0 mV` output
+  observation as a proportionate approximately `-20 dB` AC sanity check. The
+  detailed fixture release basis is retained in the AC commissioning record.
+- Passed the powered no-signal observation and reached a clean `1.00 V RMS` at
+  the woofer, then stopped sweeps because of recurring UMC202HD source-stream
+  dropouts. The complete compact test matrix, closed causes, privacy treatment,
+  and live-Linux next discriminator are retained only in
+  [`rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md`](rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md).
+
+### 11.7 2026-09-05 - risk-accepted UMC22 FRD fallback
+
+- Accepted a pragmatic UMC22 route in principle so the desktop-specific
+  UMC202HD dropout does not indefinitely block acoustic development.
+- Derived approximately `19.9 dB` of normal reference-input headroom at the
+  established `1.00 V RMS` woofer level, but recorded that the fixture's
+  approximately `4.50 V peak` rail-bounded result is about `10.3 dB` above the
+  UMC22 instrument input's published `+2 dBu` maximum.
+- Recorded the user's explicit acceptance of possible UMC22 damage without
+  extending that acceptance to person, amplifier, PC, loudspeaker, or
+  measurement-integrity hazards.
+- Added
+  [`rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md`](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md)
+  with only the interface-specific contact, phantom, ground-path, low-voltage
+  full-duplex, and controlled woofer gates still required. Powered-amplifier
+  use remains unapproved until those gates pass.

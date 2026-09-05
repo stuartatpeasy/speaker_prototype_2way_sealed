@@ -4,7 +4,7 @@ The primary file is `SB_Acoustics_SB17NRX2C35-8_SketchUp.dae`. COLLADA retains
 the model's material colours and imports natively into SketchUp. An uncoloured
 binary STL is included as a fallback.
 
-## Import and placement
+## 1. Import And Placement
 
 - In SketchUp, use **File > Import > COLLADA (`*.dae`)**.
 - Units are declared as millimetres.
@@ -14,7 +14,7 @@ binary STL is included as a fallback.
 - With the component placed on a front-baffle mounting plane, its rear limit is
   exactly Z = -75 mm.
 
-## Manufacturer-published dimensions used unchanged
+## 2. Manufacturer-Published Dimensions Used Unchanged
 
 | Feature | Dimension |
 |---|---:|
@@ -38,7 +38,7 @@ Sources:
 - Manufacturer datasheet:
   <https://sbacoustics.com/wp-content/uploads/2020/02/6in-SB17NRX2C35-8.pdf>
 
-## Model scope and inferred details
+## 3. Model Scope And Inferred Details
 
 The cast basket, eight spokes, cone/surround profiles, spider, motor plate
 thicknesses, pole vent, terminals, tinsel leads and label details were

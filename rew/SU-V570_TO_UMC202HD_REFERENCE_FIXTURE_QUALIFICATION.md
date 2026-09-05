@@ -2,6 +2,8 @@
 
 Date range: 2026-09-01 to 2026-09-03
 
+Last revised: 2026-09-05
+
 Status: **COMPLETED QUALIFICATION EVIDENCE; NOT THE CURRENT OPERATING PROCEDURE**
 
 This record preserves the measurements and reasoning that qualified the
@@ -15,7 +17,7 @@ Use:
 - [SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md)
   for the construction specification and release state;
 - [REFERENCE_FIXTURE_AC_COMMISSIONING.md](REFERENCE_FIXTURE_AC_COMMISSIONING.md)
-  for the unfinished AC gate; and
+  for the subsequently completed proportional AC gate; and
 - [SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md](SU-V570_OUTPUT_TOPOLOGY_AND_LOOPBACK_VERIFICATION.md)
   for the SU-V570 common-ground evidence.
 
@@ -223,7 +225,8 @@ survived the `64.5 V DC` sweeps and post-stress resistance check. No
 heat-shrink dielectric, temperature, flame, or abrasion rating is claimed, so
 this is not approval for permanent, crushed, abraded, unattended, or production
 use. The unscreened tail is a performance uncertainty, not a demonstrated
-safety fault; the remaining AC test must compare matched no-signal spectra.
+safety fault. The later proportionality review moved no-signal observation into
+the complete powered checkout, where it passed; see the completed AC record.
 
 ## 5. Unpowered System Ground-Path Audit
 
@@ -322,9 +325,11 @@ is a distinct balanced-input contact.
 | Cooled post-stress resistance | PASS |
 | Complete unpowered ground-path audit | PASS |
 | UMC202HD rear-output topology | PASS; mechanically TRS, electrically TS |
-| AC transfer/noise commissioning | NOT PERFORMED |
-| Approved for powered-amplifier use | **NO** |
+| Proportionate AC sanity/release review | PASS under separate AC record, 2026-09-03 |
+| Approved for powered-amplifier use | **YES - controlled UMC202HD bench use under documented rules** |
 
-The next work is not another completed-gate repeat. Continue at the source-
-adaptor and inline-breakout maps in
-[REFERENCE_FIXTURE_AC_COMMISSIONING.md](REFERENCE_FIXTURE_AC_COMMISSIONING.md).
+This file remains the raw qualification authority; it is not the current
+operating procedure. The source adaptor, breakout map, AC sanity review, and
+powered no-signal observation subsequently passed. Current operation is owned
+by [SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md](SU-V570_TO_UMC202HD_REFERENCE_FIXTURE.md),
+while the UMC22 alternative remains separately gated.

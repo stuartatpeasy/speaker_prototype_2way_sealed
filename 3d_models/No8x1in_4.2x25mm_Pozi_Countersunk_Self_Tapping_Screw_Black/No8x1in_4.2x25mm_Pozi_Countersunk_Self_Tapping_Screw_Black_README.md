@@ -5,7 +5,7 @@ The SketchUp import file is
 low-polygon model of a black DIN 7982 C Z-style Pozidriv countersunk
 self-tapping screw.
 
-## Import and placement
+## 1. Import And Placement
 
 - In SketchUp, use **File > Import > COLLADA (`*.dae`)**.
 - The DAE declares millimetres and Z-up coordinates.
@@ -16,7 +16,7 @@ self-tapping screw.
 - Make the imported object a SketchUp component before placing multiple
   instances.
 
-## Controlling dimensions
+## 2. Controlling Dimensions
 
 | Feature | Dimension |
 |---|---:|
@@ -43,7 +43,7 @@ Sources:
 - Westfield Fasteners, DIN 7982 / ISO 7050 dimensions:
   <https://www.westfieldfasteners.co.uk/Standards/TappingScrew-PoziCsk.html>
 
-## Model scope and polygon budget
+## 3. Model Scope And Polygon Budget
 
 The 24-sided head retains the exact 8.1 mm X/Y envelope. The right-hand coarse
 thread is a continuous geometric helix and blends into a Type C/AB-style
