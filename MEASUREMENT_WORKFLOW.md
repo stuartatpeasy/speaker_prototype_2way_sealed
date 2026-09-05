@@ -30,6 +30,8 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 ### 3.1 Project locations
 
 - `rew/`: REW measurements and exports, including `.mdat`, `.zma`, tab-delimited impedance exports, FRD exports, and procedure notes.
+- `calibration/`: retained measurement-device calibration sources and any
+  documented REW-compatible derivatives.
 - `vituixcad/`: VituixCAD projects and generated outputs.
 
 ### 3.2 Impedance measurements
@@ -48,6 +50,15 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
   orientation before capturing reusable acoustic-response data. An uncalibrated
   microphone is acceptable for a clearly labelled routing, level, or timing
   checkout, but that trace is not magnitude evidence for crossover design.
+- The current ECM8000 file is the directly REW-compatible
+  `calibration/ECM8000_calibration_data.csv`. It is a generic `0-degree`
+  response, not a calibration for this microphone's serial number and not an
+  absolute-sensitivity file. Its supplied commas lacked the following
+  whitespace required by REW; spaces have been added after the commas without
+  changing numeric values. Apply the microphone file only to measurement input
+  L, never to electrical-reference input R. Label resulting acoustic magnitude
+  and phase as generic-calibrated and provisional; absolute SPL still requires
+  a separate level calibration.
 - Record microphone distance, axis, height, window/gating choices, sample rate, amplifier setting, terminal voltage, and room state.
 - Measure individual drivers before filtered sums, and retain the normal- and reverse-polarity results.
 - Use consistent filenames that identify driver, angle, polarity/filter state, level, and date or sequence.

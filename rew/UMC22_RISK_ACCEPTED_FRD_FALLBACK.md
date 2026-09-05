@@ -2,9 +2,16 @@
 
 Date prepared: 2026-09-05
 
-Status: **GATES A-D, THE ELECTRICAL-REFERENCE CALIBRATION ROUTE, AND THE
-COMPLETE SWITCHED-OFF GATE E ASSEMBLY PASS; UMC22-ONLY USB/PHANTOM NO-SIGNAL
-OBSERVATION IS NEXT; POWERED-AMPLIFIER USE IS NOT YET APPROVED**
+Status: **GATES A-D, THE ELECTRICAL-REFERENCE CALIBRATION ROUTE, THE COMPLETE
+SWITCHED-OFF GATE E ASSEMBLY, AND THE UMC22-ONLY USB/PHANTOM NO-SIGNAL
+OBSERVATION PASS; MINIMUM-VOLUME SU-V570 NO-SIGNAL POWER-UP ALSO PASSES; THE
+CONTROLLED WOOFER LEVEL PASSES AT `1.0000 V AC` WITH SU-V570 VOLUME AT ITS
+`-38 dB` SCALE MARK; THE GROSS PROTECTED-REFERENCE VOLTAGE PASSES AT A STABLE
+`98.53 mV AC` WITH NO CLIPPING, DROPOUT, INSTABILITY, OR OTHER ABNORMALITY;
+FINAL DIRECT-REFERENCE RECONNECTION AND NO-SIGNAL OBSERVATION PASS; REFERENCE-
+INPUT GAIN SETTING PASSES AT `-20.87 dBFS`; THE GENERIC `0-DEGREE` ECM8000 CSV
+IS REW-COMPATIBLE; THE PRE-CONSOLIDATION FILE PASSED L-ONLY LOADING, BUT THE
+RETAINED CSV MUST NOW BE RESELECTED BEFORE MICROPHONE-GAIN SETTING**
 
 ## 1. Purpose And Scope
 
@@ -1043,7 +1050,8 @@ while changing topology:
 2. Turn UMC22 `OUTPUT`, `GAIN 1`, and `GAIN 2` fully down. Keep `DIRECT MONITOR`
    off. Disconnect the headphones and remove the temporary Output 1 source-
    adaptor connection used for Gate D.
-3. Confirm the SU-V570 is off with volume fully down. Select `AUX`, centre the
+3. Confirm the SU-V570 is off with volume fully down. Select `AUX`, keep `POWER
+   AMP DIRECT` off so the normal input selector remains active, centre the
    balance, disable tone/loudness processing, and select speaker bank `B` only.
 4. Connect UMC22 Output 1 through the passed TS-to-RCA cable to SU-V570 `AUX`
    left. Leave UMC22 Output 2 and the amplifier's right input unused.
@@ -1099,6 +1107,248 @@ and wait approximately `15 s`. Confirm that the phantom indicator illuminates
 and report any clip indication, unexpected sound, instability, heat, smell, or
 other abnormality. Do not power the SU-V570 yet.
 
+**VERIFIED UMC22-ONLY USB/PHANTOM NO-SIGNAL OBSERVATION - 2026-09-05:** with
+the SU-V570 off at minimum volume and all REW signals stopped, the known-good
+USB cable was connected and phantom power was enabled without changing the
+UMC22 controls or wiring. The phantom indicator illuminated. Neither channel
+showed a clip indication; there was no unexpected sound, instability, smell,
+heating, or other abnormality.
+
+**UMC22-ONLY POWER-UP DECISION - PASS:** retain the unchanged full-dual wiring,
+USB connection, active phantom supply, minimum UMC22 `GAIN 1`, `GAIN 2`, and
+`OUTPUT` controls, and `DIRECT MONITOR` off. The next bounded stage is the
+SU-V570 minimum-volume no-signal startup:
+
+1. Keep every REW signal stopped. Do not use Generator, Check Levels, or
+   Measure.
+2. Reconfirm SU-V570 volume at minimum, `AUX` selected, tone `DEFEAT`, loudness
+   off, balance centred, bank B enabled, and bank A disabled. Do not change any
+   wiring while the amplifier is powered.
+3. Switch on the SU-V570 without adjusting its volume or any UMC22 control.
+4. Observe for approximately `15 s`. Report whether the woofer remains silent,
+   whether either UMC22 channel shows a clip indication, and whether there is
+   any unexpected sustained hum/buzz, transient sound, instability, unusual
+   heating, smell, smoke, or other abnormality.
+5. Switch the SU-V570 off immediately for sustained or otherwise concerning
+   sound, clipping, instability, smell, smoke, unusual heating, or any other
+   abnormality. Even after a clean observation, do not generate a signal or
+   adjust a level until the result is reviewed.
+
+**VERIFIED SU-V570 MINIMUM-VOLUME NO-SIGNAL POWER-UP - 2026-09-05:** the
+documented `AUX`, tone `DEFEAT`, loudness-off, centred-balance, bank-B-only
+state was reconfirmed. With every REW signal stopped, all UMC22 controls
+unchanged, and the complete Gate E wiring retained, the SU-V570 was powered at
+minimum volume for approximately one minute. The woofer produced no detectable
+sound of any kind. Neither UMC22 channel showed a clip indication, and there
+was no transient or persistent hum/buzz, instability, heating, smell, smoke, or
+other abnormality.
+
+**SU-V570 NO-SIGNAL DECISION - PASS:** this closes the staged powered no-signal
+startup. The next bounded stage is the `1.00 V RMS` woofer-level and gross
+reference-level check. The ECM8000 calibration file is not needed for these
+two electrical-voltage observations, but it remains mandatory before any
+reusable acoustic sweep.
+
+1. Stop every REW signal, switch the SU-V570 off, retain its volume at minimum,
+   and make no connection change until it is off. Secure a true-RMS meter in
+   AC-voltage mode directly across the woofer terminals without disturbing the
+   woofer, amplifier, or fixture wiring.
+2. In REW, retain the exact `EXCL:` UMC22 input and output endpoints, `48 kHz`,
+   and Java `Stereo only`. Prepare Generator for a `1 kHz` sine on output `L`
+   at `-10 dBFS`, but keep Generator stopped.
+3. With the amplifier off and Generator stopped, turn only UMC22 `OUTPUT`
+   fully clockwise for a repeatable source setting. Retain `GAIN 1` and
+   `GAIN 2` at minimum, `DIRECT MONITOR` off, phantom on, and all wiring
+   unchanged.
+4. Switch on the SU-V570 at minimum volume and confirm the established quiet
+   no-signal state. Start Generator, then raise only SU-V570 volume slowly until
+   the woofer meter reads `1.00 V RMS`; approximately `0.98-1.02 V RMS` is
+   sufficient and avoids needless knob chasing. Stop Generator immediately.
+   Stop earlier for any abrupt level jump, UMC22 clip indication, dropout,
+   unexpected sound, instability, or other abnormality.
+5. With Generator stopped, record the woofer voltage and approximate SU-V570
+   volume position. Move the meter to breakout tip-to-ring in AC-voltage mode.
+   Do not move any level control.
+6. Restart the same tone briefly and confirm the protected reference is broadly
+   `0.10 V RMS`; `0.080-0.120 V RMS` passes this gross range check. Stop
+   immediately outside that range, for either UMC22 clip indication, a
+   reference dropout, or any other abnormality. Stop Generator before moving
+   the meter again.
+7. Report the woofer voltage, breakout tip-to-ring voltage, approximate
+   SU-V570 volume position, clip/dropout state, and any abnormality. Do not run
+   Check Levels or Measure yet.
+
+**VERIFIED CONTROLLED WOOFER LEVEL - 2026-09-05:** with the documented source,
+amplifier, woofer, and fixture configuration restored, the Agilent U1282A read
+`1.0000 V AC` across the woofer terminals with the SU-V570 volume control at
+exactly the `-38 dB` mark on its scale. Generator was then stopped and the
+system was silent. The scale mark is a reproducibility landmark, not a
+calibrated voltage setting; the U1282A remains the authority when restoring the
+test level. This passes the absolute woofer-voltage target. The gross protected-
+reference voltage and clip/dropout observations remain to be recorded before
+input-gain setting or any sweep.
+
+**WOOFER-LEVEL DECISION - PASS:** do not move the UMC22 `OUTPUT` control or
+SU-V570 volume. With Generator stopped, move the U1282A to breakout tip-to-ring
+in AC-voltage mode and secure the leads. Briefly restart the unchanged `1 kHz`,
+`-10 dBFS`, output-L tone. Confirm `0.080-0.120 V RMS`, then stop Generator.
+Stop immediately for either UMC22 clip indication, a reference dropout,
+instability, or any other abnormality. Report the stable reference voltage,
+both clip indications, dropout/instability state, and any other observation.
+Do not run Check Levels or Measure yet.
+
+**VERIFIED GROSS PROTECTED-REFERENCE VOLTAGE - 2026-09-05:** with the unchanged
+`1 kHz` tone and both level controls fixed, the Agilent U1282A in auto-ranging
+AC-voltage mode measured a stable `98.53 mV AC` from breakout tip to ring. With
+the woofer level established at `1.0000 V AC`, the measured transfer and
+attenuation are:
+
+```text
+kmeasured = 0.09853 V / 1.0000 V = 0.09853
+
+attenuation = 20 log10(0.09853) = -20.129 dB
+```
+
+Compared with the resistance-derived `0.09892` transfer, the result is only
+`-0.39%` (`-0.034 dB`) lower. This is excellent agreement and comfortably
+inside the gross `0.080-0.120 V RMS` pass band.
+
+**REFERENCE-VOLTAGE DECISION - PASS FOR LEVEL:** stop Generator if it is still
+running and do not change either level control. Before removing the breakout or
+advancing to the final direct Input 2 connection, confirm whether either UMC22
+clip indicator illuminated during the reference tone and whether there was any
+dropout, instability, or other abnormality. None is inferred from the stable
+voltage report alone. Do not run Check Levels or Measure yet.
+
+**VERIFIED REFERENCE OBSERVATIONS - 2026-09-05:** Generator was stopped after
+the voltage reading. Neither UMC22 clip indicator illuminated during the test,
+and there was no dropout, instability, or other abnormality.
+
+**GROSS PROTECTED-REFERENCE DECISION - PASS:** the measured level, agreement
+with prediction, clipping margin, and stability all pass. Advance to the final
+direct-reference connection without changing either level control:
+
+1. Keep Generator, Check Levels, and Measure stopped. Switch the SU-V570 off
+   while retaining its `-38 dB` volume-scale position, and wait for it to
+   settle before touching any connection.
+2. Remove the U1282A from the breakout. Remove the passed breakout cable from
+   between the fixture output and UMC22 `INST 2`, then insert the fixture's TRS
+   output plug directly into `INST 2`. Do not disturb the amplifier-terminal
+   fixture leads, woofer cable, playback cable, or any level control.
+3. If retaining the meter for the next level confirmation, secure it back
+   across the woofer terminals in AC-voltage mode while the amplifier is off.
+   Leave no exposed breakout contact or loose conductor in the powered setup.
+4. Reconfirm UMC22 USB connected, phantom on, `GAIN 1` and `GAIN 2` at minimum,
+   `OUTPUT` fully clockwise, and `DIRECT MONITOR` off. Keep every REW signal
+   stopped.
+5. Switch on the SU-V570 at the retained `-38 dB` position and observe for
+   approximately `15 s`. Report whether the woofer remains silent, whether
+   either UMC22 clip indicator illuminates, and whether there is any transient
+   or persistent hum/buzz, dropout, instability, heating, smell, smoke, or
+   other abnormality. Switch off immediately for anything concerning.
+
+Do not generate a signal, change either level control, run Check Levels, or run
+Measure until the direct-connection no-signal result is reviewed.
+
+**VERIFIED FINAL DIRECT-REFERENCE NO-SIGNAL STATE - 2026-09-05:** the breakout
+was removed, the fixture TRS output was connected directly to UMC22 `INST 2`,
+the U1282A was secured back across the woofer, and the specified UMC22/SU-V570
+configuration was confirmed. The SU-V570 was powered with every REW signal
+stopped. The user reported no abnormalities.
+
+**FINAL DIRECT-CONNECTION DECISION - PASS:** the intended measurement topology
+now passes its powered no-signal observation. Retain all physical connections,
+UMC22 `OUTPUT` fully clockwise, SU-V570 volume at its `-38 dB` scale mark, the
+U1282A across the woofer, `GAIN 1` at minimum, phantom on, and `DIRECT MONITOR`
+off. Set only the reference-input gain:
+
+1. In REW, confirm both devices remain the exact `EXCL:` UMC22 endpoints at
+   `48 kHz`, Java `Stereo only`, with measurement output L and reference input
+   R. Open Level Meters; do not run Check Levels or Measure.
+2. With `GAIN 2` at minimum, restart the unchanged output-L `1 kHz`, `-10 dBFS`
+   tone. Confirm the U1282A remains within `0.98-1.02 V AC` at the woofer. Stop
+   and report rather than adjusting either output level if it lies outside that
+   range.
+3. Raise only UMC22 `GAIN 2` until `Ref In` RMS is within approximately `-24`
+   to `-18 dBFS`; do not chase an exact value. Retain at least `6 dB` peak
+   headroom.
+4. Stop immediately for a `Ref In` peak at or above `-6 dBFS`, either hardware
+   clip indication, a woofer-voltage change outside the stated band, dropout,
+   instability, or any other abnormality.
+5. After approximately `10 s` of stable indication, stop Generator. Report
+   `Ref In` RMS and peak, approximate `GAIN 2` position, U1282A woofer voltage,
+   both clip indications, and any dropout or abnormality. Do not change
+   `GAIN 1`, run Check Levels, or run Measure yet.
+
+**VERIFIED FINAL REFERENCE-INPUT GAIN - 2026-09-05:** the exact `EXCL:` UMC22
+endpoints, `48 kHz`, Java `Stereo only`, measurement output L, and reference
+input R were confirmed. With the unchanged tone, the U1282A indicated a stable
+`1.0003 V AC` across the woofer, only `+0.03%` (`+0.0026 dB`) above the
+established target. Raising only `GAIN 2` to approximately 2 o'clock produced a
+stable `Ref In` RMS indication of `-20.87 dBFS`, fluctuating by approximately
+`+/-0.01 dB`. The user confirmed at least `6 dB` peak headroom, although no
+numeric peak value was recorded. Neither channel clipped; voltages remained
+stable; and there was no dropout or other anomaly. Generator was then stopped.
+
+**REFERENCE-INPUT GAIN DECISION - PASS:** retain `GAIN 2` at approximately
+2 o'clock, UMC22 `OUTPUT` fully clockwise, SU-V570 at its `-38 dB` scale mark,
+`GAIN 1` at minimum, the U1282A across the woofer, all final direct-reference
+wiring, and every signal stopped. Before setting microphone gain or capturing
+any reusable response, identify the exact ECM8000 calibration filename/source
+and whether it is intended for 0-degree or 90-degree incidence. That
+identification is recorded in the next checkpoint. Do not run Check Levels or
+Measure yet.
+
+**PROVISIONAL GENERIC MICROPHONE CALIBRATION - 2026-09-05:** the supplied
+`../calibration/ECM8000_calibration_data.csv` is identified as a generic
+`0-degree` ECM8000 response. It contains `124` strictly ascending numeric rows
+from `20` to `21999 Hz`, gain values from `-4.920` to `+1.015 dB`, and phase.
+Its as-supplied SHA-256 was
+`c64553a2ff0e2f2799bf1bd8a275ea649c3a1aae7ff2dd39fba1b572953b4d6d`.
+REW documents comma-delimited calibration rows as requiring at least one space
+after each comma. Spaces were therefore added after the commas without changing
+any numeric value. The retained, directly REW-compatible CSV now has SHA-256
+`bb8fba5b6ae58b5a84d4ba47807ca61d49cc291325a0c3b43fae7294407c5e23`.
+
+This is not a serial-number-specific calibration and contains no microphone
+sensitivity. It is acceptable as a clearly identified, provisional correction
+for this hobby measurement series, but it does not establish unit-specific
+magnitude/phase accuracy or calibrated absolute SPL. In particular, its
+approximately `-4.92 dB` endpoint at `21999 Hz` would make REW apply a large
+positive upper-treble correction, where unknown microphone-to-microphone
+variation is most consequential. Preserve that limitation in exported FRD
+provenance.
+
+**VERIFIED REPORTED MICROPHONE/ROTATION GEOMETRY - 2026-09-05:** the microphone
+tip is `1000 mm` from the baffle plane, its body is perpendicular to that plane
+and aimed at the cabinet, and it is level with the centre of the woofer dome
+and horizontally centred on the baffle. The loudspeaker is secured on a sturdy-
+table jig that rotates it about the horizontal centre of the baffle plane and
+is marked in 10-degree increments. The microphone incidence therefore matches
+the generic `0-degree` calibration. Keep the microphone fixed for the later
+off-axis series.
+
+**CALIBRATION-LOAD NEXT STEP:** keep Generator and every REW measurement signal
+stopped and retain all established hardware controls. In REW, enable separate
+calibration by input if needed, load
+`calibration/ECM8000_calibration_data.csv` for measurement input L only, and
+leave electrical-reference input R without microphone calibration. Confirm the
+filename and input assignment shown by REW and report any warning. Do not run
+Check Levels or Measure until that assignment is reviewed.
+
+**VERIFIED PRE-CONSOLIDATION CALIBRATION LOAD - PASS (2026-09-05):** REW showed
+no warning while loading the derived calibration. Closing and reopening
+Preferences showed that it persisted for the left channel only of the exact
+`EXCL:` UMC22 microphone input; the right channel showed `None`. This verifies
+the calibration parser and per-input assignment mechanism.
+
+**CANONICAL-FILE DECISION - 2026-09-05:** at the user's request the compatible
+format was folded into `../calibration/ECM8000_calibration_data.csv` and the
+redundant `.cal` copy was deleted. Numeric calibration values are unchanged.
+Because REW's persisted entry names the removed file, reselect the retained CSV
+on input L and reconfirm L-only persistence before setting `GAIN 1` or producing
+any signal.
+
 ## 4. Release Decision
 
 | Decision | State |
@@ -1128,15 +1378,25 @@ other abnormality. Do not power the SU-V570 yet.
 | Gate D retained-capture diagnostic | WITHDRAWN - current REW Scope is live-only and cannot display a preceding measurement's raw captures, 2026-09-05 |
 | Gate D timing-only diagnostic | PASS - reference index `47970.52`, System Delay `0.6141 ms`, L/L/L/R routing, no warning/clipping/dropout/exception, 2026-09-05 |
 | Gate D overall | PASS - low-voltage hardware, two-channel stream, routing and ordinary loopback timing qualified; IR merging remains excluded |
-| ECM8000 calibration for diagnostic | NOT LOADED - immaterial to Gate D timing; must be loaded before reusable acoustic-response capture |
+| ECM8000 calibration for Gate D diagnostic | NOT LOADED - immaterial to Gate D timing |
+| ECM8000 calibration source | IDENTIFIED - generic `0-degree` CSV, not unit-specific and without sensitivity; commas made directly REW-compatible without numeric change, 2026-09-05 |
+| Initial microphone/rotation geometry | PASS AS REPORTED - `1000 mm`, aimed at cabinet on woofer axis; fixed microphone and secured 10-degree loudspeaker jig, 2026-09-05 |
+| ECM8000 calibration parser/per-input mechanism | PASS - no warning; pre-consolidation file persisted on exact `EXCL:` UMC22 input L only while R showed `None`, 2026-09-05 |
+| Canonical ECM8000 CSV assignment in REW | HELD - reselect retained CSV for measurement input L because the previously loaded redundant filename was deleted; confirm R remains uncalibrated |
 | UMC22/electrical-reference calibration route | PASS - `Soundcard: Loopback cal`, reference index `47975.52`, System Delay `0.5100 ms`, no warning/abnormality, 2026-09-05 |
 | Gate E switched-off full-dual assembly | PASS - woofer/fixture parallel with correct polarity; controls inactive; breakout insulated; headphone, Output 2, and AUX right empty, 2026-09-05 |
+| Gate E UMC22-only USB/phantom no-signal observation | PASS - phantom indicator illuminated; neither channel clipped; no unexpected sound, instability, heating, smell, or other abnormality, 2026-09-05 |
+| Gate E SU-V570 minimum-volume no-signal power-up | PASS - approximately one minute; woofer silent; no UMC22 clipping, transient or persistent hum/buzz, instability, heating, smell, smoke, or other abnormality, 2026-09-05 |
+| Gate E woofer level | PASS - Agilent U1282A measured `1.0000 V AC` at the woofer with SU-V570 volume on its `-38 dB` scale mark; Generator then stopped and system silent, 2026-09-05 |
+| Gate E gross protected-reference voltage | PASS - stable `98.53 mV AC` tip-to-ring, measured transfer `0.09853` (`-20.129 dB`), only `-0.39%` from prediction; no clipping, dropout, instability, or other abnormality, 2026-09-05 |
+| Gate E final direct-reference no-signal state | PASS - breakout removed, fixture connected directly to `INST 2`, U1282A returned to woofer, configuration confirmed, and no abnormality after SU-V570 power-up, 2026-09-05 |
+| Gate E final reference-input gain | PASS - stable `Ref In` `-20.87 dBFS` (`+/-0.01 dB`) with `GAIN 2` approximately 2 o'clock and woofer `1.0003 V AC`; at least `6 dB` peak headroom, no clipping/dropout/anomaly, 2026-09-05 |
 | Assume UMC202HD contact/phantom findings apply to UMC22 | NO |
-| Connect UMC22 to USB now | YES - with SU-V570 still off, signals stopped, and controls unchanged; then enable ECM8000 phantom and observe for `15 s` |
-| Generate a signal now | NO - UMC22-only powered no-signal observation first |
+| Connect UMC22 to USB now | COMPLETE - known-good USB path and ECM8000 phantom are active with normal no-signal behaviour |
+| Generate a signal now | NO - confirm the generic `0-degree` calibration is loaded only on microphone input L first |
 | Carry the temporary Gate D loopback wiring into Gate E | NO - reconfigure only with the SU-V570 off and follow the full-dual connection map |
-| Power the SU-V570 now | NO - first pass the UMC22-only USB/phantom no-signal observation |
-| Proceed to installed-driver FRD now | NO - Gate E level/no-signal checks plus microphone and UMC22/electrical-reference calibration route first |
+| Power the SU-V570 now | YES - retain the established powered no-signal state and all level controls; do not generate a signal pending microphone-calibration assignment review |
+| Proceed to installed-driver FRD now | NO - confirm input-L-only microphone calibration, set microphone gain, and pass the three-repeat checkout first |
 
 The UMC202HD live-Linux diagnosis remains worthwhile but is no longer on the
 critical path to the first installed-driver FRD set.

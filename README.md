@@ -83,10 +83,7 @@ This is the high-level source of truth and entry point for the sealed passive tw
   `0.5208 ms`, output L, and reference input R. Gate D therefore passes for the
   UMC22 hardware, two-channel stream, routing, and ordinary loopback timing; the
   failure is confined to the combined mode's IR-merge treatment in the present
-  beta-133 setup. Gate E may now proceed in its documented stages, beginning
-  with UMC22-only USB/phantom power-up while the SU-V570 remains off; amplifier
-  power and the `1.00 V RMS` woofer check remain held until that observation
-  passes. The final unchanged `256k` low-voltage check
+  beta-133 setup. The final unchanged `256k` low-voltage check
   has also established the UMC22/electrical-reference magnitude-calibration
   route. `Make calibration data from loopback response` produced `Soundcard:
   Loopback cal`, reference index
@@ -95,9 +92,40 @@ This is the high-level source of truth and entry point for the sealed passive tw
   route are complete. Gate E's switched-off full-dual assembly also passes:
   woofer and fixture are in
   parallel at B-left with correct polarity, the breakout is restrained and
-  insulated, and headphone, Output 2, and AUX right are empty. UMC22-only USB/
-  phantom power-up is next while the SU-V570 remains off; amplifier power is
-  still held. See
+  insulated, and headphone, Output 2, and AUX right are empty. Its subsequent
+  UMC22-only USB/phantom no-signal observation also passes: the phantom
+  indicator illuminated, neither channel clipped, and there was no unexpected
+  sound, instability, smell, heating, or other abnormality. The subsequent
+  minimum-volume SU-V570 no-signal power-up also passes after approximately one
+  minute: the woofer remained silent, neither UMC22 channel clipped, and there
+  was no transient or persistent hum/buzz, instability, heating, smell, smoke,
+  or other abnormality. The controlled woofer level now passes with
+  `1.0000 V AC` indicated on the Agilent U1282A at the SU-V570's `-38 dB`
+  volume-scale mark. The gross protected-reference voltage also passes at a
+  stable `98.53 mV AC`, giving a measured transfer of `0.09853`
+  (`-20.129 dB`), only `-0.39%` from prediction. Generator was stopped, neither
+  channel clipped, and there was no dropout, instability, or other abnormality.
+  The breakout has now been removed, the fixture is connected directly to
+  `INST 2`, the U1282A is back across the woofer, and the powered final
+  connection shows no abnormality. Reference-input `GAIN 2` now passes at a
+  stable `-20.87 dBFS` (`+/-0.01 dB`) with `GAIN 2` approximately 2 o'clock,
+  the woofer at `1.0003 V AC`, at least `6 dB` peak headroom, and no clipping,
+  dropout, or anomaly. The supplied
+  `calibration/ECM8000_calibration_data.csv` is a generic `0-degree` response,
+  not a serial-number-specific calibration and not an absolute-sensitivity
+  calibration. Its orientation matches the present microphone aimed at the
+  cabinet. The CSV has now been made directly REW-compatible by adding the
+  documented required whitespace after its commas without changing any numeric
+  value; the redundant pre-consolidation `.cal` copy has been removed at the
+  user's request. Apply the CSV only to microphone input L; reference input R
+  must remain without microphone calibration. The reported acoustic geometry
+  is `1000 mm` capsule-to-baffle,
+  on the woofer axis, with a fixed microphone and a secured 10-degree rotation
+  jig. The earlier derived file loaded without warning and persisted on L only,
+  with R showing `None`; because the retained canonical filename is now the
+  CSV, reselecting that CSV and reconfirming the same assignment is the next
+  no-signal step. Its unquantified unit-to-unit error keeps resulting acoustic
+  magnitude and phase provisional. See
   [`rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md`](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md).
 
 ## 2. Project goal and engineering principles
@@ -270,7 +298,23 @@ The current 2.2–2.4 kHz LR4-like acoustic direction is a development hypothesi
   the ECM8000 calibration before reusable acoustic capture; establish and review
   Gate E's complete switched-off wiring before amplifier power. That assembly
   now passes, including the woofer-only load, fixture polarity, insulation, and
-  unused sockets. UMC22-only USB/phantom no-signal observation is next.
+  unused sockets. The UMC22-only USB/phantom no-signal observation also passes
+  with normal phantom indication, no clipping, and no audible, stability,
+  thermal, smell, or other abnormality. The minimum-volume SU-V570 no-signal
+  power-up also passes after approximately one minute, with a silent woofer and
+  no clipping or other abnormality. The controlled woofer level now passes with
+  `1.0000 V AC` indicated on the U1282A at the SU-V570's `-38 dB` scale mark.
+  The protected reference also measures a stable `98.53 mV AC`, only `-0.39%`
+  from the resistance-derived prediction, with no clipping, dropout,
+  instability, or other abnormality. Final direct connection of the fixture to
+  `INST 2` now passes its powered no-signal observation. Reference-input gain
+  also passes at `-20.87 dBFS` with stable `1.0003 V AC` woofer voltage and no
+  clipping or dropout. The generic `0-degree` ECM8000 CSV is now REW-compatible,
+  and the reported microphone orientation and `1000 mm` on-axis geometry match
+  it. The pre-consolidation derived file passed loading and L-only persistence,
+  but the canonical CSV must now be reselected on input L because that derived
+  file was removed at the user's request. Installed-driver FRD is not yet
+  approved.
 
 ## 7. Immediate development sequence
 

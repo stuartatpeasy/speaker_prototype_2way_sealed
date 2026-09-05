@@ -5,9 +5,15 @@ Date prepared: 2026-08-30
 Last revised: 2026-09-05
 
 Status: **UMC202HD PROCEDURE SUSPENDED BY DESKTOP DROPOUT; FIXTURE RELEASE
-REMAINS VALID; UMC22 GATES A-D AND ITS COMPLETE SWITCHED-OFF GATE E ASSEMBLY
-PASS; UMC22-ONLY USB/PHANTOM NO-SIGNAL OBSERVATION IS NEXT WHILE AMPLIFIER POWER
-REMAINS HELD**
+REMAINS VALID; UMC22 GATES A-D, ITS COMPLETE SWITCHED-OFF GATE E ASSEMBLY, AND
+ITS USB/PHANTOM AND SU-V570 MINIMUM-VOLUME NO-SIGNAL OBSERVATIONS PASS; THE
+CONTROLLED UMC22 WOOFER LEVEL PASSES AT `1.0000 V AC` WITH SU-V570 VOLUME AT
+ITS `-38 dB` SCALE MARK; THE GROSS PROTECTED REFERENCE PASSES AT A STABLE
+`98.53 mV AC` WITH NO CLIPPING, DROPOUT, INSTABILITY, OR OTHER ABNORMALITY;
+FINAL DIRECT-REFERENCE RECONNECTION AND NO-SIGNAL OBSERVATION PASS; REFERENCE-
+INPUT GAIN SETTING PASSES AT `-20.87 dBFS`; THE GENERIC `0-DEGREE` ECM8000 CSV
+IS REW-COMPATIBLE; THE PRE-CONSOLIDATION FILE PASSED L-ONLY LOADING, BUT
+RESELECT THE RETAINED CSV BEFORE SETTING MICROPHONE GAIN**
 
 Every electrical release prerequisite has passed: SU-V570 common-ground
 topology, UMC202HD Input 2 phantom isolation, complete-fixture
@@ -329,7 +335,10 @@ calculated floor reflection is approximately `3.34 ms`.
 4. Leave phantom power off while connecting the microphone.
 5. Connect only the woofer; leave the tweeter electrically disconnected.
 6. Select one SU-V570 speaker bank only.
-7. Disable tone and loudness processing, or use Power Amp Direct if appropriate.
+7. For the documented `AUX` route, keep `POWER AMP DIRECT` off so the normal
+   input selector remains active; select tone `DEFEAT` and switch loudness off.
+   Use the separate Power Amp Direct input only under an explicitly revised
+   connection and level-setting procedure.
 8. Reconfirm the fixture release gate before connecting it.
 
 **VERIFIED SETUP STATE - 2026-09-03:** the user confirmed the generator
@@ -396,6 +405,15 @@ SU-V570 rear speaker terminals -> commissioned reference fixture
    line for the zero-degree measurement.
 5. Do not move the cabinet, microphone, stands, cables, fixture, or nearby
    objects between repeats.
+
+**VERIFIED REPORTED INITIAL GEOMETRY - 2026-09-05:** the microphone tip is
+`1000 mm` from the baffle plane. Its body is perpendicular to that plane and
+aimed at the cabinet, so the incidence matches the available generic
+`0-degree` calibration. The capsule is level with the centre of the woofer
+dome and horizontally centred on the baffle. The loudspeaker stands on a jig
+secured to a sturdy table; the jig rotates it about the horizontal centre of
+the baffle plane and is marked in 10-degree increments. Retain the microphone
+position and rotate only the loudspeaker for the later horizontal series.
 
 ## 6. Establish Levels
 
@@ -468,9 +486,37 @@ wiring before applying amplifier power, as detailed in
 [UMC22_RISK_ACCEPTED_FRD_FALLBACK.md](UMC22_RISK_ACCEPTED_FRD_FALLBACK.md).
 The complete switched-off assembly now passes: woofer and fixture are in
 parallel at B-left with correct polarity; the breakout is insulated; and the
-headphone, Output 2, and AUX-right sockets are unused. UMC22-only USB/phantom
-power-up is next while the SU-V570 remains off; amplifier power and signal
-generation remain held until that observation passes.
+headphone, Output 2, and AUX-right sockets are unused. The following UMC22-only
+USB/phantom no-signal observation also passes: phantom indication was normal,
+neither channel clipped, and there was no unexpected sound, instability,
+heating, smell, or other abnormality. The subsequent minimum-volume SU-V570
+no-signal power-up also passes after approximately one minute: the woofer
+remained silent, neither UMC22 channel clipped, and there was no transient or
+persistent hum/buzz, instability, heating, smell, smoke, or other abnormality.
+The controlled `1.00 V RMS` woofer and gross `0.080-0.120 V RMS` reference-
+level check then began under the UMC22 fallback record. The woofer target now
+passes with `1.0000 V AC` indicated on the Agilent U1282A at the SU-V570's
+`-38 dB` volume-scale mark; Generator was then stopped and the system was
+silent. With both controls unchanged, the gross protected-reference voltage
+also passes at a stable `98.53 mV AC`. That is a transfer of `0.09853`
+(`-20.129 dB`), only `-0.39%` (`-0.034 dB`) from prediction. Generator was
+stopped, neither channel clipped, and there was no dropout, instability, or
+other abnormality. The breakout has now been removed, the fixture is connected
+directly to `INST 2`, the U1282A is back across the woofer, and the powered
+final connection shows no abnormality. Reference-input gain also passes at a
+stable `-20.87 dBFS` (`+/-0.01 dB`) with `GAIN 2` approximately 2 o'clock,
+U1282A woofer voltage `1.0003 V AC`, at least `6 dB` peak headroom, and no
+clipping, dropout, or anomaly. The supplied
+`../calibration/ECM8000_calibration_data.csv` has now been identified as a
+generic `0-degree` response. Spaces were added after its commas to meet REW's
+documented grammar without changing numeric values. It is not specific to this
+microphone and contains no sensitivity calibration. A pre-consolidation copy
+loaded without warning and persisted only on microphone input L while input R
+showed `None`. At the user's request that redundant copy was removed; reselect
+the retained CSV on microphone input L and reconfirm input R remains without
+microphone calibration before microphone-gain setting or any reusable acoustic
+sweep. Resulting acoustic magnitude and phase remain generic-calibrated and
+provisional.
 
 ### 6.2 Set Input Gains
 
