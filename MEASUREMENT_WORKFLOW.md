@@ -59,9 +59,33 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
   L, never to electrical-reference input R. Label resulting acoustic magnitude
   and phase as generic-calibrated and provisional; absolute SPL still requires
   a separate level calibration.
+- Match calibration to the complete active REW source identity: device, input
+  selector, and channel. A file which persists for `Default Input, L` is not
+  proven active when Soundcard uses `MICROPHONE (Master Volume), L`. Before a
+  reusable sweep, check Measure's Cal files display; after the first sweep also
+  require Measurement Info to name the microphone file rather than `No cal
+  file`. Preferences persistence alone is not an application check.
+- Pink-noise Check Levels can miss a narrow high-response region. Treat the
+  first low-level sweep as a headroom check and reduce input gain if its worst-
+  case headroom is below the documented target; do not merely infer sweep
+  margin from the broadband level-check result.
+- Evaluate short-term hardware repeatability on one common direct-sound window,
+  not on a long default window dominated by room reflections. Preserve the
+  failed long-window comparison when it explains the diagnosis, document the
+  left/right widths and taper, and state the approximate resolution cost
+  (`1 / total window span`). A short qualification window does not automatically
+  become the production FRD window; choose that in REW from the actual impulse/
+  ETC and the bandwidth the measurement must support.
 - Record microphone distance, axis, height, window/gating choices, sample rate, amplifier setting, terminal voltage, and room state.
 - Measure individual drivers before filtered sums, and retain the normal- and reverse-polarity results.
 - Use consistent filenames that identify driver, angle, polarity/filter state, level, and date or sequence.
+
+### 3.4 REW API client
+
+For programmatic REW session-state capture and `.mdat` extraction, use the
+client and follow its dedicated documentation in
+[`REW_API_CLIENT.md`](REW_API_CLIENT.md). That document is the sole authority
+for commands, outputs, limitations, reconstruction, and validation status.
 
 ## 4. Development sequence
 
@@ -89,6 +113,7 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 
 ## 5. Specialised procedures
 
+- [REW API client operation and validation](REW_API_CLIENT.md)
 - [Driver run-in and stabilisation](DRIVER_RUNIN.md)
 - [Driver evidence and impedance analysis](DRIVER_ANALYSIS.md)
 - [Installed acoustic-response setup test](rew/FRD_MEASUREMENT_SETUP_TEST.md)

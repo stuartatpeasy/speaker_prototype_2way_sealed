@@ -150,9 +150,69 @@ Both drivers were correctly mounted in the sealed prototype enclosure in their n
   and baffle horizontal centre, with the cabinet on a secured 10-degree rotation
   jig.
   The pre-consolidation derivative loaded without warning and persisted only on
-  microphone input L, with input R showing `None`. Reselect the retained CSV on
-  L and reconfirm the assignment before setting `GAIN 1`; reusable acoustic
-  capture remains held.
+  microphone input L, with input R showing `None`. The retained canonical CSV
+  has now also been selected and persists under its new filename on exact
+  `EXCL:` UMC22 input L only; R remains `None`. The bounded Check Levels
+  observation was clean with `GAIN 1` approximately 4 o'clock, main `In`
+  approximately `-15.5 dBFS`, and `Ref In` approximately `-33.8 dBFS`; both
+  varied by less than about `+/-1 dB`. The subsequent sweep evidence narrows
+  both conclusions. At `-10 dBFS` REW raised distortion and inadequate-headroom
+  warnings. A user-initiated `-20 dBFS` repeat removed the warning but still
+  approached about `3.8 dB` headroom. Its Info panel proves the microphone file
+  was not applied (`Mic: No cal file`): the Preferences screenshot associates
+  the CSV with `Default Input`, while the selected measurement input is
+  `MICROPHONE (Master Volume), L`. The repeat does pass as a routing/timing
+  diagnostic with `Soundcard: Loopback cal`, reference index `47850.03`, System
+  Delay and peak `3.1243 ms`, SNR `43.8 dB`, correct L/R reference routing, one
+  dominant arrival, and a grossly woofer-like response. At that checkpoint
+  signals were stopped pending correction of the active-input calibration
+  association and microphone gain.
+  The CSV has now been associated with the exact active `EXCL:` UMC22
+  `MICROPHONE (Master Volume), L` selector and persists across Preferences
+  close/reopen. Measure's Calibration data display now also names
+  `ECM8000_calibration_data.csv` for the pending microphone input L while the
+  Measure dialog explicitly uses `MICROPHONE (Master Volume) L` and retains R
+  as the timing-reference input. The pre-measurement calibration-application
+  check therefore passes. The subsequent `-20 dBFS` Check Levels adjustment
+  moved main `In` from approximately `-15.5` to `-19.3 dBFS`, an actual
+  `3.8 dB` reduction, with only a few degrees of knob movement and no meaningful
+  change to its approximate 4 o'clock description. This predicts approximately
+  `7.6 dB` minimum sweep headroom. `Ref In` remained stable at `-33.58 dBFS`
+  with only `+/-0.01 dB` fluctuation, and there was no warning, clipping,
+  dropout, or other abnormality. Retain the new `GAIN 1` position. One
+  calibrated `-20 dBFS` verification sweep was then approved while reusable
+  acoustic capture remained held pending its result. That sweep completed without
+  warning or anomaly but directly showed only `3.6 dB` main-input headroom,
+  while reference headroom was `32.9 dB`. The main channel therefore still
+  fails the `6 dB` target and the prior `7.6 dB` prediction is superseded.
+  Measurement Info nevertheless passes the diagnostic metadata: microphone CSV
+  and loopback calibration are stored, L/L/R routing and numeric timing are
+  correct, SNR is `44.4 dB`, and signal-to-distortion is `34.3 dB`. The highest
+  response peak is `6.07 kHz`. A short `6070 Hz`, `-20 dBFS` output-L tone then
+  reduced main-input peak from approximately `-2` to `-10.3 dBFS` when only
+  `GAIN 1` was moved to approximately 2 o'clock. This directly establishes
+  `10.3 dB` main-input headroom at the measured worst-case frequency; no
+  equipment or signal abnormality occurred. One final calibrated verification
+  sweep then passed with main/reference peaks `-10.7`/`-33 dBFS`, both green,
+  and no warning or abnormality. Measurement Info stores the mic CSV, loopback
+  cal, correct route, timing index `47849.96`, System Delay `3.1257 ms`, SNR
+  `43.5 dB`, and signal-to-distortion `62.5 dB`. It is accepted as
+  repeatability run 1. Runs 2 and 3 also stayed green without warning or
+  abnormality and pass stored calibration, routing, timing, and signal-quality
+  metadata. Their three System Delays are
+  `3.1257`/`3.1267`/`3.1264 ms`, a total spread of only `1.0 us`, passing the
+  preferred `5 us` limit. The raw session is saved. Its first native-grid API
+  comparison under the stored long default IR windows is room-dominated and
+  does not pass, but the corresponding three IR peak amplitudes span only
+  `0.037 dB`. The superseding raw-IR comparison uses one common derived
+  `2.0 ms` left / `1.0 ms` right direct window. Over `1-5 kHz`, maximum
+  magnitude spread is `0.0743 dB` and maximum circular phase spread is
+  `1.931 degrees`; at `2.3 kHz` they are `0.0735 dB` and `0.697 degrees`.
+  Together with the clean live runs and delay result, this passes Gate E and
+  qualifies the UMC22 route for controlled installed-woofer FRD. The short
+  derived window is adequate for qualification, not adopted as a final stored
+  REW window. Generic microphone-calibration and absolute-SPL limitations
+  remain; the result does not release raw-tweeter or polar work.
 
 ### 1.4 Project file-location convention
 
@@ -488,12 +548,13 @@ Matching complete installed behaviour matters more than reproducing every datash
 
 ### 9.1 Highest-priority work
 
-1. Load and confirm `calibration/ECM8000_calibration_data.csv` only for UMC22
-   microphone input L under
-   [the fallback procedure](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md), then set
-   microphone `GAIN 1` and complete the three-repeat woofer checkout. Keep the
-   generic, non-unit-specific calibration limitation attached to the data.
-   Continue the UMC202HD live-Linux diagnosis in parallel rather than blocking
+1. Acquire the first reusable installed-woofer FRD series with the qualified
+   UMC22 route under
+   [the fallback procedure](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md). Keep the
+   final gains, `-20 dBFS` sweep level, fixed `1000 mm` geometry, common timing,
+   and generic non-unit-specific microphone-calibration limitation. Select and
+   record a REW-native IR window suitable for the actual response bandwidth.
+   Continue the UMC202HD live-Linux diagnosis independently rather than blocking
    FRD on it.
 2. Complete the bounded woofer conditioning/cooldown loop in [DRIVER_RUNIN.md](DRIVER_RUNIN.md), then promote a reproducible cooled 48 kHz ZMA to the modelling baseline.
 3. Record the present enclosure fill/lining state, ambient temperature, terminal voltage, and mounting condition so this baseline can be reproduced.
@@ -515,10 +576,21 @@ Matching complete installed behaviour matters more than reproducing every datash
   audit, full-duplex stream execution, ordinary loopback timing, and loopback-
   generated electrical-reference calibration now pass. The IR-merge treatment
   remains excluded. A generic, REW-compatible `0-degree` ECM8000 CSV is now
-  retained, but it must be reselected and confirmed on microphone input L only
-  before reusable acoustic measurement; its unit-to-unit uncertainty remains
-  unquantified. The fixture itself is
-  released; the fallback record owns the controlled powered gate.
+  retained. Its former `Default Input` association did not apply to the selected
+  measurement source; the file now persists against the exact active
+  `MICROPHONE (Master Volume), L` selector, and Measure's Calibration data
+  display and the final measurement metadata confirm its application to input
+  L. Its unit-to-unit uncertainty remains unquantified. The microphone gain
+  passed the initial pink-noise Check Levels but failed to
+  provide adequate sweep headroom. Targeted gain setting at `6.07 kHz`, the
+  final calibrated checkout, and two unchanged repeats now pass. All three
+  stayed green without warning or abnormality. Delay spread is `1.0 us`; under
+  a common conservative direct window the `1-5 kHz` maximum spreads are
+  `0.0743 dB` magnitude and `1.931 degrees` phase. Gate E and the controlled
+  installed-woofer route therefore pass. The fixture itself is released; the
+  fallback record owns the controlled powered gate. Final measurements still
+  require a documented REW-native window, and the raw tweeter requires its own
+  protection and procedure.
   Keep the loudspeaker cable fixed because the reference plane is at the
   amplifier terminals, not the driver terminals.
 - Production spread and stereo-pair matching.
@@ -801,8 +873,9 @@ Matching complete installed behaviour matters more than reproducing every datash
   distance differences immaterial. This qualifies `Make calibration data from
   loopback response`, with IR merging excluded, as the UMC22 candidate mode for
   Gate E. Load the ECM8000 calibration before reusable acoustic capture. The raw
-  qualification session remains locally retained and intentionally uncommitted
-  as `rew/UMC22 loopback-cal-data diagnostic.mdat`.
+  qualification session is retained as
+  `rew/UMC22 loopback-cal-data diagnostic.mdat` and was committed with the
+  completed qualification record at the user's request.
 - Recorded the first switched-off Gate E assembly report: UMC22 USB disconnected,
   phantom off, all three gain/output controls at minimum, Direct Monitor off,
   ECM8000 on Input 1, protected fixture reference on Input 2, and Output 1/L to
@@ -873,3 +946,132 @@ Matching complete installed behaviour matters more than reproducing every datash
   the user's requested consolidation then removed that derivative, reselect the
   retained CSV on input L and reconfirm persistence before setting `GAIN 1`;
   no acoustic sweep is yet approved.
+- Passed canonical-file assignment: after selecting the retained
+  `calibration/ECM8000_calibration_data.csv`, closing and reopening Preferences
+  showed that the new filename persisted for the left channel only of the exact
+  `EXCL:` UMC22 microphone input; the right channel remained `None`. Set
+  microphone `GAIN 1` with the bounded Check Levels observation next; no
+  measurement sweep is yet approved.
+- Passed microphone Check Levels with `GAIN 1` approximately 4 o'clock. The
+  Levels tool showed main `In` near `-15.5 dBFS` and `Ref In` near
+  `-33.8 dBFS`, each moving by less than approximately `+/-1 dB`. Neither UMC22
+  clip indicator illuminated, and there was no dropout or other anomaly. The
+  main level lies within REW's documented acceptable `-30` to `-12 dBFS` RMS
+  range for an analogue microphone/preamp input. Retain `GAIN 1` and the
+  previously qualified `GAIN 2`; do not raise the latter to match the pink-noise
+  reading because the direct `1 kHz` reference was already established at
+  `-20.87 dBFS`, and REW uses the loopback's 1 kHz level as its calibration
+  reference. One `256k` acoustic checkout is approved next; reusable repeats
+  remain held pending its review.
+- **SUPERSEDING ACOUSTIC-CHECKOUT RESULT:** the first `256k`, `20-20000 Hz`,
+  `-10 dBFS` powered woofer sweep raised a distortion warning and indicated
+  inadequate headroom. The user stopped progressing and repeated at
+  `-20 dBFS`; that suppressed the warning, but the Measure dialog still showed
+  minimum headroom of approximately `3.8 dB` (the limiting channel was not
+  captured). No hardware clip, dropout, or other abnormality occurred.
+- Screenshot review establishes that the `-20 dBFS` repeat is useful only as a
+  diagnostic. It used REW V5.40 beta 133, exact UMC22 input L, output L,
+  reference output L/input R, `48 kHz`, one `256k` sweep, and loopback as
+  calibration/timing reference. `Soundcard: Loopback cal`, reference index
+  `47850.03`, System Delay `3.1243 ms`, peak `3.1243 ms`, IR start `3.0000 ms`,
+  SNR `43.8 dB`, and signal-to-distortion `23.1 dB` were stored. The impulse has
+  one clear dominant arrival and the magnitude is grossly woofer-like rather
+  than self-referenced/flat.
+- **CALIBRATION-APPLICATION CORRECTION:** the same Info panel states
+  `Mic: No cal file`. The Cal files screenshot shows the CSV persisted for the
+  exact device's `Default Input`, whereas Soundcard and measurement metadata use
+  `MICROPHONE (Master Volume), L`. The earlier persistence result therefore
+  proves REW retained a per-channel preference but not that it applied to the
+  active measurement source. No acoustic magnitude from either sweep is
+  reusable. At that checkpoint signals were stopped pending association of the
+  CSV with the exact active input selector.
+- Passed the corrected active-source Preferences association with all signals
+  stopped. Soundcard shows exact input device
+  `EXCL: Behringer UMC22 (USB Audio CODEC)`, selector
+  `MICROPHONE (Master Volume)`, and channel L. The ECM8000 CSV is assigned to
+  that specific input on L only and persists across Preferences close/reopen.
+  This passed the Preferences half of the correction while signal remained
+  held.
+- Passed the pending-measurement calibration check. Measure's Calibration data
+  display identifies the UMC22 `MICROPHONE (Master Volume)` source and names
+  `ECM8000_calibration_data.csv` under Mic calibration files for L. The pending
+  measurement explicitly uses that source's L channel, while its electrical
+  timing-reference input is R. REW did not show a separate microphone-
+  calibration row for R in this view. The next bounded step is `-20 dBFS`
+  Check Levels with only `GAIN 1` reduced enough to lower the main indication
+  by approximately `4 dB`; this predicts about `7.8 dB` sweep headroom but does
+  not establish it until a subsequent sweep.
+- Passed the controlled microphone-gain correction. At `-20 dBFS`
+  Check Levels, reducing only `GAIN 1` moved main `In` from approximately
+  `-15.5` to `-19.3 dBFS`, a `3.8 dB` change. The knob moved only a few degrees
+  and is still approximately at 4 o'clock. This predicts about `7.6 dB` minimum
+  sweep headroom. `Ref In` was stable at `-33.58 dBFS` with `+/-0.01 dB`
+  fluctuation; there was no warning, clipping, dropout, or other abnormality.
+  The gain correction therefore passes, and one calibrated `-20 dBFS` sweep is
+  approved to verify actual headroom and the stored microphone-calibration
+  entry.
+- The calibrated `-20 dBFS` headroom checkout completed without warning or
+  anomaly, but its direct Measure display showed only `3.6 dB` main-input
+  headroom in red versus `32.9 dB` reference headroom in green. The microphone
+  path remains the sole limiter and the earlier `7.6 dB` prediction is
+  superseded. The broadband Check Levels adjustment did not predict the sweep's
+  narrow worst-case peak. Measurement Info confirms the ECM8000 CSV, loopback
+  calibration, exact routing, timing-reference index `47849.89`, System Delay
+  `3.1273 ms`, SNR `44.4 dB`, and signal-to-distortion `34.3 dB`. The user
+  located the highest response peak at `6.07 kHz`.
+- Passed the targeted worst-case gain setting. With a `6070 Hz`, `-20 dBFS`
+  sine, reducing only `GAIN 1` to approximately 2 o'clock moved main-input peak
+  from about `-2` to `-10.3 dBFS`, an `8.3 dB` reduction. No equipment or
+  signal abnormality occurred. The prior full sweep's `32.9 dB` reference
+  headroom remains applicable because `GAIN 2` and the output path are
+  unchanged. One final calibrated headroom-verification sweep was approved.
+- Passed the final calibrated headroom checkout. Highest displayed levels were
+  main `-10.7 dBFS` and reference `-33 dBFS`, both green, and no warning or
+  abnormality occurred. Measurement Info confirms
+  `Mic: ECM8000_calibration_data.csv`, `Soundcard: Loopback cal`, exact L/L/R
+  routing, timing-reference index `47849.96`, System Delay and IR peak
+  `3.1257 ms`, IR start `3.0000 ms`, SNR `43.5 dB`, signal-to-distortion
+  `62.5 dB`, and clock adjustment `0.0 ppm`. This final-settings capture is
+  repeatability run 1; make only identical runs 2 and 3 before review.
+- Passed repeatability-run metadata and delay. Runs 2 and 3 retain the mic CSV,
+  loopback calibration, exact route, `48 kHz`, `3.0000 ms` IR start, and
+  `0.0 ppm` clock adjustment. System Delays are `3.1257`, `3.1267`, and
+  `3.1264 ms`, giving a `1.0 us` total spread against the preferred `5 us`
+  maximum. SNR is `43.5`, `44.3`, and `44.3 dB`; signal-to-distortion is
+  `62.5`, `60.2`, and `64.0 dB`.
+- Retained the unique raw repeatability session as
+  `rew/SB17NRX2C35-8_UMC22_full_dual_repeatability.mdat`, `19138881` bytes,
+  SHA-256 `b47e6aca826a4a95d77dfcab731edac95c2c6bf21be56f8bf249fcf23bd5e3c1`.
+  It was committed with the completed qualification record at the user's
+  request and must not be deleted or ignored.
+- Extracted the saved session successfully through REW's API with no manifest
+  warning, `None` smoothing, and a common native grid. The initial `1-5 kHz`
+  pointwise comparison fails under the stored `311.9167 ms` left and `500 ms`
+  right default IR windows: magnitude range median `1.056 dB`, 95th percentile
+  `4.354 dB`, maximum `32.364 dB`; circular phase range median
+  `7.045 degrees`, 95th percentile `33.742 degrees`, maximum
+  `179.819 degrees`. The worst magnitude point is a narrow `1339.23 Hz` null,
+  while IR peak amplitudes differ by only `0.037 dB`. This is provisionally
+  attributed to room-reflection cancellation, not promoted to a hardware
+  failure.
+- Confirmed that repeatability runs 2 and 3 stayed green throughout with no
+  warning, clipping, dropout, or other abnormality.
+- Extracted the three final-setting raw impulses by explicit UUID through the
+  REW API client: measurement IDs `22`/`23`/`24`, `131072` samples each at
+  `48 kHz`, no manifest warnings, and source hash/size matching the retained
+  `.mdat`.
+- **SUPERSEDING UMC22 REPEATABILITY DECISION - PASS:** applying the same derived
+  `2.0 ms` left / `1.0 ms` right direct window relative to each impulse peak,
+  with raised-cosine tapers over the outer halves, gives `1-5 kHz` magnitude
+  spread median `0.0635 dB`, 95th percentile `0.0736 dB`, maximum
+  `0.0743 dB`, and circular phase spread median `0.994 degrees`, 95th percentile
+  `1.815 degrees`, maximum `1.931 degrees`. At `2.3 kHz`, the corresponding
+  spreads are `0.0735 dB` and `0.697 degrees`. The full-length FFT preserved
+  each impulse's time origin and the `1.0 us` measured delay spread. Gate E and
+  the controlled installed-woofer FRD route pass.
+- **LIMITATION:** the `3.0 ms` total derived window has approximately `333 Hz`
+  nominal resolution. It is adequate for the `1-5 kHz` qualification and
+  `2.2-2.4 kHz` crossover region, but it neither modifies the raw `.mdat` nor
+  establishes the final REW-native production window. Generic microphone-
+  calibration and uncalibrated absolute SPL also remain attached to subsequent
+  woofer data. Raw-tweeter and polar work are not released by this result.
