@@ -14,8 +14,9 @@ This is the high-level source of truth and entry point for the sealed passive tw
 - The SU-V570 reference fixture has passed topology, construction, resistance,
   four-polarity DC clamp, ground-path, interconnect, and proportionate AC gates.
   It is released for controlled UMC202HD bench use under the documented startup
-  and stop rules. The rear outputs are mechanically TRS but electrically TS;
-  the source adaptor, straight-through cable, and breakout cable are mapped.
+  and stop rules. The UMC202HD rear outputs are mechanically TRS but
+  electrically TS; the source adaptor, straight-through cable, and breakout
+  cable are mapped.
 - The first UMC202HD full-dual checkout passed the powered no-signal check and
   reached a clean `1.00 V RMS` at the woofer, but recurring source-stream mutes
   block its sweeps on the desktop. The interface plays continuously on a
@@ -25,8 +26,78 @@ This is the high-level source of truth and entry point for the sealed passive tw
 - A risk-accepted UMC22 fallback is now the FRD critical path. Normal predicted
   reference level is `0.09892 V RMS`, about `19.9 dB` below its published
   `+2 dBu` instrument-input maximum, but fault-level survival is not guaranteed.
-  Powered-amplifier use is not yet approved: resume at the unpowered Input 2
-  contact map in
+  Direct internal inspection establishes that both UMC22 rear outputs also use
+  separate mechanical TRS contacts with ring and sleeve/shield joined on the
+  same PCB copper fill; they are two-node, unbalanced, TS-equivalent outputs.
+  The unpowered `INST 2` contact map passes: tip is isolated, while ring,
+  sleeve, and USB shell are a sub-ohm common. Gate B phantom isolation also
+  passes: all on/off readings remained at or below approximately `0.0020 V DC`
+  and settled to zero. Gate C now confirms `9125 ohm` from amplifier positive
+  to input tip and `10127 ohm` to every mapped return, proving there is no R1
+  bypass; its `0.290-0.311 ohm` complete return paths are also explained and
+  stable. Gates A-C therefore pass. Gate D's amplifier-disconnected no-signal
+  check also passes: `0.0015 V DC` settled to zero with no clipping or abnormal
+  behaviour. REW device enumeration also passes using Java exclusive-mode UMC22
+  input/output, independent L/R channels, `48 kHz`, and calibration `None`.
+  The no-excitation channel/timing UI assignment initially used measurement L,
+  reference input R, and reference output R, with loopback calibration/timing,
+  IR merge, and zero offset. The user has also
+  confirmed unity input scaling, the UMC22-specific measurement name, and the
+  `20-20000 Hz` first-checkout range. The bounded amplifier-disconnected
+  `1 kHz` check also passes at `0.0207 V RMS`, with only `0.0205-0.0210 V RMS`
+  slow movement and no clipping, dropout, or abnormality. Live REW reference
+  capture was initially held because `Ref In` remained at approximately
+  `-93.72 dBFS` across the full `GAIN 2`
+  range despite the external tone. The cause was the accidentally selected
+  non-exclusive input endpoint; choosing the `EXCL:` variant immediately
+  restored linear gain response. Input 2 now reads a stable `-20.88 dBFS` at
+  `0.0218 V RMS`. Input 1 also responds normally to its gain control and nearby
+  sound without clipping. The controlled headphone-to-microphone setup also
+  passes at `-19.5 dBFS` main and `-20.84 dBFS` reference, with a stable
+  `0.0230 V RMS` external reference and no clipping, dropout, or abnormality.
+  The first amplifier-disconnected `1M` full-duplex sweep then completed with
+  no warning, error, clipping, audible discontinuity, or abnormality; its
+  impulse has one clear dominant arrival. This is the first verified dropout-
+  free UMC22 REW full-duplex sweep, but its timing is invalid: the stored timing
+  index is `N/A` and System Delay is unavailable because reference output R was
+  physically unconnected while the fixture sensed measurement output L. The
+  second sweep corrected both output selectors to L and also ran without
+  clipping or dropout at a confirmed `0.0222 V AC`, but it stored reference
+  input L rather than R. Its almost-flat SPL/phase trace is consequently an
+  invalid self-reference and its timing index is still `N/A`. The exact routing
+  is measurement/reference outputs L, measurement input L, and reference input
+  R. Selecting that reference input then caused REW V5.40 beta 133 to throw
+  `Index 1 out of bounds for length 1`. A restart restored a visually coherent
+  exact-`EXCL:`, `48 kHz`, L/L/L/R configuration. The retry with Java `Stereo
+  only` then completed without the exception and stored the intended reference
+  output L/input R, but still produced no timing index or System Delay. Its
+  `0.5100 ms` peak and `0.4792 ms` IR start are physically plausible but do not
+  close timing validity. A proposed read-only inspection of retained measurement
+  and reference captures has been withdrawn: the current REW Scope is a live
+  two-channel instrument and offers no route to a preceding measurement's raw
+  captures. The next proportionate discriminator was one short, amplifier-
+  disconnected `256k` sweep using loopback as timing reference only, with the
+  established L/L/L/R routing and all physical settings unchanged. That sweep
+  has now passed without warning, clipping, dropout, or exception. REW stored
+  timing-reference index `47970.52`, System Delay `0.6141 ms`, IR start
+  `0.5208 ms`, output L, and reference input R. Gate D therefore passes for the
+  UMC22 hardware, two-channel stream, routing, and ordinary loopback timing; the
+  failure is confined to the combined mode's IR-merge treatment in the present
+  beta-133 setup. Gate E may now proceed in its documented stages, beginning
+  with UMC22-only USB/phantom power-up while the SU-V570 remains off; amplifier
+  power and the `1.00 V RMS` woofer check remain held until that observation
+  passes. The final unchanged `256k` low-voltage check
+  has also established the UMC22/electrical-reference magnitude-calibration
+  route. `Make calibration data from loopback response` produced `Soundcard:
+  Loopback cal`, reference index
+  `47975.52`, and System Delay `0.5100 ms`, with no warning or abnormality. Use
+  that treatment for the UMC22 and exclude IR merging. Gate D and its calibration
+  route are complete. Gate E's switched-off full-dual assembly also passes:
+  woofer and fixture are in
+  parallel at B-left with correct polarity, the breakout is restrained and
+  insulated, and headphone, Output 2, and AUX right are empty. UMC22-only USB/
+  phantom power-up is next while the SU-V570 remains off; amplifier power is
+  still held. See
   [`rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md`](rew/UMC22_RISK_ACCEPTED_FRD_FALLBACK.md).
 
 ## 2. Project goal and engineering principles
@@ -171,7 +242,35 @@ The current 2.2–2.4 kHz LR4-like acoustic direction is a development hypothesi
 - Installed-baffle phase-bearing FRD, horizontal off-axis, distortion/compression, filtered-driver, reverse-null, and final-system impedance/EPDR measurements remain outstanding.
 - The UMC202HD reference fixture is electrically released, but that interface
   remains blocked for measurement by the desktop dropout. The UMC22 fallback
-  remains unpowered and paused at its first contact-map gate.
+  has passed its unpowered Input 2 contact map and otherwise-unloaded USB-
+  powered phantom-isolation gate. Its Gate C amplifier-positive isolation also
+  passes, and the completed return map closes Gate C. The amplifier-disconnected
+  Gate D no-signal check and REW device enumeration also pass; channel/timing
+  assignment and pre-excitation settings now pass as well. The controlled
+  amplifier-disconnected `1 kHz` level passes at `0.0207 V RMS`; live reference
+  capture also passes after selecting the exclusive input endpoint, at
+  `-20.88 dBFS` for `0.0218 V RMS`. The Input 1 microphone-channel check also
+  passes, as does the controlled headphone-to-microphone level setup. The first
+  amplifier-disconnected `1M` full-duplex sweep completes without dropout or
+  error and shows one dominant arrival, but its timing is invalid because the
+  unconnected output R was selected as the reference output. A second sweep
+  with both outputs L also completes cleanly, but mistakenly stores reference
+  input L and therefore produces invalid self-referenced response/timing data.
+  Selecting reference input R then triggered a REW beta 133 one-channel array
+  exception. The post-restart settings audit passes and the `Stereo only` exact-
+  routing retry completes without that exception, but timing metadata remains
+  unavailable despite the stored L/R assignments. REW Scope cannot inspect the
+  preceding sweep's raw captures. The subsequent amplifier-disconnected `256k`
+  timing-only sweep passes with reference index `47970.52`, System Delay
+  `0.6141 ms`, exact L/L/L/R routing, and no warning, clipping, dropout, or
+  exception. Gate D is closed and the IR-merge treatment remains excluded. The
+  final low-voltage `256k` check using `Make calibration data from loopback
+  response` passes with `Soundcard:
+  Loopback cal`, reference index `47975.52`, and System Delay `0.5100 ms`. Load
+  the ECM8000 calibration before reusable acoustic capture; establish and review
+  Gate E's complete switched-off wiring before amplifier power. That assembly
+  now passes, including the woofer-only load, fixture polarity, insulation, and
+  unused sockets. UMC22-only USB/phantom no-signal observation is next.
 
 ## 7. Immediate development sequence
 

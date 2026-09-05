@@ -44,6 +44,10 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 ### 3.3 Acoustic measurements
 
 - Preserve one electrical timing reference and fixed microphone/rotation geometry across both drivers.
+- Load the calibration file for the actual measurement microphone and chosen
+  orientation before capturing reusable acoustic-response data. An uncalibrated
+  microphone is acceptable for a clearly labelled routing, level, or timing
+  checkout, but that trace is not magnitude evidence for crossover design.
 - Record microphone distance, axis, height, window/gating choices, sample rate, amplifier setting, terminal voltage, and room state.
 - Measure individual drivers before filtered sums, and retain the normal- and reverse-polarity results.
 - Use consistent filenames that identify driver, angle, polarity/filter state, level, and date or sequence.
