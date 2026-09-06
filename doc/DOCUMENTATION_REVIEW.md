@@ -29,6 +29,43 @@ Use **COMPREHENSIVE CONSOLIDATION** when the user requests a full documentation 
 
 This mode requires the complete inventory, full-corpus reading, evidence-ledger gate, route audit, and handover in Sections 5, 6, 10, and 11.
 
+### 2.3 Repeat invocation
+
+To repeat the same review-then-approval sequence used to establish this
+architecture, the user may first ask:
+
+> Perform the comprehensive documentation review in
+> `doc/DOCUMENTATION_REVIEW.md`. Analyse the current documentation and propose
+> optimisations, but do not change files.
+
+After reviewing the proposal, the user may continue with:
+
+> Implement all accepted recommendations from that review, complete its
+> validation and handover, and do not commit or push unless I ask.
+
+The first request invokes **COMPREHENSIVE CONSOLIDATION** through the analysis
+and proposal stage only. The second authorises documentation moves, splits,
+merges, and rewrites justified by the accepted proposal and this procedure.
+
+For a one-stage review and implementation, the user may instead ask:
+
+> Repeat the comprehensive documentation optimisation in
+> `doc/DOCUMENTATION_REVIEW.md` and implement the justified changes. Do not
+> commit or push unless I ask.
+
+None of these forms authorises deleting non-document artefacts, changing
+engineering facts without evidence, or committing/pushing. A narrower request
+for analysis or recommendations only must not modify files.
+
+The repeated optimisation has four primary goals:
+
+1. minimise the material required to orient to a specific task;
+2. reduce routine task-route and processing context, not merely total corpus
+   size;
+3. keep current authorities, procedures, qualification evidence, diagnostics,
+   and history clearly separated; and
+4. preserve unique evidence, provenance, safety gates, and reconstruction.
+
 ## 3. Review principles
 
 1. Read `README.md` first and follow its documentation index and minimal reading routes.
@@ -61,10 +98,25 @@ This section applies only in **COMPREHENSIVE CONSOLIDATION** mode.
 3. Read every tracked Markdown and other documentation-bearing text file fully.
 4. Establish the role, provenance, retention status, and reconstruction path of binary, CAD, measurement, and generated artefacts.
 5. Record which document owns each major topic and which files merely consume it.
+6. Record a baseline comprising the Markdown file count and total word count,
+   the root `README.md` word count, the files and combined word count in each
+   routine task route, and the largest routinely loaded authorities. Treat
+   routine route cost as the primary optimisation measure and total corpus size
+   as secondary because retained qualification and history should not be
+   discarded merely to improve a global count.
+7. Build or inspect the Markdown navigation graph from `README.md` and
+   `AGENTS.md`; identify unreachable files, direct links that bypass a relevant
+   dispatcher, and routes that load qualification or history unnecessarily.
 
 ## 6. Comprehensive session-evidence gate
 
 This section applies only in **COMPREHENSIVE CONSOLIDATION** mode and must be completed before destructive consolidation.
+
+Before moving, merging, or deleting documentation, make a recoverable temporary
+snapshot of the in-scope source documents outside the tracked project tree or
+in an already ignored temporary location. Record its path in the working notes.
+The snapshot is a short-lived recovery aid, not a second project authority; do
+not commit it, and remove any in-project temporary ledger before handover.
 
 Create a temporary, ignored ledger with:
 
@@ -147,7 +199,13 @@ In **COMPREHENSIVE CONSOLIDATION** mode, additionally:
 11. validate every local Markdown link and index entry;
 12. exercise every minimal reading route;
 13. compare every evidence-ledger entry with its final authority; and
-14. review the complete project diff as a coherent whole.
+14. confirm every durable Markdown file is reachable from `README.md` or
+    `AGENTS.md` through the intended topic route or subtree dispatcher;
+15. confirm only `README.md` and `AGENTS.md` remain as durable root Markdown and
+    that documentation/data/source boundaries follow `AGENTS.md`;
+16. compare the final Markdown and routine-route measurements with the baseline,
+    explaining any route that did not become smaller; and
+17. review the complete project diff as a coherent whole.
 
 ## 11. Comprehensive handover and Git gate
 
@@ -160,6 +218,8 @@ The handover must state:
 - unresolved questions and deliberately closed investigations;
 - files created, moved, merged, or removed;
 - material retained only in qualification or history records;
+- baseline and final routine-route costs, plus the secondary total-corpus
+  comparison;
 - validation performed and limitations; and
 - Git commit and push status.
 
@@ -174,7 +234,11 @@ A comprehensive consolidation is complete only when:
 - every relevant session result is persisted exactly once in an appropriate authority or evidence record;
 - current procedures contain no obsolete next actions;
 - completed history does not dominate routine reading routes;
+- routine task routes are no larger without a stated project-relevant reason;
 - links, indexes, and reconstruction routes work;
+- every durable Markdown file is reachable through the intended navigation
+  hierarchy;
+- temporary in-project ledgers and recovery copies have been removed;
 - no unique evidence or user work has been lost;
 - documentation remains sufficient to reproduce the work; and
 - the final diff has been reviewed as a coherent whole.

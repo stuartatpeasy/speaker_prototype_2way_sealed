@@ -29,7 +29,7 @@ The lifecycle labels mean:
 
 | Task | Read first | Add only if needed |
 | --- | --- | --- |
-| First reusable UMC22 installed-woofer capture | [`procedures/UMC22_INSTALLED_WOOFER_FRD.md`](procedures/UMC22_INSTALLED_WOOFER_FRD.md) | [`FRD_MEASUREMENT_METHOD.md`](FRD_MEASUREMENT_METHOD.md) when choosing/reviewing the production window |
+| UMC22 installed-woofer capture or repeatability investigation | [`procedures/UMC22_INSTALLED_WOOFER_FRD.md`](procedures/UMC22_INSTALLED_WOOFER_FRD.md) | [`FRD_MEASUREMENT_METHOD.md`](FRD_MEASUREMENT_METHOD.md) when choosing/reviewing the production window or comparing captures; [`../DRIVER_ANALYSIS.md`](../DRIVER_ANALYSIS.md) when assessing or promoting driver-design evidence |
 | General installed-driver measurement design or FRD review | [`FRD_MEASUREMENT_METHOD.md`](FRD_MEASUREMENT_METHOD.md) | The applicable interface procedure |
 | Audit the UMC22 release | [`qualification/UMC22_FRD_QUALIFICATION.md`](qualification/UMC22_FRD_QUALIFICATION.md) | The dated UMC22 history only for failed or superseded branches |
 | Audit or reproduce REW API extraction validation | [`qualification/REW_API_CLIENT_VALIDATION.md`](qualification/REW_API_CLIENT_VALIDATION.md) | [`../REW_API_CLIENT.md`](../REW_API_CLIENT.md) for the current operating procedure |
@@ -42,7 +42,7 @@ The lifecycle labels mean:
 
 - [`qualification/UMC22_FRD_QUALIFICATION.md`](qualification/UMC22_FRD_QUALIFICATION.md) — **QUALIFICATION EVIDENCE** for UMC22 Gates A-E and the final repeatability release.
 - [`qualification/REFERENCE_FIXTURE_QUALIFICATION_2026-09-01_TO_03.md`](qualification/REFERENCE_FIXTURE_QUALIFICATION_2026-09-01_TO_03.md) — **QUALIFICATION EVIDENCE** for amplifier topology, fixture construction, clamps, ground paths, cables, and AC commissioning.
-- [`qualification/REW_API_CLIENT_VALIDATION.md`](qualification/REW_API_CLIENT_VALIDATION.md) — **QUALIFICATION EVIDENCE** for offline extraction and diagnostic checks; the live WSL/Windows boundary remains separately stated.
+- [`qualification/REW_API_CLIENT_VALIDATION.md`](qualification/REW_API_CLIENT_VALIDATION.md) — **QUALIFICATION EVIDENCE** for offline tests and live selected extraction; the Codex host-access boundary remains separately stated.
 - [`history/UMC22_FRD_QUALIFICATION_LOG_2026-09-05.md`](history/UMC22_FRD_QUALIFICATION_LOG_2026-09-05.md) — **HISTORY** containing the detailed UMC22 chronology.
 - [`history/FRD_REPEATABILITY_DEVELOPMENT_2026-09-03_TO_05.md`](history/FRD_REPEATABILITY_DEVELOPMENT_2026-09-03_TO_05.md) — **HISTORY** containing the UMC202HD-to-UMC22 method-development narrative.
 

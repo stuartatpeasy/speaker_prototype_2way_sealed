@@ -9,12 +9,18 @@ of this file.
 
 **Lifecycle:** ACTIVE PROTOTYPE DEVELOPMENT
 
-**Current phase:** first reusable installed-woofer acoustic response capture
+**Current phase:** the post-repair C4/C5/C6 set passes the revised proportionate
+initial crossover-design gate. The former `0.2 dB` maximum across every
+`1-5 kHz` native bin was too strict as the sole veto: whole-band RMS is at most
+`0.182 dB`, intended `2.2-2.4 kHz` crossover-band maximum is at most `0.185 dB`,
+phase and timing pass, and C5/C6 are excellent immediate repeats. C6 is the
+approved installed-woofer source capture for initial modelling; its known local
+early-tail uncertainty remains recorded.
 
-**Next action:** with all signals stopped, reconfirm the actual physical state,
-exact UMC22 route, active microphone calibration, geometry, controls, and
-no-signal condition; then take one `0-degree` capture and review it before any
-repeat, rotation, or export
+**Next action:** keep signal stopped, close the open window before the next
+acoustic package, and make a documented signal-free C6 FRD export when
+explicitly requested. Then prepare a bounded protected-tweeter package. No
+further unchanged woofer repeatability sweep is justified.
 
 **Last reviewed:** 2026-09-06
 
@@ -23,7 +29,7 @@ repeat, rotation, or export
 | Cabinet | One acoustically representative sealed prototype is complete. Body is approximately `280 x 430 x 300 mm`; geometric net volume is approximately `21.7 L` before damping. | [Cabinet design](doc/CABINET_DESIGN.md) |
 | Drivers | SB17NRX2C35-8 woofer and SB26STWGC-4 tweeter remain provisionally retained. The original cooled installed ZMA files remain the crossover baselines; the woofer still needs a cooled post-conditioning confirmation. | [Driver analysis](doc/DRIVER_ANALYSIS.md) |
 | Crossover | Exploratory only. The present target is approximately `2.2-2.4 kHz` with LR4-like acoustic slopes, subject to installed-baffle magnitude, common timing/phase, directivity, distortion, and complete-load measurement. | [Crossover design](doc/CROSSOVER_DESIGN.md) |
-| UMC22 measurement path | Qualified for controlled installed-woofer FRD. The qualification window is not the final production window; the generic microphone calibration is neither unit-specific nor an absolute-SPL calibration. Raw-tweeter and polar work are not released. | [UMC22 runbook](doc/rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md) |
+| UMC22 measurement path | Qualified for controlled installed-woofer FRD. C6, supported by immediate repeat C5, is released as the installed-woofer source capture for initial crossover modelling under proportionate RMS, crossover-band, phase, timing, and validity criteria. No further unchanged woofer repeats are needed. | [UMC22 runbook](doc/rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md) |
 | UMC202HD path | The passive fixture is released, but desktop output-stream dropouts suspend UMC202HD sweeps. Live Linux remains the next useful discriminator. | [Dropout diagnosis](doc/rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md) |
 | Room | The design is explicitly near-wall/near-corner. Current placement alternatives remain measurement candidates rather than final decisions. | [Room summary](doc/ROOM_DETAILS.md) |
 
@@ -58,7 +64,7 @@ route below. Files labelled history or qualification are not routine context.
 | Driver or enclosure alignment | [Driver analysis](doc/DRIVER_ANALYSIS.md) | [Run-in procedure](doc/DRIVER_RUNIN.md) for conditioning; [cabinet design](doc/CABINET_DESIGN.md) for mechanical consequences |
 | Cabinet fabrication | [Cabinet design](doc/CABINET_DESIGN.md) | [3D-model hub](doc/3d_models/README.md) for model selection or reconstruction |
 | Crossover modelling | [Driver analysis](doc/DRIVER_ANALYSIS.md), [crossover design](doc/CROSSOVER_DESIGN.md), [measurement workflow](doc/MEASUREMENT_WORKFLOW.md) | [Component development](doc/CROSSOVER_COMPONENT_DEVELOPMENT.md) only for component construction or thermal/mechanical questions |
-| Next UMC22 woofer capture | [REW dispatcher](doc/rew/README.md), [UMC22 runbook](doc/rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md) | [FRD method](doc/rew/FRD_MEASUREMENT_METHOD.md) when reviewing geometry, impulse/ETC, or the production window; qualification only for audit or failure investigation |
+| UMC22 woofer capture or repeatability investigation | [REW dispatcher](doc/rew/README.md), [UMC22 runbook](doc/rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md) | [FRD method](doc/rew/FRD_MEASUREMENT_METHOD.md) when reviewing geometry, impulse/ETC, the production window, or capture comparisons; [driver analysis](doc/DRIVER_ANALYSIS.md) when assessing or promoting driver-design evidence; qualification only for audit or failure investigation |
 | Reconnect or operate the reference fixture | [Fixture use](doc/rew/fixtures/REFERENCE_FIXTURE_USE.md) and the applicable interface procedure | [Fixture specification](doc/rew/fixtures/REFERENCE_FIXTURE_SPECIFICATION.md) if rebuilding or redesigning |
 | Audit UMC22 or fixture qualification | [REW dispatcher](doc/rew/README.md), then the named record under `doc/rew/qualification/` | Chronological records under `doc/rew/history/` only for superseded attempts or provenance questions |
 | Diagnose or resume UMC202HD | [Dropout diagnosis](doc/rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md) | [Suspended UMC202HD procedure](doc/rew/procedures/UMC202HD_FRD_SUSPENDED.md) when preparing to resume |
@@ -88,9 +94,9 @@ records without forcing them into normal orientation context.
 
 ## 5. Immediate Development Sequence
 
-1. Complete the staged first reusable `0-degree` installed-woofer FRD capture
-   through the qualified UMC22 route, then review headroom, metadata,
-   impulse/ETC, and a suitable REW-native production window.
+1. Export the approved C6 source capture to a documented phase-bearing FRD when
+   explicitly requested, then prepare the minimum protected-tweeter measurement
+   package needed for initial crossover design.
 2. Complete woofer stabilisation and obtain a cooled reproducible `48 kHz` ZMA.
 3. Acquire installed-baffle magnitude and common-timing phase for both drivers,
    followed by horizontal off-axis and controlled distortion measurements.

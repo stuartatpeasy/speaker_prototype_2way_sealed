@@ -66,6 +66,8 @@ Record at minimum:
 - cabinet angle and rotation-axis definition;
 - distances to floor, ceiling, rear wall, and nearest side wall;
 - enclosure fill, connected driver, speaker cable, and room boundary state;
+- doors/windows and any material airflow capable of moving a stand, cable, or
+  light object; and
 - objects or supports close enough to create an early reflection.
 
 For the established prototype setup, the nominal on-axis distance is `1000 mm`.
@@ -88,7 +90,8 @@ timing offset, sweep range, level, sweep length, repetitions, clipping-abort
 state, and measurement name. Confirm no unrelated application can send audio
 to the interface.
 
-Use one controlled first capture. Immediately afterward inspect:
+Use one controlled first capture when the route, driver, protection, timing
+mode, or geometry is new or materially changed. Immediately afterward inspect:
 
 1. both input headrooms and any clipping warning;
 2. the stored microphone and soundcard-calibration metadata;
@@ -98,24 +101,67 @@ Use one controlled first capture. Immediately afterward inspect:
 6. audible or equipment abnormalities during the sweep; and
 7. whether the proposed right window excludes the first material reflection.
 
-Do not repeat, rotate the cabinet, export FRD, or change a setting before that
-review when the active runbook imposes a one-capture gate. This prevents a
-misrouted or uncalibrated setup from generating a large internally consistent
-but invalid dataset.
+Do not continue the batch before that review when the active runbook imposes a
+one-capture gate. Once the first capture passes, the runbook may release a
+bounded batch of named captures to run consecutively under one unchanged-state
+declaration and common stop rules. Do not require a fresh settings recital
+between captures. Repeat the physical/no-signal audit only after a reported
+change, power-cycle or reconnection relevant to the route, REW endpoint/state
+change, anomaly, or a new measurement day—not merely because a chat changed.
 
-After the first capture passes, make two further unchanged captures when a new
-chain, timing mode, or geometry requires repeatability evidence. Store all
-three in one raw REW session without overwriting prior diagnostic evidence.
+Where available, use the current [REW API client](../REW_API_CLIENT.md) for a
+read-only pre-capture session snapshot and a selected-measurement extraction
+from the saved `.mdat`. This provides a reproducible check of API-exposed
+settings, measurement summary, native response, stored windows, and impulse
+samples without making a convenience export authoritative. Preserve manual
+evidence for physical state, geometry, displayed headroom, timing-reference
+sample index, historical per-measurement routing, and any result the client
+does not expose.
+
+API extraction loads the source `.mdat` into the current REW workspace and
+leaves the loaded copies there. Perform it after the live series is complete
+or in a disposable session, and keep API-loaded duplicates out of the retained
+production `.mdat`.
+
+After the first capture passes, one immediate unchanged repeat is normally
+enough for prototype-design repeatability evidence. Add a third in the same
+bounded batch when it has low incremental cost, when the first pair disagrees,
+or when a new chain genuinely needs stronger qualification. Store the batch in
+raw REW data without overwriting prior diagnostic evidence.
 
 ## 5. Repeatability Evaluation
 
-The project acceptance targets around the intended crossover region are:
+Use two different gates for two different questions. Do not demand laboratory-
+like agreement over every FFT bin when deciding whether a capture is useful for
+an iterative prototype crossover.
 
-- maximum magnitude spread over `1-5 kHz` no greater than approximately
-  `0.2 dB`;
+For **interface/direct-path qualification**, a short common direct-sound window
+should retain the existing tight target: approximately `0.2 dB` maximum spread
+over `1-5 kHz`, System Delay spread preferably no greater than `5 us`, nearly
+coincident phase, and no microphone/reference clipping or dropout. This asks
+whether the chain repeats before room and later decay dominate.
+
+For **initial crossover-design release** with the documented production window,
+the project acceptance targets are:
+
+- no clipping, dropout, warning that invalidates the capture, or route/timing/
+  calibration inconsistency;
 - System Delay spread preferably no greater than `5 us`;
-- phase traces nearly coincident, with no unexplained jump or drift; and
-- no microphone/reference clipping or reference dropout.
+- unsmoothed `1-5 kHz` pairwise magnitude RMS no greater than approximately
+  `0.25 dB`;
+- unsmoothed maximum magnitude difference over the current intended crossover
+  band no greater than approximately `0.25 dB`;
+- maximum circular phase difference over the current intended crossover band
+  no greater than approximately `5 degrees`; and
+- no broad coherent discrepancy large enough to change the provisional filter
+  topology or acoustic-slope decision.
+
+The current intended crossover band is `2.2-2.4 kHz`; revise that band when the
+design direction changes. A maximum over every native bin across the wider
+`1-5 kHz` range remains a useful diagnostic, but it is not by itself a veto.
+Record isolated or out-of-band maxima as a modelling uncertainty and preserve
+the less favourable capture. These are project design criteria, not claims of
+laboratory metrology or production-unit tolerance.
 
 Delay and phase are linked. At `2.3 kHz`, a `5 us` timing difference gives:
 
@@ -129,10 +175,28 @@ plot.
 
 Compare all repeats on the same frequency grid, window, smoothing, and timing
 convention. Use circular phase differences rather than ordinary subtraction at
-the `+/-180 degree` wrap. If a long default window fails because room energy
-changes after the direct arrival, preserve that result and repeat the analysis
-on the raw impulses using one common direct-sound window. Do not silently alter
-the raw session or call the first comparison invalid after the fact.
+the `+/-180 degree` wrap. Report both RMS and maximum magnitude differences;
+the maximum over thousands of closely spaced native bins is an extreme-value
+diagnostic, while RMS better represents the overall modelling perturbation. If
+a long window disagrees because later energy changes, preserve that result and
+repeat the analysis on the raw impulses using one common direct-sound window.
+Do not silently alter the raw session or call the first comparison invalid.
+
+When a set fails, first fit and report a scalar dB offset. Subtracting the mean
+magnitude difference tests gain without changing response shape. For phase,
+remove a documented constant-delay difference with
+
+```text
+corrected phase difference = circular(delta phase + 360 degrees x f x delta t)
+```
+
+where `delta phase = phase_A - phase_B` and `delta t = t_A - t_B`.
+Delay correction cannot change magnitude. A shorter common right window may be
+used as a diagnostic to locate when the divergence accumulates, but a window
+that hides the difference or sacrifices the required low-frequency resolution
+does not upgrade the production bandwidth. Likewise, `1/48`- to `1/12`-octave
+smoothing may describe whether a residual is broad enough to affect crossover
+design, but the release figures above remain native and unsmoothed.
 
 ## 6. Window Selection
 
@@ -182,8 +246,10 @@ or a superseded route must remain visible in its evidence label.
 For a repeatability failure, check in this order: exact device endpoints and
 sample rate; complete channel matrix; timing/calibration mode; active
 microphone calibration; headroom; unchanged physical controls; unchanged
-geometry; reference voltage; impulse ambiguity; then sweep length or window.
-Change one variable at a time and preserve the failed result.
+geometry; reference voltage; timing-reference index; impulse ambiguity; then
+sweep length or window. Quantify gain, constant-delay, window, and smoothing
+sensitivity before assigning a physical cause. Change one variable at a time
+and preserve the failed result.
 
 Raw-tweeter work requires a separately agreed sweep band, voltage, and
 protective high-pass. Polar work requires its own rotation, naming, and

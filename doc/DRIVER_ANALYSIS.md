@@ -9,9 +9,9 @@
 > - **Lifecycle:** ACTIVE DRIVER EVIDENCE AUTHORITY
 > - **Owns:** evidence classes, approved driver ZMA/FRD sources, measurement conditions and quality, woofer/tweeter results and derivations, retention and procurement decisions, driver-specific modelling consequences, uncertainties, and next evidence gates
 > - **Does not own:** REW/interface qualification chronology, fixture design, detailed acoustic-capture procedure, crossover-component construction, or room-placement evidence
-> - **Current decision:** provisionally retain both installed drivers and continue modelling from the approved ZMA baselines; no FRD is yet approved as a driver-design source
-> - **Next gate:** one reviewed 0-degree installed-woofer capture, followed by a reusable installed-baffle FRD series and a cooled reproducible woofer ZMA
-> - **Limitations:** one sample of each driver; incomplete baseline conditions; no approved installed acoustic response, directivity, or distortion data
+> - **Current decision:** provisionally retain both installed drivers; C6, supported by immediate repeat C5, is approved as the installed-woofer source capture for initial crossover modelling alongside the approved ZMA baselines
+> - **Next gate:** make a documented signal-free FRD export from C6 when explicitly requested, then prepare a bounded protected-tweeter measurement package
+> - **Limitations:** one sample of each driver; incomplete baseline conditions; known approximately `0.5-0.6 dB` local woofer early-tail variability near `2.03 kHz`; no approved tweeter FRD, directivity, or distortion data
 > - **As of:** 2026-09-06
 
 This is the durable engineering record for the driver investigation. It supplements [README.md](../README.md). Detailed dated driver-impact history is retained in [DRIVER_ANALYSIS_CHANGELOG.md](history/DRIVER_ANALYSIS_CHANGELOG.md).
@@ -42,9 +42,455 @@ Both drivers were correctly mounted in the sealed prototype enclosure in their n
 
 ### 1.3 Approved acoustic sources and current capture state
 
-No installed-baffle FRD is yet approved as a driver-design source. The completed UMC22 repeatability sweeps qualify the measurement route; they are not substitutes for reusable driver FRD.
+C6 is the approved installed-woofer source capture for initial crossover design,
+with C5 as its immediate repeatability witness. No durable FRD export has yet
+been made, and no tweeter acoustic source is approved. This is a prototype-
+design release with stated uncertainty, not a frozen production response.
 
-The current user-reported physical/no-signal start state and the one-capture-then-review gate remain reachable in the current [UMC22 installed-woofer FRD runbook](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md). That record owns the fresh no-excitation audit, exact route and calibration checks, one controlled 0-degree capture, and review of headroom, metadata, impulse/ETC, and the REW-native window before any repeat, rotation, or export. Qualification evidence and its generic microphone/absolute-SPL limitations are in [UMC22 FRD qualification](rew/qualification/UMC22_FRD_QUALIFICATION.md).
+**VERIFIED MEASUREMENT — FIRST-CAPTURE REVIEW PASSED:** the first controlled production
+candidate, `SB17-IW-0deg-1m-U22-260906-C1`, was captured on 2026-09-06 in REW
+V5.40 beta 133 from `20-20000 Hz` using one `256k`, `-20.0 dBFS` sweep. Stored
+Measurement Info identifies microphone input L, electrical timing-reference
+input R, timing-reference output L, `ECM8000_calibration_data.csv`, loopback
+soundcard calibration, `48 kHz`, System Delay `3.1241 ms`, IR start `3.0000 ms`,
+timing-reference index `47,850.04`, zero timing offset and cumulative shift,
+`0.0 ppm` clock adjustment, SNR `44.3 dB`, and signal-to-distortion `62.8 dB`.
+
+**USER-REPORTED:** no physical or electrical change preceded the sweep; the
+hardware clip indicators were off and the idle system was silent and normal.
+No warning or anomaly occurred during the sweep, and both displayed headroom
+indicators remained green throughout. The exact numeric headrooms were not
+recorded.
+
+**DERIVED HEADROOM BOUND:** REW defines green analogue-input measurement
+headroom as `6-40 dB`, so the observation bounds both microphone-L and
+reference-R headroom to that interval. It does not recover the exact values.
+The stored SNR, signal-to-distortion result, absence of warnings, and bounded
+headroom do not justify another signal solely to recover the missing digits.
+
+**INFERRED FROM ETC AND GEOMETRY:** geometry predicts the earliest floor/ceiling
+energy about `3.81 ms` after the direct arrival. The time-expanded ETC shows a
+corresponding rise beginning near `6.9 ms` absolute time and a peak near
+`7.1 ms`, roughly `27 dB` below the direct peak. Earlier decaying structure is
+not uniquely separable from the bandwidth-limited woofer's direct response.
+
+**VERIFIED APPLIED WINDOW / DERIVED:** the live REW measurement now has a
+native `Hann` `2.0 ms` left window and `Tukey 0.25` `3.5 ms` right window,
+referenced to the displayed `3.12 ms` direct peak, with frequency-dependent and
+multi-time windowing off. REW reports `285.71 Hz` using the right-window width
+and a total span of `264` samples. Independently, the `5.5 ms` total support has
+nominal resolution
+
+```text
+Delta f approximately 1 / 0.0055 s = 182 Hz.
+```
+
+This ends the right window near `6.62 ms`, ahead of the first
+geometry-consistent reflection. The windowed magnitude is coherent from its
+REW limit through the crossover region and retains the woofer breakup structure
+around `4-10 kHz`; the wrapped phase is continuous apart from ordinary
+`+/-180 degree` wraps. **PROVISIONAL VALID RANGE:** use `500 Hz-12 kHz` for
+driver/crossover work. This conservative range stays clear of the window's
+`285.71 Hz` limit and excludes the steep, increasingly irregular upper-tail
+response that is not needed for the intended crossover.
+
+**VERIFIED FILE RETENTION:** the current C1/C2/C3R raw authority is
+[`rew/SB17NRX2C35-8_installed_0deg_1m_UMC22_2026-09-06.mdat`](../rew/SB17NRX2C35-8_installed_0deg_1m_UMC22_2026-09-06.mdat),
+`7,266,399` bytes, SHA-256
+`d582c5d1fb7591689b3e4ef5491c1c578338f854fbe97c7d31124b529f0b516b`.
+A post-save selected extraction loaded exactly C1, C2, and C3R, produced no
+warning, and read back each trace's `Hann` `2.0 ms` left / `Tukey 0.25`
+`3.5 ms` right native window with FDW/MTW off and its own direct-peak reference.
+The failed C3 attempt is excluded and retained separately below.
+
+**USER-REPORTED / VERIFIED MEASUREMENT — C2:** the user reported microphone-L
+minimum headroom `10.6 dB`, reference-R headroom `33.1 dB`, and no warning or
+anomaly. The API independently identifies loopback-timed C2 at `48 kHz` with
+System Delay `3.1168 ms`, IR start `3.0000 ms`, zero timing offset and shift,
+`0.0 ppm` clock adjustment, and SNR `38.74 dB`.
+
+**VERIFIED WINDOW / DERIVED REPEATABILITY RESULT:** the API applied and read
+back C1's production window shape and widths to C2, referenced to C2's direct
+peak. From `1-5 kHz`, C1/C2 native unsmoothed maximum magnitude difference is
+`1.754 dB`, RMS magnitude difference is `0.602 dB`, maximum circular phase
+difference is `16.476 degrees`, and System Delay spread is `7.32 us`. This
+fails the approximate `0.2 dB` / preferred `5 us` repeatability targets. The
+windowed impulses correlate at `0.9991` with a fitted C2/C1 level difference
+of approximately `-0.178 dB`; this makes a grossly different route unlikely
+but does not explain the response-shape difference.
+
+**USER-REPORTED / VERIFIED DIAGNOSTIC — FAILED C3 ATTEMPT:** the user reported
+that the prepared attempt produced no audible output, raised two warnings, and
+created a visibly invalid response. The API identifies a `-46 dBFS` maximum,
+SNR `9.39 dB`, nonsensical System Delay `-4780.4033 ms`, and raw impulse peak
+`-0.0019%`, compared with approximately `-2.6%` for C1/C2. REW's attempt-time
+warnings were low measured level and poor SNR. Current API state still reports
+the qualified software route and stopped generator. The trace is background
+noise and must remain diagnostic.
+
+**USER-REPORTED PHYSICAL CAUSE / STRONGLY SUPPORTED INFERENCE:** the user then
+found one woofer lead detached from its connector and re-secured it. The
+amplifier selection, volume, UMC22 controls/connections, relay, USB, and
+indicators were otherwise reported nominal and unchanged. An open woofer
+circuit explains all observed C3 symptoms and is the strongly supported cause,
+though the contact state throughout the entire attempted sweep was not
+electrically logged. The physical change therefore required a de-energised
+connection inspection and cold no-signal restart; both subsequently passed as
+user-reported evidence below.
+
+**USER-REPORTED RESTART PASS:** with signal stopped, the user turned the
+SU-V570 down and off, inspected the repaired connection, and confirmed correct
+polarity, full engagement and retention, with no exposed conductor, stray
+strand, or possible opposite-terminal contact. The amplifier was restarted at
+minimum, remained silent and normal without heat, smell, or instability, and
+was returned to the qualified `-38 dB` position without a tone.
+
+**VERIFIED CURRENT API AUDIT:** after that restart the API reported
+REW V5.40 beta 133 reachable, audio ready, generator stopped, no application
+error, exact exclusive UMC22 endpoints, Java Stereo-only operation, `48 kHz`,
+L/L/L/R routing, loopback calibration/timing, IR merge off, zero timing offset,
+and the prepared `20-20000 Hz`, `-20 dBFS`, `256k`, one-repetition sweep. Its
+per-input calibration object names `ECM8000_calibration_data.csv` under both L
+and R, which by itself is insufficient to prove that the electrical reference
+is uncalibrated. **USER-CONFIRMED CONFIGURATION:** the user subsequently
+confirmed in both Measure and Preferences that active microphone input L names
+the ECM8000 CSV and electrical reference input R is `None`. A final API snapshot
+then remained complete with no failed endpoint, new measurement, warning, or
+error; audio was ready and the generator remained stopped. This clears the
+pre-signal calibration gate.
+
+**USER-REPORTED / VERIFIED MEASUREMENT — C3R:** the user reported normal woofer
+output, microphone-L minimum headroom `10.7 dB`, reference-R headroom `33.2 dB`,
+and no warning or anomaly. Measurement Info was reported correct for the
+microphone calibration, loopback soundcard calibration, and L/L/L/R routing;
+timing-reference index was `47,850.56` and signal-to-distortion was `60.5 dB`.
+The API independently identifies C3R UUID
+`910df95f-0bb4-4a53-8b69-e5b6f3b7f898`, captured at 13:05:32 in REW V5.40
+beta 133 from `20.1416-19999.879 Hz` at `48 kHz`. It reports System Delay
+`3.1133 ms`, IR start `2.9792 ms`, zero timing offset and cumulative shift,
+`0.0 ppm` clock adjustment, and SNR `43.41 dB`. The post-capture snapshot was
+complete with no new warning or error; audio was ready and the generator was
+stopped.
+
+**VERIFIED WINDOW AND IMPULSE / DERIVED ENVELOPE:** C3R's long default window was
+replaced through the API and read back as the common native `Hann` `2.0 ms`
+left / `Tukey 0.25` `3.5 ms` right window, referenced to its own `3.1133 ms`
+direct peak, with FDW/MTW off. Its raw direct peak is `-2.532%`. The API does
+not expose REW's plotted ETC directly; a nine-sample moving-RMS envelope of the
+raw impulse locates the first
+geometry-consistent material reflection at approximately `7.155 ms` absolute,
+`4.042 ms` after the direct peak and approximately `27.0 dB` below it. This
+agrees closely with C1/C2 at approximately `7.166/7.179 ms` and confirms that
+the right window ends near `6.613 ms`, ahead of that reflection. The established
+provisional valid range remains `500 Hz-12 kHz` for each candidate; it is not a
+promotion of the set.
+
+**USER-REPORTED CONFIGURATION — C4-C6:** immediately before the new post-repair
+series, the user confirmed that the repaired woofer connector was fully seated
+and that wiring, settings, physical positions, and environmental conditions
+were unchanged. Hardware clip indicators were off; the system was silent and
+normal. The Agilent U1282A's internal thermometer, without a connected
+thermocouple, indicated `22.1 degrees C`; this is a room-temperature indication,
+not calibrated local air temperature. No warning, clipping indication, or other
+anomaly was reported for C4-C6. Exact displayed headrooms were not retained;
+the remaining visible metadata was subsequently reported without another signal.
+
+**USER-REPORTED RETAINED METADATA — C4-C6:** timing-reference indices are C4
+`47850.66`, C5 `47850.64`, and C6 `47850.72`; signal-to-distortion figures are
+respectively `63.5`, `59.5`, and `61.0 dB`. Headrooms were reported nearly
+identical to the earlier successful runs, though exact values were not retained.
+The index spread is `0.08` sample, and at `48 kHz`
+
+```text
+0.08 sample / 48000 sample/s = 1.667 us.
+```
+
+This accounts for the `1.655 us` System Delay spread to about `0.012 us`, so
+the recorded timing does not indicate source-to-microphone distance drift.
+
+**USER-REPORTED ENVIRONMENTAL NOTE / DERIVED TIMING:** a window approximately
+`1 m` behind the microphone was slightly open and admitted an intermittent
+breeze. For the approximately axial geometry, the reflected path is roughly
+`3 m` versus the `1 m` direct path, giving
+
+```text
+excess delay = (3 m - 1 m) / 343 m/s = 5.83 ms.
+```
+
+That direct specular reflection is later than the retained `3.5 ms` right
+window and cannot directly explain the stored-window residual. Airflow could
+still add turbulence or move a stand, cable, curtain, or light object. Closing
+the window is a proportionate control for future acoustic packages, not grounds
+to reject C5/C6 or repeat them now.
+
+**VERIFIED MEASUREMENTS — C4-C6:** the API identifies the following unique
+post-repair captures, each made in REW V5.40 beta 133 at `48 kHz` from
+`20.1416-19999.879 Hz`, with loopback timing, zero timing offset and cumulative
+shift, `0.0 ppm` clock adjustment, and no new application warning:
+
+| Capture | UUID | Time | System Delay | IR start | SNR |
+|---|---|---:|---:|---:|---:|
+| C4 | `a855e31c-42a2-45a7-bb5c-8e1616334c7a` | `14:03:20` | `3.111277 ms` | `2.979167 ms` | `43.91 dB` |
+| C5 | `46922260-e9cb-46c0-bdef-3a11ba592b00` | `14:06:49` | `3.111657 ms` | `2.979167 ms` | `44.06 dB` |
+| C6 | `1547767f-1781-4e51-b824-462b5a2788e1` | `14:07:08` | `3.110002 ms` | `2.979167 ms` | `44.06 dB` |
+
+C4 was reviewed before the remaining pair, so C5 and C6 are the strictly
+consecutive captures (`19 s` timestamp separation); C4 precedes C5 by
+`3 min 29 s`. The three-capture System Delay spread is `1.655 us`, comfortably
+inside the preferred `5 us` target.
+
+**VERIFIED FILE RETENTION — C4-C6:** because the live REW workspace contained
+API-loaded duplicates, each new UUID was saved to a previously absent
+single-measurement archive rather than using `Save all`. A selected reload of
+each file returned exactly its expected UUID, common `Hann` `2.0 ms` left /
+`Tukey 0.25` `3.5 ms` right native window at its own direct peak, no FDW/MTW,
+`54,559` native response points, all `131,072` raw impulse samples, and no
+extraction warning:
+
+| Capture | Raw `.mdat` | Bytes | SHA-256 |
+|---|---|---:|---|
+| C4 | [`rew/SB17NRX2C35-8_installed_0deg_1m_UMC22_C4_2026-09-06.mdat`](../rew/SB17NRX2C35-8_installed_0deg_1m_UMC22_C4_2026-09-06.mdat) | `2,428,186` | `6e53eaba36039769075544f0cde4d286db155e5429df4cfa4d536a12419b6052` |
+| C5 | [`rew/SB17NRX2C35-8_installed_0deg_1m_UMC22_C5_2026-09-06.mdat`](../rew/SB17NRX2C35-8_installed_0deg_1m_UMC22_C5_2026-09-06.mdat) | `2,428,186` | `7d1c45bcf2d58c5582f53db679bf7b0febd32c15c2bd2086d82a076b4ad10c1b` |
+| C6 | [`rew/SB17NRX2C35-8_installed_0deg_1m_UMC22_C6_2026-09-06.mdat`](../rew/SB17NRX2C35-8_installed_0deg_1m_UMC22_C6_2026-09-06.mdat) | `2,428,186` | `6c9a4223073ac9bd52ec7b7ff2dd6e0106f36cd40b9511c0df77a80eeb686ca0` |
+
+**DERIVED C4-C6 REPEATABILITY — STRICT MAX FAIL / PROPORTIONATE DESIGN PASS:**
+on the common native unsmoothed grid over `1-5 kHz`, the pairwise results are:
+
+| Pair | Maximum magnitude | RMS magnitude | Mean level | Mean-removed max / RMS | Circular phase max / RMS |
+|---|---:|---:|---:|---:|---:|
+| C4/C5 | `0.631 dB` | `0.182 dB` | `-0.0667 dB` | `0.564 / 0.169 dB` | `4.119 / 1.208 degrees` |
+| C4/C6 | `0.512 dB` | `0.151 dB` | `-0.0727 dB` | `0.439 / 0.132 dB` | `3.473 / 1.859 degrees` |
+| C5/C6 | `0.137 dB` | `0.047 dB` | `-0.0060 dB` | `0.143 / 0.047 dB` | `3.565 / 2.060 degrees` |
+
+The old maximum-over-every-bin rule would fail the set because the worst C4/C5
+residual is `0.631 dB` near `2.03 kHz`. That statistic selects the single worst
+of `10,923` closely spaced native bins and is disproportionate as the sole veto
+for an iterative prototype crossover. It remains useful diagnostic evidence.
+The small mean offsets do not explain the frequency-dependent shape. C4 also
+differs from C3R by `2.115 dB` maximum and `0.804 dB` RMS over `1-5 kHz`, so
+C3R is not selected as the current baseline.
+
+Under the revised design-relevant gate, all C4-C6 pairs pass: whole-band
+`1-5 kHz` RMS is at most `0.182 dB`; unsmoothed maximum difference over the
+intended `2.2-2.4 kHz` crossover region is C4/C5 `0.185 dB`, C4/C6
+`0.183 dB`, and C5/C6 `0.112 dB`; full-band circular-phase maximum is at most
+`4.119 degrees`; and System Delay spread is `1.655 us`. At `1/24`-octave
+smoothing, used only as a broadness check, the whole-band maxima are `0.548`,
+`0.447`, and `0.103 dB`, while the crossover-band maxima remain no greater than
+`0.157 dB`. The residual is real but too small in the design region to justify
+blocking a prototype network that will be measured and iterated.
+
+**DERIVED WINDOW SENSITIVITY / TIME LOCALISATION:** temporary changes on
+API-loaded copies, restored afterward, show that all three C4-C6 pairs pass with
+`1.0` or `1.5 ms` right windows. At `1.5 ms`, the worst maximum difference is
+`0.154 dB`; at `2.0 ms`, C4/C5 and C4/C6 rise to `0.328` and `0.317 dB`, while
+C5/C6 remain at `0.085 dB`. The C4-related maxima then grow monotonically to
+`0.631` and `0.512 dB` at the retained `3.5 ms` window. Direct-relative raw-
+impulse comparisons likewise show sub-percent differences through the direct
+packet, with discrepancy increasing later in the early tail. The recurring
+shape change therefore enters mainly between approximately `1.5` and `3.5 ms`
+after the direct arrival. A `1.5 ms` right window has nominal resolution
+
+```text
+Delta f approximately 1 / 0.0015 s = 667 Hz.
+```
+
+It is a useful localisation test, not a silent replacement for the established
+`500 Hz-12 kHz` production window.
+
+**DERIVED OLDER C1/C2/C3R COMPARISON — FAIL:** with all three captures on the
+same native unsmoothed frequency grid and common window, the `1-5 kHz`
+three-capture
+maximum magnitude spread is `1.754 dB`, RMS spread is `0.822 dB`, maximum
+pairwise circular-phase difference is `25.966 degrees`, and System Delay spread
+is `10.82 us`. C2 and post-repair C3R are the closest pair, but still show
+`0.957 dB` maximum and `0.487 dB` RMS magnitude difference, `11.185 degrees`
+maximum circular-phase difference, and `3.50 us` delay difference. Their mean
+level difference is only `0.049 dB`; after removing it, `0.947 dB` maximum and
+`0.485 dB` RMS magnitude error remain, proving that the failure is response
+shape rather than a simple gain offset. At the provisional `2.3 kHz` crossover
+point alone they are close (`0.021 dB`, `2.31 degrees`), but the set still fails
+the revised whole-band RMS and timing criteria and spans the connector repair.
+
+**VERIFIED PIPELINE AUDIT / DERIVED SENSITIVITY — 2026-09-06:** UUID selection
+returns exactly C1, C2, and C3R; the failed diagnostic is absent. All three
+responses contain the same `54,559` native frequency points from
+`20.1416015625 Hz` at `0.3662109673 Hz` spacing, with SPL units, smoothing
+`None`, no PPO resampling, and the stored common window types and widths.
+The `1-5 kHz` comparison contains `10,923` point-for-point samples and uses
+circular phase differences; ordinary phase subtraction creates false
+approximately `360-degree` spikes at wraps.
+
+Fitting a scalar dB gain leaves most of the error:
+
+| Pair, first trace to second | Best dB gain | Residual maximum | Residual RMS |
+|---|---:|---:|---:|
+| C1 to C2 | `-0.1690 dB` | `1.5846 dB` | `0.5777 dB` |
+| C1 to C3R | `-0.2179 dB` | `1.4720 dB` | `0.7114 dB` |
+| C2 to C3R | `-0.04890 dB` | `0.9474 dB` | `0.4847 dB` |
+
+Removing each stored System Delay difference explains the broad phase slope
+but leaves frequency-dependent phase error:
+
+| Pair | System Delay difference | Raw phase max / RMS | Delay-corrected max / RMS |
+|---|---:|---:|---:|
+| C1/C2 | `7.3202 us` | `16.476 / 9.773 degrees` | `9.076 / 3.877 degrees` |
+| C1/C3R | `10.8178 us` | `25.966 / 13.631 degrees` | `9.462 / 4.771 degrees` |
+| C2/C3R | `3.4976 us` | `11.185 / 4.941 degrees` | `6.148 / 3.186 degrees` |
+
+The recorded timing-reference indices for C1 and C3R move from `47,850.04` to
+`47,850.56`, or `0.52` sample = `10.833 us` at `48 kHz`. That accounts for all
+but approximately `0.016 us` of their System Delay change. The endpoint delay
+spread is therefore timing-reference-pick variation rather than evidence of a
+`3.7 mm` acoustic-distance change. C2's timing-reference index was not retained,
+so the same check cannot be completed for it. Constant delay cannot change
+magnitude in any event.
+
+C1's `3.120000 ms` stored window reference is `4.090837 us`, or `0.1964`
+sample, before REW's `3.124090837 ms` sub-sample direct-peak estimate. The
+stored reference lands on the actual maximum discrete impulse sample. On a
+temporary API-loaded duplicate, moving only the reference to the exact
+sub-sample peak and reading it back changed none of the `54,559` native
+magnitude/phase values and none of the `265` windowed-impulse amplitudes at the
+API's returned precision; only the windowed impulse's reported start time moved.
+The original `3.12 ms` reference was restored. Window-reference rounding is
+therefore excluded as a material cause.
+
+Shortening every right window from `3.5 ms` to `1.0 ms` reduced, but did not
+remove, the `1-5 kHz` differences: C1/C2, C1/C3R, and C2/C3R still had
+respectively `0.491`, `0.814`, and `0.502 dB` maximum differences. Their
+mean-removed maxima were `0.365`, `0.741`, and `0.489 dB`, all above the
+`0.2 dB` target. That short window also gives only about `1 kHz` right-window
+resolution and cannot support the established `500 Hz` lower limit. Even
+`1/6`-octave smoothing leaves respective maxima of `1.031`, `0.943`, and
+`0.688 dB`. Short windowing and smoothing can mask some structure, but neither
+explains it nor makes the production evidence reusable.
+
+**DERIVED FREQUENCY LOCALISATION:** the discrepancy consists of broad alternating
+lobes rather than isolated bins. Principal signed extrema are C1-C2
+`+1.754 dB` at `2517.0 Hz`; C1-C3R `-1.254 dB` at `2162.8 Hz`, `+1.482 dB` at
+`2501.6 Hz`, `-1.086 dB` at `4212.2 Hz`, and `+1.289 dB` at `4627.1 Hz`; and
+C2-C3R `+0.957 dB` at `2811.4 Hz`, `+0.935 dB` at `3801.3 Hz`, `-0.899 dB` at
+`4244.0 Hz`, and `+0.863 dB` at `4736.9 Hz`. The worst pair/band RMS values are
+C1/C2 `0.877 dB` over `2-3 kHz`, C1/C3R `0.858 dB` over `4-5 kHz`, and C2/C3R
+`0.595 dB` over `4-5 kHz`.
+
+**VERIFIED RAW IMPULSES / DERIVED ENVELOPES:** a fresh temporary extraction from
+the authoritative `.mdat` returned `131072` raw samples at `48 kHz` for every
+UUID. Direct negative peaks are C1 `-2.627883%`, C2 `-2.576019%`, and C3R
+`-2.532312%`. Over `-0.5` to `+0.5 ms` relative to each direct peak, pairwise
+correlations are at least `0.99984`; over the common `-2.0` to `+3.5 ms` support
+they are `0.99908`, `0.99826`, and `0.99919`. In the `+0.5` to `+3.5 ms`
+early tail they fall to `0.99328`, `0.98786`, and `0.99428`, with scalar-fit
+residuals about `11.6%`, `15.5%`, and `10.7%` of target RMS. The direct wavelet
+is therefore nearly unchanged apart from a small level trend; most shape
+divergence accumulates in early post-arrival energy.
+
+The first geometry-consistent material-reflection envelope peaks remain closely
+grouped: C1 at `+4.0417 ms` and `-27.06 dB`, C2 at `+4.0625 ms` and
+`-26.65 dB`, and C3R at `+4.0417 ms` and `-27.01 dB`, all relative to their
+direct envelopes. The current right window ends at `+3.5 ms`, ahead of these
+peaks. This rules out the principal floor/ceiling/rear-wall reflection as the
+direct cause of the stored-window difference, although lower-level earlier
+acoustic or structural energy is not uniquely separable.
+
+**EXPLORATORY FIT / INFERENCE:** a single delayed-comb term fitted over
+`1.5-5 kHz` describes much of the C3R-related alternating structure with about
+`0.99-1.01 ms` delay and `R^2=0.72-0.74`; the weaker C1/C2 fit has
+`R^2=0.35`. A `1.0 ms` acoustic delay corresponds to roughly `0.343 m` extra
+path at `343 m/s`. This localises a useful time scale, not a physical object:
+early reflection/diffraction, cabinet or driver decay, and sweep corruption from
+an evolving contact cannot be distinguished uniquely from these files.
+
+**VERIFIED METADATA AUDIT / LIMITATION:** all API-exposed production summaries
+agree on REW V5.40 beta 133, `48 kHz`, sweep span, loopback timing/calibration,
+zero timing offset and cumulative shift, `0.0 ppm` clock adjustment, polarity,
+SPL/align offsets, and extraction warnings. C1's earlier singleton and final
+archive extractions are byte-identical for frequency response, windowed impulse,
+and window JSON despite changed session IDs, which supports UUID stability.
+The API cannot reconstruct historical per-measurement endpoint/channel routing,
+calibration assignment, headroom, timing-reference index, or
+signal-to-distortion. C1 and C3R have retained UI/Measurement Info evidence;
+C2's less complete historical UI metadata is an evidence gap, not positive
+evidence of a configuration error.
+
+The separate diagnostic archive was also re-extracted by its UUID. It contains
+one `131072`-sample raw trace with peak `0.001904%`, SNR `9.386 dB`, and
+System Delay `-4780.403 ms`, confirming background rather than a production
+response. Its warning-free extraction manifest means only that file loading and
+export succeeded; it does not supersede the user's two attempt-time warnings.
+
+**RANKED INFERENCES:**
+
+1. A variable early delayed acoustic or structural contribution is now the
+   strongest class of explanation. C4-C6 repeat through approximately the first
+   `1.5 ms`, then diverge, while direct timing remains within `1.65 us`.
+   Subtle cabinet, microphone, support, cable, baffle/driver, or nearby-object
+   motion could change that energy without a conspicuous direct-arrival shift.
+2. Woofer-connector/contact evolution remains plausible across the original
+   pre/post-repair boundary and is the only verified intervening physical event
+   there. The firmly seated connector did not prevent the C4-related early-tail
+   variation, so connector state alone is no longer an adequate explanation for
+   all observations. An electrically changing contact could still affect driver
+   decay; that was not independently logged.
+3. A small environmental change during C4's `3 min 29 s` separation from C5 is
+   possible. C5/C6, only `19 s` apart, pass. The slightly open window's simplest
+   reflection arrives about `5.83 ms` after the direct sound, outside the stored
+   window, but its intermittent breeze could move a stand, cable, curtain, or
+   light object. Closing it is a cheap future control. The `22.1 degrees C`
+   internal-thermometer indication does not resolve local gradients or motion.
+4. C2's lower `38.74 dB` SNR may contribute to the older comparison, but broad
+   coherent lobes with associated phase and impulse-tail structure are not well
+   explained as random noise alone; C4-C6 have closely grouped `43.91-44.06 dB`
+   SNR and still show the C4-related tail change.
+5. A historical routing or calibration inconsistency remains logically possible
+   for C2 because it lacks complete UI provenance, but the archived/API metadata
+   gives no positive evidence for one. It cannot explain variation among the
+   consistently configured C4-C6 captures.
+6. Scalar gain, constant delay, phase wrapping, C1 window rounding, smoothing,
+   and the first material reflection remain quantitatively excluded as complete
+   explanations. Shorter windows localise rather than repair the physical
+   variability.
+
+**PROVISIONAL DESIGN RELEASE / PARKED ROOT-CAUSE ITEM:** C1, C2, C3R, and C4-C6
+are valid response captures; the failed C3 remains diagnostic. The original
+`0.2 dB` maximum over every `1-5 kHz` native bin was too strict as the sole
+prototype-design gate. Under the revised method, C4-C6 pass on whole-band RMS,
+intended-crossover-band maximum, phase, timing, and capture validity. C6 is the
+approved current installed-woofer source capture for initial crossover
+modelling, with immediate C5 as its repeatability witness and C4 retained as an
+uncertainty bound.
+
+The approximately `0.5-0.6 dB` local early-tail variation near `2.03 kHz` is
+recorded rather than erased. It is not large enough at the intended
+`2.2-2.4 kHz` crossover to block a reversible external prototype network.
+Park the root-cause investigation unless same-package measurements reproduce a
+design-relevant discrepancy, the crossover choice becomes sensitive to it, or
+normal/reverse-polarity validation is incoherent. No further unchanged woofer
+repeatability sweep is justified now.
+
+**HISTORICAL INTERPRETATION SUPERSEDED BY C4-C6:** before the post-repair series,
+the leading open item was one unchanged C4 discriminator; immediately afterward,
+the full-window maximum was temporarily treated as a blocking failure. The
+capture and its two authorised repeats are complete, and the proportionate
+design release above supersedes both prior positions without deleting their
+evidence.
+
+**VERIFIED DIAGNOSTIC RETENTION:**
+[`rew/SB17NRX2C35-8_UMC22_C3_no_output_diagnostic_2026-09-06.mdat`](../rew/SB17NRX2C35-8_UMC22_C3_no_output_diagnostic_2026-09-06.mdat)
+is `2,428,201` bytes with SHA-256
+`e60bd9e0643a37d70f2162a8f8aa24214bceb7b2341a17c79198219374d318e2`.
+Its retained measurement is named `DIAG-C3-no-output-260906`; it is excluded
+from the C1/C2 production authority.
+
+The current user-reported physical/no-signal state and API-assisted audit are
+recorded in the current [UMC22 installed-woofer FRD
+runbook](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md). That authority keeps
+the signal stopped while the next bounded measurement package is prepared; no
+further unchanged woofer repeatability sweep is required.
+Qualification evidence and its generic microphone/absolute-SPL limitations are
+in [UMC22 FRD
+qualification](rew/qualification/UMC22_FRD_QUALIFICATION.md).
 
 ### 1.4 Current driver state
 
@@ -341,7 +787,7 @@ Use only:
 
 The useful loads near 2.30 kHz are approximately 7.98 ohm at +10.8 degrees for the woofer and 3.48 ohm at -5.0 degrees for the tweeter. The full complex ZMA, not those spot values or nominal impedances, belongs in VituixCAD.
 
-The post-conditioning woofer file remains comparison evidence until a cooled repeat confirms resonance position and broadband resistance. No acoustic optimisation is defensible until phase-bearing installed-baffle FRD exists with common timing.
+The post-conditioning woofer file remains comparison evidence until a cooled repeat confirms resonance position and broadband resistance. No two-driver acoustic optimisation is defensible until the approved C6 woofer source is exported and a protected common-timing tweeter FRD exists.
 
 ### 7.2 Consequences for crossover decisions
 
@@ -368,16 +814,18 @@ Matching complete installed behaviour matters more than reproducing every datash
 
 ### 9.1 Next driver evidence gates
 
-1. Under the [current UMC22 runbook](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md), reconfirm the user-reported start state without excitation and acquire only the authorised first 0-degree installed-woofer capture.
-2. Review headroom, stored calibration/routing/timing metadata, impulse/ETC, and a documented REW-native window before repeats, rotation, or export.
-3. Complete the bounded conditioning/cooldown loop in [DRIVER_RUNIN.md](DRIVER_RUNIN.md), then promote a reproducible cooled 48 kHz woofer ZMA only if its resistance and conditions pass.
-4. Record enclosure fill/lining, ambient temperature, driver-terminal voltage, mounting, and calibration conditions with replacement evidence.
-5. Acquire installed-baffle magnitude/common-timing phase for both drivers, then horizontal off-axis and controlled distortion/compression data.
-6. Validate the filtered drivers, acoustic sum, reverse-polarity null, and final impedance/EPDR after crossover construction.
+1. Preserve the verified C1/C2/C3R production archive, the separate C4/C5/C6 UUID-selected archives, and the separate failed-C3 diagnostic under the [current UMC22 runbook](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md).
+2. When explicitly requested, make a documented signal-free FRD export from C6, retaining its native common-timing phase, `Hann` `2.0 ms` left / `Tukey 0.25` `3.5 ms` right window, no smoothing, and `500 Hz-12 kHz` validity limit.
+3. Close the open window before the next acoustic package and record that room-boundary state once. Do not repeat settings confirmations within an unchanged bounded package.
+4. Complete the bounded conditioning/cooldown loop in [DRIVER_RUNIN.md](DRIVER_RUNIN.md), then promote a reproducible cooled 48 kHz woofer ZMA only if its resistance and conditions pass.
+5. Record enclosure fill/lining, ambient temperature, driver-terminal voltage, mounting, and calibration conditions with replacement evidence.
+6. Prepare a bounded protected-tweeter common-timing measurement package, then acquire the minimum on-axis and horizontal off-axis data needed for crossover/directivity design.
+7. Validate the filtered drivers, acoustic sum, reverse-polarity null, and final impedance/EPDR after crossover construction.
 
 ### 9.2 Remaining driver uncertainties
 
-- Installed acoustic magnitude, phase, and directivity of both drivers.
+- Durable phase-bearing C6 woofer FRD export; installed tweeter magnitude/phase;
+  and useful directivity data for both drivers.
 - Woofer and tweeter distortion/compression at required listening levels.
 - Final damping's effect on the sealed alignment and the woofer-series inductor DCR's effect on $Q_{tc}$.
 - Reproducibility of the cooled woofer impedance after conditioning.

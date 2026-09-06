@@ -22,10 +22,10 @@ which produced an older measurement.
 
 ## 2. Runtime and preflight
 
-Run the client with Windows Python because REW's default API listener is on the
-Windows localhost interface. Start REW, enable its API on the normal port
-`4735`, and leave it open. This machine is configured to start the API with
-REW. From Windows PowerShell in the project root, check connectivity with:
+Start REW, enable its API on the normal port `4735`, and leave it open. This
+machine is configured to start the API with REW. Windows Python remains the
+direct execution route. From Windows PowerShell in the project root, check
+connectivity with:
 
 ```powershell
 .venv\Scripts\python.exe src\rew_api_extract.py status
@@ -34,6 +34,18 @@ REW. From Windows PowerShell in the project root, check connectivity with:
 `status` reports API reachability and whitelisted summaries for measurements
 currently loaded in REW. It is the proportionate preflight before snapshot or
 extraction work.
+
+The host now uses WSL mirrored networking, so the standard-library client can
+also reach the Windows-local API directly from an ordinary WSL session:
+
+```text
+python3 src/rew_api_extract.py status
+```
+
+Within a Codex task, localhost networking and Windows-process interoperability
+remain blocked by the default inner sandbox. Run REW API or Win32-interoperability
+commands with the task's host-access permission; no TCP proxy or filesystem
+request worker is currently required.
 
 ## 3. Read-only session snapshots
 
@@ -98,6 +110,22 @@ current session IDs. The client refuses to write into a non-empty output
 directory unless `--overwrite` is explicit, and does not delete unrelated
 files when overwriting its named outputs.
 
+**CURRENT MANIFEST LIMITATION:** schema version 1 records the frequency-response
+request but does not record whether the optional impulse request used
+`--windowed-ir`. Inspect `impulse-response-metadata.json`: a full raw response
+has the measurement's full sample count, while a windowed response spans only
+the stored left/right support. Do not label an existing ignored impulse CSV raw
+or windowed from `manifest.json` alone. A later client revision should add the
+impulse request mode to the manifest and cover it in the offline tests.
+
+Extraction is signal-free but is not read-only with respect to REW's current
+workspace: REW loads the source `.mdat` and leaves the newly loaded measurement
+copies in the session. Prefer extraction after the live capture set is complete
+or in a disposable REW session. If more production captures must follow, remove
+only the known newly loaded copies before saving the production session, or
+reload the retained production `.mdat`; do not accidentally save API-loaded
+duplicates into the measurement authority.
+
 ### 4.1 Explicit frequency-response settings
 
 When physical interpretation must not depend on REW's current display state,
@@ -135,8 +163,10 @@ The complete reconstruction route is:
 3. Run the applicable command from sections 3 or 4 against the identified REW
    build.
 4. For extracts, confirm that `manifest.json` records the expected source hash,
-   measurement count, stored measurement REW version, request settings, and
-   returned response metadata.
+   measurement count, stored measurement REW version, frequency-response
+   request settings, and returned response metadata. Until the schema-1
+   limitation above is fixed, confirm raw versus windowed impulse content from
+   its sample count and time span as well as from the reconstruction command.
 
 If an exported CSV or FRD becomes a deliberate VituixCAD input or cited
 measurement baseline, copy it to `rew/` with a descriptive filename, retain its
@@ -181,8 +211,18 @@ selection, and optional impulse export. The complete measurements, identifiers,
 hashes, results, and reconstruction command are retained in the
 [qualification record](rew/qualification/REW_API_CLIENT_VALIDATION.md).
 
-The session-snapshot additions pass the offline suite but still require a
-Windows-side live check. WSL-to-Windows process invocation is unavailable in
-the present Codex environment, so repeat `status`, `snapshot`, and one
-controlled explicit-settings extraction after installing or changing REW, or
-after changing this client's endpoint coverage.
+**PASS (2026-09-06):** after enabling WSL mirrored networking and restarting
+WSL and Codex, a host-permitted Linux-side `status` call reached REW at
+`127.0.0.1:4735`, and the GET-only `snapshot` command completed with no failed
+endpoints. Windows command interoperability also passed outside the inner
+sandbox. A host-permitted selected extraction of the retained first
+installed-woofer candidate passed, and a later selected extraction of the final
+C1/C2/C3R production archive passed source-hash, native unsmoothed SPL/phase,
+raw-impulse, and stored-window checks for all three UUIDs. The default sandbox
+still blocks both routes, so future Codex tasks must request host access for
+live REW calls. Full evidence and the current reconstruction command are
+retained in the [qualification record](rew/qualification/REW_API_CLIENT_VALIDATION.md).
+
+Repeat `status`, `snapshot`, and one controlled explicit-settings extraction
+after installing or changing REW, changing WSL networking, or changing this
+client's endpoint coverage.

@@ -29,8 +29,13 @@ repository/runtime problem
 - The separate WSL environment is `.venv-wsl`.
 - Neither environment is committed; dependency and reconstruction details for
   3D models belong in [3D model documentation](3d_models/README.md).
+- `%USERPROFILE%\.wslconfig` now selects WSL mirrored networking. After the
+  required WSL restart, ordinary WSL and host-permitted Codex commands can reach
+  REW's Windows-local API at `127.0.0.1:4735`.
 - REW session-state capture, `.mdat` inspection, and repeatable CSV extraction
-  use Windows Python because REW's API listener is on Windows localhost. See
+  can use either the Windows `.venv` or standard-library Python in WSL. The
+  default Codex sandbox still blocks localhost and Windows interoperability, so
+  live REW commands from Codex require host-access permission. See
   [REW API Client](REW_API_CLIENT.md).
 
 ## 3. GitHub Authentication In WSL
@@ -49,3 +54,9 @@ out of project documentation.
 After changing checkout paths or environments, verify the specific affected
 workflow rather than assuming Windows and WSL state transfer automatically.
 Repository maintenance must preserve unrelated work and follow [AGENTS.md](../AGENTS.md).
+
+For the current REW bridge, the proportionate checks are `cmd.exe /c ver`, an
+HTTP GET of `http://127.0.0.1:4735/measurements`, and
+`python3 src/rew_api_extract.py status`. In a Codex task these checks must use
+host access; failure in the default inner sandbox does not show that ordinary
+WSL or REW is unavailable.

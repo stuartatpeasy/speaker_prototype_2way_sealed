@@ -61,6 +61,11 @@ For the controlled conditioning comparison, use [Driver run-in and stabilisation
 - Match microphone calibration to the actual device, input selector, channel, and orientation. Confirm its application in the stored measurement metadata; preference persistence alone is not evidence that it was applied.
 - Treat a generic frequency-response file as generic-calibrated, not serial-number-specific or absolute-SPL calibration. Record the limitation with resulting measurements.
 - Treat the first low-level sweep as a headroom and metadata check. Capture and review one sweep before repeats, rotation, or reusable export when a procedure requires that gate.
+- After that first capture validates a bounded package, run its remaining named
+  captures consecutively under one standing unchanged-state declaration and
+  common stop rules. Do not require a settings recital between every sweep or
+  merely because a chat changed; repeat the audit after a relevant physical,
+  electrical, application, or day/session boundary.
 - Select a REW-native production window from the actual impulse/ETC and required bandwidth. A short qualification window does not automatically become the production window.
 - Record microphone distance, axis, height, window/gating choices, sample rate, amplifier setting, terminal voltage, and room state.
 - Measure individual drivers before filtered sums, and retain normal- and reverse-polarity results.

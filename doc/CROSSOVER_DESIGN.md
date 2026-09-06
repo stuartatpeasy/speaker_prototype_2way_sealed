@@ -4,13 +4,17 @@
 > - **Owns:** current acoustic direction, driver polarity/topology, NL4 allocation, evidence dependencies, validation gates, and open design decisions
 > - **Does not own:** detailed component-bank and inductor construction engineering; installed-driver evidence; measurement procedures
 > - **Current decision:** develop an approximately 2.2–2.4 kHz LR4-like acoustic crossover from installed ZMA and common-timing FRD data; no circuit or component value is frozen
-> - **Next gate:** acquire valid installed-baffle acoustic data, then optimise a realizable external network and validate the measured sum and load
-> - **Limitations:** no approved phase-bearing installed FRD yet; component values and acoustic polarity remain provisional
+> - **Next gate:** export the approved C6 woofer source capture, acquire a protected common-timing tweeter response, then optimise a realizable external network and validate the measured sum and load
+> - **Limitations:** no durable woofer FRD export or approved tweeter FRD yet; known local woofer early-tail uncertainty near 2.03 kHz; component values and acoustic polarity remain provisional
 > - **As of:** 2026-09-06
 
 This file is the active passive-crossover design authority. The project overview is in [README.md](../README.md), current driver evidence and approved impedance sources are in [DRIVER_ANALYSIS.md](DRIVER_ANALYSIS.md), and detailed prototype-component engineering is in [CROSSOVER_COMPONENT_DEVELOPMENT.md](CROSSOVER_COMPONENT_DEVELOPMENT.md).
 
-All crossover values remain exploratory until installed-baffle acoustic magnitude and phase, directivity, distortion, and the complete measured load are available.
+All crossover values remain exploratory until the approved C6 woofer capture is
+exported, a common-timing tweeter magnitude/phase response is acquired, and the
+prototype network is validated acoustically and electrically. Directivity and
+distortion remain later validation gates rather than reasons to block the first
+reversible external-network iteration.
 
 ## 1. Prototype interface and external crossover
 
@@ -52,7 +56,14 @@ The useful present crossover-region loads near 2.30 kHz are approximately:
 - woofer: 7.98 ohm at +10.8 degrees;
 - tweeter: 3.48 ohm at -5.0 degrees.
 
-These complex loads replace nominal driver impedances in every exploratory model. They do not make optimisation defensible before installed-baffle FRD exists. Include measured component capacitance, inductance, DCR, tolerances, driver spacing, baffle diffraction, and the complete system impedance/phase in the model. Treat textbook tables and optimiser output as seeds, particularly if optimisation produces extreme or implausible values.
+These complex loads replace nominal driver impedances in every exploratory
+model. The approved C6 installed-woofer source capture is sufficient for initial
+prototype modelling once exported with its documented common timing and window;
+the corresponding protected tweeter response is still required before acoustic
+optimisation. Include measured component capacitance, inductance, DCR,
+tolerances, driver spacing, baffle diffraction, and the complete system
+impedance/phase in the model. Treat textbook tables and optimiser output as
+seeds, particularly if optimisation produces extreme or implausible values.
 
 ## 4. Excursion and power philosophy
 
