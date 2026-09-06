@@ -5,18 +5,23 @@ for a particular task takes precedence.
 
 ## 1. Project orientation and authority
 
-1. Begin project work by reading [README.md](README.md), then load only the
-   task-relevant files identified by its documentation index and minimal reading
-   routes.
+1. Begin project work by reading [README.md](README.md), then follow exactly one
+   task-oriented reading route unless the task genuinely spans several topics.
 2. Treat `README.md` as the high-level project source of truth and entry point.
    Treat each indexed topic file as the detailed authority for its subject.
-3. Before driver, enclosure-alignment, crossover, measurement, simulation, or
-   driver-procurement work, read [DRIVER_ANALYSIS.md](DRIVER_ANALYSIS.md).
+3. Before driver, enclosure-alignment, crossover, simulation, or
+   driver-procurement work, read [doc/DRIVER_ANALYSIS.md](doc/DRIVER_ANALYSIS.md).
+   For measurement operation, read it only when the task depends on driver
+   baselines or conclusions; otherwise use the measurement route in `README.md`.
 4. Keep verified measurements, derivations, inferences, provisional decisions,
    and open items explicitly distinguished. Do not silently promote an estimate
    or exploratory result into a settled design decision.
 5. Preserve user work and unrelated changes. Do not initialise Git, commit,
    delete artefacts, or untrack files unless the user asks.
+6. Treat `CURRENT PROCEDURE` and current topic authorities as normal context.
+   Load `QUALIFICATION` records only to audit a gate, change qualified hardware,
+   or diagnose a failure. Load `HISTORY` only for provenance or a superseded
+   decision. Do not routinely ingest history merely because it is linked.
 
 ## 2. Technical communication
 
@@ -75,27 +80,54 @@ it and revisit it from another direction later.
 3. Do not rewrite unrelated documents merely to create activity. “Keep current”
    means correcting documents affected by the work, not introducing churn.
 4. When adding, renaming, moving, or deleting a durable Markdown file, update
-   the documentation index and any affected minimal reading route in
-   [README.md](README.md). Search the whole project for stale filename and link
-   references.
+   the nearest subtree dispatcher and any affected task-oriented reading route
+   in [README.md](README.md). Add detailed qualification or history files to the
+   root map only through their dispatcher. Search the whole project for stale
+   filename and link references.
 5. Keep the root and topic-document section/subsection hierarchy numbered.
 6. Preserve dated history and superseded conclusions where they explain the
    engineering process. Label the new conclusion and why it supersedes the old
    one rather than rewriting history. When a measurement baseline is explicitly
    replaced, update every current conclusion and source reference that depends
    on it.
-7. Maintain the evidence labels and dated change log in
-   [DRIVER_ANALYSIS.md](DRIVER_ANALYSIS.md). Add to that record whenever new
+7. Maintain evidence labels and current driver conclusions in
+   [doc/DRIVER_ANALYSIS.md](doc/DRIVER_ANALYSIS.md). Add to that record whenever
    conditioning, electrical/acoustic measurements, calculations, simulations,
    crossover tuning, pair matching, procurement decisions, or superseding
-   conclusions materially change the driver picture.
-8. Keep specialised procedures beside their data where appropriate (`rew/` for
-   REW work and `vituixcad/` for VituixCAD work), and link them from the relevant
-   indexed Markdown file.
-9. Whenever a generated output becomes intentionally uncommitted, document the
-   complete reconstruction route: retained inputs, generator/tool, pinned or
-   otherwise identified dependencies, configuration, command, and the expected
-   verification result.
+   conclusions materially change the driver picture. Put detailed chronology
+   in its history record and non-driver measurement evidence in the relevant
+   REW qualification or history authority.
+8. Keep specialised procedures under the corresponding documentation subtree
+   (`doc/rew/` for REW work), while retaining measurement and project artefacts
+   in their existing data directories (`rew/` and `vituixcad/`). Link procedures
+   from the relevant indexed Markdown file.
+9. Give each durable fact one current authority. Other current documents should
+   state only the consequence they consume and link to that authority. A history
+   record may repeat a fact as part of dated chronology but must identify itself
+   as non-current context.
+10. Begin each routinely loaded topic authority or procedure with a compact
+    state card where applicable: lifecycle, owns, does not own, read-when rule,
+    current approved action or conclusion, next gate, limitations, and
+    last-reviewed date. Keep detailed results in their owning evidence record.
+11. Whenever a generated output becomes intentionally uncommitted, document the
+    complete reconstruction route: retained inputs, generator/tool, pinned or
+    otherwise identified dependencies, configuration, command, and the expected
+    verification result.
+12. Keep `README.md` as a compact dashboard and router. It may state the current
+    phase, the decision-relevant consequence for each subsystem, task routes,
+    and immediate priorities, but it must not accumulate test transcripts,
+    detailed derivations, qualification evidence, or chronological narrative.
+    Put those details in their owning topic, qualification, or history record.
+13. Keep durable project Markdown under `doc/`, except for the root `README.md`
+    and `AGENTS.md`. Keep measurements, CAD, source code, and generated artefacts
+    in their existing data/source trees rather than moving them under `doc/`.
+    Add a subtree dispatcher only when it materially shortens or clarifies the
+    task routes through that subtree.
+14. Do not use a current procedure as an append-only work log. When a procedure
+    step is completed, move durable results into the owning current authority or
+    qualification record, retain decision-relevant superseded chronology in a
+    dated history record, and revise the procedure to show only its current
+    prerequisites, safe next action, stop rules, and unresolved gates.
 
 ## 6. Keep `.gitignore` current without losing information
 
@@ -136,14 +168,15 @@ it and revisit it from another direction later.
 ## 7. Completion checks
 
 For a user-requested comprehensive documentation review or handover, follow
-[`DOCUMENTATION_REVIEW.md`](DOCUMENTATION_REVIEW.md) in addition to this file.
+[`doc/DOCUMENTATION_REVIEW.md`](doc/DOCUMENTATION_REVIEW.md) in addition to this file.
 
 Before completing any task that changes project files:
 
 1. search affected Markdown and the project index for stale facts, names, and
    links;
 2. verify local Markdown link targets;
-3. confirm new or changed topic documents are indexed appropriately;
+3. confirm new or changed current documents are indexed appropriately and that
+   qualification/history records are reachable through a subtree dispatcher;
 4. confirm every newly ignored output has a committed and documented
    reconstruction path;
 5. inspect the actual ignore result for representative retained and excluded

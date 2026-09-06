@@ -21,7 +21,7 @@ import xml.etree.ElementTree as ET
 MODEL_NAME = "Neutrik_NL4MPXX"
 SOURCE_ROOT = Path(__file__).resolve().parents[2]
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-STEP_PATH = PROJECT_ROOT / "nl4mpxx.stp"
+STEP_PATH = PROJECT_ROOT / "3d_models" / "nl4mpxx.stp"
 OUTPUT_DIR = PROJECT_ROOT / "3d_models" / MODEL_NAME
 DAE_PATH = OUTPUT_DIR / f"{MODEL_NAME}.dae"
 
