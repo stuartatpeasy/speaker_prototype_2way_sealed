@@ -33,11 +33,21 @@ Evidence classes used here are:
 ## 2. Reference Planes And Common Timing
 
 For full-dual measurement, one input records the microphone and the other
-records a protected electrical reference derived from the same amplifier
-output that drives the unit under test. The acoustic response is therefore
-referenced to amplifier output rather than directly to driver terminals. Keep
-the loudspeaker cable unchanged within a driver set and record any later change
-of reference plane.
+records a protected electrical reference derived from the electrical reference
+plane selected for the unit under test. The ordinary woofer route samples the
+driver/amplifier output directly; the protected-tweeter route deliberately
+samples the tweeter terminals after its series capacitor. Keep the loudspeaker
+cable unchanged within a driver set and record any later change of reference
+plane.
+
+With REW's `Make calibration data from loopback response` option, the measured
+reference response becomes a correction curve whose magnitude is defined as
+`0 dB` at `1 kHz`. Frequency-dependent response of the reference path is
+therefore removed, but a deliberate network's gain at `1 kHz` remains as a
+constant magnitude offset. Correct that scalar during modelling from the
+measured network and complex driver load; do not add a second phase or timing
+correction to a valid common-timed FRD. For protected-tweeter C2 the retained
+derived model correction is `+11.14 dB`.
 
 The electrical reference supplies common timing. Both drivers must use the same
 timing convention: do not independently align woofer and tweeter peaks, because
@@ -230,6 +240,19 @@ and capture number. A suitable pattern is:
 ```text
 <driver> installed <angle> <distance> <interface> <date> capture <n>
 ```
+
+For durable FRD exports, the current compact convention is:
+
+```text
+rew/frd/<driver>/<AAA>deg_<distance>_<interface>_<YYYY-MM-DD>.frd
+```
+
+`<AAA>` is a three-digit zero-padded non-negative angle (`000`, `010`, and so
+on), which keeps a single driver's angular files in numerical order. If future
+work adds multiple reference axes, levels, windows, polarities, or sessions at
+one angle, add a concise qualifier after the angle (for example,
+`000deg_tweeter-axis_...`) before allowing two distinct datasets to share one
+path.
 
 Retain the raw `.mdat` as the authority. Record its project-relative path,
 byte size, SHA-256, REW version, and capture names. Exports must identify their

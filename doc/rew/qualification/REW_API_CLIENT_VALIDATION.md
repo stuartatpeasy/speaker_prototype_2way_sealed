@@ -37,13 +37,34 @@ This record preserves detailed live checks of [`src/rew_api_extract.py`](../../.
 
 The source `.mdat` remains authoritative.
 
+**SUBSEQUENT FILE-IDENTITY NOTE — 2026-09-06:** Section 3 validates the version
+of this path committed at `0fe0c90`; it does not describe the later working-tree
+file. After a concurrent throwaway REW instance caused the hardware-owning
+instance to lose its UMC22 handles, the user saved the open omnibus session at
+exit and reloaded it in a single restarted instance. The current file is
+`94,400,301` bytes with SHA-256
+`4cf148afde88732ddbccbb366a53f7601faae6c887654dafcb8d5dd7f2edd2ab`.
+The size/hash change and extra loaded copies are expected consequences of that
+user-reported re-save; they neither invalidate the earlier client validation
+against the committed revision nor make the enlarged omnibus the authority for
+the later UUID-selected production captures.
+
 ### 3.1 Reconstruction command
 
-From Windows PowerShell at the project root:
+To reproduce the 2026-09-05 file identity without altering the current working
+tree, materialise the committed revision into ignored convenience storage from
+WSL:
+
+```text
+git show 0fe0c90:rew/SB17NRX2C35-8_UMC22_full_dual_repeatability.mdat \
+  > outputs/rew-api/SB17NRX2C35-8_UMC22_full_dual_repeatability-0fe0c90.mdat
+```
+
+Then, from Windows PowerShell at the project root:
 
 ```powershell
 .venv\Scripts\python.exe src\rew_api_extract.py extract `
-  "rew\SB17NRX2C35-8_UMC22_full_dual_repeatability.mdat" `
+  "outputs\rew-api\SB17NRX2C35-8_UMC22_full_dual_repeatability-0fe0c90.mdat" `
   --output-dir "outputs\rew-api\sb17nrx2c35-8_umc22_repeatability-final-ir" `
   --measurement 87e15c6b-2405-4b89-bf5a-ff5d4b7d858e `
   --measurement 4f79ceb3-d340-44eb-a42e-c4fd3e7541c8 `
@@ -51,7 +72,11 @@ From Windows PowerShell at the project root:
   --frequency-unit SPL --smoothing None --include-ir
 ```
 
-Expected verification: a warning-free manifest matching the source size and hash above, three selected measurements, and one `131072`-sample impulse CSV per measurement.
+Expected verification: a warning-free manifest matching the historical source
+size and hash above, three selected measurements, and one `131072`-sample
+impulse CSV per measurement. The materialised `.mdat` and extraction directory
+are disposable because commit `0fe0c90`, the command, and the client retain the
+complete reconstruction route.
 
 ## 4. Post-restart bridge and snapshot validation
 
@@ -184,3 +209,60 @@ extraction. This is a convenience-output provenance limitation, not a change to
 either retained `.mdat`; inspect impulse sample count and time span before
 calling such output raw. The current operating limitation is documented in
 [REW_API_CLIENT.md](../../REW_API_CLIENT.md).
+
+## 7. C6 Durable-FRD Validation
+
+**VERIFIED OPERATION — PASS (2026-09-06):** a host-permitted, signal-free
+extraction selected UUID `1547767f-1781-4e51-b824-462b5a2788e1` from the C6
+single-measurement authority and compared its native unsmoothed response with
+the retained FRD export.
+
+- Source `.mdat`: `2,428,186` bytes, SHA-256
+  `6c9a4223073ac9bd52ec7b7ff2dd6e0106f36cd40b9511c0df77a80eeb686ca0`.
+- The manifest returned C6's expected title, UUID, REW build, `48 kHz`,
+  `3.1100022059 ms` delay/direct peak, zero timing shift/offset, and no warning.
+- Stored windows were `Hann` `2.0 ms` left and `Tukey 0.25` `3.5 ms` right at
+  the direct peak, with FDW/MTW off.
+- The FRD contains `31,404` finite native frequency/magnitude/phase rows from
+  `499.877960` to `12000.000966 Hz`.
+- Against the extracted rows, maximum absolute differences are `0.000058 Hz`,
+  `0.000508 dB`, and `0.001508 degrees` circular phase, consistent with the
+  export's printed precision.
+
+Reconstruction command, writing only disposable output:
+
+```text
+python3 src/rew_api_extract.py extract \
+  'rew/SB17NRX2C35-8_installed_0deg_1m_UMC22_C6_2026-09-06.mdat' \
+  --measurement 1547767f-1781-4e51-b824-462b5a2788e1 \
+  --frequency-unit SPL --smoothing None \
+  --output-dir <empty-temporary-directory>
+```
+
+The API load leaves a duplicate in REW; do not save it into a production
+archive. The `.mdat` remains the raw authority and
+`rew/frd/SB17NRX2C35-8/000deg_1m_UMC22_2026-09-06.frd` is the deliberate
+crossover-input export.
+
+## 8. TW1 Common-Position FRD Validation
+
+**VERIFIED OPERATION — PASS (2026-09-06):** a host-permitted read-only live API
+comparison selected UUID `12568bef-2ec1-4cc7-be3a-91460b0659fa` and validated
+the axis-qualified TW1 export against REW's native response.
+
+- Source `.mdat`: `2,428,191` bytes, SHA-256
+  `78abfeec5c1efcfbba510785710cb35cdaa39a7e8d167fe88c1871f5e16928ef`.
+- FRD: `913,085` bytes, SHA-256
+  `03923152b08c36e066cb0f9520c7a76489bf6837e3b85cd06c67af0c12a8e4b7`.
+- Stored windows: `Hann 2.0 ms` left / `Tukey 0.25 3.5 ms` right at displayed
+  reference `3.140 ms`, with FDW/MTW off.
+- The export contains `31,404` native unsmoothed SPL/phase rows from
+  `499.877960` to `12000.000966 Hz`.
+- Maximum absolute differences from the API response are `0.000009 Hz`,
+  `0.000513 dB`, and `0.001498 degrees` circular phase, consistent with printed
+  precision.
+
+The validation was GET-only and neither loaded a duplicate nor altered the
+measurement. The `.mdat` remains the raw authority and
+`rew/frd/SB17NRX2C35-8/000deg_tweeter-axis_1m_UMC22_2026-09-06.frd` is the
+deliberate common-position crossover-input export.

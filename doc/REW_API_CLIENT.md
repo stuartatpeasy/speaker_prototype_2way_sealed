@@ -126,6 +126,16 @@ only the known newly loaded copies before saving the production session, or
 reload the retained production `.mdat`; do not accidentally save API-loaded
 duplicates into the measurement authority.
 
+**CURRENT UMC22 INSTANCE RULE (user-reported, 2026-09-06):** do not open a
+second REW instance while the primary instance must retain the UMC22. Opening a
+throwaway instance for FRD export/re-import inspection caused the original
+instance to permanently lose its UMC22 handles. Recovery required saving the
+open omnibus session, exiting, and reloading it in one restarted REW instance.
+Use one REW process for subsequent hardware work; defer disposable-session
+inspection until the interface is no longer needed, or close the hardware-
+owning instance first. This is an observed operational limitation, not evidence
+of a bad capture.
+
 ### 4.1 Explicit frequency-response settings
 
 When physical interpretation must not depend on REW's current display state,
@@ -220,8 +230,10 @@ installed-woofer candidate passed, and a later selected extraction of the final
 C1/C2/C3R production archive passed source-hash, native unsmoothed SPL/phase,
 raw-impulse, and stored-window checks for all three UUIDs. The default sandbox
 still blocks both routes, so future Codex tasks must request host access for
-live REW calls. Full evidence and the current reconstruction command are
-retained in the [qualification record](rew/qualification/REW_API_CLIENT_VALIDATION.md).
+live REW calls. A subsequent UUID-selected C6 extraction also validated its
+durable FRD against all `31,404` retained rows within printed precision. Full
+evidence and the current reconstruction commands are retained in the
+[qualification record](rew/qualification/REW_API_CLIENT_VALIDATION.md).
 
 Repeat `status`, `snapshot`, and one controlled explicit-settings extraction
 after installing or changing REW, changing WSL networking, or changing this

@@ -37,7 +37,11 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 
 ### 3.1 Project locations
 
-- `rew/`: raw REW measurements and exports, including `.mdat`, `.zma`, tab-delimited impedance exports, and FRD exports.
+- `rew/`: raw REW measurements and impedance exports. Durable acoustic exports
+  use `rew/frd/<driver>/<AAA>deg_<distance>_<interface>_<date>.frd`, with a
+  three-digit zero-padded angle so files sort numerically within a driver. Add
+  an axis qualifier after the angle when one driver has data from more than one
+  vertical observation point.
 - `calibration/`: retained measurement-device calibration sources and documented REW-compatible derivatives.
 - `vituixcad/`: VituixCAD projects and generated outputs.
 - `doc/rew/`: procedures, qualification evidence, active diagnostics, and dated history. Use its [dispatcher](rew/README.md) to select one authority.
@@ -57,7 +61,14 @@ For the controlled conditioning comparison, use [Driver run-in and stabilisation
 
 - Preserve one electrical timing reference and fixed microphone/rotation geometry across both drivers.
 - Use the [interface-neutral FRD method](rew/FRD_MEASUREMENT_METHOD.md) for geometry, timing, repeatability, impulse/ETC review, production-window selection, naming, and provenance.
-- Use exactly one current interface procedure for device routing, calibration assignment, level checks, capture sequence, and stop conditions. For the qualified fallback route, use [UMC22 installed-woofer FRD](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md).
+- Use exactly one current interface procedure for device routing, calibration assignment, level checks, capture sequence, and stop conditions. Use [UMC22 installed-woofer FRD](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md) and [UMC22 protected installed-tweeter FRD](rew/procedures/UMC22_INSTALLED_TWEETER_FRD.md) for the retained, validated common-position source pair and any later explicitly bounded measurement package.
+- Use [UMC22 installed horizontal off-axis FRD](rew/procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md) for the first sparse `+20/+40/+60 degree` raw-driver directivity package; it owns the pivot convention, batch boundaries, topology-change gates, and polar filenames.
+- When a generated loopback-calibration response contains a deliberate series
+  protection network, remember that REW normalises its magnitude to `0 dB` at
+  `1 kHz`. The correction removes the network's frequency-dependent shape but
+  leaves its gain at the normalisation frequency as a constant response offset.
+  For retained protected-tweeter C2, apply the documented derived `+11.14 dB`
+  magnitude scale in the model; do not alter its measured phase or delay.
 - Match microphone calibration to the actual device, input selector, channel, and orientation. Confirm its application in the stored measurement metadata; preference persistence alone is not evidence that it was applied.
 - Treat a generic frequency-response file as generic-calibrated, not serial-number-specific or absolute-SPL calibration. Record the limitation with resulting measurements.
 - Treat the first low-level sweep as a headroom and metadata check. Capture and review one sweep before repeats, rotation, or reusable export when a procedure requires that gate.
@@ -100,6 +111,8 @@ For programmatic REW session-state capture and `.mdat` extraction, use the [REW 
 - [REW procedure and evidence dispatcher](rew/README.md)
 - [Interface-neutral FRD measurement method](rew/FRD_MEASUREMENT_METHOD.md)
 - [Current UMC22 installed-woofer procedure](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md)
+- [Current UMC22 protected installed-tweeter procedure](rew/procedures/UMC22_INSTALLED_TWEETER_FRD.md)
+- [Current UMC22 installed horizontal off-axis procedure](rew/procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md)
 - [Suspended UMC202HD FRD route](rew/procedures/UMC202HD_FRD_SUSPENDED.md)
 - [Reference-fixture operating procedure](rew/fixtures/REFERENCE_FIXTURE_USE.md)
 - [Reference-fixture specification](rew/fixtures/REFERENCE_FIXTURE_SPECIFICATION.md)

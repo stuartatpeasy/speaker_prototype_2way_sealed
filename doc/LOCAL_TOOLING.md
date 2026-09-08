@@ -11,7 +11,7 @@ reconstruction details
 **Read when:** maintaining local tooling, moving the checkout, or diagnosing a
 repository/runtime problem
 
-**Last reviewed:** 2026-09-06
+**Last reviewed:** 2026-09-07
 
 ## 1. Repository Paths
 
@@ -20,8 +20,8 @@ repository/runtime problem
 - WSL2 automation uses the same files through
   `/mnt/c/Users/swallace/Projects/Speaker prototype`.
 - Keep the repository on the Windows drive unless a deliberate migration also
-  updates the absolute impedance-file paths in
-  `vituixcad/Prototype loudspeaker.vxp` and verifies every Windows application.
+  updates the absolute source paths in the retained VituixCAD projects and
+  verifies every Windows application.
 
 ## 2. Python And Application Boundary
 

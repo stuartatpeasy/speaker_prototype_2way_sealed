@@ -1,20 +1,20 @@
 # UMC22 Installed-Woofer FRD Runbook
 
 Lifecycle: **CURRENT PROCEDURE**
-Current approved action: keep every signal stopped; no more unchanged woofer
-repeatability sweeps are needed. C6, supported by immediate repeat C5, passes
-the proportionate initial crossover-design gate in Section 6. Close the open
-window before the next acoustic package and treat that as the new recorded room
-boundary state.
-Current capture: C1, C2, C3R, and post-repair C4-C6 are valid responses with the
-common `Hann` `2.0 ms` left / `Tukey 0.25` `3.5 ms` right window at their own
-direct peaks, with FDW/MTW off. C6 is the selected current installed-woofer
-source capture for initial crossover modelling; no durable FRD export has yet
-been authorised or made.
+Current approved action: preserve TW1's validated axis-qualified `.mdat` and
+restored FRD. No second TW1 sweep is justified; use the common-position TW1/C2
+pair for initial crossover modelling.
+Current capture: C1, C2, C3R, post-repair C4-C6, and common-position TW1 are
+valid responses. C1-C6 store the common `Hann` `2.0 ms` left /
+`Tukey 0.25` `3.5 ms` right window at their own direct peaks, with FDW/MTW off;
+TW1 has passed review and stores that approved window. C6 is the selected
+woofer-axis source and its durable export is
+`rew/frd/SB17NRX2C35-8/000deg_1m_UMC22_2026-09-06.frd`.
 Required qualification: **PASS**, recorded in
 [`../qualification/UMC22_FRD_QUALIFICATION.md`](../qualification/UMC22_FRD_QUALIFICATION.md).
-Do not proceed to: any output test or sweep, cabinet rotation, FRD export,
-raw-tweeter measurement, or polar work.
+Do not proceed to: a second woofer sweep, protected-tweeter excitation, cabinet
+rotation, or polar work. Electrical change to the protected tweeter route may
+begin only after TW1 is saved/exported and the amplifier is powered down.
 Last verified state report: 2026-09-06
 
 ## 1. Scope And Risk Boundary
@@ -292,12 +292,14 @@ spread is `0.08` sample, which at `48 kHz` is
 That accounts for the measured delay spread to about `0.012 us`, so the timing
 data do not indicate physical source-to-microphone distance drift.
 
-C6 is therefore approved as the current installed-woofer source capture for
-initial crossover modelling, with C5 as its repeatability witness. C4 remains
-valid evidence of approximately `0.5-0.6 dB` local early-tail uncertainty near
-`2.03 kHz`; it is not discarded. This is sufficient for an external prototype
-crossover that will be measured and iterated. It is not a claim of laboratory
-metrology, a frozen production response, or unit-to-unit tolerance.
+C6 is therefore approved as the current woofer-axis source capture, with C5 as
+its repeatability witness. C4 remains valid evidence of approximately
+`0.5-0.6 dB` local early-tail uncertainty near `2.03 kHz`; it is not discarded.
+This is sufficient woofer-axis evidence for an external prototype crossover
+that will be measured and iterated. After the microphone's later move to the
+tweeter axis, TW1 subsequently supplied the required companion capture from
+that fixed point for the common-position summation pair. This is not a claim of
+laboratory metrology, a frozen production response, or unit-to-unit tolerance.
 
 The variable tail weights a small acoustic, structural, support, cable, or
 nearby-object change more strongly than scalar electrical gain, but a unique
@@ -327,10 +329,107 @@ Current safe actions are:
 5. API verification and signal-free analysis loaded duplicate copies into the
    current REW workspace. Session IDs are unstable; do not use `Save all` or
    save those duplicates into any authority. The verified files are complete.
+6. Treat
+   `rew/frd/SB17NRX2C35-8/000deg_1m_UMC22_2026-09-06.frd` as the durable C6
+   design export: `913,746` bytes, SHA-256
+   `af3142aeff9dcd232ddb61878452c31afe5cae5446e4bd266b2e4e337488c1ca`.
+   A fresh selected API extraction matches all `31,404` frequency/magnitude/
+   phase rows within printed precision. The `.mdat` remains authoritative.
 
-No further unchanged woofer repeat is justified. FRD export remains a separate
-signal-free action, and raw-tweeter or polar measurement still requires its own
-explicitly released package and protection/rotation prerequisites.
+No further unchanged woofer repeat or export is required. The microphone's
+reported `150 mm` move creates a new and useful observation point rather than a
+repeatability question. At `1000 mm` perpendicular distance, the woofer is
+`sqrt(1.000^2 + 0.150^2) = 1.01119 m` from that point, adding approximately
+`32.6 us` or `27.0 degrees` at `2.30 kHz` relative to the tweeter. Preserve that
+geometric phase by measuring both drivers without another microphone or cabinet
+move.
+
+### 6.1 Next Common-Position Woofer Package
+
+Before any signal, confirm that the capsule remains `1000 mm` from the baffle
+plane on the tweeter axis, the window is closed, the original qualified woofer
+wiring/reference route is still intact, the present power state is known, and
+the system is silent and normal. Repeat the Section 4 REW audit because the
+geometry changed, but do not repeat fixture qualification or a level tone when
+the electrical route and controls are unchanged.
+
+**USER-REPORTED PHYSICAL GATE — PASS (2026-09-06):** capsule remains
+`1000 mm` from the baffle plane, window closed, amplifier powered, no wiring
+change, and system silent and normal. The only reported physical change since
+C6 is the intentional `150 mm` microphone raise onto the tweeter axis.
+
+**VERIFIED NO-EXCITATION API GATE — PASS (2026-09-06):** a complete snapshot
+returned no failed endpoint and confirmed audio ready, Generator stopped, Java
+`Stereo only`, exact exclusive UMC22 endpoints, `48 kHz`, L/L/L/R routing,
+`ECM8000_calibration_data.csv` on input L and no calibration file on R, no
+separate output calibration, loopback calibration/timing with merge off and
+zero offset, `-20 dBFS`, `20-20000 Hz`, `256k`, one repetition, and clipping
+abort enabled. The prepared title was
+`SB17-IW-0deg-1m-U22-260906-TW1`; `TW1` is retained as the documented first
+tweeter-axis-waypoint woofer capture.
+
+The released one-sweep package was:
+
+| Field | Required value |
+| --- | --- |
+| Name | `SB17-IW-0deg-1m-U22-260906-TW1` |
+| Range | `20-20000 Hz` |
+| Level | `-20 dBFS` |
+| Length | `256k` |
+| Repetitions | `1` |
+| Routing | existing `L/L/L/R` |
+| Clipping abort | enabled |
+
+**USER-REPORTED CAPTURE RESULT — PASS (2026-09-06):** TW1 completed with no
+warning, clipping, or anomaly. Minimum displayed headroom was `8.8 dB` and the
+reference-input figure remained `33.7 dB`. The woofer alone remained connected
+to the amplifier and unmodified sampling harness; the prepared capacitor and
+tweeter were not in circuit.
+
+**VERIFIED API RESULT — PASS:** TW1 is UUID
+`12568bef-2ec1-4cc7-be3a-91460b0659fa`, captured `17:52:37` in REW V5.40 beta
+133 at `48 kHz`. Its direct peak/System Delay is `3.1388593352 ms`, IR start is
+`3.0208333333 ms`, SNR is `42.75 dB`, and timing offset, cumulative IR shift,
+and clock adjustment are zero. A post-capture snapshot confirmed audio ready,
+Generator stopped, no current error/block, and the intended `-20 dBFS`,
+`20-20000 Hz`, `256k`, one-repetition settings. Cumulative warning entries at
+`17:27-17:33` predate TW1 and belong to the throwaway-instance event.
+
+**DERIVED REVIEW — PASS:** TW1's direct arrival is `28.857 us` later than C6,
+against `32.616 us` predicted for the reported `150 mm` vertical move at
+`1.000 m`; residual is `-3.759 us`. A signal-free common-window diagnostic at
+the nearest native bin to `2.297 kHz` gives TW1 minus C6 of `-0.271 dB` and
+`-22.12 degrees`, becoming `+1.74 degrees` after removing the measured delay.
+The first stronger late-energy maximum occurs approximately `3.60 ms` after
+TW1's direct peak. This supports a REW-native `Hann 2.0 ms` left /
+`Tukey 0.25 3.5 ms` right window at exact reference `3.1388593352 ms`, with
+FDW/MTW off. The offline one-sided taper approximation was diagnostic only;
+the retained/exported response must be REW's native result.
+
+No repeat is planned: the unchanged route already has repeatability evidence,
+while TW1's purpose is the new common observation point and it passes.
+
+**VERIFIED RETENTION / RESOLVED EXPORT DISPLACEMENT:** the axis-qualified single-measurement `.mdat` is
+`2,428,191` bytes with SHA-256
+`78abfeec5c1efcfbba510785710cb35cdaa39a7e8d167fe88c1871f5e16928ef`.
+The live UUID stores `Hann 2.0 ms` left / `Tukey 0.25 3.5 ms` right,
+FDW/MTW off, at displayed reference `3.140 ms`. Its `1.141 us` displacement
+from the fitted peak is sub-sample and immaterial. The native unsmoothed
+magnitude/phase FRD
+`rew/frd/SB17NRX2C35-8/000deg_tweeter-axis_1m_UMC22_2026-09-06.frd` is
+`913,085` bytes with SHA-256
+`03923152b08c36e066cb0f9520c7a76489bf6837e3b85cd06c67af0c12a8e4b7`.
+Its `31,404` rows span `499.877960-12000.000966 Hz` and match the live native
+UUID-selected response within `0.000009 Hz`, `0.000513 dB`, and
+`0.001498 degrees` circular phase. The later tweeter export accidentally
+overwrote this path, but its bytes were first preserved at the correct SB26
+path and TW1 was then re-exported. The restored file is exactly `913,085` bytes
+with the original SHA-256 above and its header again identifies TW1. No unique
+evidence was lost and no measurement repeat is required.
+
+After those signal-free retention steps, power the amplifier down with volume
+fully down and follow the separate
+[protected-tweeter runbook](UMC22_INSTALLED_TWEETER_FRD.md).
 
 ## 7. Global Stop Rules And Limitations
 

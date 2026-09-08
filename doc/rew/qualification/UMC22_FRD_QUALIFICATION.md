@@ -261,6 +261,16 @@ It is unique raw evidence and must not be deleted or ignored. The REW API
 client extracted all eight session measurements without manifest warnings,
 with `None` smoothing and a common `0.3662109673 Hz`, 54,559-point grid.
 
+**SUBSEQUENT FILE-IDENTITY NOTE — 2026-09-06:** the block above identifies the
+qualified archive revision retained in Git commit `0fe0c90`. The working-tree
+path was later re-saved at exit after a concurrent throwaway REW instance
+caused the primary instance to lose its UMC22 handles. That expected user-
+reported re-save is now `94,400,301` bytes with SHA-256
+`4cf148afde88732ddbccbb366a53f7601faae6c887654dafcb8d5dd7f2edd2ab` and may
+contain loaded duplicates. Preserve it, but use the committed revision for the
+qualified archive identity and the later UUID-selected single-measurement
+archives for current production evidence.
+
 The first `1-5 kHz` comparison under stored long default Tukey `0.25` windows
 (`311.9167 ms` left, `500 ms` right) failed: median/95th/maximum magnitude range
 was `1.056`/`4.354`/`32.364 dB`, and circular-phase range was

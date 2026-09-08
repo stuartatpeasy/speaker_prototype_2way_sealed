@@ -30,6 +30,8 @@ The lifecycle labels mean:
 | Task | Read first | Add only if needed |
 | --- | --- | --- |
 | UMC22 installed-woofer capture or repeatability investigation | [`procedures/UMC22_INSTALLED_WOOFER_FRD.md`](procedures/UMC22_INSTALLED_WOOFER_FRD.md) | [`FRD_MEASUREMENT_METHOD.md`](FRD_MEASUREMENT_METHOD.md) when choosing/reviewing the production window or comparing captures; [`../DRIVER_ANALYSIS.md`](../DRIVER_ANALYSIS.md) when assessing or promoting driver-design evidence |
+| UMC22 protected installed-tweeter capture | [`procedures/UMC22_INSTALLED_TWEETER_FRD.md`](procedures/UMC22_INSTALLED_TWEETER_FRD.md) | [`FRD_MEASUREMENT_METHOD.md`](FRD_MEASUREMENT_METHOD.md) for common timing/window review; [`../DRIVER_ANALYSIS.md`](../DRIVER_ANALYSIS.md) for the measured load and protection derivation |
+| UMC22 installed-driver horizontal off-axis series | [`procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md`](procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md) | The completed woofer/tweeter runbooks only if an existing electrical-route fact is disputed; qualification only for a failed gate or changed hardware |
 | General installed-driver measurement design or FRD review | [`FRD_MEASUREMENT_METHOD.md`](FRD_MEASUREMENT_METHOD.md) | The applicable interface procedure |
 | Audit the UMC22 release | [`qualification/UMC22_FRD_QUALIFICATION.md`](qualification/UMC22_FRD_QUALIFICATION.md) | The dated UMC22 history only for failed or superseded branches |
 | Audit or reproduce REW API extraction validation | [`qualification/REW_API_CLIENT_VALIDATION.md`](qualification/REW_API_CLIENT_VALIDATION.md) | [`../REW_API_CLIENT.md`](../REW_API_CLIENT.md) for the current operating procedure |
