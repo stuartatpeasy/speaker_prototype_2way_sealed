@@ -4,10 +4,6 @@
 <SPEAKER>
   <Description />
   <ReferenceAngle>0</ReferenceAngle>
-  <DualPlane>False</DualPlane>
-  <KeywordHor>hor</KeywordHor>
-  <KeywordVer>ver</KeywordVer>
-  <AngleMultiplier>1</AngleMultiplier>
   <XMin>20</XMin>
   <XMax>20000</XMax>
   <Interpolate>True</Interpolate>
@@ -388,18 +384,18 @@
     <PART xi="5">
       <Type>Ground</Type>
       <CenX>53</CenX>
-      <CenY>44</CenY>
+      <CenY>36</CenY>
       <Open>False</Open>
       <Rotated>False</Rotated>
       <GUID />
       <WIRE wi="0">
         <X>53</X>
-        <Y>43</Y>
+        <Y>35</Y>
       </WIRE>
     </PART>
     <PART xi="6">
       <Type>Inductor</Type>
-      <CenX>31</CenX>
+      <CenX>33</CenX>
       <CenY>6</CenY>
       <Open>False</Open>
       <Shorted>False</Shorted>
@@ -457,17 +453,17 @@
         <OptiBlock>False</OptiBlock>
       </PARAM>
       <WIRE wi="0">
-        <X>28</X>
+        <X>30</X>
         <Y>6</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>34</X>
+        <X>36</X>
         <Y>6</Y>
       </WIRE>
     </PART>
     <PART xi="7">
       <Type>Inductor</Type>
-      <CenX>41</CenX>
+      <CenX>43</CenX>
       <CenY>6</CenY>
       <Open>False</Open>
       <Shorted>False</Shorted>
@@ -525,17 +521,17 @@
         <OptiBlock>False</OptiBlock>
       </PARAM>
       <WIRE wi="0">
-        <X>38</X>
+        <X>40</X>
         <Y>6</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>44</X>
+        <X>46</X>
         <Y>6</Y>
       </WIRE>
     </PART>
     <PART xi="8">
       <Type>Capacitor</Type>
-      <CenX>36</CenX>
+      <CenX>38</CenX>
       <CenY>11</CenY>
       <Open>False</Open>
       <Shorted>False</Shorted>
@@ -563,45 +559,45 @@
         <OptiBlock>False</OptiBlock>
       </PARAM>
       <WIRE wi="0">
-        <X>36</X>
+        <X>38</X>
         <Y>14</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>36</X>
+        <X>38</X>
         <Y>8</Y>
       </WIRE>
     </PART>
     <PART xi="9">
       <Type>Wire</Type>
-      <CenX>37</CenX>
+      <CenX>39</CenX>
       <CenY>7</CenY>
       <Open>False</Open>
       <GUID />
       <WIRE wi="0">
-        <X>36</X>
+        <X>38</X>
         <Y>8</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>36</X>
+        <X>38</X>
         <Y>6</Y>
       </WIRE>
       <WIRE wi="2">
-        <X>38</X>
+        <X>40</X>
         <Y>6</Y>
       </WIRE>
     </PART>
     <PART xi="10">
       <Type>Wire</Type>
-      <CenX>35</CenX>
+      <CenX>37</CenX>
       <CenY>6</CenY>
       <Open>False</Open>
       <GUID />
       <WIRE wi="0">
-        <X>34</X>
+        <X>36</X>
         <Y>6</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>36</X>
+        <X>38</X>
         <Y>6</Y>
       </WIRE>
     </PART>
@@ -626,19 +622,19 @@
     </PART>
     <PART xi="12">
       <Type>Ground</Type>
-      <CenX>36</CenX>
+      <CenX>38</CenX>
       <CenY>15</CenY>
       <Open>False</Open>
       <Rotated>False</Rotated>
       <GUID />
       <WIRE wi="0">
-        <X>36</X>
+        <X>38</X>
         <Y>14</Y>
       </WIRE>
     </PART>
     <PART xi="13">
       <Type>Capacitor</Type>
-      <CenX>30</CenX>
+      <CenX>26</CenX>
       <CenY>25</CenY>
       <Open>False</Open>
       <Shorted>False</Shorted>
@@ -666,17 +662,17 @@
         <OptiBlock>False</OptiBlock>
       </PARAM>
       <WIRE wi="0">
-        <X>27</X>
+        <X>23</X>
         <Y>25</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>33</X>
+        <X>29</X>
         <Y>25</Y>
       </WIRE>
     </PART>
     <PART xi="14">
       <Type>Capacitor</Type>
-      <CenX>40</CenX>
+      <CenX>36</CenX>
       <CenY>25</CenY>
       <Open>False</Open>
       <Shorted>False</Shorted>
@@ -704,17 +700,17 @@
         <OptiBlock>False</OptiBlock>
       </PARAM>
       <WIRE wi="0">
-        <X>37</X>
+        <X>33</X>
         <Y>25</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>43</X>
+        <X>39</X>
         <Y>25</Y>
       </WIRE>
     </PART>
     <PART xi="15">
       <Type>Inductor</Type>
-      <CenX>35</CenX>
+      <CenX>31</CenX>
       <CenY>30</CenY>
       <Open>False</Open>
       <Shorted>False</Shorted>
@@ -772,63 +768,63 @@
         <OptiBlock>False</OptiBlock>
       </PARAM>
       <WIRE wi="0">
-        <X>35</X>
+        <X>31</X>
         <Y>33</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>35</X>
+        <X>31</X>
         <Y>27</Y>
       </WIRE>
     </PART>
     <PART xi="16">
       <Type>Ground</Type>
-      <CenX>35</CenX>
-      <CenY>34</CenY>
+      <CenX>31</CenX>
+      <CenY>36</CenY>
       <Open>False</Open>
       <Rotated>False</Rotated>
       <GUID />
       <WIRE wi="0">
-        <X>35</X>
-        <Y>33</Y>
+        <X>31</X>
+        <Y>35</Y>
       </WIRE>
     </PART>
     <PART xi="17">
       <Type>Wire</Type>
-      <CenX>36</CenX>
+      <CenX>32</CenX>
       <CenY>26</CenY>
       <Open>False</Open>
       <GUID />
       <WIRE wi="0">
-        <X>35</X>
+        <X>31</X>
         <Y>27</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>35</X>
+        <X>31</X>
         <Y>25</Y>
       </WIRE>
       <WIRE wi="2">
-        <X>37</X>
+        <X>33</X>
         <Y>25</Y>
       </WIRE>
     </PART>
     <PART xi="18">
       <Type>Wire</Type>
-      <CenX>34</CenX>
+      <CenX>30</CenX>
       <CenY>25</CenY>
       <Open>False</Open>
       <GUID />
       <WIRE wi="0">
-        <X>33</X>
+        <X>29</X>
         <Y>25</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>35</X>
+        <X>31</X>
         <Y>25</Y>
       </WIRE>
     </PART>
     <PART xi="19">
       <Type>Resistor</Type>
-      <CenX>48</CenX>
+      <CenX>44</CenX>
       <CenY>25</CenY>
       <Open>False</Open>
       <Shorted>False</Shorted>
@@ -856,56 +852,37 @@
         <OptiBlock>False</OptiBlock>
       </PARAM>
       <WIRE wi="0">
-        <X>45</X>
+        <X>41</X>
         <Y>25</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>51</X>
+        <X>47</X>
         <Y>25</Y>
       </WIRE>
     </PART>
     <PART xi="20">
       <Type>Wire</Type>
-      <CenX>44</CenX>
+      <CenX>40</CenX>
       <CenY>25</CenY>
       <Open>False</Open>
       <GUID />
       <WIRE wi="0">
-        <X>43</X>
+        <X>39</X>
         <Y>25</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>45</X>
+        <X>41</X>
         <Y>25</Y>
       </WIRE>
     </PART>
     <PART xi="21">
       <Type>Wire</Type>
-      <CenX>52</CenX>
-      <CenY>26</CenY>
-      <Open>False</Open>
-      <GUID />
-      <WIRE wi="0">
-        <X>53</X>
-        <Y>27</Y>
-      </WIRE>
-      <WIRE wi="1">
-        <X>53</X>
-        <Y>25</Y>
-      </WIRE>
-      <WIRE wi="2">
-        <X>51</X>
-        <Y>25</Y>
-      </WIRE>
-    </PART>
-    <PART xi="22">
-      <Type>Wire</Type>
-      <CenX>47</CenX>
+      <CenX>48</CenX>
       <CenY>6</CenY>
       <Open>False</Open>
       <GUID />
       <WIRE wi="0">
-        <X>44</X>
+        <X>46</X>
         <Y>6</Y>
       </WIRE>
       <WIRE wi="1">
@@ -913,9 +890,9 @@
         <Y>6</Y>
       </WIRE>
     </PART>
-    <PART xi="23">
+    <PART xi="22">
       <Type>Resistor</Type>
-      <CenX>61</CenX>
+      <CenX>49</CenX>
       <CenY>30</CenY>
       <Open>False</Open>
       <Shorted>False</Shorted>
@@ -943,78 +920,44 @@
         <OptiBlock>False</OptiBlock>
       </PARAM>
       <WIRE wi="0">
-        <X>61</X>
+        <X>49</X>
         <Y>33</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>61</X>
+        <X>49</X>
         <Y>27</Y>
       </WIRE>
     </PART>
-    <PART xi="24">
+    <PART xi="23">
       <Type>Wire</Type>
-      <CenX>57</CenX>
-      <CenY>27</CenY>
-      <Open>False</Open>
-      <GUID />
-      <WIRE wi="0">
-        <X>53</X>
-        <Y>27</Y>
-      </WIRE>
-      <WIRE wi="1">
-        <X>61</X>
-        <Y>27</Y>
-      </WIRE>
-    </PART>
-    <PART xi="25">
-      <Type>Wire</Type>
-      <CenX>57</CenX>
-      <CenY>36</CenY>
-      <Open>False</Open>
-      <GUID />
-      <WIRE wi="0">
-        <X>61</X>
-        <Y>33</Y>
-      </WIRE>
-      <WIRE wi="1">
-        <X>53</X>
-        <Y>33</Y>
-      </WIRE>
-      <WIRE wi="2">
-        <X>53</X>
-        <Y>43</Y>
-      </WIRE>
-    </PART>
-    <PART xi="26">
-      <Type>Wire</Type>
-      <CenX>26</CenX>
+      <CenX>25</CenX>
       <CenY>15</CenY>
       <Open>False</Open>
       <GUID />
       <WIRE wi="0">
-        <X>27</X>
+        <X>23</X>
         <Y>25</Y>
       </WIRE>
       <WIRE wi="1">
-        <X>25</X>
+        <X>21</X>
         <Y>25</Y>
       </WIRE>
       <WIRE wi="2">
-        <X>25</X>
+        <X>21</X>
         <Y>15</Y>
       </WIRE>
       <WIRE wi="3">
-        <X>25</X>
+        <X>21</X>
         <Y>6</Y>
       </WIRE>
       <WIRE wi="4">
-        <X>28</X>
+        <X>30</X>
         <Y>6</Y>
       </WIRE>
     </PART>
-    <PART xi="27">
+    <PART xi="24">
       <Type>Wire</Type>
-      <CenX>20</CenX>
+      <CenX>15</CenX>
       <CenY>16</CenY>
       <Open>False</Open>
       <GUID />
@@ -1027,12 +970,129 @@
         <Y>15</Y>
       </WIRE>
       <WIRE wi="2">
-        <X>25</X>
+        <X>15</X>
         <Y>15</Y>
       </WIRE>
-      <WIRE wi="3">
-        <X>25</X>
+    </PART>
+    <PART xi="25">
+      <Type>Wire</Type>
+      <CenX>18</CenX>
+      <CenY>15</CenY>
+      <Open>False</Open>
+      <GUID />
+      <WIRE wi="0">
+        <X>15</X>
         <Y>15</Y>
+      </WIRE>
+      <WIRE wi="1">
+        <X>21</X>
+        <Y>15</Y>
+      </WIRE>
+    </PART>
+    <PART xi="26">
+      <Type>Wire</Type>
+      <CenX>49</CenX>
+      <CenY>26</CenY>
+      <Open>False</Open>
+      <GUID />
+      <WIRE wi="0">
+        <X>49</X>
+        <Y>27</Y>
+      </WIRE>
+      <WIRE wi="1">
+        <X>49</X>
+        <Y>25</Y>
+      </WIRE>
+    </PART>
+    <PART xi="27">
+      <Type>Wire</Type>
+      <CenX>48</CenX>
+      <CenY>25</CenY>
+      <Open>False</Open>
+      <GUID />
+      <WIRE wi="0">
+        <X>49</X>
+        <Y>25</Y>
+      </WIRE>
+      <WIRE wi="1">
+        <X>47</X>
+        <Y>25</Y>
+      </WIRE>
+    </PART>
+    <PART xi="28">
+      <Type>Wire</Type>
+      <CenX>51</CenX>
+      <CenY>26</CenY>
+      <Open>False</Open>
+      <GUID />
+      <WIRE wi="0">
+        <X>53</X>
+        <Y>27</Y>
+      </WIRE>
+      <WIRE wi="1">
+        <X>53</X>
+        <Y>25</Y>
+      </WIRE>
+      <WIRE wi="2">
+        <X>49</X>
+        <Y>25</Y>
+      </WIRE>
+    </PART>
+    <PART xi="29">
+      <Type>Wire</Type>
+      <CenX>31</CenX>
+      <CenY>34</CenY>
+      <Open>False</Open>
+      <GUID />
+      <WIRE wi="0">
+        <X>31</X>
+        <Y>33</Y>
+      </WIRE>
+      <WIRE wi="1">
+        <X>31</X>
+        <Y>35</Y>
+      </WIRE>
+    </PART>
+    <PART xi="30">
+      <Type>Ground</Type>
+      <CenX>49</CenX>
+      <CenY>36</CenY>
+      <Open>False</Open>
+      <Rotated>False</Rotated>
+      <GUID />
+      <WIRE wi="0">
+        <X>49</X>
+        <Y>35</Y>
+      </WIRE>
+    </PART>
+    <PART xi="31">
+      <Type>Wire</Type>
+      <CenX>49</CenX>
+      <CenY>34</CenY>
+      <Open>False</Open>
+      <GUID />
+      <WIRE wi="0">
+        <X>49</X>
+        <Y>35</Y>
+      </WIRE>
+      <WIRE wi="1">
+        <X>49</X>
+        <Y>33</Y>
+      </WIRE>
+    </PART>
+    <PART xi="32">
+      <Type>Wire</Type>
+      <CenX>53</CenX>
+      <CenY>34</CenY>
+      <Open>False</Open>
+      <GUID />
+      <WIRE wi="0">
+        <X>53</X>
+        <Y>33</Y>
+      </WIRE>
+      <WIRE wi="1">
+        <X>53</X>
+        <Y>35</Y>
       </WIRE>
     </PART>
   </CROSSOVER>

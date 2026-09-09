@@ -3,7 +3,7 @@
 Lifecycle: **QUALIFICATION EVIDENCE**
 Qualification date: 2026-09-05
 Release: **PASS for controlled installed-woofer FRD**
-Current procedure:
+Retained procedure:
 [`../procedures/UMC22_INSTALLED_WOOFER_FRD.md`](../procedures/UMC22_INSTALLED_WOOFER_FRD.md)
 Detailed chronology:
 [`../history/UMC22_FRD_QUALIFICATION_LOG_2026-09-05.md`](../history/UMC22_FRD_QUALIFICATION_LOG_2026-09-05.md)
@@ -29,16 +29,18 @@ warning, clipping, dropout, or other abnormality. System Delay spread was
 magnitude spread was `0.0743 dB` and maximum circular-phase spread was
 `1.931 degrees`.
 
-The release is limited by:
+At the qualification date, the release was limited by:
 
 - the supplied ECM8000 data being generic 0-degree response correction, not
   serial-number-specific and not absolute-sensitivity calibration;
 - no absolute-SPL calibration;
 - the qualification's `2.0 ms` left / `1.0 ms` right window being a derived
   analysis window, not a stored REW-native production window;
-- a final production window still needing selection from each reusable
+- a final production window still needing selection from each then-reusable
   capture's impulse/ETC; and
-- no release for raw-tweeter or polar measurements.
+- no release at that gate for raw-tweeter or polar measurements. Those later
+  routes were separately completed and are not retroactive parts of this
+  qualification.
 
 ## 2. Engineering Basis
 
@@ -265,11 +267,11 @@ with `None` smoothing and a common `0.3662109673 Hz`, 54,559-point grid.
 qualified archive revision retained in Git commit `0fe0c90`. The working-tree
 path was later re-saved at exit after a concurrent throwaway REW instance
 caused the primary instance to lose its UMC22 handles. That expected user-
-reported re-save is now `94,400,301` bytes with SHA-256
-`4cf148afde88732ddbccbb366a53f7601faae6c887654dafcb8d5dd7f2edd2ab` and may
-contain loaded duplicates. Preserve it, but use the committed revision for the
-qualified archive identity and the later UUID-selected single-measurement
-archives for current production evidence.
+reported re-save was subsequently continued as the Seed A omnibus. Its latest
+retained revision is `63,595,690` bytes with SHA-256
+`ca95668820aa965e91e45df6929cc82dfacafdf015d130c1f825bd5397619383`.
+Preserve it, but use commit `0fe0c90` for the qualified archive identity and
+the later named/UUID-selected records for current measurement evidence.
 
 The first `1-5 kHz` comparison under stored long default Tukey `0.25` windows
 (`311.9167 ms` left, `500 ms` right) failed: median/95th/maximum magnitude range

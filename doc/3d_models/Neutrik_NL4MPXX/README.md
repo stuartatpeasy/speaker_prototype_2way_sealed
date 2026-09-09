@@ -31,4 +31,9 @@ The converter uses `0.35 mm` linear and `0.65 rad` angular deflection. The resul
 python -m pip install cadquery-ocp-novtk
 ```
 
-The shared preview renderer reads the generated DAE directly, so OpenCascade is needed only for STEP conversion.
+The exact package version used for the present DAE was not recorded. Treat the
+documented STEP hash, tessellation settings, bounds, solid/face count, triangle
+count, and validity checks as the current semantic reconstruction test, and pin
+the package version before changing or re-qualifying the converter. The shared
+preview renderer reads the generated DAE directly, so OpenCascade is needed
+only for STEP conversion.

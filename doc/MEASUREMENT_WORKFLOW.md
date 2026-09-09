@@ -8,6 +8,7 @@
 | Detailed driver evidence | [Driver analysis](DRIVER_ANALYSIS.md) |
 | Procedure dispatcher | [REW documentation map](rew/README.md) |
 | Measurement artefacts | [`rew/`](../rew/) |
+| Current project gate | Qualified as-built Seed A impedance/phase, then controlled full-system distortion/compression and thermal validation |
 
 ## 1. Measurement principles
 
@@ -61,8 +62,15 @@ For the controlled conditioning comparison, use [Driver run-in and stabilisation
 
 - Preserve one electrical timing reference and fixed microphone/rotation geometry across both drivers.
 - Use the [interface-neutral FRD method](rew/FRD_MEASUREMENT_METHOD.md) for geometry, timing, repeatability, impulse/ETC review, production-window selection, naming, and provenance.
-- Use exactly one current interface procedure for device routing, calibration assignment, level checks, capture sequence, and stop conditions. Use [UMC22 installed-woofer FRD](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md) and [UMC22 protected installed-tweeter FRD](rew/procedures/UMC22_INSTALLED_TWEETER_FRD.md) for the retained, validated common-position source pair and any later explicitly bounded measurement package.
-- Use [UMC22 installed horizontal off-axis FRD](rew/procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md) for the first sparse `+20/+40/+60 degree` raw-driver directivity package; it owns the pivot convention, batch boundaries, topology-change gates, and polar filenames.
+- Use exactly one applicable interface procedure for device routing,
+  calibration assignment, level checks, capture sequence, and stop conditions.
+  The installed-woofer, protected-tweeter, and raw horizontal UMC22 procedures
+  now preserve completed routes; they do not automatically release a repeat or
+  a new Seed A load measurement.
+- The completed Seed A filtered-branch, sum, reverse-null, and full-system
+  horizontal evidence is retained in the [dated commissioning
+  record](rew/history/SEED_A_EXTERNAL_CROSSOVER_COMMISSIONING_2026-09-08_TO_09.md).
+  Read it for audit, not to reconstruct the next live procedure.
 - When a generated loopback-calibration response contains a deliberate series
   protection network, remember that REW normalises its magnitude to `0 dB` at
   `1 kHz`. The correction removes the network's frequency-dependent shape but
@@ -110,9 +118,9 @@ For programmatic REW session-state capture and `.mdat` extraction, use the [REW 
 
 - [REW procedure and evidence dispatcher](rew/README.md)
 - [Interface-neutral FRD measurement method](rew/FRD_MEASUREMENT_METHOD.md)
-- [Current UMC22 installed-woofer procedure](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md)
-- [Current UMC22 protected installed-tweeter procedure](rew/procedures/UMC22_INSTALLED_TWEETER_FRD.md)
-- [Current UMC22 installed horizontal off-axis procedure](rew/procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md)
+- [Completed UMC22 installed-woofer procedure](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md)
+- [Completed UMC22 protected installed-tweeter procedure](rew/procedures/UMC22_INSTALLED_TWEETER_FRD.md)
+- [Completed UMC22 installed horizontal off-axis procedure](rew/procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md)
 - [Suspended UMC202HD FRD route](rew/procedures/UMC202HD_FRD_SUSPENDED.md)
 - [Reference-fixture operating procedure](rew/fixtures/REFERENCE_FIXTURE_USE.md)
 - [Reference-fixture specification](rew/fixtures/REFERENCE_FIXTURE_SPECIFICATION.md)

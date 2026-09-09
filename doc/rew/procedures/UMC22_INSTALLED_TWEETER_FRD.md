@@ -1,17 +1,19 @@
 # UMC22 Protected Installed-Tweeter FRD Runbook
 
-Lifecycle: **CURRENT PROCEDURE**
-Current approved action: C2 retention and export are complete and verified.
-The TW1 export-path collision is also resolved. Preserve both sources and use
-the common-position pair for initial crossover modelling with C2 scaled
-`+11.14 dB`; do not add another on-axis capture.
+Lifecycle: **COMPLETED PROCEDURE / RETAINED EVIDENCE**
+Current approved action: none. C2 retention/export and the TW1 export-path
+repair are complete; preserve both sources and use this runbook only to audit
+or deliberately repeat the protected raw-tweeter route after a material change.
 Owns: the installed SB26STWGC-4 protection, wiring, sweep limits, first-capture
 gate, and bounded on-axis repeat.
 Does not own: woofer evidence, final crossover protection, polar rotation, or
 high-level/distortion testing.
-Next gate: import the validated common-position pair and verify the unfiltered
-overlay with the documented C2 scalar correction.
-Last reviewed: 2026-09-06
+Next gate: qualified as-built Seed A system impedance and phase under
+[Crossover design](../../CROSSOVER_DESIGN.md); this document releases no signal.
+Last reviewed: 2026-09-09
+
+The imperative sections below preserve the bounded route used for the dated
+captures. They are not a current instruction to reconnect or repeat hardware.
 
 ## 1. Scope And Safety Boundary
 

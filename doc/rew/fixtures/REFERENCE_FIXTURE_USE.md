@@ -8,7 +8,7 @@ Specification:
 [`REFERENCE_FIXTURE_SPECIFICATION.md`](REFERENCE_FIXTURE_SPECIFICATION.md)
 Qualification:
 [`../qualification/REFERENCE_FIXTURE_QUALIFICATION_2026-09-01_TO_03.md`](../qualification/REFERENCE_FIXTURE_QUALIFICATION_2026-09-01_TO_03.md)
-Last reviewed: 2026-09-06
+Last reviewed: 2026-09-09
 
 ## 1. Applicability And Boundaries
 
@@ -82,12 +82,15 @@ the `100 kohm` phantom-isolation adaptor as an audio breakout.
    approximately one minute on a newly assembled route. Stop for transient or
    sustained hum/buzz, clipping, instability, heat, smell, or smoke.
 3. Set the interface output to the qualified position. With a true-RMS meter
-   across the driver and the authorised low-level `1 kHz` tone, raise amplifier
-   volume slowly to the procedure's target—currently `1.00 V RMS` for the
-   installed woofer—then stop the tone immediately.
+   at the electrical reference plane and the authorised low-level tone, raise
+   amplifier volume slowly to the active procedure's stated voltage target and
+   frequency, then stop the tone immediately. The completed raw-driver and
+   Seed A packages used different reference planes and levels; do not inherit
+   `1.00 V RMS at 1 kHz` as a universal setting.
 4. If the runbook requests a gross fixture check, stop the tone before moving
    the meter, connect at the restrained breakout, and confirm the protected
-   reference is broadly `80-120 mV RMS` for `1.00 V RMS` amplifier output.
+   reference is broadly one tenth of the amplifier-output voltage (for example,
+   `80-120 mV RMS` for `1.00 V RMS`).
    Stop, restore the meter to the driver, remove the breakout, and connect the
    fixture directly to the input before measurement.
 5. With signal stopped, verify useful reference-channel headroom and no

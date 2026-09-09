@@ -1,21 +1,20 @@
 # UMC22 Installed-Woofer FRD Runbook
 
-Lifecycle: **CURRENT PROCEDURE**
-Current approved action: preserve TW1's validated axis-qualified `.mdat` and
-restored FRD. No second TW1 sweep is justified; use the common-position TW1/C2
-pair for initial crossover modelling.
-Current capture: C1, C2, C3R, post-repair C4-C6, and common-position TW1 are
-valid responses. C1-C6 store the common `Hann` `2.0 ms` left /
-`Tukey 0.25` `3.5 ms` right window at their own direct peaks, with FDW/MTW off;
-TW1 has passed review and stores that approved window. C6 is the selected
-woofer-axis source and its durable export is
-`rew/frd/SB17NRX2C35-8/000deg_1m_UMC22_2026-09-06.frd`.
+Lifecycle: **COMPLETED PROCEDURE / RETAINED EVIDENCE**
+Current approved action: none. Preserve the qualified raw-woofer and
+common-position captures; use this runbook only to audit or deliberately repeat
+that route after a material change.
+Completed capture: C1, C2, C3R, post-repair C4-C6, and common-position TW1 are
+valid responses. C6 is the selected woofer-axis source and its durable export
+is `rew/frd/SB17NRX2C35-8/000deg_1m_UMC22_2026-09-06.frd`.
 Required qualification: **PASS**, recorded in
 [`../qualification/UMC22_FRD_QUALIFICATION.md`](../qualification/UMC22_FRD_QUALIFICATION.md).
-Do not proceed to: a second woofer sweep, protected-tweeter excitation, cabinet
-rotation, or polar work. Electrical change to the protected tweeter route may
-begin only after TW1 is saved/exported and the amplifier is powered down.
-Last verified state report: 2026-09-06
+Next gate: qualified as-built Seed A system impedance and phase under
+[Crossover design](../../CROSSOVER_DESIGN.md); this document releases no signal.
+Last reviewed: 2026-09-09
+
+The imperative sections below preserve the bounded route used for the dated
+captures. They are not a current instruction to reconnect or repeat hardware.
 
 ## 1. Scope And Risk Boundary
 
@@ -65,6 +64,16 @@ Qualified final controls/settings are:
 - speaker bank B left only;
 - SU-V570 volume at its documented `-38 dB` scale mark;
 - Agilent U1282A across the woofer when confirming level.
+
+**CURRENT OPERATIONAL CAVEAT — 2026-09-08:** after several idle hours, REW may
+periodically report that the selected device has no supported lines. The user
+reports that either restarting REW after saving the open omnibus measurement
+file, or temporarily selecting another device and then returning to the UMC22,
+clears it. After either recovery, reselect and verify the exact `EXCL:` UMC22
+input and output, `Stereo only`, L/L/L/R, input-volume control `1.00`, and the
+per-input calibration assignments. A shared UMC22 input is not equivalent: one
+such inadvertent selection caused both channels to reach `0.0 dB` and abort a
+later Seed A filtered-woofer attempt despite normal acoustic level.
 
 **USER-REPORTED C4-C6 STATE — 2026-09-06:** immediately before C4 the user
 confirmed that the repaired woofer connector was fully seated and that all

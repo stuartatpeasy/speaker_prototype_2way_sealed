@@ -6,7 +6,7 @@
 > - **Current authority:** [DRIVER_ANALYSIS.md](../DRIVER_ANALYSIS.md)
 > - **Use when:** auditing why a driver conclusion or approved source changed
 > - **Limitations:** detailed measurement-route evidence remains in the linked REW qualification and history records
-> - **As of:** 2026-09-06
+> - **As of:** 2026-09-09
 
 ## 1. 2026-08-30 - installed-driver baseline
 
@@ -57,3 +57,36 @@
   active-source microphone calibration. After that review, only one controlled
   `0-degree` capture is to be run before reviewing headroom, stored metadata,
   impulse/ETC, and the REW-native production window.
+
+## 7. 2026-09-06 to 2026-09-07 - raw acoustic sources and Seed A selection
+
+- Promoted C6 as the selected installed-woofer axis source and retained C5 as
+  its immediate repeatability witness.
+- Completed the protected-tweeter common-position capture and the matched
+  positive-horizontal `0/+20/+40/+60 degree` raw-driver families.
+- Corrected the VituixCAD response-scale and shunt-connectivity entries, then
+  retained same-polarity third-order Seed A after a bounded alternative audit.
+
+## 8. 2026-09-08 to 2026-09-09 - measured build and acoustic validation
+
+- Recorded the measured capacitor banks, inductors and DCRs, resistor banks,
+  coherent cold topology, and `5.929 ohm` complete-input resistance.
+- Replaced nominal prototype parasitics with the measured values in the
+  practical Seed A model; its retained prediction is `2.116 kHz` branch
+  equality, `13.2 degrees` relative phase, `18.6 dB` normal-to-reverse
+  difference, and `3.805 ohm` minimum impedance.
+- Completed filtered woofer/tweeter, normal sum, physical reverse-null, and
+  full-system `0/+20/+40/+60 degree` measurements. Real branch equality is
+  broadly `1.83 kHz`; summation, reverse null, and sparse horizontal behaviour
+  pass proportionately.
+- Retained the moderate crossover-region directivity flare for possible later
+  refinement and classified the approximately `11 kHz` axial dip as a
+  pre-existing angular tweeter/baffle feature that does not justify EQ.
+- Closed/parked the intermittent tweeter-only `1 kHz` distortion investigation
+  after clean resistor-dummy, damped-branch, and complete-system tests; the
+  exact undamped-load mechanism and possible ultrasonic behaviour remain
+  unproved.
+- Advanced the next gate to qualified as-built system impedance/phase, followed
+  by controlled full-system distortion/compression and thermal validation.
+  Detailed chronology moved to the [Seed A commissioning
+  record](../rew/history/SEED_A_EXTERNAL_CROSSOVER_COMMISSIONING_2026-09-08_TO_09.md).

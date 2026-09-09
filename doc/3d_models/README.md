@@ -63,7 +63,13 @@ source .venv-wsl/bin/activate
 
 Do not share a virtual environment between operating systems. Keep the repository in its Windows location and access the same files from WSL at `/mnt/c/Users/swallace/Projects/Speaker prototype`; moving it would also require updating and verifying Windows-application paths elsewhere in the project.
 
-The Neutrik STEP converter additionally requires `cadquery-ocp-novtk`; its [component record](Neutrik_NL4MPXX/README.md) identifies the retained STEP input.
+The Neutrik STEP converter additionally requires `cadquery-ocp-novtk`; its
+[component record](Neutrik_NL4MPXX/README.md) identifies the retained STEP
+input. The exact converter-package version used for the present DAE was not
+recorded, so that one conversion environment is not byte-for-byte
+reconstructible. The retained STEP, converter settings, and geometry checks
+support semantic regeneration; pin the OpenCascade package before changing or
+re-qualifying that converter.
 
 ## 4. Regeneration and preview
 
@@ -103,6 +109,12 @@ Re-slice the named STL using that manifest. Functional equivalence is the target
 
 ## 7. Retention boundary
 
-The project `.gitignore` excludes only generated DAE and preview PNG files in model folders with matching retained generators. Canonical assembly/room DAE files, imported STEP sources, legacy and fabrication STLs, measurements, PDFs, spreadsheets, and reference images remain retained because no complete reconstruction path covers all of them.
+The collection-specific `.gitignore` rules exclude only generated DAE and
+preview PNG files in model folders with matching retained generators. The
+separate project `outputs/` rule covers disposable inspection and REW-API
+exports whose authorities and reconstruction commands are retained elsewhere.
+Canonical assembly/room DAE files, imported STEP sources, legacy and
+fabrication STLs, measurements, PDFs, spreadsheets, and reference images remain
+retained because no complete reconstruction path covers all of them.
 
 Do not delete a retained source because a derivative is regenerable, and do not extend the ignore pattern to a new model until its inputs, generator, dependencies, command, and expected verification result are documented.

@@ -661,7 +661,7 @@ Use the following companion records only when their detail is needed:
 - subsequent installed acoustic test:
   [current FRD measurement method](../FRD_MEASUREMENT_METHOD.md).
 
-### 4.1 Current Gate And Next Actions
+### 4.1 Gate Outcome And Subsequent Actions
 
 All earlier topology, phantom-isolation, construction, resistance, clamp, and
 ground-path gates pass. Both UMC202HD rear outputs are mechanically TRS but
@@ -681,7 +681,8 @@ The release actions are complete:
 
 This record and the main fixture authority approve controlled UMC202HD powered-
 amplifier use. Actual UMC202HD measurements remain suspended by the digital
-dropout. The UMC22 alternative has its own pending interface gates.
+dropout. The UMC22 alternative subsequently passed its own separate interface
+qualification; that later result is not part of this fixture record.
 
 #### 4.1.1 Commissioning Terminology
 

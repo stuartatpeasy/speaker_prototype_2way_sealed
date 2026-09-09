@@ -5,7 +5,7 @@ Owns: interface-neutral geometry, timing, repeatability, windowing, naming, and
 provenance requirements for installed-driver acoustic measurements.
 Does not own: interface qualification, fixture operation, a particular
 driver's safe sweep limits, or authorisation to power equipment.
-Last reviewed: 2026-09-06
+Last reviewed: 2026-09-09
 
 ## 1. Objective And Evidence Boundary
 
@@ -166,9 +166,12 @@ the project acceptance targets are:
 - no broad coherent discrepancy large enough to change the provisional filter
   topology or acoustic-slope decision.
 
-The current intended crossover band is `2.2-2.4 kHz`; revise that band when the
-design direction changes. A maximum over every native bin across the wider
-`1-5 kHz` range remains a useful diagnostic, but it is not by itself a veto.
+Declare the design-relevant band for each package before comparing repeats.
+The completed Seed A acoustic evidence now uses the wider approximately
+`1.5-2.5 kHz` transition region around its measured `1.83 kHz` branch equality;
+`2.2-2.4 kHz` is retained only as the earlier design hypothesis. A maximum over
+every native bin across the wider `1-5 kHz` range remains a useful diagnostic,
+but it is not by itself a veto.
 Record isolated or out-of-band maxima as a modelling uncertainty and preserve
 the less favourable capture. These are project design criteria, not claims of
 laboratory metrology or production-unit tolerance.
@@ -222,8 +225,9 @@ total span of `3.0 ms` has nominal resolution:
 Delta f approximately 1 / 0.003 s = 333 Hz
 ```
 
-That can be adequate for a repeatability gate around `2.2-2.4 kHz`, but it is
-too coarse to establish low-frequency response. The UMC22 qualification used a
+That can be adequate for a repeatability gate through an approximately
+`1.5-2.5 kHz` crossover region, but it is too coarse to establish low-frequency
+response. The UMC22 qualification used a
 derived `2.0 ms` left / `1.0 ms` right direct window; that result proves chain
 repeatability only. It is not automatically the REW-native production window.
 

@@ -6,7 +6,7 @@
 | Owns | Dated live-validation inputs, results, limitations, and exact reconstruction commands |
 | Does not own | Routine client operation or output policy |
 | Current operating authority | [REW API client](../../REW_API_CLIENT.md) |
-| Last live validation | 2026-09-06 |
+| Last client-qualification validation | 2026-09-06 |
 
 ## 1. Authority and interpretation
 
@@ -40,14 +40,14 @@ The source `.mdat` remains authoritative.
 **SUBSEQUENT FILE-IDENTITY NOTE — 2026-09-06:** Section 3 validates the version
 of this path committed at `0fe0c90`; it does not describe the later working-tree
 file. After a concurrent throwaway REW instance caused the hardware-owning
-instance to lose its UMC22 handles, the user saved the open omnibus session at
-exit and reloaded it in a single restarted instance. The current file is
-`94,400,301` bytes with SHA-256
-`4cf148afde88732ddbccbb366a53f7601faae6c887654dafcb8d5dd7f2edd2ab`.
-The size/hash change and extra loaded copies are expected consequences of that
-user-reported re-save; they neither invalidate the earlier client validation
-against the committed revision nor make the enlarged omnibus the authority for
-the later UUID-selected production captures.
+instance to lose its UMC22 handles, the user saved and later continued the open
+omnibus session. Its latest retained revision is `63,595,690` bytes with
+SHA-256
+`ca95668820aa965e91e45df6929cc82dfacafdf015d130c1f825bd5397619383`
+and now contains the completed Seed A acoustic series. The size/hash changes do
+not invalidate the client validation against commit `0fe0c90`; the latest
+file's Seed A evidence is documented separately in the [commissioning
+record](../history/SEED_A_EXTERNAL_CROSSOVER_COMMISSIONING_2026-09-08_TO_09.md).
 
 ### 3.1 Reconstruction command
 

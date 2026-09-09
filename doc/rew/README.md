@@ -1,7 +1,7 @@
 # REW Documentation Dispatcher
 
 Lifecycle: **CURRENT DISPATCHER**
-Last reviewed: 2026-09-06
+Last reviewed: 2026-09-09
 
 ## 1. Purpose
 
@@ -14,6 +14,9 @@ The lifecycle labels mean:
 
 - **CURRENT PROCEDURE** — instructions that may govern the next physical or
   software action after their stated prerequisites are satisfied.
+- **COMPLETED PROCEDURE / RETAINED EVIDENCE** — the route used for finished
+  work; consult for audit or a deliberate repeat after material change, not as
+  an automatic signal release.
 - **METHOD** — interface-neutral measurement principles and data-handling
   requirements; not an equipment power-up authority.
 - **QUALIFICATION EVIDENCE** — concise retained results supporting a release or
@@ -32,6 +35,8 @@ The lifecycle labels mean:
 | UMC22 installed-woofer capture or repeatability investigation | [`procedures/UMC22_INSTALLED_WOOFER_FRD.md`](procedures/UMC22_INSTALLED_WOOFER_FRD.md) | [`FRD_MEASUREMENT_METHOD.md`](FRD_MEASUREMENT_METHOD.md) when choosing/reviewing the production window or comparing captures; [`../DRIVER_ANALYSIS.md`](../DRIVER_ANALYSIS.md) when assessing or promoting driver-design evidence |
 | UMC22 protected installed-tweeter capture | [`procedures/UMC22_INSTALLED_TWEETER_FRD.md`](procedures/UMC22_INSTALLED_TWEETER_FRD.md) | [`FRD_MEASUREMENT_METHOD.md`](FRD_MEASUREMENT_METHOD.md) for common timing/window review; [`../DRIVER_ANALYSIS.md`](../DRIVER_ANALYSIS.md) for the measured load and protection derivation |
 | UMC22 installed-driver horizontal off-axis series | [`procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md`](procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md) | The completed woofer/tweeter runbooks only if an existing electrical-route fact is disputed; qualification only for a failed gate or changed hardware |
+| Plan the next Seed A as-built impedance/phase gate | [`../CROSSOVER_DESIGN.md`](../CROSSOVER_DESIGN.md) | [`fixtures/REFERENCE_FIXTURE_USE.md`](fixtures/REFERENCE_FIXTURE_USE.md) only after the measurement route and parameters are explicitly defined; qualification only if hardware or an established gate is disputed |
+| Audit completed Seed A filtered/full-system acoustic evidence | [`history/SEED_A_EXTERNAL_CROSSOVER_COMMISSIONING_2026-09-08_TO_09.md`](history/SEED_A_EXTERNAL_CROSSOVER_COMMISSIONING_2026-09-08_TO_09.md) | [`../DRIVER_ANALYSIS.md`](../DRIVER_ANALYSIS.md) or [`../CROSSOVER_DESIGN.md`](../CROSSOVER_DESIGN.md) for the current engineering consequence |
 | General installed-driver measurement design or FRD review | [`FRD_MEASUREMENT_METHOD.md`](FRD_MEASUREMENT_METHOD.md) | The applicable interface procedure |
 | Audit the UMC22 release | [`qualification/UMC22_FRD_QUALIFICATION.md`](qualification/UMC22_FRD_QUALIFICATION.md) | The dated UMC22 history only for failed or superseded branches |
 | Audit or reproduce REW API extraction validation | [`qualification/REW_API_CLIENT_VALIDATION.md`](qualification/REW_API_CLIENT_VALIDATION.md) | [`../REW_API_CLIENT.md`](../REW_API_CLIENT.md) for the current operating procedure |
@@ -47,6 +52,7 @@ The lifecycle labels mean:
 - [`qualification/REW_API_CLIENT_VALIDATION.md`](qualification/REW_API_CLIENT_VALIDATION.md) — **QUALIFICATION EVIDENCE** for offline tests and live selected extraction; the Codex host-access boundary remains separately stated.
 - [`history/UMC22_FRD_QUALIFICATION_LOG_2026-09-05.md`](history/UMC22_FRD_QUALIFICATION_LOG_2026-09-05.md) — **HISTORY** containing the detailed UMC22 chronology.
 - [`history/FRD_REPEATABILITY_DEVELOPMENT_2026-09-03_TO_05.md`](history/FRD_REPEATABILITY_DEVELOPMENT_2026-09-03_TO_05.md) — **HISTORY** containing the UMC202HD-to-UMC22 method-development narrative.
+- [`history/SEED_A_EXTERNAL_CROSSOVER_COMMISSIONING_2026-09-08_TO_09.md`](history/SEED_A_EXTERNAL_CROSSOVER_COMMISSIONING_2026-09-08_TO_09.md) — **HISTORY / RETAINED MEASUREMENT EVIDENCE** for Seed A cold commissioning, the parked tweeter-only-load investigation, WF1/TF1/SUM1/REV1, and the first physical full-system horizontal set.
 
 History files are deliberately excluded from normal orientation. Search or
 open the relevant dated subsection only when reconstructing why a setting or

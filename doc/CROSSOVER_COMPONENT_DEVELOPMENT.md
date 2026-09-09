@@ -3,10 +3,10 @@
 > - **Lifecycle:** ACTIVE COMPONENT-DEVELOPMENT AUTHORITY
 > - **Owns:** capacitor selection and banks, inductor construction and taps, resistor-bank design, component measurement, thermal constraints, and development implementation
 > - **Does not own:** acoustic crossover targets, final topology or polarity, driver evidence, or acoustic validation procedure
-> - **Current decision:** capacitor banks pass; polarity-reversed DCR measurements release the `1.2 mH` and `207 uH` coils as L(W1)/L(T1) donors; use a new approximately 73-turn 1.8 mm starting winding for L(W2); measured 5 W parts give `1.39149` and exactly `39.000 ohm` resistor banks
-> - **Next gate:** trim/wind all three inductors to measured Seed A inductance and record their final DCR, then assemble and directly check the selected resistor banks before entering the complete practical network in VituixCAD
-> - **Limitations:** measurements are user-reported and inductance measurement frequencies are not recorded; final coil values and DCRs do not yet exist; the approximately 73-turn L(W2) count is an extrapolated starting point, not a stopping criterion; the superseded four-reactance winding tables below do not define Seed A
-> - **As of:** 2026-09-08
+> - **Current decision:** the reversible external Seed A crossover is complete; all measured parts pass, and the user-reported cold resistance/topology checks are consistent with the intended woofer, tweeter, common-return, shunt-inductor, and L-pad connections
+> - **Next gate:** component construction and on-axis/sparse-horizontal acoustic commissioning are complete; impedance/EPDR, controlled-distortion, and thermal validation continue under CROSSOVER_DESIGN.md
+> - **Limitations:** measurements are user-reported; the AADE inductance measurement frequency is unknown; the completed DCRs were supplied as already-derived values without the underlying signed current/voltage pairs; Seed A remains a prototype network rather than a final crossover
+> - **As of:** 2026-09-09
 
 This file is the component-engineering companion to [CROSSOVER_DESIGN.md](CROSSOVER_DESIGN.md). Read it for component procurement, winding, PCB layout, thermal design, or construction; it is not required for acoustic modelling alone.
 
@@ -34,7 +34,9 @@ and records the woofer's approximately `9.1 dB` acoustic fall from
 `2.1-4.2 kHz`. The subsequent bounded Seed B comparison found no dominant
 alternative: modest extra suppression cost response span, phase/null, and load,
 while fourth-order and targeted-notch options became negligible or locally
-overfit. Seed A therefore owns the next adjustable component plan.
+overfit. That comparison selected Seed A for the reversible external build;
+the measured assembly and acoustic result below now supersede this planning
+stage.
 
 ## 3. Capacitors
 
@@ -392,6 +394,35 @@ normal-to-reverse difference from `17.3` to `14.2 dB`, and minimum impedance
 from `3.699` to about `3.53 ohm`. That misses the bounded phase and reverse-null
 gates, so trimming this coil to measured `220 uH` has practical value.
 
+**USER-REPORTED COMPLETED INDUCTORS / DERIVED PASS — 2026-09-08:** the AADE
+L/C Meter IIB was nulled before each inductance reading; its measurement
+frequency is unknown. Cold DCR was reported from the established
+polarity-reversed four-point method. Supplying an already-derived DCR rather
+than its signed current/voltage pairs is an explicitly accepted input route,
+so those pairs are not a missing acceptance datum.
+
+| Seed A part | Target | Measured inductance | Error | Turns | Cold DCR | Wire |
+|---|---:|---:|---:|---:|---:|---:|
+| L(W1) | `720 uH` | `724 uH` | `+4 uH`; `+0.556%` | 167 | `0.292 ohm` | `1.8 mm` |
+| L(W2) | `110 uH` | `111 uH` | `+1 uH`; `+0.909%` | 78 | `0.172 ohm` | `1.8 mm` |
+| L(T1) | `220 uH` | `219 uH` | `-1 uH`; `-0.455%` | 100 | `0.193 ohm` | `1.8 mm` |
+
+For example, L(W1)'s percentage error is
+
+```text
+(724 uH - 720 uH) / 720 uH * 100% = +0.556%.
+```
+
+Microhenries cancel in the ratio, as required for a percentage. All three
+inductors are within `+/-1%` of their Seed A targets. Their resistance ordering
+is also physically coherent for the reported windings: the 78-turn coil is
+lowest, the 100-turn coil next, and the 167-turn coil highest. The higher than
+initially estimated DCRs are not silently discarded; they are direct practical-
+model inputs. No further unwinding, added turn, or repeat measurement is
+justified solely to improve nominal agreement. The unknown AADE test frequency
+limits exact comparison with another LCR instrument but does not block this
+reversible prototype.
+
 ### 4.2 Retained former and superseded textbook windings
 
 Retained construction choices and current common-former baseline:
@@ -495,6 +526,29 @@ Assemble and directly measure both completed banks. The shunt bank is a
 **series string**, so its PCB footprints and links must not be copied from the
 earlier all-parallel L-pad concept.
 
+**USER-REPORTED COMPLETED RESISTOR BANKS / DERIVED PASS — 2026-09-08:** the
+Agilent U1282A was used in resistance mode with auto-ranging, and its leads
+were nulled before the first bank measurement.
+
+| Seed A part | Construction | Measured bank | Error from target |
+|---|---|---:|---:|
+| R(Tser) | 5R6 E/F/I/J in parallel | `1.401 ohm` | `+0.001 ohm`; `+0.071%` |
+| R(Tpar) | 13R B/D/E in series | `39.032 ohm` | `+0.032 ohm`; `+0.082%` |
+
+The direct completed-bank measurements supersede the component-arithmetic
+values of `1.391494` and `39.000 ohm` for modelling. R(Tser)'s direct result is
+`0.009506 ohm`, or `0.683%`, above its component-derived value; R(Tpar)'s is
+`0.032 ohm`, or `0.082%`, above its component-derived value. For R(Tser)'s
+error from the Seed A target,
+
+```text
+(1.401 ohm - 1.400 ohm) / 1.400 ohm * 100% = +0.071%.
+```
+
+The small differences from the pre-assembly arithmetic are not large enough to
+indicate a wiring error or justify dismantling either bank. Both measured banks
+pass and are the values to use in the practical crossover.
+
 ### 5.2 Retained earlier L-pad planning
 
 The earlier general L-pad implementation baseline was:
@@ -517,4 +571,27 @@ These are prototype population candidates, not final acoustic attenuation values
 
 ## 6. Handoff to acoustic design
 
-Selected measured values, DCR, and tolerances feed back into [CROSSOVER_DESIGN.md](CROSSOVER_DESIGN.md). Final acceptance requires the filtered-driver, summed-response, reverse-polarity-null, off-axis, distortion, impedance/EPDR, and thermal gates in that active design authority.
+**USER-REPORTED ASSEMBLY / COLD GATE — PASS (2026-09-08):** the completed
+external crossover passed coherent point-to-point resistance checks for the
+woofer path, capacitor-blocked tweeter path, L(T1) shunt, common return, and
+both L-pad combinations. With the crossover, drivers, and powered-down
+amplifier output connected in the verified polarities, the lead-nulled Agilent
+U1272A input reading was `5.929 ohm`. Removing the two woofer-inductor DCRs gives
+
+```text
+Rwoofer = 5.929 ohm - (0.292 + 0.172) ohm
+        = 5.465 ohm.
+```
+
+The result is dimensionally sound and reasonably close to the installed
+woofer's approximately `5.645 ohm` curve-consistent low-frequency resistance;
+the latter is not an exact DC four-wire value. Powered-idle and the initial
+`0.10 V RMS`, `200-20000 Hz` audible commissioning sweep subsequently passed.
+Detailed commissioning and diagnostic chronology is retained in the [Seed A
+commissioning history](rew/history/SEED_A_EXTERNAL_CROSSOVER_COMMISSIONING_2026-09-08_TO_09.md).
+
+The completed measured values and parasitics now feed the practical model in
+[CROSSOVER_DESIGN.md](CROSSOVER_DESIGN.md). The component gate is complete, and
+the filtered-driver, summed-response, physical reverse-polarity-null, and
+sparse-horizontal gates now pass. Final crossover acceptance still requires
+distortion, impedance/EPDR, and thermal gates in that active design authority.
