@@ -222,6 +222,110 @@ class OutputTests(unittest.TestCase):
             rew.main(["extract", "unused.mdat", "--ppo", "0"])
 
 
+class SummaryTests(unittest.TestCase):
+    def test_end_to_end_summary_is_in_memory_explicit_and_bounded(self):
+        class FakeApi:
+            base_url = rew.DEFAULT_API
+            frequency_query = None
+
+            def __init__(self, *_args, **_kwargs):
+                self.measurement_calls = 0
+
+            def get(self, path, *, query=None):
+                if path.endswith("/frequency-response"):
+                    type(self).frequency_query = query
+                    return {
+                        "unit": "ohm",
+                        "smoothing": "None",
+                        "startFreq": 10,
+                        "ppo": 1,
+                        "magnitude": encoded(8, 4, 8),
+                        "phase": encoded(0, -60, 30),
+                    }
+                raise AssertionError(path)
+
+            def measurements(self):
+                self.measurement_calls += 1
+                if self.measurement_calls == 1:
+                    return {}
+                return {"7": {
+                    "title": "Impedance",
+                    "notes": "x" * 5000,
+                    "uuid": "uuid-7",
+                    "rewVersion": "5.40 beta 133",
+                }}
+
+            def load(self, path):
+                self.loaded_path = path
+                return {"message": "loaded", "unneeded": list(range(1000))}
+
+        with tempfile.TemporaryDirectory() as temporary:
+            temporary_path = Path(temporary)
+            source = temporary_path / "source.mdat"
+            source.write_bytes(b"test mdat")
+            before = sorted(path.relative_to(temporary_path) for path in temporary_path.rglob("*"))
+            output = io.StringIO()
+            with mock.patch.object(rew, "RewApi", FakeApi), \
+                    mock.patch.object(rew, "path_for_rew", return_value="C:/source.mdat"), \
+                    mock.patch.object(rew.time, "sleep"):
+                with redirect_stdout(output):
+                    result = rew.main([
+                        "summarize", str(source), "--band", "10", "40", "--at", "20",
+                        "--frequency-unit", "ohm", "--smoothing", "None", "--ppo", "1",
+                        "--settle-time", "0",
+                    ])
+
+            self.assertEqual(result, 0)
+            self.assertEqual(
+                sorted(path.relative_to(temporary_path) for path in temporary_path.rglob("*")),
+                before,
+            )
+            self.assertLess(len(output.getvalue()), 20_000)
+            payload = json.loads(output.getvalue())
+            self.assertEqual(payload["kind"], "rewMdatSummary")
+            self.assertEqual(payload["analysisRequest"]["bandHz"], [10.0, 40.0])
+            self.assertEqual(payload["analysisRequest"]["pointFrequenciesHz"], [20.0])
+            self.assertIn("adds its measurements", payload["workspaceMutationWarning"])
+            self.assertEqual(
+                FakeApi.frequency_query,
+                {"unit": "ohm", "smoothing": "None", "ppo": 1},
+            )
+            record = payload["measurements"][0]
+            self.assertEqual(record["summary"]["uuid"], "uuid-7")
+            self.assertTrue(record["summary"]["notes"].endswith("<truncated>"))
+            self.assertEqual(record["responseMetadata"]["sampleCount"], 3)
+            self.assertIn("points", record["analysis"])
+            self.assertIn("impedance", record["analysis"])
+            impedance = record["analysis"]["impedance"]
+            self.assertEqual(impedance["magnitudeOhm"]["minimum"], {
+                "value": 4.0, "frequencyHz": 20.0,
+            })
+            point = record["analysis"]["points"][0]
+            self.assertEqual(point["sourceFrequencyHz"], 20.0)
+            self.assertAlmostEqual(point["realOhm"], 2.0)
+            self.assertAlmostEqual(impedance["realOhm"]["minimum"]["value"], 2.0)
+            self.assertAlmostEqual(impedance["imaginaryOhm"]["minimum"]["value"],
+                                   -3.4641016151377544)
+            self.assertAlmostEqual(
+                impedance["idealClassBEpdrOhm"]["minimum"]["value"],
+                1.1122645731255418,
+            )
+
+    def test_summary_requires_explicit_unit_and_valid_band(self):
+        with redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            rew.main(["summarize", "unused.mdat", "--band", "20", "20000"])
+        with redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            rew.main([
+                "summarize", "unused.mdat", "--band", "20000", "20",
+                "--frequency-unit", "SPL",
+            ])
+
+    def test_summary_output_bound_truncates_arrays_and_text(self):
+        value = rew._bounded_json_value({"text": "x" * 1000, "array": list(range(1000))})
+        self.assertTrue(value["text"].endswith("<truncated>"))
+        self.assertEqual(value["array"][-1]["_truncatedItemCount"], 936)
+
+
 class SnapshotTests(unittest.TestCase):
     def test_snapshot_is_get_only_partial_and_redacts_paths(self):
         class FakeApi:

@@ -8,7 +8,8 @@
 | Detailed driver evidence | [Driver analysis](DRIVER_ANALYSIS.md) |
 | Procedure dispatcher | [REW documentation map](rew/README.md) |
 | Measurement artefacts | [`rew/`](../rew/) |
-| Current project gate | Qualified as-built Seed A impedance/phase, then controlled full-system distortion/compression and thermal validation |
+| Compact data inspection | [Measurement data tooling](MEASUREMENT_DATA_TOOLING.md) |
+| Current project gate | The as-built Seed A load passes and the complete de-energised UMC22 level/thermal setup is user-confirmed with no anomaly; work is paused before power or signal, then the current [procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md) uses matched `0.5/1/2/4 V RMS` sweeps with a user-stoppable ceiling and a conditional bounded two-probe thermal gate |
 
 ## 1. Measurement principles
 
@@ -17,7 +18,12 @@
 - Treat impedance-derived alignment as electrical evidence, not a substitute for acoustic magnitude, phase, distortion, and directivity.
 - Design the passive crossover from installed-baffle, phase-bearing acoustic measurements and current installed ZMA files—not nominal impedances or textbook parts alone.
 - Keep exploratory optimisation explicitly provisional until the required measurement gates have passed.
+- Use the [compact measurement-data tools](MEASUREMENT_DATA_TOOLING.md) before
+  loading raw FRD, ZMA, impulse, `.mdat`, or VituixCAD contents into a review.
+  Ask for the smallest band, point set, or semantic comparison that answers the
+  question; retain raw-file hashes, parameters, and warnings with the result.
 - Use the current specialised procedure for exact interface routing, level, calibration, startup, stop, and capture instructions. Do not reconstruct a live procedure from qualification history.
+- For an already qualified `5 V` USB-powered impedance jig, stop signal generation before changing the DUT, but do not require routine USB power cycles, repeated wiring recitals, or serial confirmation gates. Carry unchanged settings and passed checks forward; repeat qualification only after a relevant change, anomaly, or failed control.
 
 ## 2. Minimum measurement capability
 
@@ -49,8 +55,16 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 
 ### 3.2 Impedance measurements
 
+- **USER-CONFIRMED ROUTE:** all retained impedance measurements to date used
+  the StarTech ICUSBAUDIO2D generic external USB sound card. Continue with that
+  interface for the as-built Seed A series. In REW select
+  `EXCL: StarTech USB audio interface (USB Audio Device)` for both input and
+  output; do not silently substitute the non-exclusive entry or another audio
+  interface. Use output `R`, reference input `R`, and measurement input `L`.
+  The current proportionate capture procedure is
+  [StarTech Seed A complete-system impedance and phase](rew/procedures/STARTECH_SEED_A_SYSTEM_IMPEDANCE.md).
 - Use **48 kHz** for the controlled driver-impedance comparison series unless a new series is deliberately established.
-- Recalibrate the impedance rig whenever sample rate, interface path, input gain, leads, sense resistor, or relevant wiring changes.
+- Recalibrate the impedance rig whenever sample rate, interface path, input gain, measurement-path leads, sense resistor, or jig wiring changes. An ordinary DUT swap with the qualified route otherwise unchanged does not require recalibration.
 - Retain headers, decimal points, frequency/magnitude/phase columns, dense unsmoothed data, and descriptive filenames.
 - Record actual driver-terminal voltage; dBFS alone does not establish driver excitation when a series sense resistor is present.
 - Record cold DCR, ambient temperature, elapsed cooldown, cabinet damping state, driver mounting, screw condition, and wiring changes.
@@ -89,10 +103,21 @@ For the controlled conditioning comparison, use [Driver run-in and stabilisation
 - Record microphone distance, axis, height, window/gating choices, sample rate, amplifier setting, terminal voltage, and room state.
 - Measure individual drivers before filtered sums, and retain normal- and reverse-polarity results.
 - Use filenames identifying driver, angle, polarity/filter state, level, and date or sequence.
+- For the current complete Seed A gate, use the dedicated [UMC22 level and
+  thermal procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md). Its
+  selected `4.000 V RMS` maximum sweep is a ceiling rather than an obligation;
+  the user may stop earlier for excessive volume. Two Agilent Type-K contact
+  probes are available through the U1282A and U1272A; no IR thermometer is
+  available or required.
 
-### 3.4 REW API client
+### 3.4 Measurement-data tools and REW API client
 
-For programmatic REW session-state capture and `.mdat` extraction, use the [REW API client](REW_API_CLIENT.md). It owns commands, reconstructible outputs, runtime limitations, and links to its separate qualification evidence.
+For compact FRD, ZMA, extracted response, impulse, and VituixCAD inspection or
+comparison, use [Measurement data tooling](MEASUREMENT_DATA_TOOLING.md). For
+programmatic REW session-state capture, compact `.mdat` analysis, or full
+`.mdat` extraction, use the [REW API client](REW_API_CLIENT.md). These references
+own their commands, authority boundaries, output limits, and reconstruction
+routes; they do not replace the retained source measurement.
 
 ## 4. Development sequence
 
@@ -121,11 +146,13 @@ For programmatic REW session-state capture and `.mdat` extraction, use the [REW 
 - [Completed UMC22 installed-woofer procedure](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md)
 - [Completed UMC22 protected installed-tweeter procedure](rew/procedures/UMC22_INSTALLED_TWEETER_FRD.md)
 - [Completed UMC22 installed horizontal off-axis procedure](rew/procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md)
+- [Current UMC22 Seed A level and thermal procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md)
 - [Suspended UMC202HD FRD route](rew/procedures/UMC202HD_FRD_SUSPENDED.md)
 - [Reference-fixture operating procedure](rew/fixtures/REFERENCE_FIXTURE_USE.md)
 - [Reference-fixture specification](rew/fixtures/REFERENCE_FIXTURE_SPECIFICATION.md)
 - [UMC202HD desktop-dropout diagnosis](rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md)
 - [REW API client](REW_API_CLIENT.md)
+- [Measurement data tooling](MEASUREMENT_DATA_TOOLING.md)
 - [Driver run-in and stabilisation](DRIVER_RUNIN.md)
 - [Driver evidence and impedance analysis](DRIVER_ANALYSIS.md)
 - [Crossover design](CROSSOVER_DESIGN.md)
@@ -139,7 +166,9 @@ After each material measurement series:
 
 1. Preserve the raw REW/VituixCAD source in the correct project directory.
 2. Record controlled conditions and deviations.
-3. Recalculate derived quantities reproducibly from the retained export.
+3. Recalculate derived quantities reproducibly from the retained export,
+   preferably with the maintained compact tool and an explicit band, comparison
+   policy, or point set. Preserve the source hash, parameters, and warnings.
 4. Update [Driver analysis](DRIVER_ANALYSIS.md) or the relevant topic authority with a dated, evidence-labelled addition.
 5. Preserve superseded conclusions where they explain the engineering process; move detailed chronology to its designated history record rather than copying it into current procedures.
 6. Update the root [README](../README.md) only when high-level project state or a locked design decision changes.

@@ -11,7 +11,7 @@ reconstruction details
 **Read when:** maintaining local tooling, moving the checkout, or diagnosing a
 repository/runtime problem
 
-**Last reviewed:** 2026-09-07
+**Last reviewed:** 2026-09-09
 
 ## 1. Repository Paths
 
@@ -37,6 +37,10 @@ repository/runtime problem
   default Codex sandbox still blocks localhost and Windows interoperability, so
   live REW commands from Codex require host-access permission. See
   [REW API Client](REW_API_CLIENT.md).
+- The committed FRD/ZMA/impulse summariser, REW `.mdat` compact mode, and VXP
+  auditor use only the Python standard library. They run under either environment
+  and are documented together in
+  [Measurement data tooling](MEASUREMENT_DATA_TOOLING.md).
 
 ## 3. GitHub Authentication In WSL
 

@@ -4,7 +4,7 @@
 > - **Owns:** capacitor selection and banks, inductor construction and taps, resistor-bank design, component measurement, thermal constraints, and development implementation
 > - **Does not own:** acoustic crossover targets, final topology or polarity, driver evidence, or acoustic validation procedure
 > - **Current decision:** the reversible external Seed A crossover is complete; all measured parts pass, and the user-reported cold resistance/topology checks are consistent with the intended woofer, tweeter, common-return, shunt-inductor, and L-pad connections
-> - **Next gate:** component construction and on-axis/sparse-horizontal acoustic commissioning are complete; impedance/EPDR, controlled-distortion, and thermal validation continue under CROSSOVER_DESIGN.md
+> - **Next gate:** component construction, on-axis/sparse-horizontal acoustic commissioning, and as-built impedance/EPDR now pass; the remaining bounded two-contact-probe thermal validation is defined by the current UMC22 Seed A level procedure and its consequence remains under CROSSOVER_DESIGN.md
 > - **Limitations:** measurements are user-reported; the AADE inductance measurement frequency is unknown; the completed DCRs were supplied as already-derived values without the underlying signed current/voltage pairs; Seed A remains a prototype network rather than a final crossover
 > - **As of:** 2026-09-09
 
@@ -592,6 +592,7 @@ commissioning history](rew/history/SEED_A_EXTERNAL_CROSSOVER_COMMISSIONING_2026-
 
 The completed measured values and parasitics now feed the practical model in
 [CROSSOVER_DESIGN.md](CROSSOVER_DESIGN.md). The component gate is complete, and
-the filtered-driver, summed-response, physical reverse-polarity-null, and
-sparse-horizontal gates now pass. Final crossover acceptance still requires
-distortion, impedance/EPDR, and thermal gates in that active design authority.
+the filtered-driver, summed-response, physical reverse-polarity-null,
+sparse-horizontal, and as-built impedance/EPDR gates now pass. Final crossover
+acceptance still requires controlled distortion and thermal gates in that
+active design authority.

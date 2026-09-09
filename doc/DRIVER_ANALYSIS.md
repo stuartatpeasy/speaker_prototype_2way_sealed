@@ -10,7 +10,7 @@
 > - **Owns:** evidence classes, approved driver ZMA/FRD sources, measurement conditions and quality, woofer/tweeter results and derivations, retention and procurement decisions, driver-specific modelling consequences, uncertainties, and next evidence gates
 > - **Does not own:** REW/interface qualification chronology, fixture design, detailed acoustic-capture procedure, crossover-component construction, or room-placement evidence
 > - **Current decision:** provisionally retain both installed drivers and Seed A; all measured components, on-axis filtered branches, normal sum, physical reverse null, and the sparse `0/+20/+40/+60 degree` full-system horizontal set pass proportionately, with a moderate crossover-region directivity flare retained for possible later refinement
-> - **Next gate:** establish and run a qualified as-built full-system impedance/phase measurement before higher-level distortion or thermal testing; no further unchanged acoustic sweep is presently required
+> - **Next gate:** the as-built Seed A load passes with `4.366 ohm` minimum magnitude and `2.563 ohm` minimum idealised class-B EPDR; proceed under the current `0.5/1/2/4 V RMS` full-system distortion/compression and bounded two-probe thermal procedure, with `4 V RMS` as a user-stoppable ceiling; no unchanged impedance or acoustic sweep is presently required
 > - **Limitations:** one sample of each driver; incomplete baseline conditions; the user's stated cosmetic R(Tpar) move in the reopened/saved practical VXP was accepted without inspection; AADE inductance test frequency unknown; known approximately `0.5-0.6 dB` local woofer early-tail variability near `2.03 kHz`; C2's relative-level correction is derived rather than directly calibrated; the threshold-triggered persistent `1 kHz` distortion is now strongly associated with the undamped tweeter-only load but its exact mechanism is unproved and possible ultrasonic behaviour remains outside the UMC22/48 kHz observation band; the overnight Windows restart means the current software/process state does not reproduce the discovery state; positive-side sparse polar evidence only, with woofer interpretation provisionally limited to `1.5-5 kHz`; no controlled sweep distortion data
 > - **As of:** 2026-09-09
 
@@ -590,7 +590,8 @@ qualification](rew/qualification/UMC22_FRD_QUALIFICATION.md).
 - Both drivers remain provisionally retained.
 - Seed A's measured filtered branches cross broadly near 1.83 kHz with nearly coincident phase; constructive sum, physical reverse null, and the sparse positive-horizontal full-system set pass proportionately.
 - The moderate approximately 2.5–3.1 dB beamwidth change through 1.5–2.5 kHz is retained as a possible later refinement target, not a present failure.
-- The raw woofer, protected-tweeter, raw sparse-polar, and Seed A on-axis/sparse-horizontal UMC22 packages are complete. The next driver-relevant gate is qualified as-built system impedance/phase, followed by controlled full-system distortion/compression and thermal validation.
+- The as-built Seed A load passes: minimum magnitude is `4.366 ohm`, minimum real part is `4.284 ohm`, and minimum idealised class-B EPDR is `2.563 ohm`; detailed system evidence is in the [Seed A load record](rew/qualification/SEED_A_AS_BUILT_IMPEDANCE_AND_EPDR_2026-09-09.md).
+- The raw woofer, protected-tweeter, raw sparse-polar, Seed A on-axis/sparse-horizontal, and complete-system impedance packages are complete. The next driver-relevant gate is controlled full-system distortion/compression and thermal validation.
 
 ### 1.5 Project file-location convention
 
@@ -608,6 +609,7 @@ qualification](rew/qualification/UMC22_FRD_QUALIFICATION.md).
 | Field | Value |
 |---|---|
 | REW version | 5.40 beta 133 |
+| Interface | StarTech ICUSBAUDIO2D generic external USB sound card (**USER-CONFIRMED for all impedance measurements to date**) |
 | Measurement date | 2026-08-30 |
 | Sweep | 1M logarithmic swept sine, one sweep, -12 dBFS |
 | Sample rate | 48 kHz |
@@ -619,7 +621,12 @@ qualification](rew/qualification/UMC22_FRD_QUALIFICATION.md).
 | Point count | 1,276 per file |
 | Recorded span | 2.211 Hz to 22.013 kHz |
 
-The woofer was measured at 09:30:58 and the tweeter at 10:00:22. The headers do not record driver-terminal voltage, enclosure fill state, ambient temperature, or screw torque. Those conditions should be recorded with future comparison measurements.
+The woofer was measured at 09:30:58 and the tweeter at 10:00:22. The exported
+headers preserve only a generic Windows USB-audio source name, so the StarTech
+identity comes from the user's measurement-history confirmation rather than
+independent file metadata. The headers do not record driver-terminal voltage,
+enclosure fill state, ambient temperature, or screw torque. Those conditions
+should be recorded with future comparison measurements.
 
 ### 2.2 Data quality and usable range
 
@@ -1446,24 +1453,20 @@ Matching complete installed behaviour matters more than reproducing every datash
    the nominal sparse-polar Seed A reference, and its practical
    measured-component successor. Accept the user's R(Tpar) symbol move as
    cosmetic; do not inspect or undo it.
-3. Establish a qualified as-built complete-system impedance and phase route,
-   then measure the Seed A load before authorising controlled higher-level
-   testing.
-4. If the load passes, perform proportionate full-system
-   distortion/compression and thermal validation at the required listening
-   level. Do not repeat the already-passed on-axis or sparse-horizontal package
-   without a design-relevant reason.
-5. Keep the cooled repeat woofer ZMA in
+3. Perform the [current `0.5/1/2/4 V RMS` full-system level and thermal
+   procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md), treating
+   `4 V RMS` as a user-stoppable ceiling. Do not repeat the already-passed
+   on-axis or sparse-horizontal package without a design-relevant reason.
+4. Keep the cooled repeat woofer ZMA in
    [DRIVER_RUNIN.md](DRIVER_RUNIN.md) as a lower-priority alignment question;
    promote it only if its resistance and conditions are reproducible.
-6. Record enclosure fill/lining, ambient temperature, driver-terminal voltage,
+5. Record enclosure fill/lining, ambient temperature, driver-terminal voltage,
    mounting, and calibration conditions with any replacement evidence.
-7. Do not promote Seed B or purchase the second driver pair unless the remaining
-   load, level, or thermal evidence exposes a broad design-relevant weakness.
+6. Do not promote Seed B or purchase the second driver pair unless the remaining
+   level or thermal evidence exposes a broad design-relevant weakness.
 
 ### 9.2 Remaining driver uncertainties
 
-- As-built impedance/EPDR validation of the selected external prototype; its on-axis and sparse horizontal acoustic gates now pass.
 - Woofer and tweeter distortion/compression at required listening levels.
 - Final damping's effect on the sealed alignment and the woofer-series inductor DCR's effect on $Q_{tc}$.
 - Reproducibility of the cooled woofer impedance after conditioning.

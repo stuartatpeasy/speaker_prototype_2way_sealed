@@ -6,13 +6,16 @@
 | Owns | Purpose, commands, outputs, reconstruction, and current limitations |
 | Does not own | Detailed live qualification evidence |
 | Validation record | [REW API client validation](rew/qualification/REW_API_CLIENT_VALIDATION.md) |
+| Compact analysis reference | [Measurement data tooling](MEASUREMENT_DATA_TOOLING.md) |
 
 ## 1. Purpose and authority boundary
 
 [`src/rew_api_extract.py`](../src/rew_api_extract.py) uses REW V5.40's local API to
 capture current session state and to extract reviewable data from `.mdat`
-files. REW remains responsible for interpreting its Java-serialised project
-format; the client is deliberately not an independent binary parser.
+files. It can also analyse selected frequency-response facts in memory without
+writing the large intermediate CSV. REW remains responsible for interpreting
+its Java-serialised project format; the client is deliberately not an
+independent binary parser.
 
 An `.mdat` remains the raw measurement authority. Client-generated JSON and CSV
 files are derived convenience outputs unless one is deliberately retained as a
@@ -157,12 +160,46 @@ inspection. Omit `--ppo` when preserving the native frequency grid: forcing PPO
 resampling permits REW to apply PPO/2 anti-alias smoothing. For example, 96 PPO
 may report 1/48-octave smoothing even when `None` was requested.
 
+### 4.2 Compact `.mdat` summary
+
+When the question needs engineering facts rather than a reusable full export,
+load and analyse the `.mdat` in one operation:
+
+```powershell
+.venv\Scripts\python.exe src\rew_api_extract.py summarize "rew\example.mdat" --band 20 20000 --frequency-unit ohm --smoothing None --ppo 96 --at 1000
+```
+
+The band and unit are required. `--measurement` and `--at` are repeatable;
+measurement IDs or UUIDs can restrict a multi-measurement file, and each `--at`
+adds a nearest-sample query. `--smoothing` defaults to `None` and `--ppo` to
+`96`. Record those choices: PPO resampling may impose the anti-alias smoothing
+described in section 4.1. Use a full native-grid extraction when that distinction
+could change the decision.
+
+`summarize` asks REW for frequency responses only, analyses their decoded rows
+in memory, and writes bounded JSON to standard output. It includes the source
+hash and size, selection and response parameters, scalar response metadata,
+warnings, curve extrema, and requested points. An `ohm` response additionally
+reports rectangular impedance extrema and ideal class-B EPDR. It does not write
+CSV or request impulse samples.
+
+Like `extract`, this is signal-free but adds the loaded measurements to the
+current REW workspace and does not remove or save them. Use it only when that
+workspace mutation is acceptable. For already exported FRD, ZMA, response, or
+impulse data, prefer the offline commands in
+[Measurement data tooling](MEASUREMENT_DATA_TOOLING.md).
+
 ## 5. Outputs and reconstruction
 
 Default extracts are written under
 `outputs/rew-api/<source>-<sha256-prefix>/`. Session snapshots should also be
 placed under `outputs/rew-api/`. That directory is intentionally ignored because
 these outputs are disposable and reconstructible.
+
+Compact summaries are normally ephemeral standard output. Reconstruct one from
+the retained `.mdat`, its recorded hash, the command parameters, the identified
+REW build, and the committed client. Redirect it to an ignored output path only
+when a temporary machine-readable copy is useful.
 
 The complete reconstruction route is:
 
@@ -211,7 +248,8 @@ python -m unittest discover -s tests -v
 The tests cover array decoding, frequency-axis reconstruction, explicit
 response settings, GET-only partial snapshots, Java/ASIO selection, path
 redaction, Windows-path translation, measurement selection, overwrite guards,
-CSV row counts, and representative API failures without requiring REW.
+CSV row counts, bounded in-memory summary output, impedance calculations, and
+representative API failures without requiring REW.
 
 ### 7.2 Live validation status
 

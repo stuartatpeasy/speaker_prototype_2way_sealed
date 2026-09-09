@@ -22,6 +22,18 @@ for a particular task takes precedence.
    Load `QUALIFICATION` records only to audit a gate, change qualified hardware,
    or diagnose a failure. Load `HISTORY` only for provenance or a superseded
    decision. Do not routinely ingest history merely because it is linked.
+7. Before reading or printing a large supported measurement or project file,
+   use the compact commands in
+   [doc/MEASUREMENT_DATA_TOOLING.md](doc/MEASUREMENT_DATA_TOOLING.md). Request
+   only the relevant frequency band, points, comparisons, or project facts.
+   Inspect raw rows only to diagnose an anomaly, validate or extend a parser, or
+   answer a question the maintained tools do not support.
+8. Treat compact tool output as derived convenience evidence: retain the source
+   file as authority and carry its hash, analysis parameters, and warnings into
+   any conclusion. Before creating a temporary parser for a recurring FRD, ZMA,
+   extracted REW response, impulse, `.mdat`, or VXP operation, extend the
+   committed tool and its tests instead. A one-off script remains acceptable for
+   a genuinely exploratory or non-recurring question.
 
 ## 2. Technical communication
 
@@ -58,6 +70,29 @@ it and revisit it from another direction later.
    good standard. Do not turn it into tedious unpaid work by pursuing immaterial
    improvements or the last hundredth of a percent without a project-relevant
    justification.
+6. Default to the smallest number of conversational gates that safely completes
+   a task. Combine routine, reversible, low-risk checks, connections, settings
+   changes, and test execution into one turn and one procedure when their safe
+   order is already known.
+7. When the user can directly judge a check, use a local conditional gate instead
+   of requiring a separate report and reply: if the check passes, continue; if it
+   fails, stop, leave the system safe, and report the failure. Ask for one
+   consolidated report after the bounded sequence.
+8. Require a separate turn boundary only when the next action depends on expert
+   interpretation of a result not yet available, materially changes the risk,
+   would energise uncertain wiring or equipment, is destructive or difficult to
+   reverse, or needs fresh user authorisation. State the specific reason for the
+   boundary.
+9. For live measurements, ask once for the actual current physical power and
+   wiring state when it has not already been supplied. Once that state is
+   established, normally provide the complete bounded sequence from the
+   no-signal audit through connections and settings to one controlled test, with
+   explicit stop conditions. Do not request repeated confirmation of unchanged
+   state during the same task unless a reported action or anomaly could have
+   changed it.
+10. Size procedures around meaningful engineering decisions rather than
+    individual clicks or checks. Do not split a known safe sequence across turns
+    merely to create conversational checkpoints.
 
 ## 4. Agent delegation
 
@@ -69,61 +104,78 @@ it and revisit it from another direction later.
    likely time saving. The primary agent remains responsible for integrating
    and checking delegated results.
 
-## 5. Keep Markdown current in the same turn
+## 5. Keep Markdown current through a consolidated end-of-turn pass
 
-1. For every project task, identify whether the work changes any documented
-   fact, measurement baseline, calculation, decision, procedure, filename,
-   dependency, reconstruction route, status, priority, or open item.
-2. If it does, update every affected Markdown file before completing that same
-   task. Do not knowingly leave a document stale or defer an obvious update to a
-   future turn.
-3. Do not rewrite unrelated documents merely to create activity. “Keep current”
+1. During substantive investigation, calculation, measurement, implementation,
+   and verification, track whether the work changes any documented fact,
+   measurement baseline, calculation, decision, procedure, filename, dependency,
+   reconstruction route, status, priority, or open item. Accumulate these
+   consequences without editing Markdown after each intermediate result.
+2. First complete the substantive work and allow the conclusions to stabilise.
+   Then, near the end of the turn, perform one consolidated documentation-editing
+   phase that updates every affected Markdown file before the final response.
+3. Intermediate hypotheses, exploratory results, failed approaches, and
+   conclusions superseded within the same turn do not require separate
+   documentation updates unless they are themselves durable evidence or
+   necessary provenance.
+4. A consolidated documentation phase may update several files and may include
+   a small corrective edit if the subsequent documentation checks reveal an
+   error. It means one documentation stage, not an absolute limit of one
+   filesystem operation.
+5. Depart from this batching rule only when the user explicitly requests
+   incremental documentation, a later step in the same turn must consume the
+   updated document, an immediately corrected procedure is needed before a
+   safety-relevant action, or delaying the record would risk losing unique
+   evidence. Briefly state why when departing from the rule.
+6. Do not knowingly finish the turn with affected documentation stale or defer
+   an obvious update to a future turn.
+7. Do not rewrite unrelated documents merely to create activity. “Keep current”
    means correcting documents affected by the work, not introducing churn.
-4. When adding, renaming, moving, or deleting a durable Markdown file, update
+8. When adding, renaming, moving, or deleting a durable Markdown file, update
    the nearest subtree dispatcher and any affected task-oriented reading route
    in [README.md](README.md). Add detailed qualification or history files to the
    root map only through their dispatcher. Search the whole project for stale
    filename and link references.
-5. Keep the root and topic-document section/subsection hierarchy numbered.
-6. Preserve dated history and superseded conclusions where they explain the
+9. Keep the root and topic-document section/subsection hierarchy numbered.
+10. Preserve dated history and superseded conclusions where they explain the
    engineering process. Label the new conclusion and why it supersedes the old
    one rather than rewriting history. When a measurement baseline is explicitly
    replaced, update every current conclusion and source reference that depends
    on it.
-7. Maintain evidence labels and current driver conclusions in
+11. Maintain evidence labels and current driver conclusions in
    [doc/DRIVER_ANALYSIS.md](doc/DRIVER_ANALYSIS.md). Add to that record whenever
    conditioning, electrical/acoustic measurements, calculations, simulations,
    crossover tuning, pair matching, procurement decisions, or superseding
    conclusions materially change the driver picture. Put detailed chronology
    in its history record and non-driver measurement evidence in the relevant
    REW qualification or history authority.
-8. Keep specialised procedures under the corresponding documentation subtree
+12. Keep specialised procedures under the corresponding documentation subtree
    (`doc/rew/` for REW work), while retaining measurement and project artefacts
    in their existing data directories (`rew/` and `vituixcad/`). Link procedures
    from the relevant indexed Markdown file.
-9. Give each durable fact one current authority. Other current documents should
+13. Give each durable fact one current authority. Other current documents should
    state only the consequence they consume and link to that authority. A history
    record may repeat a fact as part of dated chronology but must identify itself
    as non-current context.
-10. Begin each routinely loaded topic authority or procedure with a compact
+14. Begin each routinely loaded topic authority or procedure with a compact
     state card where applicable: lifecycle, owns, does not own, read-when rule,
     current approved action or conclusion, next gate, limitations, and
     last-reviewed date. Keep detailed results in their owning evidence record.
-11. Whenever a generated output becomes intentionally uncommitted, document the
+15. Whenever a generated output becomes intentionally uncommitted, document the
     complete reconstruction route: retained inputs, generator/tool, pinned or
     otherwise identified dependencies, configuration, command, and the expected
     verification result.
-12. Keep `README.md` as a compact dashboard and router. It may state the current
+16. Keep `README.md` as a compact dashboard and router. It may state the current
     phase, the decision-relevant consequence for each subsystem, task routes,
     and immediate priorities, but it must not accumulate test transcripts,
     detailed derivations, qualification evidence, or chronological narrative.
     Put those details in their owning topic, qualification, or history record.
-13. Keep durable project Markdown under `doc/`, except for the root `README.md`
+17. Keep durable project Markdown under `doc/`, except for the root `README.md`
     and `AGENTS.md`. Keep measurements, CAD, source code, and generated artefacts
     in their existing data/source trees rather than moving them under `doc/`.
     Add a subtree dispatcher only when it materially shortens or clarifies the
     task routes through that subtree.
-14. Do not use a current procedure as an append-only work log. When a procedure
+18. Do not use a current procedure as an append-only work log. When a procedure
     step is completed, move durable results into the owning current authority or
     qualification record, retain decision-relevant superseded chronology in a
     dated history record, and revise the procedure to show only its current

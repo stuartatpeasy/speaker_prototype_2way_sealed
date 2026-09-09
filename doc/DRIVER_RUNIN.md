@@ -56,6 +56,11 @@ If a reliable cold-DCR reference is unavailable, wait at least 60 minutes and us
 
 1. Keep the driver mounting, cabinet sealing, fill, orientation, and wiring unchanged.
 2. Use REW impedance mode with:
+   - the StarTech ICUSBAUDIO2D generic external USB sound card used for every
+     retained impedance measurement to date;
+   - `EXCL: StarTech USB audio interface (USB Audio Device)` selected as both
+     REW input and output device;
+   - output `R`, reference input `R`, and measurement input `L`;
    - **48 kHz sample rate**;
    - **1M logarithmic swept sine**;
    - **one sweep at −12 dBFS**;

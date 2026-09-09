@@ -29,6 +29,10 @@ from urllib import error, parse, request
 
 DEFAULT_API = "http://127.0.0.1:4735"
 DEFAULT_TIMEOUT = 10.0
+MAX_SUMMARY_MEASUREMENTS = 64
+MAX_POINT_QUERIES = 64
+MAX_SUMMARY_TEXT = 500
+MAX_SUMMARY_COLLECTION = 64
 
 SNAPSHOT_ENDPOINTS = {
     "application": (
@@ -850,6 +854,190 @@ def run_extract(args: argparse.Namespace) -> int:
     return 0
 
 
+def _measurement_analysis() -> Any:
+    """Import the shared analyser without making status/snapshot depend on it."""
+    try:
+        from src import measurement_analysis
+    except (ImportError, ModuleNotFoundError):
+        # Also support direct execution from inside src/ on Windows.
+        try:
+            import measurement_analysis  # type: ignore[no-redef]
+        except (ImportError, ModuleNotFoundError) as exc:
+            raise RewApiError(
+                "Compact analysis requires src/measurement_analysis.py in this checkout"
+            ) from exc
+    return measurement_analysis
+
+
+def _bounded_json_value(value: Any, *, depth: int = 0) -> Any:
+    """Bound API-controlled values so summary output cannot contain raw arrays."""
+    if depth >= 4:
+        return "<maximum-depth-reached>"
+    if isinstance(value, str):
+        if len(value) <= MAX_SUMMARY_TEXT:
+            return value
+        return value[:MAX_SUMMARY_TEXT] + "<truncated>"
+    if isinstance(value, Mapping):
+        result: dict[str, Any] = {}
+        for index, (key, child) in enumerate(value.items()):
+            if index >= MAX_SUMMARY_COLLECTION:
+                break
+            result[str(key)] = _bounded_json_value(child, depth=depth + 1)
+        if len(value) > MAX_SUMMARY_COLLECTION:
+            result["_truncatedItemCount"] = len(value) - MAX_SUMMARY_COLLECTION
+        return result
+    if isinstance(value, (list, tuple)):
+        result = [
+            _bounded_json_value(child, depth=depth + 1)
+            for child in value[:MAX_SUMMARY_COLLECTION]
+        ]
+        if len(value) > MAX_SUMMARY_COLLECTION:
+            result.append({"_truncatedItemCount": len(value) - MAX_SUMMARY_COLLECTION})
+        return result
+    if isinstance(value, (int, float, bool)) or value is None:
+        return value
+    return _bounded_json_value(str(value), depth=depth)
+
+
+def _bounded_response_metadata(metadata: Mapping[str, Any]) -> dict[str, Any]:
+    """Keep only scalar response facts needed to reproduce interpretation."""
+    return {
+        str(key): _bounded_json_value(redact_snapshot_value(value, key=str(key)))
+        for key, value in metadata.items()
+        if isinstance(value, (str, int, float, bool)) or value is None
+    }
+
+
+def _is_impedance_unit(unit: object) -> bool:
+    return _normalise_api_label(unit) in {"ohm", "ohms", "omega", "ω", "impedance"}
+
+
+def _compact_curve_analysis(
+    rows: Sequence[tuple[float, float, float | None]],
+    *,
+    unit: str,
+    band: tuple[float, float],
+    points: Sequence[float],
+) -> dict[str, Any]:
+    analyser = _measurement_analysis()
+    try:
+        curve = analyser.curve_from_rows(
+            rows, kind="impedance" if _is_impedance_unit(unit) else "response", unit=unit
+        )
+        curve_summary = analyser.summarize_curve(curve, band=band)
+        analysis: dict[str, Any] = {
+            "validation": curve_summary["validation"],
+        }
+        if points:
+            analysis["points"] = analyser.query_points(
+                curve, points, method="nearest"
+            )["result"]
+        if _is_impedance_unit(unit):
+            analysis["grid"] = curve_summary["analysis"]["grid"]
+            analysis["impedance"] = analyser.summarize_impedance(curve, band=band)["result"]
+        else:
+            analysis["curve"] = curve_summary["analysis"]
+        return analysis
+    except (TypeError, ValueError) as exc:
+        raise RewApiError(f"Could not analyse REW frequency response: {exc}") from exc
+
+
+def run_summarize(args: argparse.Namespace) -> int:
+    """Load an .mdat through REW and print compact in-memory analysis only."""
+    source = args.file.resolve()
+    if not source.is_file():
+        raise RewApiError(f"Input file does not exist: {source}")
+    if source.suffix.lower() != ".mdat":
+        raise RewApiError(f"Expected a .mdat input file, got: {source.name}")
+
+    digest = sha256_file(source)
+    api = RewApi(args.api, args.timeout)
+    before = api.measurements()
+    load_response = api.load(path_for_rew(source))
+    after = wait_for_loaded_measurements(
+        api,
+        before,
+        timeout=args.poll_timeout,
+        settle_time=args.settle_time,
+    )
+    selected_ids = select_measurements(before, after, args.measurement)
+    if len(selected_ids) > MAX_SUMMARY_MEASUREMENTS:
+        raise RewApiError(
+            f"The .mdat added {len(selected_ids)} measurements; select at most "
+            f"{MAX_SUMMARY_MEASUREMENTS} with repeated --measurement options"
+        )
+
+    frequency_request = {
+        "unit": args.frequency_unit,
+        "smoothing": args.smoothing,
+        "ppo": args.ppo,
+    }
+    band = (float(args.band[0]), float(args.band[1]))
+    point_frequencies = [float(value) for value in (args.at or [])]
+    result: dict[str, Any] = {
+        "schemaVersion": 1,
+        "kind": "rewMdatSummary",
+        "createdUtc": datetime.now(timezone.utc).isoformat(),
+        "source": {
+            "path": display_source_path(source),
+            "sizeBytes": source.stat().st_size,
+            "sha256": digest,
+        },
+        "api": {
+            "baseUrl": api.base_url,
+            "loadResponse": redact_snapshot_value(_bounded_json_value(load_response)),
+            "measurementRewVersions": _bounded_json_value(sorted({
+                str(after[measurement_id]["rewVersion"])
+                for measurement_id in selected_ids
+                if after[measurement_id].get("rewVersion") is not None
+            })),
+        },
+        "authority": (
+            "Derived compact analysis. The source .mdat remains the raw measurement "
+            "authority; REW interpreted the file."
+        ),
+        "workspaceMutationWarning": (
+            "Loading the .mdat adds its measurements to the current REW workspace. "
+            "This command does not remove or save them."
+        ),
+        "analysisRequest": {
+            "bandHz": list(band),
+            "pointFrequenciesHz": point_frequencies,
+            "frequencyResponse": frequency_request,
+            "pointMethod": "nearest",
+        },
+        "measurements": [],
+    }
+
+    for measurement_id in selected_ids:
+        summary = after[measurement_id]
+        response = api.get(
+            f"/measurements/{parse.quote(measurement_id, safe='')}/frequency-response",
+            query=frequency_request,
+        )
+        if not isinstance(response, dict):
+            raise RewApiError(f"Frequency response for measurement {measurement_id} was not an object")
+        rows, response_metadata = frequency_rows(response)
+        warnings = validate_frequency_response_settings(frequency_request, response_metadata)
+        analysis = _compact_curve_analysis(
+            rows,
+            unit=str(response_metadata.get("unit", args.frequency_unit)),
+            band=band,
+            points=point_frequencies,
+        )
+        result["measurements"].append({
+            "id": measurement_id,
+            "summary": _bounded_json_value(redact_snapshot_value(safe_summary(summary))),
+            "requests": {"frequencyResponse": frequency_request},
+            "responseMetadata": _bounded_response_metadata(response_metadata),
+            "analysis": analysis,
+            "warnings": warnings,
+        })
+
+    print(json.dumps(result, indent=2, sort_keys=True, ensure_ascii=False))
+    return 0
+
+
 def add_api_options(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--api", default=DEFAULT_API, help=f"REW API base URL (default: {DEFAULT_API})")
     parser.add_argument("--timeout", type=float, default=DEFAULT_TIMEOUT,
@@ -902,6 +1090,40 @@ def build_parser() -> argparse.ArgumentParser:
                                 help="Quiet time after the last loaded trace (default: 1 second)")
     add_api_options(extract_parser)
     extract_parser.set_defaults(function=run_extract)
+
+    summarize = subparsers.add_parser(
+        "summarize",
+        help="Load an .mdat and print bounded engineering facts without writing response files",
+    )
+    summarize.add_argument("file", type=Path, help="Source .mdat file")
+    summarize.add_argument("--measurement", action="append",
+                           help="Summarize only this post-load measurement ID or UUID; repeatable")
+    summarize.add_argument(
+        "--band", type=float, nargs=2, metavar=("LOW_HZ", "HIGH_HZ"), required=True,
+        help="Required inclusive analysis band in hertz",
+    )
+    summarize.add_argument(
+        "--at", type=float, action="append", metavar="FREQUENCY_HZ",
+        help=f"Report the nearest sample at this frequency; repeatable (maximum {MAX_POINT_QUERIES})",
+    )
+    summarize.add_argument(
+        "--frequency-unit", required=True,
+        help="Explicit REW response unit, for example SPL or ohm",
+    )
+    summarize.add_argument(
+        "--smoothing", default="None",
+        help="Explicit REW smoothing (default: None)",
+    )
+    summarize.add_argument(
+        "--ppo", type=int, default=96,
+        help="Explicit positive points-per-octave resampling (default: 96)",
+    )
+    summarize.add_argument("--poll-timeout", type=float, default=30.0,
+                           help="Seconds to wait for REW to finish loading (default: 30)")
+    summarize.add_argument("--settle-time", type=float, default=1.0,
+                           help="Quiet time after the last loaded trace (default: 1 second)")
+    add_api_options(summarize)
+    summarize.set_defaults(function=run_summarize)
     return parser
 
 
@@ -915,6 +1137,22 @@ def main(argv: Sequence[str] | None = None) -> int:
     ppo = getattr(args, "ppo", None)
     if ppo is not None and ppo <= 0:
         parser.error("PPO must be a positive integer")
+    band = getattr(args, "band", None)
+    if band is not None and (
+        not all(math.isfinite(value) for value in band)
+        or band[0] <= 0
+        or band[1] <= band[0]
+    ):
+        parser.error("analysis band must satisfy 0 < LOW_HZ < HIGH_HZ")
+    points = getattr(args, "at", None) or []
+    if len(points) > MAX_POINT_QUERIES:
+        parser.error(f"at most {MAX_POINT_QUERIES} point-frequency queries are allowed")
+    if any(not math.isfinite(point) or point <= 0 for point in points):
+        parser.error("point frequencies must be positive")
+    if args.command == "summarize" and (
+        not args.frequency_unit.strip() or not args.smoothing.strip()
+    ):
+        parser.error("frequency unit and smoothing must be non-empty")
     try:
         return int(args.function(args))
     except RewApiError as exc:

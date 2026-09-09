@@ -4,7 +4,7 @@
 > - **Owns:** current acoustic direction, driver polarity/topology, NL4 allocation, evidence dependencies, validation gates, and open design decisions
 > - **Does not own:** detailed component-bank and inductor construction engineering; installed-driver evidence; measurement procedures
 > - **Current decision:** retain the same-polarity third-order Seed A as the reversible external prototype; its measured components, practical model, on-axis filtered branches, normal sum, physical reverse null, and sparse `0/+20/+40/+60 degree` horizontal responses pass proportionately, with a moderate crossover-region directivity flare retained as a possible refinement rather than grounds for an immediate component change
-> - **Next gate:** establish and run a qualified as-built full-system impedance/phase measurement before higher-level distortion or thermal testing; no further unchanged acoustic sweep is presently required
+> - **Next gate:** the as-built load passes with `4.366 ohm` minimum magnitude, `4.284 ohm` minimum real part, and `2.563 ohm` minimum idealised class-B EPDR; proceed under the current `0.5/1/2/4 V RMS` full-system level and bounded two-probe thermal procedure, with `4 V RMS` as a user-stoppable ceiling; no unchanged impedance or acoustic sweep is presently required
 > - **Limitations:** Seed A is not a final crossover; the user's stated cosmetic R(Tpar) move in the reopened/saved practical VXP was accepted without inspection; the AADE inductance test frequency is unknown; known local woofer early-tail uncertainty near 2.03 kHz; modelled woofer fall is only about `9.1 dB` from `2.1-4.2 kHz`; C2's relative-level correction is derived; the threshold-triggered persistent `1 kHz` distortion is now strongly associated with the undamped tweeter-only load but its exact mechanism is unproved and ultrasonic behaviour remains outside the UMC22/48 kHz observation band; the overnight Windows restart means the current software/process state does not reproduce the discovery state; positive-side sparse horizontal evidence only; no vertical, negative-angle, full-space power/DI, or controlled sweep distortion data
 > - **As of:** 2026-09-09
 
@@ -239,7 +239,8 @@ derived minimum input impedance of approximately `3.705 ohm` near `2.655 kHz`
 at approximately `-10.4 degrees`. This value was calculated from the installed
 ZMAs and intended circuit. The latest VituixCAD impedance plot uses the same
 parallel topology and agrees visually, so the proportionate software load gate
-passes; final as-built impedance and EPDR remain later measurement gates.
+passes. The later as-built impedance and EPDR measurement in Section 2.6 also
+passes and supersedes this provisional load prediction for hardware judgement.
 
 ### 2.3 Signal-free Seed A design audit
 
@@ -392,11 +393,11 @@ but its exact mechanism and possible ultrasonic content were not proved. This
 closed diagnostic is distinct from the pending controlled full-system
 distortion/compression gate.
 
-Together, the physical branch, sum, polarity, and horizontal evidence support
+Together, the physical branch, sum, polarity, horizontal, and as-built load evidence support
 retaining Seed A unchanged as the reversible prototype. They do not freeze the
-final crossover. The next gate is a qualified as-built system impedance-and-
-phase measurement; higher-level distortion/compression and thermal validation
-remain later gates. No unchanged acoustic sweep is presently justified.
+final crossover. Controlled full-system distortion/compression and thermal
+validation at the required listening level is the next gate. No unchanged
+impedance or acoustic sweep is presently justified.
 
 ### 2.5 Practical measured-component model
 
@@ -444,6 +445,29 @@ measured-component successor. Other superseded intermediate projects remain
 recoverable from Git history; the longer-window on-axis cases can be
 reconstructed from the measured baseline, documented components, and retained
 FRD/ZMA sources. Current raw measurement authorities remain under `rew/`.
+
+### 2.6 As-built complete-system load
+
+**VERIFIED MEASUREMENT / DERIVED — LOAD GATE PASSED:** the completed StarTech
+capture is retained as
+[`rew/SPK_impedance_WT_1_20260909.mdat`](../rew/SPK_impedance_WT_1_20260909.mdat)
+and
+[`rew/SPK_impedance_both_drivers_run1_2026-09-09.zma`](../rew/SPK_impedance_both_drivers_run1_2026-09-09.zma).
+Detailed metadata, hashes, calculations, and the EPDR definition are in the
+[owning load record](rew/qualification/SEED_A_AS_BUILT_IMPEDANCE_AND_EPDR_2026-09-09.md).
+
+Across `20 Hz-20 kHz`, minimum impedance magnitude is `4.366 ohm` near
+`9.617 kHz`, with phase `+1.278 degrees`. Minimum real part is `4.284 ohm` near
+`2.156 kHz`. The minimum idealised class-B EPDR is `2.563 ohm` near
+`1.942 kHz`, where the actual load is `4.905 ohm` at `-25.113 degrees`.
+
+The practical model predicted `3.805 ohm` minimum magnitude near `2.792 kHz`;
+the measured load is `4.637 ohm` at that frequency and never falls below
+`4.366 ohm`. It therefore clears the `3.5 ohm` prototype magnitude gate by
+`0.866 ohm`. The EPDR result identifies a moderate reactive output-device
+dissipation burden around the crossover, but actual current remains governed by
+the approximately `4.91 ohm` impedance magnitude there. Retain Seed A unchanged
+and carry this burden into the controlled level and thermal gate.
 
 ## 3. Evidence and model dependencies
 
@@ -498,8 +522,15 @@ Tweeter power ratings must always be read with their specified high-pass conditi
 2. **Passed:** the external network uses measured components and accessible development construction.
 3. **Passed:** the practical model contains the as-built component values and parasitics.
 4. **Passed:** individual filtered drivers, normal-polarity sum, physical reverse-polarity null, and the sparse positive-horizontal full-system set.
-5. **Open:** measure as-built system impedance/phase and derive the applicable load classification/EPDR.
-6. **Open:** controlled full-system distortion/compression and thermal validation at required listening levels.
+5. **Passed:** the calibrated StarTech capture gives `4.366 ohm` minimum
+   magnitude and `2.563 ohm` minimum EPDR; no unchanged repeat is justified.
+6. **Open / next gate:** controlled full-system distortion/compression and
+   thermal validation under the [current UMC22 Seed A
+   procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md). The selected
+   sweep series is `0.5/1/2/4 V RMS`; `4 V RMS` is a ceiling and the user may
+   stop earlier for excessive volume. The available thermal instruments are
+   the U1282A and U1272A Agilent Type-K contact probes; no IR thermometer is
+   available or required.
 7. Move the network inside only after the complete measured assembly is stable under the remaining gates; repeat one controlled design change at a time if refinement is justified.
 
 ## 6. Open crossover items
@@ -508,6 +539,6 @@ Tweeter power ratings must always be read with their specified high-pass conditi
   topology, values, and normal acoustic polarity after the remaining gates;
 - second-channel component matching and final inductor implementation;
 - permanent inductor interlock, outer-layer binding, and PCB restraint;
-- final system impedance classification and amplifier headroom;
+- amplifier headroom at the required listening level;
 - final crossover mounting position;
 - whether DSP remains development-only or is used in the finished system.
