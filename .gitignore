@@ -97,5 +97,8 @@ Thumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 
+# Compressed Gerber bundles
+diptrace/*gerber*.zip
+
 # LatencyMon outputs disclose private, project-irrelevant host details.
 rew/*LatencyMon*.txt
