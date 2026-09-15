@@ -4,15 +4,15 @@
 **Woofer:** SB Acoustics **SB17NRX2C35-8**
 **Tweeter:** SB Acoustics **SB26STWGC-4**
 **Record created:** 2026-08-27
-**Last updated:** 2026-09-09
+**Last updated:** 2026-09-15
 
 > - **Lifecycle:** ACTIVE DRIVER EVIDENCE AUTHORITY
 > - **Owns:** evidence classes, approved driver ZMA/FRD sources, measurement conditions and quality, woofer/tweeter results and derivations, retention and procurement decisions, driver-specific modelling consequences, uncertainties, and next evidence gates
 > - **Does not own:** REW/interface qualification chronology, fixture design, detailed acoustic-capture procedure, crossover-component construction, or room-placement evidence
-> - **Current decision:** provisionally retain both installed drivers and Seed A; all measured components, on-axis filtered branches, normal sum, physical reverse null, and the sparse `0/+20/+40/+60 degree` full-system horizontal set pass proportionately, with a moderate crossover-region directivity flare retained for possible later refinement
-> - **Next gate:** the as-built Seed A load passes with `4.366 ohm` minimum magnitude and `2.563 ohm` minimum idealised class-B EPDR; proceed under the current `0.5/1/2/4 V RMS` full-system distortion/compression and bounded two-probe thermal procedure, with `4 V RMS` as a user-stoppable ceiling; no unchanged impedance or acoustic sweep is presently required
-> - **Limitations:** one sample of each driver; incomplete baseline conditions; the user's stated cosmetic R(Tpar) move in the reopened/saved practical VXP was accepted without inspection; AADE inductance test frequency unknown; known approximately `0.5-0.6 dB` local woofer early-tail variability near `2.03 kHz`; C2's relative-level correction is derived rather than directly calibrated; the threshold-triggered persistent `1 kHz` distortion is now strongly associated with the undamped tweeter-only load but its exact mechanism is unproved and possible ultrasonic behaviour remains outside the UMC22/48 kHz observation band; the overnight Windows restart means the current software/process state does not reproduce the discovery state; positive-side sparse polar evidence only, with woofer interpretation provisionally limited to `1.5-5 kHz`; no controlled sweep distortion data
-> - **As of:** 2026-09-09
+> - **Current decision:** retain both installed drivers and Seed A; acoustic, as-built load, bounded level/distortion, and external-component surface-thermal gates pass proportionately
+> - **Next gate:** procure/build and measure speaker two under matched conditions, including a correct immediate hot `0-degree` comparison and confirmation of the narrow approximately `1.28 dB` high-level shape change near `2.18 kHz`; retest speaker one only if the second unit reveals an anomaly
+> - **Limitations:** one sample of each driver; incomplete baseline conditions; approximate rather than steady sweep-voltage readings; generic rather than absolute-SPL microphone calibration; the attempted post-thermal trace is excluded because the speaker was at `60 degrees`; contact probes do not measure voice-coil temperature; known local woofer early-tail variability near `2.03 kHz`; C2 scale is derived; the parked undamped tweeter-only mechanism and possible ultrasonic behaviour remain unproved; positive-side sparse polar evidence only
+> - **As of:** 2026-09-15
 
 This is the durable engineering record for the driver investigation. It supplements [README.md](../README.md). Detailed dated driver-impact history is retained in [DRIVER_ANALYSIS_CHANGELOG.md](history/DRIVER_ANALYSIS_CHANGELOG.md).
 
@@ -20,7 +20,7 @@ This is the durable engineering record for the driver investigation. It suppleme
 
 ### 1.1 Evidence labels
 
-- **VERIFIED MEASUREMENT** — directly present in an archived measurement file or explicitly recorded instrument result.
+- **VERIFIED MEASUREMENT** — directly present in retained measurement evidence and independently read back or checked; a user-transcribed instrument result remains **USER-REPORTED** unless its own durable record supports verification.
 - **DERIVED** — calculated from stated measured or published inputs and retained equations.
 - **PUBLISHED** — manufacturer specification or manufacturer technical guidance.
 - **EXTERNAL RESEARCH** — relevant non-manufacturer technical literature.
@@ -109,7 +109,7 @@ review diagnostic, not the durable REW export.
 impulse, headroom, metadata, and crossover-region response are coherent with
 the intentional microphone move. Increasing attenuation above approximately
 `5 kHz` is physically expected at the roughly `8.5-degree` vertical off-axis
-woofer angle and does not constrain the proposed `2.2-2.4 kHz` crossover.
+woofer angle and did not constrain the then-proposed `2.2-2.4 kHz` crossover.
 TW1's approved window, axis-qualified single-measurement `.mdat`, and validated
 FRD are now retained without moving the geometry.
 
@@ -591,7 +591,7 @@ qualification](rew/qualification/UMC22_FRD_QUALIFICATION.md).
 - Seed A's measured filtered branches cross broadly near 1.83 kHz with nearly coincident phase; constructive sum, physical reverse null, and the sparse positive-horizontal full-system set pass proportionately.
 - The moderate approximately 2.5–3.1 dB beamwidth change through 1.5–2.5 kHz is retained as a possible later refinement target, not a present failure.
 - The as-built Seed A load passes: minimum magnitude is `4.366 ohm`, minimum real part is `4.284 ohm`, and minimum idealised class-B EPDR is `2.563 ohm`; detailed system evidence is in the [Seed A load record](rew/qualification/SEED_A_AS_BUILT_IMPEDANCE_AND_EPDR_2026-09-09.md).
-- The raw woofer, protected-tweeter, raw sparse-polar, Seed A on-axis/sparse-horizontal, and complete-system impedance packages are complete. The next driver-relevant gate is controlled full-system distortion/compression and thermal validation.
+- The raw woofer, protected-tweeter, sparse-polar, Seed A acoustic/load, bounded level/distortion, and external-component surface-thermal packages are complete. The wrong-angle post-thermal trace is excluded; the next driver-relevant gate is matched speaker-two measurement, including a valid hot `0-degree` comparison and confirmation of the narrow high-level feature near `2.18 kHz`.
 
 ### 1.5 Project file-location convention
 
@@ -781,7 +781,9 @@ There is no strong electrical anomaly in the 2.2-2.5 kHz region. Small higher-fr
 
 The measured $Q_{tc}\approx0.82$ sits inside the project's broadly manageable **0.75-0.95** development range. The alignment is warmer than the published-parameter design case but is not severely resonant. No additional low-frequency mode survives normal installation, and the impedance near the intended crossover is smooth and convenient to model.
 
-This does not yet establish acoustic smoothness, maximum output, distortion, compression, or suitability for pair matching.
+The later bounded complete-system package establishes proportionate acoustic,
+level/distortion, and broad-compression evidence for speaker one. Pair matching
+and production spread remain open.
 
 ### 4.6 Conditioning calculation and superseded operating note
 
@@ -869,7 +871,10 @@ There are no suspicious secondary impedance peaks. The normal installed mounting
 
 **PROVISIONAL DECISION:** retain the SB26STWGC-4.
 
-The intended 2.2-2.4 kHz crossover is approximately three times the measured resonance frequency. That is a plausible region for a steep **acoustic** fourth-order high-pass, but the ratio alone does not prove protection or correct summation. Installed-baffle acoustic response, phase, distortion, level testing, and the complete filtered transfer function remain required.
+The then-intended `2.2-2.4 kHz` region was approximately three times the
+measured resonance frequency. That ratio was only a preliminary plausibility
+check; the later installed, filtered, summed, and bounded level evidence now
+owns the Seed A decision.
 
 No dedicated tweeter run-in is presently justified. Use the baseline and protected-use procedure in [DRIVER_RUNIN.md](DRIVER_RUNIN.md); never apply an unfiltered conditioning signal directly to the bare tweeter.
 
@@ -889,8 +894,8 @@ horizontal centreline. At `0 degrees`, the baffle front edge and centre are
 directly over the pivot. Positive angle means anti-clockwise cabinet rotation
 when viewed from above. This fixes the baffle reference point at constant
 radius and releases geometry planning for the separate sparse horizontal
-runbook; it is configuration evidence, not an off-axis measurement.
-The microphone must remain there for the protected tweeter capture.
+runbook; it is configuration evidence, not an off-axis measurement. The
+subsequent protected-tweeter and polar captures used that geometry and passed.
 
 **DERIVED COMMON-POSITION CONSEQUENCE:** with `1.000 m` perpendicular distance
 to the baffle and `0.150 m` vertical centre spacing, the woofer-to-microphone
@@ -1032,11 +1037,9 @@ remained checked, ruling out a changed preference.
 **SUPERSEDED PROVISIONAL INFERENCE / RELEASE BASIS:** the deliberate `500 Hz` rather than
 `20 Hz` sweep start is the most economical explanation for the changed
 reference-peak index; finite-band excitation can change a loopback reference's
-peak location. C1 remains valid corroborating magnitude/impulse evidence but is
-not yet promoted as the phase-bearing design source. Run exactly one C2 with
-only its start restored to `20 Hz`; a timing index near `47,851` and System
-Delay near `3.11 ms` was the pre-C2 expectation. The actual result below
-confirms the index mechanism while superseding that approximate delay estimate.
+peak location. C1 remains corroborating magnitude/impulse evidence; the
+completed C2 below is the phase-bearing design source. Its actual result
+confirmed the index mechanism and superseded the pre-C2 delay estimate.
 The `10.13 uF` capacitor has `785.6 ohm` reactance at `20 Hz`, so a
 simple `3.3 ohm` load bound gives only `0.00420` voltage ratio (`-47.53 dB`, or
 about `4.2 mV` for a `1 V RMS` source). Extending the logged sweep start is
@@ -1157,8 +1160,8 @@ at `2.0/2.5/3.0/4.0/5.0/8.0/10.0 kHz` are respectively
 These are **DERIVED** angle-to-on-axis differences on the native grid; the
 common `+11.14 dB` protected-tweeter model scale cancels. The tweeter remains
 broad through the approximately `2.1-2.4 kHz` candidate crossover region and
-narrows progressively above it. Final crossover interpretation awaits the
-verified woofer exports and combined sparse-polar comparison.
+narrows progressively above it. The later verified woofer exports and combined
+sparse-polar comparison completed that interpretation.
 
 **VERIFIED POLAR EXPORTS / RECOVERABLE FILING COLLISION:** the exported
 `000/+20/+40/+60 degree` files each contain `31,404` finite native unsmoothed
@@ -1182,9 +1185,8 @@ The files were exported in the driver root rather than the prepared `polar/`
 subdirectory, so the polar `000deg` file replaced the path previously occupied
 by C2's `3.5 ms` design FRD. This is a recoverable pathname collision, not a
 measurement loss: the verified polar bytes exist and the authoritative C2
-`.mdat` can reproduce the earlier design response. File the four polar exports
-separately and restore the root design path before further VituixCAD work;
-neither operation is authorised merely by this evidence review.
+`.mdat` can reproduce the earlier design response. The following resolution
+supersedes those then-pending filing and restoration actions.
 
 **RESOLVED ROOT RESTORATION:** the verified four-file polar family remains in
 its `polar/` subdirectory. The root design FRD once again identifies C2, is
@@ -1409,11 +1411,35 @@ The driver-specific conclusions are:
   `2.5-3.1 dB` beamwidth change across `1.5-2.5 kHz` is a possible later
   refinement target; upper-band narrowing progresses coherently with angle.
 
-These results support retaining both drivers and Seed A through the next load
-gate. They do not replace controlled full-system distortion/compression or
-thermal validation at required listening levels.
+These results support retaining both drivers and Seed A through the completed
+load and bounded level/thermal gates.
 
-### 7.2 Consequences for crossover decisions
+### 7.2 Full-system level, distortion, and thermal consequence
+
+**VERIFIED MEASUREMENT / USER-REPORTED CONDITIONS / DERIVED — BOUNDED PASS
+WITH ONE DEFERRED COMPARISON (2026-09-10):** the retained
+[`rew/SPK_Seed_A_full_system_level_thermal_20260910.mdat`](../rew/SPK_Seed_A_full_system_level_thermal_20260910.mdat)
+contains the intended nominal `0.5/1/2/4 V RMS` traces. The exact shorter
+measurement names, trace identities, source hash, comparison method, and
+distortion samples are in the [owning
+qualification](rew/qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md).
+
+Both interface channels retained at least `27.9 dB` headroom and all intended
+sweeps completed without a reported warning or audible anomaly. Sampled
+distortion passes the project limits. Nominal-voltage normalisation shows no
+broad compression above `0.5 dB`; a narrow `4 V` versus `2 V` difference of
+about `-1.28 dB` near `2.18 kHz` is retained for speaker-two confirmation.
+R(Tser) and L(W1) surface rises during the 15-minute nominal `2 V RMS`
+CTA-2034 exposure were only `0.4` and `0.2 degrees C`, respectively, and
+both were stable over the final five minutes.
+
+The post-thermal trace is excluded from all acoustic conclusions because the
+speaker was inadvertently at `60 degrees`. The user has explicitly waived an
+immediate repeat on proportionality grounds. A correct hot `0-degree`
+comparison is required on speaker two; repeat speaker one only if that test
+reveals an anomaly.
+
+### 7.3 Consequences for crossover decisions
 
 - Treat the measured approximately `1.83 kHz` Seed A branch equality and its
   moderate directivity flare as the current prototype result; do not relabel it
@@ -1425,16 +1451,15 @@ thermal validation at required listening levels.
 
 ## 8. Procurement and pair-matching decision
 
-**PROVISIONAL DECISION:** continue with the present driver pair and enclosure.
-The acoustic-response and crossover-feasibility gates now pass for Seed A.
-Delay purchase of the second-channel drivers until the prototype has passed
-qualified as-built load, controlled full-system distortion/compression, and
-thermal validation at the required listening level.
+**PROVISIONAL DECISION:** continue with the present drivers, Seed A, and
+enclosure. The acoustic-response, as-built load, bounded level/distortion, and
+external-component surface-thermal gates now pass proportionately. Proceed
+with the second-channel SB17NRX2C35-8 and SB26STWGC-4 and use that build as the
+next matched confirmation.
 
-If the prototype passes:
+For the second speaker:
 
-- buy another SB17NRX2C35-8 and SB26STWGC-4;
-- condition and measure them under the same documented conditions;
+- condition and measure the drivers under the same documented conditions;
 - compare installed resonance/Q, crossover-region impedance, acoustic response, and distortion;
 - establish acceptable pair tolerances before freezing the stereo build.
 
@@ -1451,23 +1476,31 @@ Matching complete installed behaviour matters more than reproducing every datash
    not in this priority list.
 2. Preserve the three VituixCAD authorities: the verified measured baseline,
    the nominal sparse-polar Seed A reference, and its practical
-   measured-component successor. Accept the user's R(Tpar) symbol move as
-   cosmetic; do not inspect or undo it.
-3. Perform the [current `0.5/1/2/4 V RMS` full-system level and thermal
-   procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md), treating
-   `4 V RMS` as a user-stoppable ceiling. Do not repeat the already-passed
-   on-axis or sparse-horizontal package without a design-relevant reason.
-4. Keep the cooled repeat woofer ZMA in
+   measured-component successor. Its electrical/source semantics parse cleanly;
+   retain the user's R(Tpar) symbol move as cosmetic and do not undo it.
+3. Preserve the completed [full-system level and thermal
+   qualification](rew/qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md).
+   Exclude its `60-degree` post-thermal trace from every hot-acoustic
+   comparison; do not repeat speaker one unless speaker-two evidence reveals an
+   anomaly.
+4. Procure/build speaker two and repeat the decisive installed, crossover,
+   load, level/distortion, and bounded thermal checks under matched conditions.
+   Include a correct hot `0-degree` comparison and examine the narrow
+   high-level feature near `2.18 kHz`.
+5. Keep the cooled repeat woofer ZMA in
    [DRIVER_RUNIN.md](DRIVER_RUNIN.md) as a lower-priority alignment question;
    promote it only if its resistance and conditions are reproducible.
-5. Record enclosure fill/lining, ambient temperature, driver-terminal voltage,
+6. Record enclosure fill/lining, ambient temperature, driver-terminal voltage,
    mounting, and calibration conditions with any replacement evidence.
-6. Do not promote Seed B or purchase the second driver pair unless the remaining
-   level or thermal evidence exposes a broad design-relevant weakness.
+7. Do not promote Seed B unless matched speaker-two evidence exposes a broad,
+   design-relevant weakness.
 
 ### 9.2 Remaining driver uncertainties
 
-- Woofer and tweeter distortion/compression at required listening levels.
+- Pair-to-pair distortion/compression consistency and whether the narrow
+  approximately `2.18 kHz` high-level feature repeats.
+- A valid immediate hot `0-degree` acoustic comparison; the first attempt is
+  excluded for wrong orientation.
 - Final damping's effect on the sealed alignment and the woofer-series inductor DCR's effect on $Q_{tc}$.
 - Reproducibility of the cooled woofer impedance after conditioning.
 - Generic rather than unit-specific ECM8000 magnitude calibration and lack of absolute-SPL calibration.
@@ -1476,11 +1509,17 @@ Matching complete installed behaviour matters more than reproducing every datash
 
 ## 10. Sources and related authorities
 
-### 10.1 Current project measurements
+### 10.1 Selected current project measurements
+
+This short list is not the acoustic-source inventory; Section 1.3 and the
+[REW dispatcher](rew/README.md) own the complete retained source map.
 
 - [`rew/SB17NRX2C35-8 installed.zma`](../rew/SB17NRX2C35-8%20installed.zma)
 - [`rew/SB17NRX2C35-8 runin 30Hz 4Vrms 1h 48kHz.zma`](../rew/SB17NRX2C35-8%20runin%2030Hz%204Vrms%201h%2048kHz.zma) — comparison evidence; not the crossover baseline
 - [`rew/SB26STWGC-4 installed.zma`](../rew/SB26STWGC-4%20installed.zma)
+- [`rew/SB17NRX2C35-8_UMC22_full_dual_repeatability.mdat`](../rew/SB17NRX2C35-8_UMC22_full_dual_repeatability.mdat) — Seed A acoustic package
+- [`rew/SPK_impedance_WT_1_20260909.mdat`](../rew/SPK_impedance_WT_1_20260909.mdat) — Seed A as-built load package
+- [`rew/SPK_Seed_A_full_system_level_thermal_20260910.mdat`](../rew/SPK_Seed_A_full_system_level_thermal_20260910.mdat) — bounded full-system level/distortion and thermal package
 
 ### 10.2 Primary sources
 
@@ -1494,8 +1533,9 @@ Matching complete installed behaviour matters more than reproducing every datash
 
 - [Woofer conditioning and impedance procedure](DRIVER_RUNIN.md)
 - [Installed acoustic-response method](rew/FRD_MEASUREMENT_METHOD.md)
-- [Current UMC22 installed-woofer runbook](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md)
+- [Completed UMC22 installed-woofer runbook](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md)
 - [UMC22 qualification evidence](rew/qualification/UMC22_FRD_QUALIFICATION.md)
+- [Seed A full-system level and thermal qualification](rew/qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md)
 - [UMC202HD desktop-dropout diagnosis](rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md)
 - [Driver-impact change history](history/DRIVER_ANALYSIS_CHANGELOG.md)
 

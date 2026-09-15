@@ -3,10 +3,10 @@
 > - **Lifecycle:** ACTIVE DESIGN AUTHORITY
 > - **Owns:** current acoustic direction, driver polarity/topology, NL4 allocation, evidence dependencies, validation gates, and open design decisions
 > - **Does not own:** detailed component-bank and inductor construction engineering; installed-driver evidence; measurement procedures
-> - **Current decision:** retain the same-polarity third-order Seed A as the reversible external prototype; its measured components, practical model, on-axis filtered branches, normal sum, physical reverse null, and sparse `0/+20/+40/+60 degree` horizontal responses pass proportionately, with a moderate crossover-region directivity flare retained as a possible refinement rather than grounds for an immediate component change
-> - **Next gate:** the as-built load passes with `4.366 ohm` minimum magnitude, `4.284 ohm` minimum real part, and `2.563 ohm` minimum idealised class-B EPDR; proceed under the current `0.5/1/2/4 V RMS` full-system level and bounded two-probe thermal procedure, with `4 V RMS` as a user-stoppable ceiling; no unchanged impedance or acoustic sweep is presently required
-> - **Limitations:** Seed A is not a final crossover; the user's stated cosmetic R(Tpar) move in the reopened/saved practical VXP was accepted without inspection; the AADE inductance test frequency is unknown; known local woofer early-tail uncertainty near 2.03 kHz; modelled woofer fall is only about `9.1 dB` from `2.1-4.2 kHz`; C2's relative-level correction is derived; the threshold-triggered persistent `1 kHz` distortion is now strongly associated with the undamped tweeter-only load but its exact mechanism is unproved and ultrasonic behaviour remains outside the UMC22/48 kHz observation band; the overnight Windows restart means the current software/process state does not reproduce the discovery state; positive-side sparse horizontal evidence only; no vertical, negative-angle, full-space power/DI, or controlled sweep distortion data
-> - **As of:** 2026-09-09
+> - **Current decision:** retain the same-polarity third-order Seed A as the reversible external prototype; measured acoustic, load, bounded level/distortion, and external-component surface-thermal gates pass proportionately
+> - **Next gate:** build and test speaker two under matched conditions, including a correct immediate hot `0-degree` comparison and confirmation of the narrow approximately `1.28 dB` high-level shape change near `2.18 kHz`; retest speaker one only if that work reveals an anomaly
+> - **Limitations:** Seed A is not a final crossover; one speaker only; approximate rather than steady sweep-voltage readings; generic rather than absolute-SPL microphone calibration; the attempted post-thermal trace is excluded because it was captured at `60 degrees`; external contact probes do not measure winding interiors or voice-coil temperatures; positive-side sparse horizontal evidence only; no vertical, negative-angle, or full-space power/DI data; the practical file's electrical/source semantics parse cleanly but the cosmetic R(Tpar) layout move was not visually checked; AADE inductance frequency is unknown; the parked undamped tweeter-only mechanism and possible ultrasonic behaviour remain unproved
+> - **As of:** 2026-09-15
 
 This file is the active passive-crossover design authority. The project overview is in [README.md](../README.md), current driver evidence and approved impedance sources are in [DRIVER_ANALYSIS.md](DRIVER_ANALYSIS.md), and detailed prototype-component engineering is in [CROSSOVER_COMPONENT_DEVELOPMENT.md](CROSSOVER_COMPONENT_DEVELOPMENT.md).
 
@@ -17,9 +17,11 @@ network then passed physical filtered-branch, normal-sum, reverse-polarity, and
 positive-horizontal acoustic validation. Its broad measured equality near
 `1.83 kHz` is lower than the practical model prediction, and its shallow woofer
 upper transition plus moderate horizontal flare remain possible refinement
-targets. Neither currently outweighs the successful summation and load-model
-gates. Controlled full-system distortion and as-built load/thermal validation
-remain open; the earlier undamped tweeter-only fault investigation is parked.
+targets. Neither currently outweighs the successful summation, as-built load,
+bounded level/distortion, and external-component surface-thermal gates. The
+immediate hot acoustic comparison remains deferred because its attempted trace
+used the wrong angle; the earlier undamped tweeter-only fault investigation is
+parked.
 
 ## 1. Prototype interface and external crossover
 
@@ -161,14 +163,17 @@ extrema over `1.8-3.0 kHz` of approximately `-1.74/+0.29 dB` at
 both raw drivers, and overlaps the woofer's approximately `0.8 dB` local
 window-choice uncertainty. Seed A therefore remains a useful first candidate.
 Its angle mappings and summation were subsequently reproduced in VituixCAD;
-the signal-free slope audit below now owns the remaining construction-release
-question.
+the signal-free slope audit below was one input to the now-completed
+construction release.
 
 **VERIFIED VITUIXCAD SPARSE-POLAR ASSIGNMENT / NOMINAL PREDECESSOR:**
 [`vituixcad/Prototype loudspeaker crossover Seed A sparse polar verified 2026-09-07.vxp`](../vituixcad/Prototype%20loudspeaker%20crossover%20Seed%20A%20sparse%20polar%20verified%202026-09-07.vxp)
-has a committed verified reference at `25,484` bytes with SHA-256
-`6dd951a5b89040418841887a365d3e8e0a3e1fbb2634a7e084240fd10eea8e2b`.
-It was application-verified on 2026-09-07. Direct XML comparison then
+is currently `26,630` bytes with SHA-256
+`e8235831de072724d95ad0a5d1b84fb57bc4235693953d717626b5fadb8d3538`.
+It was application-verified on 2026-09-07 and subsequently resaved. The
+current file parses cleanly with two drivers, eight electrical components,
+twelve source references, and no missing referenced file. Direct XML comparison
+then
 confirmed its complete nominal Seed A topology, installed ZMA assignments, response
 scales, delays, polarity, smoothing, and minimum-phase settings. Each driver
 had explicit horizontal `0/+20/+40/+60 degree` entries pointing to its verified
@@ -326,9 +331,10 @@ component-order requirement. Seed A's residual woofer output changes the
 modelled total by only about `1.3 dB` at `5 kHz`, and its verified sparse polar
 plot showed no broad discontinuity. With no model alternative providing a
 clear whole-system improvement, further optimisation against gated raw data is
-more likely to fit measurement structure than to improve the loudspeaker. Seed
-A is therefore released for a reversible external build. Promote a Seed B only
-if measured filtered branches reproduce a broad, design-relevant weakness.
+more likely to fit measurement structure than to improve the loudspeaker. This
+analysis released the reversible Seed A build that has since passed. Promote a
+Seed B only if matched speaker-two evidence reproduces a broad,
+design-relevant weakness.
 
 **AS-BUILT COMPONENT AND COLD-ASSEMBLY PASS — 2026-09-08:** the practical
 Seed A network uses the directly measured completed values below. Detailed
@@ -390,14 +396,14 @@ tweeter-only load is closed/parked after clean resistor-dummy, damped real-
 tweeter, and complete-system tests through the relevant bounded levels. A
 real-tweeter-dependent amplifier/load interaction remains the leading inference,
 but its exact mechanism and possible ultrasonic content were not proved. This
-closed diagnostic is distinct from the pending controlled full-system
+closed diagnostic is distinct from the subsequently passed bounded full-system
 distortion/compression gate.
 
 Together, the physical branch, sum, polarity, horizontal, and as-built load evidence support
 retaining Seed A unchanged as the reversible prototype. They do not freeze the
-final crossover. Controlled full-system distortion/compression and thermal
-validation at the required listening level is the next gate. No unchanged
-impedance or acoustic sweep is presently justified.
+final crossover. The bounded level/distortion and surface-thermal results in
+Section 2.7 now pass; no unchanged impedance or acoustic sweep is presently
+justified.
 
 ### 2.5 Practical measured-component model
 
@@ -418,10 +424,12 @@ component with the completed measured value:
 | R(Tser) | `1.401 ohm`; aggregate bank power field `20 W` |
 | R(Tpar) | `39.032 ohm`; aggregate bank power field `15 W` |
 
-The initially generated practical file passed an XML parse covering both
-drivers, all eight measured component entries, four
-horizontal responses per driver, installed ZMA paths, and the unchanged
-tweeter scale. Independent complex nodal replay against the retained longer-
+The current practical file is `26,354` bytes with SHA-256
+`16676944a98b625bb59effa4757f4224e0da763b36293679ace8dc0c67861a04`.
+It parses with both drivers, all eight measured component entries, four
+horizontal responses per driver, installed ZMA paths, and the unchanged tweeter
+scale; no referenced source is missing. Independent
+complex nodal replay against the retained longer-
 window TW1/C2 design pair gives branch equality near `2.116 kHz`, relative
 phase about `13.2 degrees`, normal-to-reverse difference about `18.6 dB`, and
 minimum input impedance `3.805 ohm` near `2.792 kHz` at approximately
@@ -432,12 +440,9 @@ Using the actual sparse-polar zero-degree files stored by the VXP gives native-
 curve equality near `2.119 kHz`, relative phase about `3.74 degrees`, and
 normal-to-reverse difference about `29.7 dB`; input impedance is unchanged.
 The difference from the longer-window figures is the already documented
-tweeter polar-window effect, not a hardware inconsistency. The user subsequently
-reopened and saved the practical file after moving R(Tpar) solely to avoid a
-schematic overlap, and explicitly identified the change as cosmetic. That
-report is accepted without inspecting, comparing, hashing, backing up, or
-restoring the saved file. The application reopen/save gate is therefore
-complete without promoting the change into new electrical evidence.
+tweeter polar-window effect, not a hardware inconsistency. The user's later
+R(Tpar) symbol move was reported as cosmetic and does not create new electrical
+evidence or justify rewriting either retained project.
 
 **INTENTIONAL RETENTION BOUNDARY:** `vituixcad/` contains the verified measured
 baseline, the committed verified nominal sparse-polar Seed A reference, and its practical
@@ -466,8 +471,36 @@ the measured load is `4.637 ohm` at that frequency and never falls below
 `4.366 ohm`. It therefore clears the `3.5 ohm` prototype magnitude gate by
 `0.866 ohm`. The EPDR result identifies a moderate reactive output-device
 dissipation burden around the crossover, but actual current remains governed by
-the approximately `4.91 ohm` impedance magnitude there. Retain Seed A unchanged
-and carry this burden into the controlled level and thermal gate.
+the approximately `4.91 ohm` impedance magnitude there. Retain Seed A unchanged;
+the subsequent bounded level and thermal package did not expose an amplifier or
+component-temperature anomaly.
+
+### 2.7 Full-system level, distortion, compression, and thermal result
+
+**VERIFIED MEASUREMENT / USER-REPORTED CONDITIONS / DERIVED — BOUNDED PASS
+WITH HOT-ACOUSTIC CHECK DEFERRED:** the owning [qualification
+record](rew/qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md)
+and retained
+[`rew/SPK_Seed_A_full_system_level_thermal_20260910.mdat`](../rew/SPK_Seed_A_full_system_level_thermal_20260910.mdat)
+cover the nominal `0.5/1/2/4 V RMS` series and 15-minute nominal `2 V RMS`
+CTA-2034 exposure.
+
+Both UMC22 inputs retained at least `27.9 dB` headroom, and no warning,
+clipping, dropout, audible distortion, protection event, or other anomaly was
+reported. Thirty approximately third-octave distortion samples show no THD
+above `3%` from `100 Hz-10 kHz` and no third-or-higher harmonic above `1%`
+from `200 Hz-10 kHz`. Nominal-voltage normalisation shows no broad
+compression above `0.5 dB`. A narrow `4 V` versus `2 V` difference reaches
+about `-1.28 dB` near `2.18 kHz`; smoothing reduces it below `1 dB`, so it
+is retained for matched speaker-two confirmation rather than treated as a
+broad failure.
+
+R(Tser) rose from `20.4` to `20.8 degrees C`, and L(W1) from `20.4` to
+`20.6 degrees C`; neither rose in the final five minutes. This directly
+passes the external-surface thermal gate. The attempted post-thermal sweep is
+excluded because the speaker was at `60 degrees`, not `0 degrees`. At the
+user's explicit proportionate decision, do not repeat it now: obtain the valid
+hot comparison on speaker two and retest speaker one only if an anomaly appears.
 
 ## 3. Evidence and model dependencies
 
@@ -524,19 +557,21 @@ Tweeter power ratings must always be read with their specified high-pass conditi
 4. **Passed:** individual filtered drivers, normal-polarity sum, physical reverse-polarity null, and the sparse positive-horizontal full-system set.
 5. **Passed:** the calibrated StarTech capture gives `4.366 ohm` minimum
    magnitude and `2.563 ohm` minimum EPDR; no unchanged repeat is justified.
-6. **Open / next gate:** controlled full-system distortion/compression and
-   thermal validation under the [current UMC22 Seed A
-   procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md). The selected
-   sweep series is `0.5/1/2/4 V RMS`; `4 V RMS` is a ceiling and the user may
-   stop earlier for excessive volume. The available thermal instruments are
-   the U1282A and U1272A Agilent Type-K contact probes; no IR thermometer is
-   available or required.
-7. Move the network inside only after the complete measured assembly is stable under the remaining gates; repeat one controlled design change at a time if refinement is justified.
+6. **Bounded pass / one deferred comparison:** the nominal `0.5/1/2/4 V RMS`
+   level series, sampled distortion gates, and 15-minute external-component
+   thermal gate pass. The wrong-angle post-thermal trace is excluded. Repeat
+   the valid hot `0-degree` comparison on speaker two and confirm the narrow
+   high-level feature near `2.18 kHz`; retest speaker one only after an anomaly.
+7. Keep the network external through matched speaker-two and pair checks. Move
+   it inside only after those results support the final implementation; repeat
+   one controlled design change at a time if refinement is justified.
 
 ## 6. Open crossover items
 
 - whether the final-production crossover retains Seed A's measured frequency,
-  topology, values, and normal acoustic polarity after the remaining gates;
+  topology, values, and normal acoustic polarity after matched speaker-two
+  confirmation, including the deferred hot `0-degree` check and narrow
+  high-level feature near `2.18 kHz`;
 - second-channel component matching and final inductor implementation;
 - permanent inductor interlock, outer-layer binding, and PCB restraint;
 - amplifier headroom at the required listening level;

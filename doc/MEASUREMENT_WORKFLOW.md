@@ -9,7 +9,9 @@
 | Procedure dispatcher | [REW documentation map](rew/README.md) |
 | Measurement artefacts | [`rew/`](../rew/) |
 | Compact data inspection | [Measurement data tooling](MEASUREMENT_DATA_TOOLING.md) |
-| Current project gate | The as-built Seed A load passes and the complete de-energised UMC22 level/thermal setup is user-confirmed with no anomaly; work is paused before power or signal, then the current [procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md) uses matched `0.5/1/2/4 V RMS` sweeps with a user-stoppable ceiling and a conditional bounded two-probe thermal gate |
+| Current approved measurement action | Follow the [project dashboard](../README.md) for the active gate and the [REW dispatcher](rew/README.md) for its exact procedure; do not infer a signal release from this policy file |
+| Limitations | This policy does not qualify a device, preserve detailed measurement results, or replace the current task-specific safety and routing procedure |
+| Last reviewed | 2026-09-15 |
 
 ## 1. Measurement principles
 
@@ -55,14 +57,11 @@ An audio-frequency spectrum analyser is not required. Swept-sine and impulse-res
 
 ### 3.2 Impedance measurements
 
-- **USER-CONFIRMED ROUTE:** all retained impedance measurements to date used
-  the StarTech ICUSBAUDIO2D generic external USB sound card. Continue with that
-  interface for the as-built Seed A series. In REW select
-  `EXCL: StarTech USB audio interface (USB Audio Device)` for both input and
-  output; do not silently substitute the non-exclusive entry or another audio
-  interface. Use output `R`, reference input `R`, and measurement input `L`.
-  The current proportionate capture procedure is
-  [StarTech Seed A complete-system impedance and phase](rew/procedures/STARTECH_SEED_A_SYSTEM_IMPEDANCE.md).
+- Use the applicable current procedure for exact device, channel, routing, and
+  calibration settings. The completed Seed A route and retained settings are
+  owned by the [StarTech complete-system impedance
+  procedure](rew/procedures/STARTECH_SEED_A_SYSTEM_IMPEDANCE.md); do not copy
+  them from this policy or silently substitute another interface.
 - Use **48 kHz** for the controlled driver-impedance comparison series unless a new series is deliberately established.
 - Recalibrate the impedance rig whenever sample rate, interface path, input gain, measurement-path leads, sense resistor, or jig wiring changes. An ordinary DUT swap with the qualified route otherwise unchanged does not require recalibration.
 - Retain headers, decimal points, frequency/magnitude/phase columns, dense unsmoothed data, and descriptive filenames.
@@ -103,12 +102,13 @@ For the controlled conditioning comparison, use [Driver run-in and stabilisation
 - Record microphone distance, axis, height, window/gating choices, sample rate, amplifier setting, terminal voltage, and room state.
 - Measure individual drivers before filtered sums, and retain normal- and reverse-polarity results.
 - Use filenames identifying driver, angle, polarity/filter state, level, and date or sequence.
-- For the current complete Seed A gate, use the dedicated [UMC22 level and
-  thermal procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md). Its
-  selected `4.000 V RMS` maximum sweep is a ceiling rather than an obligation;
-  the user may stop earlier for excessive volume. Two Agilent Type-K contact
-  probes are available through the U1282A and U1272A; no IR thermometer is
-  available or required.
+- The completed Seed A level/thermal method is retained in the [UMC22
+  procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md), while the
+  [dated qualification](rew/qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md)
+  owns the result and exclusions. For speaker two, retain the `4.000 V RMS`
+  ceiling, both Type-K contact probes, and a correct immediate hot `0-degree`
+  sweep. Retest speaker one only if the matched second-speaker evidence reveals
+  an anomaly.
 
 ### 3.4 Measurement-data tools and REW API client
 
@@ -119,7 +119,11 @@ programmatic REW session-state capture, compact `.mdat` analysis, or full
 own their commands, authority boundaries, output limits, and reconstruction
 routes; they do not replace the retained source measurement.
 
-## 4. Development sequence
+## 4. Generic development sequence
+
+This is a reusable end-to-end order, not the project's current next-action
+list. Use the [dashboard](../README.md) to enter it at the active gate rather
+than repeating completed work.
 
 1. Confirm physical driver dimensions and cabinet sealing.
 2. Record cabinet fill/lining, driver mounting, ambient conditions, and cold electrical baselines.
@@ -146,7 +150,7 @@ routes; they do not replace the retained source measurement.
 - [Completed UMC22 installed-woofer procedure](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md)
 - [Completed UMC22 protected installed-tweeter procedure](rew/procedures/UMC22_INSTALLED_TWEETER_FRD.md)
 - [Completed UMC22 installed horizontal off-axis procedure](rew/procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md)
-- [Current UMC22 Seed A level and thermal procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md)
+- [Completed UMC22 Seed A level and thermal procedure](rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md)
 - [Suspended UMC202HD FRD route](rew/procedures/UMC202HD_FRD_SUSPENDED.md)
 - [Reference-fixture operating procedure](rew/fixtures/REFERENCE_FIXTURE_USE.md)
 - [Reference-fixture specification](rew/fixtures/REFERENCE_FIXTURE_SPECIFICATION.md)

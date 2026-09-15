@@ -9,9 +9,9 @@ valid responses. C6 is the selected woofer-axis source and its durable export
 is `rew/frd/SB17NRX2C35-8/000deg_1m_UMC22_2026-09-06.frd`.
 Required qualification: **PASS**, recorded in
 [`../qualification/UMC22_FRD_QUALIFICATION.md`](../qualification/UMC22_FRD_QUALIFICATION.md).
-Next gate: qualified as-built Seed A system impedance and phase under
-[Crossover design](../../CROSSOVER_DESIGN.md); this document releases no signal.
-Last reviewed: 2026-09-09
+Next gate: matched speaker-two build and validation under [Crossover
+design](../../CROSSOVER_DESIGN.md); this document releases no signal.
+Last reviewed: 2026-09-15
 
 The imperative sections below preserve the bounded route used for the dated
 captures. They are not a current instruction to reconnect or repeat hardware.

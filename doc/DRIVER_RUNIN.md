@@ -7,7 +7,10 @@
 | Does not own | Approved driver baselines, derived parameters, or retention decisions |
 | Applies to | SB Acoustics SB17NRX2C35-8 woofer and SB26STWGC-4 tweeter in the sealed prototype cabinet |
 | Current evidence authority | [Driver analysis](DRIVER_ANALYSIS.md) |
-| Established | 2026-08-31 |
+| Current approved action | No further conditioning is currently approved; use this route only if a new driver or changed baseline makes conditioning necessary |
+| Next gate | For speaker two, establish its untouched cooled impedance baseline before deciding whether any conditioning comparison has practical value |
+| Limitations | Conditioning cannot force datasheet agreement; cooled electrical stability does not by itself prove acoustic matching or long-term mechanical stability |
+| Last reviewed | 2026-09-15 |
 
 This procedure is intended to reach a reproducible, cooled measurement state before alignment and crossover work. It is not a target-driven attempt to force either driver to match every datasheet value. Stop when the installed measurements stabilise.
 

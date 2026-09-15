@@ -1815,8 +1815,8 @@ REW window was modified by this derived analysis.
 | Connect UMC22 to USB now | COMPLETE - known-good USB path and ECM8000 phantom are active with normal no-signal behaviour |
 | Generate a signal now | NO FOR QUALIFICATION - the gate is complete; start another signal only as part of an identified woofer measurement under the common procedure |
 | Carry the temporary Gate D loopback wiring into Gate E | NO - reconfigure only with the SU-V570 off and follow the full-dual connection map |
-| Power the SU-V570 now | YES - retain the established state, but keep all signals stopped |
-| Proceed to installed-driver FRD now | YES FOR THE INSTALLED WOOFER - retain the qualified route/settings and document the REW-native window for each reusable series; NO for the raw tweeter or polar series pending their separate protection/procedure |
+| Power state at this historical gate | The 2026-09-05 gate allowed the then-current installed-woofer procedure to continue; it grants no present power or signal authority |
+| Installed-driver FRD consequence at this historical gate | The installed woofer was then released under its procedure; later protected-tweeter and polar routes received their own completed procedures |
 
 The UMC202HD live-Linux diagnosis remains worthwhile but is no longer on the
 critical path to the first installed-driver FRD set.

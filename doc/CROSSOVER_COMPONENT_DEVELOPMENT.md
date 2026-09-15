@@ -4,9 +4,9 @@
 > - **Owns:** capacitor selection and banks, inductor construction and taps, resistor-bank design, component measurement, thermal constraints, and development implementation
 > - **Does not own:** acoustic crossover targets, final topology or polarity, driver evidence, or acoustic validation procedure
 > - **Current decision:** the reversible external Seed A crossover is complete; all measured parts pass, and the user-reported cold resistance/topology checks are consistent with the intended woofer, tweeter, common-return, shunt-inductor, and L-pad connections
-> - **Next gate:** component construction, on-axis/sparse-horizontal acoustic commissioning, and as-built impedance/EPDR now pass; the remaining bounded two-contact-probe thermal validation is defined by the current UMC22 Seed A level procedure and its consequence remains under CROSSOVER_DESIGN.md
-> - **Limitations:** measurements are user-reported; the AADE inductance measurement frequency is unknown; the completed DCRs were supplied as already-derived values without the underlying signed current/voltage pairs; Seed A remains a prototype network rather than a final crossover
-> - **As of:** 2026-09-09
+> - **Next gate:** inventory or procure the second network's parts, then build and match it from measured values; retain both networks externally until pair evidence supports final mounting
+> - **Limitations:** measurements are user-reported; the remaining stock has not been recounted for a second matched network; contact probes measured only the external surfaces of R(Tser) and L(W1), not winding interiors or driver voice coils; the AADE inductance measurement frequency is unknown; completed DCRs lack the underlying signed current/voltage pairs; PCB layout and manufacturing release remain unqualified; Seed A remains a prototype network rather than a final crossover
+> - **As of:** 2026-09-15
 
 This file is the component-engineering companion to [CROSSOVER_DESIGN.md](CROSSOVER_DESIGN.md). Read it for component procurement, winding, PCB layout, thermal design, or construction; it is not required for acoustic modelling alone.
 
@@ -178,10 +178,12 @@ capacitance and ESR readings gives branch equality near
 signal-free derived check, not a filtered-system measurement. It confirms that
 the completed capacitor banks do not materially disturb Seed A.
 
-The definite-provenance stock is sufficient for this one-channel development
-network, not for two identical copies of the nominal allocation: a pair would
-require six `10 uF` parts and only four are reported. Defer any pair-matching
-purchase until the prototype values are acoustically accepted.
+The reported 2026-09-07 stock was sufficient for this one-channel network, not
+for two identical copies: a pair requires six `10 uF` parts and only four were
+reported before speaker one was built. Acoustic acceptance has now passed.
+Before building speaker two, recount the remaining labelled stock and procure
+or select a second measured set; do not infer present holdings by subtracting
+from the old report.
 
 For parallel ideal capacitors, capacitance adds directly:
 
@@ -202,50 +204,14 @@ larger fraction of the bank current. It is neither the arithmetic sum of the
 individual ESRs nor, for unequal capacitances, their ordinary resistor-parallel
 value.
 
-### 3.2 Retained general capacitor palette
+### 3.2 Second-network implementation
 
-The superseded 2.4 kHz textbook LR4 network and retained prototype tuning envelopes are:
-
-| Capacitor | Textbook value | Prototype tuning envelope |
-|---|---:|---:|
-| C(W1) | 13.188 µF | approximately 10–20 µF |
-| C(W2) | 2.931 µF | approximately 2.2–4.4 µF |
-| C(T1) | 8.792 µF | approximately 6.6–11.9 µF |
-| C(T2) | 17.584 µF | approximately 13.2–23.7 µF |
-
-Use the following shared nominal-value palette for prototype capacitor banks:
-
-| Nominal value | Intended role |
-|---:|---|
-| 10 µF | main |
-| 6.8 µF | main |
-| 2.2 µF | coarse trim or small main |
-| 1.0 µF | coarse trim |
-| 0.47 µF | medium trim |
-| 0.22 µF | fine trim |
-| 0.10 µF | fine trim |
-
-With no more than four populated capacitors per position, this seven-value E6 subset covers a 2.5%-spaced adjustment grid across the stated envelopes with a calculated maximum nominal miss of approximately 1.27% and a mean nominal miss of approximately 0.33%. The apparent nominal accuracy is secondary: selected parts must be chosen by measured values. The palette is retained because it provides broad adjustment, fine trimming, extensive value reuse, and a simpler development BOM.
-
-Nominal starting combinations for the textbook network are:
-
-| Capacitor | Starting combination | Nominal total |
-|---|---|---:|
-| C(W1) | 10 + 2.2 + 1.0 µF | 13.20 µF |
-| C(W2) | 1.0 + 1.0 + 0.47 + 0.47 µF | 2.94 µF |
-| C(T1) | 6.8 + 1.0 + 1.0 µF | 8.80 µF |
-| C(T2) | 10 + 6.8 + 0.47 + 0.22 µF | 17.49 µF |
-
-These combinations are selection seeds, not mandatory marked values. Choose the actual combination from the measured capacitor inventory, use the measured parallel sum in simulation, and match completed left/right banks by measured total capacitance.
-
-Provide **four general parallel capacitor footprints plus a fifth small trim footprint at every capacitor position**. The expected normal population is no more than four capacitors; the fifth position is reserved primarily for a 0.10–0.47 µF measured trim capacitor so that fine adjustment does not require replacing a main capacitor. Final pad sizes and lead pitches must be checked against the selected capacitor families before PCB layout.
-
-Alternatives:
-
-- polyester film may be acceptable in less critical positions;
-- bipolar electrolytics may be used for very large shunt values if size/cost requires it and their ESR is included in the model;
-- ceramic X7R/X5R/Y5V parts should not be used in the signal path;
-- boutique paper-in-oil parts are unnecessary.
+The superseded textbook palette and tuning-envelope calculations remain in Git
+history; they no longer define a board or purchase. Match speaker two to the
+measured Seed A bank totals in Section 3.1, enter its completed values in the
+model, and repeat the decisive acoustic and load checks. A development PCB may
+retain general parallel footprints and a small trim position, but final pad
+sizes and lead pitches must be checked against the parts actually selected.
 
 ## 4. Inductors
 
@@ -423,46 +389,29 @@ justified solely to improve nominal agreement. The unknown AADE test frequency
 limits exact comparison with another LCR instrument but does not block this
 reversible prototype.
 
-### 4.2 Retained former and superseded textbook windings
+### 4.2 Retained former and second-network rules
 
 Retained construction choices and current common-former baseline:
 
-- the superseded textbook allocation used **1.8 mm diameter solderable enamelled copper wire (ECW) for L(W1) and L(T1)** and **1.4 mm diameter solderable ECW for L(W2) and L(T2)**; Seed A's current three-inductor mapping above instead uses 1.8 mm wire throughout;
+- Seed A's current three-inductor mapping uses **1.8 mm diameter solderable enamelled copper wire (ECW)** throughout;
 - preferred supplier: **wires.co.uk / Scientific Wire Company**, with **SX1800** and **SX1400** solderable ECW ranges as current reference products;
 - maximum outside diameter of the **outermost winding layer: 70 mm**; bobbin flanges may also be up to 70 mm diameter, and the winding may occupy the full radial envelope;
 - wire-bearing barrel outside diameter: **30 mm** for the common former family;
 - clear axial winding length: **39 mm** for all four inductors;
 - every inner layer is close-wound across the available axial length; only the outermost layer may be incomplete, and axial spacers are not used;
-- air-core construction using purpose-designed 3D-printed bobbins/formers that may also contribute to mechanical restraint on the crossover PCB;
+- air-core construction using the retained [3D-printed crossover-coil
+  models](3d_models/Crossover_Coils/README.md), which may also contribute to
+  mechanical restraint on the crossover PCB;
 - bobbin/former material: **ABS**, printed on an enclosed printer with suitable ventilation, selected for its thermal margin over PLA and PETG.
 
-Calculated nominal windings for the provisional 2.4 kHz textbook network are:
-
-| Inductor | Provisional target | Wire | Turns per full layer | Nominal winding estimate | Nominal winding OD | Approx. nominal wire length | Approx. nominal copper mass | Calculated nominal DCR at 20 °C |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| L(W1) | 1.000 mH | 1.8 mm | 20 | 9 full layers + 11 outer turns; 191 total | 68.2 mm | 29.0 m | 658 g | 0.195 Ω |
-| L(W2) | 0.500 mH | 1.4 mm | 25 | 6 full layers + 1 outer turn; 151 total | 51.0 mm | 18.5 m | 254 g | 0.206 Ω |
-| L(T1) | 0.1668 mH | 1.8 mm | 20 | 4 full layers + 8 outer turns; 88 total | 49.1 mm | 10.6 m | 242 g | 0.072 Ω |
-| L(T2) | 0.7504 mH | 1.4 mm | 25 | 7 full layers + 5 outer turns; 180 total | 54.0 mm | 23.1 m | 316 g | 0.256 Ω |
-
-The previous two-turn over-wind was sufficient only for manufacturing trim to a known target. It did not provide a credible development range: even an otherwise similar textbook network moved from 2.4 kHz to 2.2 kHz requires approximately 9.1% more inductance, before allowing for measured driver behaviour, topology refinement, or winding-model error. Development coils will therefore be wound towards a **measured ceiling approximately 25% above each provisional target** and provided with accessible taps. This is a practical tuning range around the present topology, not a guarantee that every redesign can be accommodated.
-
-Suggested initial development wind-to values are:
-
-| Inductor | Suggested initial development wind-to | Suggested measured wind-to inductance | Occupied winding OD implied by count | Development implementation |
-|---|---:|---:|---:|---|
-| L(W1) | approximately 218 turns | approximately 1.250 mH | approximately 72.0 mm on current geometry | **Does not fit the current 70 mm envelope**; use a revised development former or a 200-turn main coil plus a separate tapped series-trim inductor. |
-| L(W2) | approximately 178 turns | approximately 0.625 mH | approximately 54.0 mm | Fits the current former. |
-| L(T1) | approximately 103 turns | approximately 0.2085 mH | approximately 52.9 mm | Fits the current former. |
-| L(T2) | approximately 217 turns | approximately 0.938 mH | approximately 57.0 mm | Fits the current former. |
-
-The suggested turn counts are **planning estimates, not stopping criteria**. They use the present fill-adjusted geometry model provisionally calibrated against earlier reported inductance-per-turn measurements; that calibration remains subject to the loose-coil measurement audit. Measure delivered insulated-wire diameter before finalising a former. During winding, measure each loose coil in free air, away from metal, conductive loops, and other inductors, using a compensated fixture and consistent test frequency. Stop when the required measured wind-to inductance is reached, even if actual turn count differs, and record actual turn count, inductance, test frequency, and cold DCR.
-
-Bring out and label taps at useful measured values across approximately 80%, 90%, 100%, 110%, 120%, and 125% of the provisional target, or at the closest practical turns. Measure inductance and DCR at every tap rather than deriving them from turn count alone. During crossover refinement, select taps and measured capacitor combinations, enter selected measured values into VituixCAD, and repeat filtered-driver, summed-response, reverse-polarity-null, impedance, and off-axis checks. Keep unused outer winding open-circuit and insulated, and do not cut off excess copper until the acoustic design is stable.
-
-For L(W1), the current 30 mm-barrel, 39 mm-long former accommodates at most 200 turns within the 70 mm winding-OD limit; turn 201 starts an eleventh layer and increases occupied OD to approximately 72.0 mm. If a separate series-trim inductor is used during development, keep it well separated from and approximately orthogonal to L(W1), and measure both combined inductance and total DCR: residual mutual coupling can make inductance differ from simple series addition, while winding resistances add and affect crossover response. Once crossover values are stable, wind or trim clean left/right final inductors to matched measured values rather than treating oversized tapped development coils as automatically production-ready.
-
-All winding patterns assume conservative enamelled-wire diameters of 1.909 mm and 1.502 mm. Nominal wire lengths, masses, and DCRs exclude lead-outs and purchasing allowance. Secure every incomplete outer layer. Completed inductance and cold DCR must be measured and entered into the crossover model; tabulated values remain manufacturing and development starting points, not substitutes for measurement. Interlocking details and PCB restraint remain to be designed.
+The superseded textbook winding estimates and wide development-tap plan remain
+in Git history; they are not the second-network specification. Reproduce the
+measured Seed A inductances and DCRs in Section 4.1, measure loose coils away
+from metal and conductive loops at a consistent recorded frequency, and match
+the pair from measurements rather than turn count. Secure incomplete outer
+layers, keep adjacent inductors separated and approximately orthogonal, and
+measure the installed network because residual mutual coupling can change the
+effective inductance.
 
 ## 5. Resistors
 
@@ -549,24 +498,18 @@ The small differences from the pre-assembly arithmetic are not large enough to
 indicate a wiring error or justify dismantling either bank. Both measured banks
 pass and are the values to use in the practical crossover.
 
-### 5.2 Retained earlier L-pad planning
+### 5.2 Second-network and PCB rules
 
-The earlier general L-pad implementation baseline was:
+Match the measured Seed A banks in Section 5.1. R(Tser) is four parallel
+resistors; R(Tpar) is three resistors in **series**. That series string
+supersedes the early all-parallel L-pad footprint concept retained only in Git
+history and `L pad.xlsx`; do not copy the old topology into a PCB.
 
-- use **5 W flameproof axial resistors in E24 values**; metal-oxide parts are acceptable, as are preferably low-inductance or non-inductive wirewound parts;
-- use one resistor technology and series within each parallel bank where practicable, rather than mixing parts with substantially different thermal behaviour;
-- provide PCB footprints for **five parallel resistors for R(ser)** and **three parallel resistors for R(par)**; expected normal population is four and two respectively, with additional positions retained for value selection and thermal flexibility;
-- base continuous thermal calculations on the conservative assumption of **20 W into the complete L-pad**, representing 40% of the provisional 50 W system input; 50 W continuously directed into the L-pad is a test/fault-survival case rather than normal music design;
-- at selected attenuation, aim to keep each resistor below **70% of its datasheet-derated rating** in the 20 W case, and preferably near or below 60%; populate the spare position if required by chosen value, tolerance analysis, or temperature testing;
-- maintain at least **5 mm clearance from each resistor body to the PCB and to every other component body**, keep banks ventilated and clear of heat-sensitive parts, and verify temperatures on the assembled crossover under the conservative test condition;
-- before final PCB layout, approve at least two candidate resistor families and verify body length, body diameter, lead diameter, lead pitch, mounting/derating requirements, and second-source compatibility; “5 W axial” is not a standard mechanical package.
-
-Detailed 3–10 dB value exploration remains in **`L pad.xlsx`**. Two corrected E24 reference combinations are:
-
-- 7 dB R(ser): **8.2 Ω || 9.1 Ω || 9.1 Ω || 9.1 Ω = 2.214 Ω**;
-- 8 dB: **R(ser) = 9.1 Ω || 9.1 Ω || 10 Ω || 11 Ω = 2.435 Ω** and **R(par) = 5.1 Ω || 5.6 Ω = 2.669 Ω**.
-
-These are prototype population candidates, not final acoustic attenuation values. Final values depend on measured in-enclosure driver responses, impedance data, and measurement-led crossover optimisation.
+Use flameproof 5 W parts of one qualified family where practical, keep at least
+`5 mm` body clearance, provide ventilation, and verify actual body dimensions,
+lead diameter/pitch, mounting, derating, and a second source before manufacturing
+release. The existing contact-surface thermal pass applies to the exposed Seed
+A prototype, not automatically to a second part family or enclosed PCB.
 
 
 ## 6. Handoff to acoustic design
@@ -593,6 +536,16 @@ commissioning history](rew/history/SEED_A_EXTERNAL_CROSSOVER_COMMISSIONING_2026-
 The completed measured values and parasitics now feed the practical model in
 [CROSSOVER_DESIGN.md](CROSSOVER_DESIGN.md). The component gate is complete, and
 the filtered-driver, summed-response, physical reverse-polarity-null,
-sparse-horizontal, and as-built impedance/EPDR gates now pass. Final crossover
-acceptance still requires controlled distortion and thermal gates in that
-active design authority.
+sparse-horizontal, and as-built impedance/EPDR gates now pass.
+
+**USER-REPORTED TEMPERATURES / DERIVED THERMAL CONSEQUENCE —
+2026-09-10:** during the full 15-minute nominal `2 V RMS` CTA-2034 exposure,
+R(Tser)'s measured surface rose only from `20.4` to `20.8 degrees C`, and
+L(W1)'s from `20.4` to `20.6 degrees C`; neither rose during the final five
+minutes, and no anomaly was reported. This passes the bounded external-
+component surface-temperature gate with large margin. It does not measure
+internal winding or voice-coil temperature. Detailed conditions and the
+separate invalid post-thermal acoustic trace are owned by the [level/thermal
+qualification](rew/qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md).
+Retain the crossover externally through second-channel matching and final
+mounting decisions.

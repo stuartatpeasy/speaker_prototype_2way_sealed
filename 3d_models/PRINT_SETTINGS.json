@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "purpose": "Reconstruction metadata extracted from the historical G-code files before those generated machine files were excluded from version control.",
   "reconstructionScope": "Retains source STL, instance count, Cura profile overrides, post-processing state, and reference output statistics. Re-sliced G-code is expected to be functionally equivalent rather than byte-for-byte identical.",
   "cura": {
@@ -23,7 +23,10 @@
   "jobs": [
     {
       "historicalGcode": "Crossover coil bracket x2.gcode",
-      "sourceStl": "Crossover coil bracket.stl",
+      "sourceStl": "Crossover coils/Crossover coil bracket 70mm.stl",
+      "sourceStlAtCapture": "Crossover coil bracket.stl",
+      "sourceRevisionAtCapture": "614447657421024e95bc699bc649fac8410ed780",
+      "currentSourceEquivalence": "Exact rename in commit 164a29546b21d922d7b7b147c815f184bc3802e4.",
       "instances": 2,
       "arcWelderProcessed": false,
       "globalOverrides": {
@@ -48,7 +51,10 @@
     },
     {
       "historicalGcode": "Crossover coil former small.gcode",
-      "sourceStl": "Crossover coil former small.stl",
+      "sourceStl": "Crossover coils/Crossover coil former 60mm.stl",
+      "sourceStlAtCapture": "Crossover coil former small.stl",
+      "sourceRevisionAtCapture": "614447657421024e95bc699bc649fac8410ed780",
+      "currentSourceEquivalence": "Not established; recover the exact source-at-capture from Git for reference reconstruction.",
       "instances": 2,
       "arcWelderProcessed": true,
       "globalOverrides": {
@@ -74,7 +80,10 @@
     },
     {
       "historicalGcode": "Crossover coil former x2.gcode",
-      "sourceStl": "Crossover coil former.stl",
+      "sourceStl": "Crossover coils/Crossover coil former 70mm.stl",
+      "sourceStlAtCapture": "Crossover coil former.stl",
+      "sourceRevisionAtCapture": "614447657421024e95bc699bc649fac8410ed780",
+      "currentSourceEquivalence": "Not established; recover the exact source-at-capture from Git for reference reconstruction.",
       "instances": 4,
       "arcWelderProcessed": true,
       "globalOverrides": {
@@ -100,7 +109,10 @@
     },
     {
       "historicalGcode": "Crossover coil former.gcode",
-      "sourceStl": "Crossover coil former.stl",
+      "sourceStl": "Crossover coils/Crossover coil former 70mm.stl",
+      "sourceStlAtCapture": "Crossover coil former.stl",
+      "sourceRevisionAtCapture": "614447657421024e95bc699bc649fac8410ed780",
+      "currentSourceEquivalence": "Not established; recover the exact source-at-capture from Git for reference reconstruction.",
       "instances": 2,
       "arcWelderProcessed": true,
       "globalOverrides": {
@@ -122,6 +134,32 @@
         "filamentMetres": 10.781,
         "minimumMm": [75.201, 41.072, 0.2],
         "maximumMm": [145.719, 184.152, 33.0]
+      }
+    },
+    {
+      "historicalGcode": "Crossover coil bracket B.gcode",
+      "sourceStl": "Crossover coils/Crossover coil bracket B.stl",
+      "instances": 1,
+      "arcWelderProcessed": false,
+      "globalOverrides": {
+        "adhesion_type": "none",
+        "material_bed_temperature": 60.0,
+        "material_bed_temperature_layer_0": 60,
+        "support_enable": false,
+        "support_structure": "normal"
+      },
+      "extruderOverrides": {
+        "cool_fan_full_layer": 6,
+        "infill_sparse_density": 25,
+        "material_print_temperature": 220,
+        "material_print_temperature_layer_0": 225,
+        "wall_line_count": 3
+      },
+      "referenceOutput": {
+        "timeSeconds": 7888,
+        "filamentMetres": 4.64108,
+        "minimumMm": [83.2, 85.2, 0.2],
+        "maximumMm": [136.8, 134.8, 51.0]
       }
     },
     {

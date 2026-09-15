@@ -20,6 +20,7 @@
 | Neutrik NL4MPXX | DAE converted from retained STEP | [NL4MPXX connector](Neutrik_NL4MPXX/README.md) |
 | SB Acoustics SB17NRX2C35-8 | DAE; legacy STL fallback retained | [Woofer](SB_Acoustics_SB17NRX2C35-8/README.md) |
 | SB Acoustics SB26STWGC-4 | One DAE | [Tweeter](SB_Acoustics_SB26STWGC-4/README.md) |
+| Crossover-coil formers and brackets | Five retained SketchUp-exported fabrication STLs | [Crossover coils](Crossover_Coils/README.md) |
 
 Canonical cabinet and room assemblies, fabrication STLs, and printer jobs also live under [`3d_models/`](../../3d_models/), but they are not members of this scripted component catalogue.
 
@@ -105,7 +106,12 @@ For a migration or toolchain change, perform those steps in a temporary copy of 
 
 G-code is machine- and toolchain-specific and intentionally ignored. Printable STL files remain committed. [`3d_models/PRINT_SETTINGS.json`](../../3d_models/PRINT_SETTINGS.json) preserves the Cura 5.13.0 / Creality CR-20 Pro profile identity, per-job overrides, instance counts, ArcWelder state, and reference output bounds, time, and filament use.
 
-Re-slice the named STL using that manifest. Functional equivalence is the target; timestamps, object ordering, placement, and slicer line ordering may differ. Regenerated machine code must be checked for the printer and material actually in use.
+Re-slice the named STL using that manifest. For historical jobs whose original
+STL was renamed and changed, use the recorded `sourceRevisionAtCapture` and
+`sourceStlAtCapture`; do not assume the related current STL is equivalent.
+Functional equivalence is the target; timestamps, object ordering, placement,
+and slicer line ordering may differ. Regenerated machine code must be checked
+for the printer and material actually in use.
 
 ## 7. Retention boundary
 

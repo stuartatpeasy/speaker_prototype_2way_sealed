@@ -2,15 +2,15 @@
 
 | State | Value |
 | --- | --- |
-| Lifecycle | **CURRENT PROCEDURE — READY / PAUSED BEFORE POWER** |
-| Owns | The controlled full-system distortion, compression, and external-crossover thermal gate for Seed A |
-| Does not own | Raw-driver qualification, absolute-SPL calibration, impedance/EPDR, crossover redesign, or final production limits |
-| Read when | Preparing, running, or reviewing the current complete Seed A level/thermal package |
-| Current approved action | None while paused. On explicit resumption, if the documented state remains unchanged, begin Section 4 and then run Sections 5-7 as one batch; do not repeat the completed Section 3 recital |
-| Planned ceiling | `4.000 V RMS` at the Seed A input for the highest sweep, subject to the user's earlier loudness stop |
-| Next gate | Powered startup, fixed-gain headroom check, matched sweep series, and—only after a clean level result—the bounded thermal/post-thermal sequence |
+| Lifecycle | **COMPLETED PROCEDURE / RETAINED REPEAT ROUTE** |
+| Owns | The controlled full-system distortion, compression, and external-crossover thermal method used for Seed A |
+| Does not own | Detailed results, raw-driver qualification, absolute-SPL calibration, impedance/EPDR, crossover redesign, or final production limits |
+| Read when | Auditing the method, deliberately repeating speaker one after an anomaly, or adapting the route for speaker two |
+| Current approved action | No further signal on speaker one. A future run requires a fresh current-state report and the applicable no-signal audit |
+| Planned ceiling | If deliberately repeated, no more than `4.000 V RMS` at the loudspeaker input, subject to the user's earlier loudness stop |
+| Next gate | Apply the route to speaker two, including a correct immediate hot `0-degree` comparison; repeat speaker one only if speaker-two evidence reveals an anomaly |
 | Limitations | One prototype and one listening position; generic ECM8000 response calibration rather than absolute SPL calibration; contact temperatures do not measure voice-coil temperature; no vertical or negative-horizontal coverage |
-| Last reviewed | 2026-09-09 |
+| Last reviewed | 2026-09-10 |
 
 ## 1. Purpose And Proportionate Boundary
 
@@ -112,19 +112,17 @@ U1272A probe secure on insulated R(Tser); U1282A securely across the Seed A
 input; and no anomaly. No unchanged wiring recital will be requested again
 within the batch unless something changes or fails.
 
-**CURRENT USER-CONFIRMED STATE — 2026-09-09:** Section 3 is complete exactly
-as specified and every item was checked. No anomaly was reported. Work is
-paused before Section 4: no SU-V570 power-up and no audio signal has been
-authorised or generated under this procedure. Carry this report into a fresh
-session while the setup remains unchanged. On resumption, ask only whether a
-material state change or anomaly occurred during the pause; do not require the
-same connection and wiring recital again.
+**COMPLETION NOTE — 2026-09-10:** this setup gate and the bounded powered
+package were completed without a reported wiring or equipment anomaly. The
+current result belongs in the [qualification
+record](../qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md).
+This paragraph is not a standing signal release: before a deliberate repeat,
+obtain the then-current physical state and apply the no-signal gate again.
 
 ## 4. Startup, Headroom, And Voltage Setting
 
-The ready report is complete. Run this section only after the user explicitly
-resumes the test and confirms there was no material change or anomaly during
-the pause.
+For a deliberate repeat or speaker-two adaptation, run this section only after
+a fresh current-state report and the Section 3 no-signal gate pass.
 
 1. With the SU-V570 still off, connect UMC22 USB, enable phantom, select the
    exact settings in Section 2, and set both input gains low. Confirm normal
@@ -156,10 +154,10 @@ Run these in order without a report between them:
 
 | Order | Seed A input | Measurement name |
 | ---: | ---: | --- |
-| 1 | `0.500 V RMS` | `SPK_sA_full_000deg_t-axis_1m_U22_0p5Vrms_20260909` |
-| 2 | `1.000 V RMS` | `SPK_sA_full_000deg_t-axis_1m_U22_1p0Vrms_20260909` |
-| 3 | `2.000 V RMS` | `SPK_sA_full_000deg_t-axis_1m_U22_2p0Vrms_20260909` |
-| 4 | no more than `4.000 V RMS` | `SPK_sA_full_000deg_t-axis_1m_U22_4p0Vrms_20260909` |
+| 1 | `0.500 V RMS` | `SPK_sA_full_000deg_t-axis_1m_U22_0.5V_<date>` |
+| 2 | `1.000 V RMS` | `SPK_sA_full_000deg_t-axis_1m_U22_1.0V_<date>` |
+| 3 | `2.000 V RMS` | `SPK_sA_full_000deg_t-axis_1m_U22_2.0V_<date>` |
+| 4 | no more than `4.000 V RMS` | `SPK_sA_full_000deg_t-axis_1m_U22_4.0V_<date>` |
 
 For each row: set voltage with the brief tone, stop the tone, run exactly one
 matched sweep, confirm no REW or hardware clipping/warning, note the exact
@@ -237,16 +235,19 @@ With the noise stopped, note both peak temperatures. Return the amplifier to
 the recorded `0.500 V RMS` position and, within about one minute, run one sweep
 named:
 
-`SPK_sA_full_000deg_t-axis_1m_U22_0p5Vrms_POSTTHERM_20260909`
+`SPK_sA_full_000deg_t-axis_1m_U22_PT_<date>`
 
-Keep the same gains, route, geometry, and sweep settings. After normalisation,
+Keep the same gains, route, geometry, and sweep settings. A sweep made at the
+wrong angle or distance is invalid for this comparison: mark it excluded and
+do not relabel or reuse it as intentional directional evidence. After
+normalisation,
 a broad post-thermal loss above `0.5 dB` over `200 Hz-10 kHz`, or a new
 `1.5-2.5 kHz` shape change above `1 dB`, requires review. If that occurs, let
 the system cool to within `2 degrees C` of both recorded baselines and make
 one recovery sweep; otherwise no cooled repeat is required.
 
 Save the complete package as
-`rew/SPK_Seed_A_full_system_level_thermal_20260909.mdat`. Record exact completed
+`rew/SPK_Seed_A_full_system_level_thermal_<date>.mdat`. Record exact completed
 voltages, the highest attempted/completed level, any user loudness stop,
 headroom and warnings, both temperature series, measurement names, room state,
 and departures from this procedure. Do not export many derivative files until
@@ -275,10 +276,13 @@ another signal; do not automatically restart at a lower level.
 
 ## 9. Result Authority
 
-This file remains the operating procedure. After the package is complete,
-move detailed results and calculations into a concise dated qualification
-record, update the current crossover and driver consequences, and revise this
-procedure to completed status. Do not turn it into an append-only chronology.
+This file is the completed operating route, not a work log. The first
+speaker's results and calculations are owned by the [dated qualification
+record](../qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md).
+Its immediate post-thermal trace is excluded for wrong geometry, and the user
+has deferred a correct replacement to the speaker-two test. Keep future
+results in their own dated evidence record rather than appending chronology
+here.
 
 ## 10. Primary Method Sources
 

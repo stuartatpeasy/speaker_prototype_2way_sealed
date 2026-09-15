@@ -7,9 +7,9 @@
 | Does not own | Driver baselines, crossover topology, acoustic validation, or qualification chronology |
 | Current approved action | None for the unchanged impedance setup; do not repeat the passed sweep without a design-relevant reason |
 | Result | [Seed A as-built impedance and EPDR](../qualification/SEED_A_AS_BUILT_IMPEDANCE_AND_EPDR_2026-09-09.md) — load gate passed |
-| Next gate | Controlled full-system distortion/compression and thermal validation at the required listening level |
+| Next gate | Matched speaker-two build and validation; no unchanged Seed A impedance repeat |
 | Audit only if needed | [StarTech impedance-route qualification](../qualification/STARTECH_IMPEDANCE_ROUTE_QUALIFICATION_2026-09-09.md) |
-| Last reviewed | 2026-09-09 |
+| Last reviewed | 2026-09-10 |
 
 ## 1. Qualified route
 

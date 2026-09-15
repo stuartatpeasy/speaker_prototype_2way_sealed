@@ -8,9 +8,9 @@ Owns: the installed SB26STWGC-4 protection, wiring, sweep limits, first-capture
 gate, and bounded on-axis repeat.
 Does not own: woofer evidence, final crossover protection, polar rotation, or
 high-level/distortion testing.
-Next gate: qualified as-built Seed A system impedance and phase under
-[Crossover design](../../CROSSOVER_DESIGN.md); this document releases no signal.
-Last reviewed: 2026-09-09
+Next gate: matched speaker-two build and validation under [Crossover
+design](../../CROSSOVER_DESIGN.md); this document releases no signal.
+Last reviewed: 2026-09-15
 
 The imperative sections below preserve the bounded route used for the dated
 captures. They are not a current instruction to reconnect or repeat hardware.

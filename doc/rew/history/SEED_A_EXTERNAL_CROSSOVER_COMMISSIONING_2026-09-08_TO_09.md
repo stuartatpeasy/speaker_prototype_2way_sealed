@@ -104,8 +104,9 @@ real tweeter's wider-band impedance remains the leading inference; possible
 ultrasonic oscillation was outside the UMC22/48 kHz observation band and was
 not proved. The bounded fault investigation is closed/parked because the
 normal complete system subsequently completed every low-level acoustic sweep
-without recurrence. This does not replace the still-pending controlled
-full-system distortion/compression gate at required listening levels.
+without recurrence. At this historical point the controlled full-system
+distortion/compression gate was still pending; it subsequently passed under the
+[dated qualification](../qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md).
 
 ## 4. Retained filtered-system measurements
 
@@ -206,8 +207,9 @@ finding justifies changing components before the independent load gate. No
 unchanged on-axis, reverse-polarity, or positive-horizontal acoustic sweep is
 currently justified.
 
-The next task is signal-free planning for a qualified as-built full-system
-impedance-and-phase measurement. The separate controlled full-system
-distortion/compression and thermal gates remain open. The earlier undamped
-tweeter-only fault investigation remains parked unless it recurs in the normal
-complete system or new evidence exposes a design-relevant mechanism.
+At this historical endpoint the then-next tasks were qualified as-built
+impedance/phase and controlled full-system level/thermal validation. Both now
+pass; the current gate is matched speaker-two build and validation under
+[Crossover design](../../CROSSOVER_DESIGN.md). The earlier undamped tweeter-only
+fault investigation remains parked unless it recurs in the normal complete
+system or new evidence exposes a design-relevant mechanism.

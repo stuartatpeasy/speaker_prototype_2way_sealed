@@ -1028,10 +1028,12 @@ controlled powered-amplifier use with the qualified UMC202HD Input 2. This
 release does not by itself qualify a different interface. The conditional
 UMC22 route and its remaining interface-specific gates are in
 [the UMC22 qualification record](UMC22_FRD_QUALIFICATION.md).
-Proceed to the switched-off connection and
-minimum-volume startup under
-[the current FRD measurement method](../FRD_MEASUREMENT_METHOD.md). A gross level,
-noise, clipping, or dropout failure there is a stop condition for measurement
+This qualification released the passive fixture only; it is not present signal
+authority. Any future connection or startup must use [fixture
+operation](../fixtures/REFERENCE_FIXTURE_USE.md) plus the applicable current
+interface procedure. UMC202HD operation remains suspended. A gross level,
+noise, clipping, or dropout failure under an authorised procedure is a stop
+condition for measurement
 quality and triggers diagnosis; it does not retrospectively turn an unexplained
 open-lead millivolt reading into evidence of an unsafe passive attenuator.
 

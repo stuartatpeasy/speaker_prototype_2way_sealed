@@ -6,7 +6,7 @@
 > - **Current authority:** [DRIVER_ANALYSIS.md](../DRIVER_ANALYSIS.md)
 > - **Use when:** auditing why a driver conclusion or approved source changed
 > - **Limitations:** detailed measurement-route evidence remains in the linked REW qualification and history records
-> - **As of:** 2026-09-09
+> - **As of:** 2026-09-10
 
 ## 1. 2026-08-30 - installed-driver baseline
 
@@ -90,3 +90,24 @@
   by controlled full-system distortion/compression and thermal validation.
   Detailed chronology moved to the [Seed A commissioning
   record](../rew/history/SEED_A_EXTERNAL_CROSSOVER_COMMISSIONING_2026-09-08_TO_09.md).
+
+## 9. 2026-09-10 - bounded level, distortion, and thermal gate
+
+- Retained the nominal `0.5/1/2/4 V RMS` complete-system series with at least
+  `27.9 dB` input headroom, no reported warning or audible anomaly, sampled
+  distortion within the project gates, and no demonstrated broad compression
+  above `0.5 dB`.
+- Recorded the narrow approximately `-1.28 dB` 4-versus-2 V shape difference
+  near `2.18 kHz` as a matched speaker-two confirmation item, not a broad
+  driver or crossover failure.
+- Recorded the 15-minute nominal `2 V RMS` CTA-2034 result: R(Tser) and L(W1)
+  external-surface rises were only `0.4` and `0.2 degrees C`, with no rise in
+  the final five minutes and no reported anomaly.
+- Excluded the attempted post-thermal sweep because it was captured at
+  `60 degrees`, not `0 degrees`; it is neither an on-axis hot comparison nor
+  intentional polar evidence.
+- Advanced the driver decision to second-speaker procurement/build and matched
+  confirmation. Obtain a valid hot `0-degree` comparison on speaker two and
+  retest speaker one only if the new unit reveals an anomaly.
+- Detailed evidence is in the [Seed A level/thermal
+  qualification](../rew/qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md).

@@ -4,9 +4,9 @@
 > - **Owns:** the first positive-horizontal raw-driver rotation series, angle convention, batch limits, topology-change gates, naming, retention, and stop rules
 > - **Does not own:** on-axis source qualification, full polar/CTA-2034 coverage, vertical directivity, distortion testing, filtered-system validation, or final crossover choice
 > - **Current approved action:** none; preserve both verified sparse raw-driver families and use this runbook only for audit or a deliberately repeated route after material change
-> - **Next gate:** qualified as-built Seed A system impedance and phase under [Crossover design](../../CROSSOVER_DESIGN.md); this document releases no signal
+> - **Next gate:** matched speaker-two build and validation under [Crossover design](../../CROSSOVER_DESIGN.md); this document releases no signal
 > - **Limitations:** one positive horizontal side at `20 degree` spacing; horizontal symmetry remains an inference; woofer polar conclusions are provisionally limited to `1.5-5 kHz` and protected-tweeter polar conclusions to `1.5-12 kHz`; no signal is released by this document alone
-> - **Last reviewed:** 2026-09-09
+> - **Last reviewed:** 2026-09-15
 
 This procedure is the bounded directivity discriminator required by
 [Crossover design](../../CROSSOVER_DESIGN.md). It reuses the qualified UMC22

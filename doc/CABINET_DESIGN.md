@@ -1,5 +1,15 @@
 # Cabinet and Mechanical Design
 
+| State | Value |
+| --- | --- |
+| Lifecycle | **ACTIVE MECHANICAL AUTHORITY** |
+| Owns | Accepted enclosure geometry, construction, hardware, sealing, bracing, damping intent, and repeat-build mechanical checks |
+| Does not own | Driver evidence, acoustic alignment, crossover topology, room placement, or component-PCB design |
+| Current decision | Retain the completed approximately `280 x 430 x 300 mm`, `21.7 L` geometric-net sealed prototype as speaker one's representative enclosure |
+| Next gate | Build speaker two to the same verified physical geometry, recording any fitted or manufacturing-dependent dimensions that differ |
+| Limitations | The prototype itself remains authoritative for empirically fitted details not yet back-annotated into CAD; damping quantity, final finish, crossover mounting, and repeat-build cutting/joinery detail remain open |
+| Last reviewed | 2026-09-15 |
+
 This file is the detailed mechanical source for the prototype enclosure. The high-level project state and documentation index are in [README.md](../README.md); driver and alignment evidence is in [DRIVER_ANALYSIS.md](DRIVER_ANALYSIS.md).
 
 ## 1. Prototype mechanical baseline
@@ -93,7 +103,10 @@ Before cutting a repeat or final baffle:
 
 ## 5. Other cabinet panels
 
-The side, top, bottom, and removable prototype rear panel may remain simple rectangles. Exact cutting dimensions and joinery remain to be finalised.
+The side, top, bottom, and removable rear panel may remain simple rectangles.
+Speaker one is complete; exact repeat/production cutting dimensions and joinery
+still need to be reconciled with the fitted prototype and back-annotated into
+the fabrication record before speaker two is cut.
 
 ## 6. Rear panel and prototype access
 
@@ -156,7 +169,7 @@ Use four approximately **32 × 32 × 16 mm soft silicone-rubber feet**. Their in
 
 ## 11. Open mechanical items
 
-- final cutting list and detailed joinery for the 430 mm-high body;
+- repeat/production cutting list and detailed joinery for the 430 mm-high body;
 - exact rear-panel countersink dimensions after trial fitting the actual screws;
 - final working compression of the neoprene strip and resulting central-landing fit;
 - exact empirical tweeter body, terminal, connector, and wiring clearance;

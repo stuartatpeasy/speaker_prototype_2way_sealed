@@ -6,9 +6,9 @@
 | Owns | Retained file identity, measurement metadata, as-built impedance/phase results, EPDR derivation, model comparison, and load-gate consequence |
 | Does not own | Routine jig operation, crossover topology, acoustic validation, or the later distortion/compression/thermal procedure |
 | Read when | Auditing the measured Seed A load, EPDR calculation, amplifier burden, or a later crossover change |
-| Current conclusion | Seed A passes the `3.5 ohm` magnitude gate; its minimum EPDR is about `2.56 ohm` near `1.94 kHz`, so controlled full-system level and thermal validation remains justified |
-| Next gate | Controlled full-system distortion/compression and thermal validation at the required listening level |
-| Last reviewed | 2026-09-09 |
+| Current conclusion | Seed A passes the `3.5 ohm` magnitude gate; its minimum EPDR is about `2.56 ohm` near `1.94 kHz`. The subsequent bounded level/distortion and surface-thermal gates also pass |
+| Next gate | Matched speaker-two build and validation; see the later level/thermal qualification |
+| Last reviewed | 2026-09-10 |
 
 ## 1. Retained evidence and conditions
 
@@ -110,15 +110,14 @@ measured global minimum - prototype gate
 **QUALIFICATION DECISION — PASS:** the as-built load clears the project's
 minimum-impedance gate with useful margin and is less current-demanding than
 the practical model predicted. The `2.56 ohm` minimum EPDR shows a moderate
-reactive peak-dissipation burden around the crossover, so it should inform the
-planned amplifier-level and thermal test; it does not justify a crossover
-change by itself.
+reactive peak-dissipation burden around the crossover; it informed the
+subsequent bounded amplifier-level and thermal test and does not justify a
+crossover change by itself.
 
 The SU-V570 is specified for one `4-16 ohm` loudspeaker pair and has published
 `4 ohm` power specifications. Seed A's actual impedance magnitude remains above
-`4.36 ohm`; the next proportionate discriminator is therefore the already
-planned controlled full-system distortion/compression and thermal validation
-at the required listening level.
+`4.36 ohm`. The subsequent bounded level/distortion and surface-thermal gates
+pass in the [later qualification](SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md); matched speaker-two validation is now next.
 
 ## 5. Method references
 
