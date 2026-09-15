@@ -3,12 +3,12 @@
 | State | Value |
 | --- | --- |
 | Lifecycle | **CURRENT SUPPORTING REFERENCE** |
-| Owns | Compact commands for FRD, ZMA, extracted REW response/impulse, `.mdat`, and VituixCAD VXP inspection or comparison |
+| Owns | Compact commands for FRD, ZMA, extracted REW response/impulse, `.mdat`, and VituixCAD VXP inspection, comparison, batching, or source fingerprinting |
 | Does not own | Raw measurement authority, measurement procedures, driver baselines, crossover conclusions, or live REW qualification |
 | Read when | A task needs facts from a large supported data file, a comparison between files, or maintenance of these tools |
 | Current approved action | Use the narrowest applicable command before reading raw rows or writing a temporary parser |
 | Limitations | `.mdat` needs a running REW API and mutates its workspace; VXP analysis audits stored semantics and sources but does not solve the circuit |
-| Last reviewed | 2026-09-09 |
+| Last reviewed | 2026-09-15 |
 
 ## 1. Authority and output policy
 
@@ -25,8 +25,8 @@ question outside the supported analyses. If the same missing analysis is likely
 to recur, add it to the committed tool and tests instead of leaving its only
 implementation in `/tmp`.
 
-All three tools use only the Python standard library and write their normal
-results to standard output. Run them from the project root with `python3` in WSL
+These measurement tools use only the Python standard library and write
+their normal results to standard output. Run them from the project root with `python3` in WSL
 or replace `python3` with `.venv\Scripts\python.exe` in Windows PowerShell.
 
 ## 2. FRD, ZMA, and extracted response or impulse data
@@ -88,7 +88,36 @@ maximum residual, and an optional sample-quantised delay fit bounded by
 absolute amplitudes. Use `--sample-rate-hz` when the rate must be asserted rather
 than derived from the time columns.
 
-## 3. Compact `.mdat` analysis through REW
+## 3. Batch selected measurement questions
+
+`measurement_summary.py batch` runs 1–32 selected questions from one JSON recipe,
+reusing parsed files within the run. Paths in the recipe are relative to the
+recipe file, so a retained recipe remains portable with its source files. Each
+task returns the usual bounded analysis with source provenance; the result also
+records the recipe path, size, SHA-256, task count, and parsed-file counts. Keep
+recipes in the relevant source/data tree when they become durable evidence;
+use ignored `outputs/` only for disposable questions.
+
+```text
+python3 src/measurement_summary.py batch outputs/questions.json
+```
+
+A small recipe is:
+
+```json
+{"tasks":[
+  {"name":"axis","operation":"inspect","path":"../rew/frd/axis.frd","band":[1000,5000]},
+  {"name":"two-kilohertz","operation":"points","path":"../rew/frd/axis.frd","frequencies":[2000],"method":"interpolate"}
+]}
+```
+
+The supported operations are `inspect`, `points`, `impedance`, `compare`,
+`polar`, and `impulse`, using the same explicit band, grid, window, and fit
+choices as their single-operation commands. Point lists are limited to 32,
+polar curve sets to 16, each batch to 32 tasks, and the recipe to 128 KiB. This mode does not inspect
+`.mdat` directly; that still requires REW.
+
+## 4. Compact `.mdat` analysis through REW
 
 [`src/rew_api_extract.py`](../src/rew_api_extract.py) delegates binary `.mdat`
 interpretation to REW, then calls the same in-memory analysis functions:
@@ -110,7 +139,7 @@ PPO/2 anti-alias smoothing during resampling, use the full extraction route with
 PPO omitted when a native-grid extremum or narrow feature could affect the
 decision.
 
-## 4. VituixCAD VXP summary and semantic comparison
+## 5. VituixCAD VXP summary, comparison, and source fingerprints
 
 [`src/vxp_summary.py`](../src/vxp_summary.py) parses the XML VXP without opening
 VituixCAD:
@@ -118,6 +147,7 @@ VituixCAD:
 ```text
 python3 src/vxp_summary.py summary FILE
 python3 src/vxp_summary.py compare LEFT RIGHT --max-differences 25
+python3 src/vxp_summary.py fingerprints FILE
 ```
 
 `summary` reports global project settings, driver FRD/ZMA assignments and their
@@ -126,18 +156,26 @@ crossover component values and parasitics. Stored Windows paths are mapped into
 the current checkout when possible. `compare` returns a bounded normalized
 semantic diff and deliberately excludes schematic layout-only movement.
 
+`fingerprints` returns only the VXP source hash and unique referenced
+FRD/ZMA paths, byte sizes, SHA-256 hashes, and missing paths. The optional
+`--fingerprint-sources` flag on `summary` adds hashes to source records; on
+`compare` it also reports a byte change at the same stored source path as a
+semantic difference. Fingerprinting reads referenced files and is useful for
+provenance audits, not routine configuration comparisons. No source file is
+modified.
+
 This is a source/reference and configuration audit, not a circuit solver. It
 does not calculate acoustic summation, load impedance, transfer functions, or
 whether two differently drawn networks are electrically equivalent. Use
 VituixCAD and retained measurement evidence for those questions.
 
-## 5. Verification and reconstruction
+## 6. Verification and reconstruction
 
 Run the complete standard-library suite after changing any tool:
 
 ```text
 python3 -m unittest discover -s tests -v
-python3 -m py_compile src/measurement_analysis.py src/measurement_summary.py src/rew_api_extract.py src/vxp_summary.py
+python3 -m py_compile src/measurement_analysis.py src/measurement_summary.py src/rew_api_extract.py src/vxp_summary.py src/project_docs.py src/project_checks.py
 ```
 
 Representative retained-data checks should confirm that:

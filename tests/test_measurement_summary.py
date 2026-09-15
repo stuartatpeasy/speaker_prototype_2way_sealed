@@ -194,5 +194,31 @@ class CliTests(unittest.TestCase):
             self.assertIn("ordered low < high", stderr.getvalue())
 
 
+class BatchTests(unittest.TestCase):
+    def test_batch_reuses_source_and_preserves_recipe_provenance(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "load.zma").write_text("10 8 0\n20 4 -30\n40 6 20\n", encoding="utf-8")
+            recipe = root / "questions.json"
+            recipe.write_text(json.dumps({"tasks": [
+                {"name": "overview", "operation": "inspect", "path": "load.zma", "band": [10, 40]},
+                {"name": "at20", "operation": "points", "path": "load.zma", "frequencies": [20]},
+                {"name": "load", "operation": "impedance", "path": "load.zma", "band": [10, 40]},
+            ]}), encoding="utf-8")
+            output = io.StringIO()
+            with redirect_stdout(output):
+                self.assertEqual(measurement_summary.main(["batch", str(recipe)]), 0)
+            result = json.loads(output.getvalue())
+            self.assertEqual(result["taskCount"], 3)
+            self.assertEqual(result["parsedCurveCount"], 1)
+            self.assertEqual(len(result["recipe"]["sha256"]), 64)
+            self.assertEqual(result["tasks"][1]["analysis"]["result"][0]["magnitude"], 4)
+
+    def test_batch_rejects_unbounded_task_count(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            recipe = Path(temporary) / "questions.json"
+            recipe.write_text(json.dumps({"tasks": [{}] * 33}), encoding="utf-8")
+            with redirect_stderr(io.StringIO()):
+                self.assertEqual(measurement_summary.main(["batch", str(recipe)]), 2)
 if __name__ == "__main__":
     unittest.main()

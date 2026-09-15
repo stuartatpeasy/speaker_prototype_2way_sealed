@@ -166,5 +166,32 @@ class SyntheticTests(unittest.TestCase):
         self.assertIn("error", json.loads(error_output.getvalue()))
 
 
+class FingerprintTests(unittest.TestCase):
+    def test_optional_source_fingerprints_are_unique_and_byte_exact(self):
+        import hashlib
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            path = SyntheticTests().make_project(root, synthetic_vxp())
+            plain = vxp.parse_vxp(path)
+            self.assertEqual(plain["sourceAudit"]["fingerprintedFileCount"], 0)
+            fingerprinted = vxp.parse_vxp(path, fingerprint_sources=True)
+            self.assertEqual(fingerprinted["sourceAudit"]["fingerprintedFileCount"], 2)
+            record = fingerprinted["drivers"][0]["impedanceFile"]
+            self.assertEqual(record["sha256"], hashlib.sha256(b"data").hexdigest())
+            self.assertEqual(record["sizeBytes"], 4)
+
+    def test_hash_comparison_detects_changed_bytes_at_same_path(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            path = SyntheticTests().make_project(root, synthetic_vxp())
+            before = vxp.parse_vxp(path, fingerprint_sources=True)
+            (root / "rew" / "test.zma").write_text("changed", encoding="utf-8")
+            after = vxp.parse_vxp(path, fingerprint_sources=True)
+            normal = vxp.semantic_diff(before, after, max_differences=10)
+            hashes = vxp.semantic_diff(before, after, max_differences=10,
+                                       include_source_hashes=True)
+            self.assertTrue(normal["equal"])
+            self.assertFalse(hashes["equal"])
+            self.assertIn("impedanceFile.sha256", hashes["differences"][0]["path"])
 if __name__ == "__main__":
     unittest.main()

@@ -9,38 +9,29 @@ of this file.
 
 **Lifecycle:** ACTIVE PROTOTYPE DEVELOPMENT
 
-**Current phase:** Seed A is the accepted reversible external prototype. Its
-installed raw-driver sources, measured component set, filtered branches,
-normal sum, reverse-polarity null, sparse horizontal responses, as-built load,
-and bounded level/distortion and exposed-component thermal gates pass. The
+**Current phase:** measured Seed A is the accepted reversible external
+prototype. Its acoustic summation, as-built load, bounded level/distortion, and
+exposed-component surface-thermal gates pass. Driver procurement and final
+crossover/placement decisions remain provisional. The owning
 [driver](doc/DRIVER_ANALYSIS.md), [crossover](doc/CROSSOVER_DESIGN.md), and
-[REW](doc/rew/README.md) authorities own the numerical evidence and provenance.
+[REW](doc/rew/README.md) records provide the conditions and evidence.
 
-The moderate crossover-region beamwidth change remains a possible later
-refinement, not grounds for a component change. The narrow high-level feature
-near `2.18 kHz` needs matched-unit confirmation. The attempted immediate hot
-comparison is excluded because the speaker was at `60 degrees`, and its
-replacement is deferred rather than passed.
-
-**Next action:** inventory/procure the second crossover's parts, build speaker
-two to the same physical and electrical design, and repeat the decisive
-installed, crossover, load, level/distortion, and bounded thermal checks under
-matched conditions. Include a correct immediate hot `0-degree` comparison and
-check whether the `2.18 kHz` feature repeats. Retest speaker one only if that
-work reveals an anomaly; no unchanged measurement on it is justified now.
+**Next action:** inventory/procure and build speaker two to the same design,
+then compare the decisive installed, acoustic, load, level, and thermal results
+under matched conditions. On speaker two, capture a valid immediate hot
+`0-degree` response and check whether the narrow `2.18 kHz` high-level feature
+repeats. Speaker one's wrong-angle hot trace remains excluded; retest it only if
+speaker two reveals an anomaly.
 
 **Last reviewed:** 2026-09-15
 
-| Subsystem | Current conclusion | Detailed authority |
+| Subsystem | Current consequence | Detailed authority |
 | --- | --- | --- |
-| Cabinet | One acoustically representative sealed prototype is complete. Body is approximately `280 x 430 x 300 mm`; geometric net volume is approximately `21.7 L` before damping. | [Cabinet design](doc/CABINET_DESIGN.md) |
-| Drivers | SB17NRX2C35-8 woofer and SB26STWGC-4 tweeter remain provisionally retained. The original cooled installed ZMA files remain the crossover baselines; the woofer still needs a cooled post-conditioning confirmation. | [Driver analysis](doc/DRIVER_ANALYSIS.md) |
-| Crossover | Measured Seed A component, acoustic, load, level/distortion, and exposed-component thermal gates pass. The moderate directivity flare and narrow `2.18 kHz` high-level feature remain second-speaker checks. | [Crossover design](doc/CROSSOVER_DESIGN.md) |
-| StarTech impedance path | The `5 V` USB-powered route and completed Seed A capture pass; no unchanged repeat is justified. | [Completed StarTech procedure](doc/rew/procedures/STARTECH_SEED_A_SYSTEM_IMPEDANCE.md) |
-| UMC22 measurement path | Common-position on-axis and `+20/+40/+60 degree` raw-driver sources are validated. Protected-tweeter imports require the documented `+11.14 dB` scale. | [Horizontal runbook](doc/rew/procedures/UMC22_INSTALLED_HORIZONTAL_OFF_AXIS_FRD.md), [tweeter runbook](doc/rew/procedures/UMC22_INSTALLED_TWEETER_FRD.md) |
-| Seed A level/thermal path | The bounded package passes; its wrong-angle post-thermal trace is excluded and the correct hot comparison is deferred to speaker two. | [Qualification record](doc/rew/qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md) |
-| UMC202HD path | The passive fixture is released, but desktop output-stream dropouts suspend UMC202HD sweeps. Live Linux remains the next useful discriminator. | [Dropout diagnosis](doc/rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md) |
-| Room | The design is explicitly near-wall/near-corner. Current placement alternatives remain measurement candidates rather than final decisions. | [Room summary](doc/ROOM_DETAILS.md) |
+| Cabinet | One representative sealed prototype is complete; speaker two should match it. | [Cabinet design](doc/CABINET_DESIGN.md) |
+| Drivers | The original cooled installed ZMAs remain model baselines; a cooled post-conditioning woofer check is lower priority. | [Driver analysis](doc/DRIVER_ANALYSIS.md) |
+| Crossover | Seed A passes the bounded hardware and acoustic gates; keep it external through pair matching. | [Crossover design](doc/CROSSOVER_DESIGN.md) |
+| Measurement | StarTech load and UMC22 raw-driver routes pass; desktop UMC202HD sweeps remain suspended. | [REW dispatcher](doc/rew/README.md) |
+| Room | Near-wall placement candidates remain measurement trials. | [Room summary](doc/ROOM_DETAILS.md) |
 
 ## 2. Project Goal And Locked Architecture
 
@@ -71,7 +62,7 @@ route below. Files labelled history or qualification are not routine context.
 | Task | Read | Add only when needed |
 | --- | --- | --- |
 | Driver or enclosure alignment | [Driver analysis](doc/DRIVER_ANALYSIS.md) | [Run-in procedure](doc/DRIVER_RUNIN.md) for conditioning; [cabinet design](doc/CABINET_DESIGN.md) for mechanical consequences |
-| Cabinet fabrication | [Cabinet design](doc/CABINET_DESIGN.md) | [3D-model hub](doc/3d_models/README.md) for model selection or reconstruction |
+| Cabinet fabrication | [Cabinet design](doc/CABINET_DESIGN.md) | [3D-model hub](doc/3d_models/README.md) for model selection; [regeneration and retention](doc/3d_models/REGENERATION_AND_RETENTION.md) only for rebuilding a model or printer job |
 | Crossover modelling | [Driver analysis](doc/DRIVER_ANALYSIS.md), [crossover design](doc/CROSSOVER_DESIGN.md), [measurement workflow](doc/MEASUREMENT_WORKFLOW.md) | [Component development](doc/CROSSOVER_COMPONENT_DEVELOPMENT.md) only for component construction or thermal/mechanical questions |
 | UMC22 woofer capture or repeatability investigation | [REW dispatcher](doc/rew/README.md), [UMC22 runbook](doc/rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md) | [FRD method](doc/rew/FRD_MEASUREMENT_METHOD.md) when reviewing geometry, impulse/ETC, the production window, or capture comparisons; [driver analysis](doc/DRIVER_ANALYSIS.md) when assessing or promoting driver-design evidence; qualification only for audit or failure investigation |
 | UMC22 protected tweeter capture | [REW dispatcher](doc/rew/README.md), [UMC22 tweeter runbook](doc/rew/procedures/UMC22_INSTALLED_TWEETER_FRD.md) | [FRD method](doc/rew/FRD_MEASUREMENT_METHOD.md) for common timing/window review; [driver analysis](doc/DRIVER_ANALYSIS.md) for the approved impedance and protection derivation |
@@ -82,10 +73,11 @@ route below. Files labelled history or qualification are not routine context.
 | Audit UMC22 or fixture qualification | [REW dispatcher](doc/rew/README.md), then the named record under `doc/rew/qualification/` | Chronological records under `doc/rew/history/` only for superseded attempts or provenance questions |
 | Diagnose or resume UMC202HD | [Dropout diagnosis](doc/rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md) | [Suspended UMC202HD procedure](doc/rew/procedures/UMC202HD_FRD_SUSPENDED.md) when preparing to resume |
 | Room placement | [Room summary](doc/ROOM_DETAILS.md), [placement and measurement](doc/room/ROOM_PLACEMENT_AND_MEASUREMENT.md) | [Geometry and screening](doc/room/ROOM_GEOMETRY_AND_SCREENING.md) for CAD, coupled-space, or modal questions |
-| FRD, ZMA, impulse, or VituixCAD file inspection/comparison | [Measurement data tooling](doc/MEASUREMENT_DATA_TOOLING.md) | [Measurement workflow](doc/MEASUREMENT_WORKFLOW.md) only when interpreting evidence or changing measurement policy; [REW API client](doc/REW_API_CLIENT.md) for `.mdat` or live-session access |
-| REW API use | [REW API client](doc/REW_API_CLIENT.md) | Its qualification record only for maintenance or audit |
-| 3D model selection or reconstruction | [3D-model hub](doc/3d_models/README.md), then one component README | [Local tooling](doc/LOCAL_TOOLING.md) if the environment or checkout path changes |
-| Documentation review | [Documentation review procedure](doc/DOCUMENTATION_REVIEW.md) | Use its comprehensive mode only for consolidation or handover |
+| FRD, ZMA, impulse, or VituixCAD file inspection/comparison | [Measurement data tooling](doc/MEASUREMENT_DATA_TOOLING.md) | [Measurement workflow](doc/MEASUREMENT_WORKFLOW.md) only when interpreting evidence or changing measurement policy |
+| REW API status or session snapshot | [REW API client](doc/REW_API_CLIENT.md) | Its qualification record only for maintenance or audit |
+| Retained `.mdat` extraction or summary | [REW MDAT extraction](doc/rew/procedures/REW_MDAT_EXTRACTION.md) | [REW API client](doc/REW_API_CLIENT.md) for live reachability; API qualification only for maintenance or audit |
+| 3D model selection | [3D-model hub](doc/3d_models/README.md), then one component README | [Regeneration and retention](doc/3d_models/REGENERATION_AND_RETENTION.md) only for rebuilding or re-slicing |
+| Documentation review | [Documentation review procedure](doc/DOCUMENTATION_REVIEW.md) | [Local tooling](doc/LOCAL_TOOLING.md) for the offline link, route, and changed-file checks; use comprehensive mode only for consolidation or handover |
 | Repository or generated-artifact maintenance | [AGENTS.md](AGENTS.md), [.gitignore](.gitignore), [local tooling](doc/LOCAL_TOOLING.md) | Relevant reconstruction authority only |
 
 ## 4. Documentation Map
@@ -98,30 +90,16 @@ route below. Files labelled history or qualification are not routine context.
 | Cabinet and crossover | [doc/CABINET_DESIGN.md](doc/CABINET_DESIGN.md), [doc/CROSSOVER_DESIGN.md](doc/CROSSOVER_DESIGN.md), [doc/CROSSOVER_COMPONENT_DEVELOPMENT.md](doc/CROSSOVER_COMPONENT_DEVELOPMENT.md) |
 | Measurement policy and tooling | [doc/MEASUREMENT_WORKFLOW.md](doc/MEASUREMENT_WORKFLOW.md), [doc/MEASUREMENT_DATA_TOOLING.md](doc/MEASUREMENT_DATA_TOOLING.md), [doc/REW_API_CLIENT.md](doc/REW_API_CLIENT.md) |
 | REW procedures, qualification, and history | [doc/rew/README.md](doc/rew/README.md) |
+| Dated driver and crossover decisions | [doc/history/README.md](doc/history/README.md) — history dispatcher; load only for provenance |
 | Room geometry and placement | [doc/ROOM_DETAILS.md](doc/ROOM_DETAILS.md) |
 | 3D-model documentation | [doc/3d_models/README.md](doc/3d_models/README.md) |
 | Local environments and checkout paths | [doc/LOCAL_TOOLING.md](doc/LOCAL_TOOLING.md) |
 
-All tracked project Markdown except this file and `AGENTS.md` lives under
+All durable project Markdown except this file and `AGENTS.md` lives under
 `doc/`. Subtree dispatchers index detailed component, qualification, and history
 records without forcing them into normal orientation context.
 
-## 5. Immediate Development Sequence
-
-1. Preserve the completed raw-driver, Seed A acoustic/load/level/thermal, and
-   three VituixCAD authorities; do not repeat passed measurements without a
-   design-relevant reason.
-2. Procure/build the second speaker and repeat the decisive installed,
-   crossover, load, level/distortion, and bounded thermal checks under matched
-   conditions. Include a correct immediate hot `0-degree` sweep and examine
-   whether the first speaker's narrow high-level feature near `2.18 kHz`
-   repeats.
-3. Retest the first speaker only if the second-speaker work reveals an anomaly.
-   Keep the cooled `48 kHz` woofer ZMA, final damping, and moderate directivity
-   flare as lower-priority questions.
-4. Iterate one controlled change at a time and update the owning current record.
-
-## 6. Open Decisions
+## 5. Open Decisions
 
 - final damping quantity and distribution;
 - final cooled woofer impedance baseline and whether further conditioning helps;
@@ -133,11 +111,3 @@ records without forcing them into normal orientation context.
 - whether DSP or a future subwoofer forms part of the finished system;
 - production-driver spread and stereo-pair matching during the second-speaker
   build, including the deferred hot `0-degree` comparison.
-
-## 7. One-Line Design Summary
-
-The accepted prototype is a sealed, near-wall, measurement-designed passive
-two-way loudspeaker using an SB17NRX2C35-8 woofer and SB26STWGC-4 waveguide
-tweeter in an approximately `21.7 L` geometric-net plywood cabinet, with an
-externally accessible development crossover and neutral low-distortion
-reproduction as the overriding goal.

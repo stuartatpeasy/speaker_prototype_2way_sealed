@@ -268,7 +268,7 @@ def _parse_component(element: ET.Element, source_index: int) -> dict[str, Any]:
     return component
 
 
-def parse_vxp(path: Path) -> dict[str, Any]:
+def parse_vxp(path: Path, *, fingerprint_sources: bool = False) -> dict[str, Any]:
     source = path.resolve()
     if not source.is_file():
         raise VxpError(f"VXP file does not exist: {source}")
@@ -321,6 +321,20 @@ def parse_vxp(path: Path) -> dict[str, Any]:
     for driver in drivers:
         path_records.extend((driver["responseDirectory"], driver["impedanceFile"]))
         path_records.extend(response["source"] for response in driver["responses"])
+    fingerprints: dict[str, dict[str, Any]] = {}
+    if fingerprint_sources:
+        for record in path_records:
+            resolved = record.get("resolved")
+            if not resolved or not Path(resolved).is_file():
+                continue
+            if resolved not in fingerprints:
+                digest = hashlib.sha256()
+                with Path(resolved).open("rb") as stream:
+                    for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+                        digest.update(chunk)
+                fingerprints[resolved] = {"sizeBytes": Path(resolved).stat().st_size,
+                                          "sha256": digest.hexdigest()}
+            record.update(fingerprints[resolved])
     missing = sorted({
         record.get("projectRelative") or record["stored"] or "<empty>"
         for record in path_records
@@ -347,6 +361,7 @@ def parse_vxp(path: Path) -> dict[str, Any]:
             "referenceCount": len(path_records),
             "missingCount": len(missing),
             "missing": missing,
+            "fingerprintedFileCount": len(fingerprints),
         },
         "counts": {
             "drivers": len(driver_elements),
@@ -376,7 +391,12 @@ def _semantic_path(record: Mapping[str, Any]) -> str:
     return str(record.get("stored", "")).replace("\\", "/")
 
 
-def semantic_view(summary: Mapping[str, Any]) -> dict[str, Any]:
+def _semantic_source(record: Mapping[str, Any], include_hash: bool) -> Any:
+    path = _semantic_path(record)
+    return {"path": path, "sha256": record.get("sha256")} if include_hash else path
+
+
+def semantic_view(summary: Mapping[str, Any], *, include_source_hashes: bool = False) -> dict[str, Any]:
     """Discard host identity and schematic layout while retaining engineering semantics."""
     driver_map: dict[str, Any] = {}
     for driver in summary["drivers"]:
@@ -392,13 +412,13 @@ def semantic_view(summary: Mapping[str, Any]) -> dict[str, Any]:
             }
         }
         fields["responseDirectory"] = _semantic_path(driver["responseDirectory"])
-        fields["impedanceFile"] = _semantic_path(driver["impedanceFile"])
+        fields["impedanceFile"] = _semantic_source(driver["impedanceFile"], include_source_hashes)
         response_map: dict[str, Any] = {}
         for index, response in enumerate(driver["responses"]):
             angle = f"h={response['horizontalDegrees']},v={response['verticalDegrees']}"
             if angle in response_map:
                 angle = f"{angle}#{index}"
-            response_map[angle] = _semantic_path(response["source"])
+            response_map[angle] = _semantic_source(response["source"], include_source_hashes)
         fields["responses"] = response_map
         driver_map[key] = fields
 
@@ -431,7 +451,8 @@ def semantic_view(summary: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def semantic_diff(
-    left: Mapping[str, Any], right: Mapping[str, Any], *, max_differences: int
+    left: Mapping[str, Any], right: Mapping[str, Any], *, max_differences: int,
+    include_source_hashes: bool = False,
 ) -> dict[str, Any]:
     differences: list[dict[str, Any]] = []
     difference_count = 0
@@ -457,7 +478,8 @@ def semantic_diff(
         if len(differences) < max_differences:
             differences.append({"path": path, "change": change, "left": a, "right": b})
 
-    walk(semantic_view(left), semantic_view(right), "")
+    walk(semantic_view(left, include_source_hashes=include_source_hashes),
+         semantic_view(right, include_source_hashes=include_source_hashes), "")
     return {
         "equal": difference_count == 0,
         "differenceCount": difference_count,
@@ -474,10 +496,17 @@ def build_parser() -> argparse.ArgumentParser:
 
     summary = subparsers.add_parser("summary", help="write a bounded project summary")
     summary.add_argument("file", type=Path)
+    summary.add_argument("--fingerprint-sources", action="store_true",
+                         help="hash referenced FRD/ZMA files (may read large sources)")
+
+    fingerprints = subparsers.add_parser("fingerprints", help="write only referenced FRD/ZMA fingerprints")
+    fingerprints.add_argument("file", type=Path)
 
     compare = subparsers.add_parser("compare", help="write a normalized semantic diff")
     compare.add_argument("left", type=Path)
     compare.add_argument("right", type=Path)
+    compare.add_argument("--fingerprint-sources", action="store_true",
+                         help="include source byte hashes in the semantic comparison")
     compare.add_argument(
         "--max-differences", type=int, default=DEFAULT_MAX_DIFFERENCES,
         help=f"maximum differences to report (1-{HARD_MAX_DIFFERENCES})",
@@ -492,16 +521,30 @@ def main(argv: Sequence[str] | None = None) -> int:
         parser.error(f"--max-differences must be between 1 and {HARD_MAX_DIFFERENCES}")
     try:
         if args.command == "summary":
-            payload = parse_vxp(args.file)
+            payload = parse_vxp(args.file, fingerprint_sources=args.fingerprint_sources)
+        elif args.command == "fingerprints":
+            summary = parse_vxp(args.file, fingerprint_sources=True)
+            found = {}
+            for driver in summary["drivers"]:
+                for record in [driver["impedanceFile"],
+                               *(response["source"] for response in driver["responses"])]:
+                    if record.get("sha256"):
+                        found[record.get("projectRelative") or record["stored"]] = {
+                            "sizeBytes": record["sizeBytes"], "sha256": record["sha256"]}
+            payload = {"kind": "vituixcadSourceFingerprints",
+                       "source": summary["source"], "fileCount": len(found),
+                       "files": {key: found[key] for key in sorted(found)},
+                       "missing": summary["sourceAudit"]["missing"]}
         else:
-            left = parse_vxp(args.left)
-            right = parse_vxp(args.right)
+            left = parse_vxp(args.left, fingerprint_sources=args.fingerprint_sources)
+            right = parse_vxp(args.right, fingerprint_sources=args.fingerprint_sources)
             payload = {
                 "schemaVersion": SCHEMA_VERSION,
                 "kind": "vituixcadProjectSemanticDiff",
                 "left": left["source"],
                 "right": right["source"],
-                **semantic_diff(left, right, max_differences=args.max_differences),
+                **semantic_diff(left, right, max_differences=args.max_differences,
+                                include_source_hashes=args.fingerprint_sources),
             }
     except (OSError, VxpError) as exc:
         print(json.dumps({"error": str(exc)}, ensure_ascii=False, separators=(",", ":")), file=sys.stderr)

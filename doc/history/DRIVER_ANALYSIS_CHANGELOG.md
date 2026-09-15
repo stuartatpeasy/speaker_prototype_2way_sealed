@@ -6,7 +6,7 @@
 > - **Current authority:** [DRIVER_ANALYSIS.md](../DRIVER_ANALYSIS.md)
 > - **Use when:** auditing why a driver conclusion or approved source changed
 > - **Limitations:** detailed measurement-route evidence remains in the linked REW qualification and history records
-> - **As of:** 2026-09-10
+> - **As of:** 2026-09-15
 
 ## 1. 2026-08-30 - installed-driver baseline
 
@@ -111,3 +111,12 @@
   retest speaker one only if the new unit reveals an anomaly.
 - Detailed evidence is in the [Seed A level/thermal
   qualification](../rew/qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md).
+
+## 10. 2026-09-15 — conditioning detail consolidated
+
+- The routine driver authority now retains only the current cooled pre-conditioning ZMA baseline, the approximate `+0.342 ohm` reason that the later trace is comparison-only, and the link to the current bounded procedure.
+- Retained superseded operating detail: on 2026-08-31 the installed woofer was driven at `45 Hz`, `3.44 V RMS` terminals. The current installed ZMA gives approximately `10.42 ohm` at `+50.6 degrees`, or `0.330 A RMS`, `1.14 VA`, and `0.72 W` real input; the nominal `V^2/8 = 1.48 W` shorthand was not applicable to the reactive load.
+- The linear equivalent-circuit estimate gave about `2.13 mm` peak travel at that condition. The later `30 Hz`, `4.0 V RMS` development point predicted `0.565 A RMS`, `1.9 W` real input, and `2.6 mm` peak, about `47%` of published `Xmax`. These were estimates, not displacement measurements.
+- The matched `48 kHz` comparison moved the sealed resonance from `66.9712 Hz` to `65.7115 Hz` (`-1.2597 Hz`, `-1.881%`), equivalent to approximately `+3.87%` total system compliance if moving mass is constant. Its raw impedance maximum changed from about `96.54` to `96.85 ohm`; removing the broadband series offset gives about `96.50 ohm`, `Qmc≈13.8`, `Qec≈0.86`, and `Qtc≈0.81`.
+- The derived effective post-conditioning free-air estimate was about `52.66 Hz` (`-2.9%` from the pre-run estimate, about `+6.0%` compliance), but it remained indirect and approximately `44%` above the published `36.5 Hz`. The intervening programme material means the comparison cannot attribute the shift solely to the final sine-wave hour.
+- This dated detail is historical context. It does not supersede the cooled original as crossover input or release further conditioning outside [DRIVER_RUNIN.md](../DRIVER_RUNIN.md).

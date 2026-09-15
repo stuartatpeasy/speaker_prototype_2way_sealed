@@ -181,6 +181,12 @@ If a generated output is intentionally uncommitted, retain and document all inpu
 
 ## 10. Validation
 
+Use the maintained [offline documentation checker](LOCAL_TOOLING.md#3-documentation-and-changed-file-checks)
+for local links, anchors, navigation reachability, and routine-route word costs.
+Run its targeted file mode for a bounded change, or the full mode for a
+comprehensive consolidation. Its results do not establish factual consistency
+or prove external technical sources remain available.
+
 For both modes, validate the selected scope proportionately:
 
 1. validate local Markdown links and anchors in changed files and direct consumers;
