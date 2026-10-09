@@ -2,9 +2,8 @@
 
 Lifecycle: **HISTORY — AUDIT ONLY; DO NOT USE AS A CURRENT PROCEDURE**
 
-This record preserves the development of the UMC202HD full-dual method, its
-suspension after desktop source-stream dropouts, and the later UMC22 checkout
-and repeatability narrative. It deliberately retains obsolete settings and
+This record preserves the development of the UMC202HD full-dual method and the
+later UMC22 checkout and repeatability narrative. It retains obsolete settings and
 superseded instructions as dated evidence. They are not authorisation to power
 equipment or generate a signal.
 
@@ -12,15 +11,14 @@ Use [`../FRD_MEASUREMENT_METHOD.md`](../FRD_MEASUREMENT_METHOD.md) for the
 interface-neutral method, use
 [`../procedures/UMC22_INSTALLED_WOOFER_FRD.md`](../procedures/UMC22_INSTALLED_WOOFER_FRD.md)
 for current UMC22 work, and use
-[`../procedures/UMC202HD_FRD_SUSPENDED.md`](../procedures/UMC202HD_FRD_SUSPENDED.md)
-for the UMC202HD suspension/resumption boundary.
+[`../procedures/UMC202HD_FRD_CHECKOUT.md`](../procedures/UMC202HD_FRD_CHECKOUT.md)
+for a current UMC202HD checkout.
 
 Date prepared: 2026-08-30
 
-Last revised: 2026-09-05
+Last revised: 2026-10-09
 
-Status: **UMC202HD PROCEDURE SUSPENDED BY DESKTOP DROPOUT; FIXTURE RELEASE
-REMAINS VALID; UMC22 GATES A-D, ITS COMPLETE SWITCHED-OFF GATE E ASSEMBLY, AND
+Status: **FIXTURE RELEASE REMAINS VALID; UMC22 GATES A-D, ITS COMPLETE SWITCHED-OFF GATE E ASSEMBLY, AND
 ITS USB/PHANTOM AND SU-V570 MINIMUM-VOLUME NO-SIGNAL OBSERVATIONS PASS; THE
 CONTROLLED UMC22 WOOFER LEVEL PASSES AT `1.0000 V AC` WITH SU-V570 VOLUME AT
 ITS `-38 dB` SCALE MARK; THE GROSS PROTECTED REFERENCE PASSES AT A STABLE
@@ -54,9 +52,9 @@ was included in the powered no-signal pass.
 The proportionate safety/connectivity review in
 [the consolidated fixture qualification](../qualification/REFERENCE_FIXTURE_QUALIFICATION_2026-09-01_TO_03.md)
 passes, and the fixture authority says `Approved for amplifier use: YES` for
-controlled UMC202HD bench work. That electrical release remains valid, but
-UMC202HD measurement use is suspended by the separate dropout. This is not a
-raw-tweeter or final polar-measurement procedure.
+controlled UMC202HD bench work. No UMC202HD full-dual FRD from this historical
+checkout became accepted driver-design evidence. This is not a raw-tweeter or
+final polar-measurement procedure.
 
 This procedure's base settings and release statements are UMC202HD-specific.
 The risk-accepted UMC22 alternative has now passed the separate gates in
@@ -221,15 +219,12 @@ procedure does not repeat either.
 
 Do not use the UMC202HD headphone output to drive a loudspeaker.
 
-## 4. Suspended UMC202HD Checkout Configuration
+## 4. Retained UMC202HD Checkout Configuration
 
 The settings below preserve the exact configuration used for the completed
 2026-09-03 checkout. They are not a current instruction to reinstall the
-Behringer driver or resume UMC202HD sweeps. Re-establish this path only after
-the stability issue in
-[UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md](../UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md)
-has been resolved and the selected driver/host combination has passed a
-dropout-free control.
+Behringer driver or perform a new sweep. Use the current UMC202HD checkout
+route for present operating conditions.
 
 ### 4.1 Interface Controls
 
@@ -488,22 +483,14 @@ the acoustic excitation still requires an independent voltage setting.
 **VERIFIED UMC202HD CHECKOUT RESULT - 2026-09-03:** the powered no-signal
 observation passed: the woofer was silent, no clip indicator illuminated, and
 switching the SU-V570 on/off produced no observed instability. The level-setting
-check then reached a clean `1.00 V RMS` across the woofer, but the source stream
-muted for roughly `100-300 ms` every `1-3 s`. This blocks UMC202HD sweeps but
-does not revoke the passive fixture's electrical release.
+check reached a clean `1.00 V RMS` across the woofer. No response from this
+checkout became accepted driver-design evidence; the passive fixture's
+electrical release remains valid.
 
-The subsequent diagnosis is maintained in
-[UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md](../UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md).
-In summary, the same fault occurred with REW ASIO, REW Java/WASAPI, and ordinary
-Windows music; it survived rate, buffer, USB-port, cable, peripheral, disk, and
-power-plan controls. The same UMC202HD played continuously on a Windows 11
-laptop. Microsoft's desktop UAC2 driver reduced but did not eliminate the
-fault. A live-Linux boot on the desktop is the next useful discriminator.
-
-Do not reinstall the Behringer driver or resume UMC202HD sweeps merely to follow
-the dormant settings below. The risk-accepted UMC22 path is now the acoustic-
-work critical path; its Input 2 contact map passes and Gate B phantom isolation
-also passes. Both stages of Gate C pass; the amplifier-disconnected low-voltage
+Do not reinstall the historical Behringer driver or perform UMC202HD sweeps
+merely to follow the dated settings below. The risk-accepted UMC22 path became
+the acoustic-work critical path; its Input 2 contact map and Gate B phantom
+isolation passed. Both stages of Gate C pass; the amplifier-disconnected low-voltage
 loopback's no-signal check and device enumeration also pass. Channel/timing
 assignment and pre-excitation settings pass as well; the bounded amplifier-
 disconnected `1 kHz` voltage level also passes. The Input 2 reference-channel

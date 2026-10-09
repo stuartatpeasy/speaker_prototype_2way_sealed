@@ -1,29 +1,26 @@
-# UMC202HD Installed-Driver FRD — Suspended Route
+# UMC202HD Installed-Driver FRD — Checkout Route
 
-Lifecycle: **CURRENT PROCEDURE — SUSPENDED**
-Current approved action: none involving a UMC202HD sweep on the desktop.
-Resumption owner: the diagnostic boundary in
-[`../UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md`](../UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md).
-Last reviewed: 2026-09-06
+Lifecycle: **CURRENT PROCEDURE — CONTROLLED CHECKOUT**
+Owns: the UMC202HD full-dual route's retained topology and conditions for one
+checkout sweep.
+Does not own: fixture electrical release or installed-driver acoustic acceptance.
+Current approved action: route planning and no-signal audit; powered operation
+requires the current fixture-use procedure and confirmed physical state.
+Next gate: establish continuous REW output and level/reference checks before
+one checkout sweep.
+Limitation: no UMC202HD full-dual FRD has been accepted for design use.
+Last reviewed: 2026-10-09
 
-## 1. Scope And Suspension Decision
+## 1. Scope And Evidence Boundary
 
 This file preserves the last coherent UMC202HD full-dual configuration and the
-minimum conditions for resuming it. It is not authority to reinstall a driver,
-power the measurement chain, or repeat the failed desktop permutations.
+minimum conditions for a controlled checkout. It is not authority to reinstall
+a driver or energise an unaudited measurement chain. The UMC202HD no-signal
+check and a clean `1.00 V RMS` woofer level were previously reached, but no
+reusable full-dual FRD from this interface has been accepted. The passive
+reference fixture retains its separate electrical release.
 
-**VERIFIED OBSERVATION — 2026-09-03:** the UMC202HD powered no-signal check
-passed and the chain reached a clean `1.00 V RMS` across the woofer. The source
-stream then muted for roughly `100-300 ms` every `1-3 s`. The same class of
-dropout occurred with REW ASIO, REW Java/WASAPI, and ordinary Windows music.
-Because the output stream is not stable, no UMC202HD sweep from this desktop is
-valid for timing or response work.
-
-The passive reference fixture retains its electrical release; the dropout does
-not revoke that release. Host/interface stability and passive-fixture safety are
-separate conclusions.
-
-## 2. Last Valid Physical Topology
+## 2. Retained Physical Topology
 
 The intended full-dual route was:
 
@@ -52,7 +49,7 @@ For current fixture inspection, connection, startup, and stop rules, use
 [`../fixtures/REFERENCE_FIXTURE_USE.md`](../fixtures/REFERENCE_FIXTURE_USE.md).
 Do not rely on the dated development narrative as an operating procedure.
 
-## 3. Last Coherent REW Configuration
+## 3. Retained REW Configuration
 
 The preserved checkout configuration was:
 
@@ -86,45 +83,42 @@ Before any resumed UMC202HD capture, select the exact active UMC202HD device and
 input, recreate or verify any interface/rate-specific calibration, and confirm
 the ECM8000 calibration against Input 1 in both Measure and Measurement Info.
 
-## 4. Conditions Required Before Resumption
+## 4. Conditions Required Before A Checkout Sweep
 
 All of the following are mandatory:
 
-1. Complete the high-information host discriminator in the dropout authority:
-   boot a current live Linux environment on the affected desktop and run a
-   bounded playback/control test without altering the installed Windows system.
-2. Identify a selected host/driver path that completes a proportionate,
-   dropout-free control. Stability on the Windows 11 laptop may establish a
-   usable alternative host, but it does not explain or silently clear the
-   desktop fault.
-3. Record the exact OS, driver, USB path, sample rate, buffer, and observed test
-   duration. Do not infer sweep stability from device enumeration alone.
-4. Confirm the fixture still has `Approved for amplifier use: YES` under
+1. Confirm the fixture still has `Approved for amplifier use: YES` under
    [`../qualification/REFERENCE_FIXTURE_QUALIFICATION_2026-09-01_TO_03.md`](../qualification/REFERENCE_FIXTURE_QUALIFICATION_2026-09-01_TO_03.md).
    If any fixture part or cable changed, re-run only the affected qualification
    gates before connection.
-5. Use the current fixture operating file for a switched-off physical audit,
+2. Use the current fixture operating file for a switched-off physical audit,
    connection, USB/phantom no-signal observation, and minimum-volume amplifier
    power-up.
-6. Re-establish the complete L/L/L/R channel matrix without excitation. Confirm
-   the exact input/output identities, common `88.2 kHz` rate, calibration
-   identities, timing mode, and zero initial offset.
-7. Make one bounded level/control check. At `1.00 V RMS` woofer voltage, require
+3. Re-establish the complete L/L/L/R channel matrix without excitation. Confirm
+   the exact input/output identities, a common supported sample rate,
+   calibration identities, timing mode, and zero initial offset. The retained
+   Behringer ASIO configuration in Section 3 is historical: that package is
+   uninstalled, so choose and verify an available current backend rather than
+   selecting it by rote.
+4. On the selected Windows desktop route, establish continuous **REW output**
+   under the actual current UMC202HD driver/backend before any sweep. Record the exact OS,
+   driver/backend, USB path, sample rate, buffer if applicable, and observed
+   REW control duration. Do not infer sweep stability from device enumeration
+   or ordinary media playback alone.
+5. Make one bounded level/control check. At `1.00 V RMS` woofer voltage, require
    the protected reference to remain broadly near `0.10 V RMS`, with adequate
    headroom and no clipping, dropout, noise instability, heat, smell, or other
    abnormality.
-8. Authorise only one checkout sweep, then stop for headroom, metadata, impulse,
+6. Authorise only one checkout sweep, then stop for headroom, metadata, impulse,
    ETC, timing, and dropout review before any repeat series.
 
-## 5. Tests Not To Repeat Routinely
+## 5. Operating Boundaries
 
-Do not repeat driver reinstallations, ASIO-versus-Java permutations, sample
-rates, buffer changes, already-tested USB ports/cables, nonessential peripheral
-removal, legacy-disk removal, or broad power-plan changes merely because the
-route is suspended. Those branches did not identify a useful cause. Re-open one
-only if new evidence gives it a discriminating hypothesis.
+Choose the currently installed driver/backend and verify its actual channel
+identities. Do not reinstall the historical Behringer package or copy the old
+ASIO settings merely to reproduce a dated configuration.
 
-Do not load UMC22 chronology to resume this route. Its interface-specific
+Do not load UMC22 chronology to qualify this route. Its interface-specific
 contact map, phantom isolation, gains, calibration path, and Java `Stereo only`
 behaviour do not qualify the UMC202HD.
 
@@ -134,7 +128,7 @@ Stop for any source mute, warning, hardware clip, unstable reference, abnormal
 sound, unexpected continuity, heating, smell, smoke, spark, or perceptible
 tingle. A single dropout blocks the capture; do not average through it.
 
-Raw-tweeter and polar work remain separate even after UMC202HD stability is
-restored. They require their own protection, sweep limits, and geometry gates.
+Raw-tweeter and polar work remain separate. They require their own protection,
+sweep limits, and geometry gates.
 The detailed 2026-09-03 to 2026-09-05 development record is retained only at
 [`../history/FRD_REPEATABILITY_DEVELOPMENT_2026-09-03_TO_05.md`](../history/FRD_REPEATABILITY_DEVELOPMENT_2026-09-03_TO_05.md).

@@ -5,7 +5,7 @@ Owns: interface-neutral geometry, timing, repeatability, windowing, naming, and
 provenance requirements for installed-driver acoustic measurements.
 Does not own: interface qualification, fixture operation, a particular
 driver's safe sweep limits, or authorisation to power equipment.
-Last reviewed: 2026-09-09
+Last reviewed: 2026-10-09
 
 ## 1. Objective And Evidence Boundary
 
@@ -18,8 +18,8 @@ trace is not sufficient if its timing, calibration, or provenance is unknown.
 Use the applicable interface runbook for connection, level, and safety gates.
 For the currently qualified UMC22 woofer route that authority is
 [`procedures/UMC22_INSTALLED_WOOFER_FRD.md`](procedures/UMC22_INSTALLED_WOOFER_FRD.md).
-The UMC202HD route remains suspended under
-[`procedures/UMC202HD_FRD_SUSPENDED.md`](procedures/UMC202HD_FRD_SUSPENDED.md).
+For a UMC202HD full-dual checkout, use
+[`procedures/UMC202HD_FRD_CHECKOUT.md`](procedures/UMC202HD_FRD_CHECKOUT.md).
 
 Evidence classes used here are:
 

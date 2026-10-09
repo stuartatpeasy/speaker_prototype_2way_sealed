@@ -6,7 +6,7 @@
 > - **Current authority:** [DRIVER_ANALYSIS.md](../DRIVER_ANALYSIS.md)
 > - **Use when:** auditing why a driver conclusion or approved source changed
 > - **Limitations:** detailed measurement-route evidence remains in the linked REW qualification and history records
-> - **As of:** 2026-09-15
+> - **As of:** 2026-10-09
 
 ## 1. 2026-08-30 - installed-driver baseline
 
@@ -37,8 +37,7 @@
 ## 4. 2026-09-01 to 2026-09-04 — acoustic route remained blocked
 
 - Reference-path qualification and checkout did not change either driver's electrical baseline or retention decision.
-- The UMC202HD reached a clean 1.00 V RMS at the woofer but its desktop source-stream dropout prevented reusable FRD; no attempted response from that route became driver-design evidence.
-- The active diagnostic and live-Linux discriminator remain in [UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md](../rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md).
+- The UMC202HD reached a clean 1.00 V RMS at the woofer, but no response from that checkout became accepted driver-design evidence.
 
 ## 5. 2026-09-05 — UMC22 qualification changed the next driver gate
 

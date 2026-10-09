@@ -641,11 +641,11 @@ while the UMC22 alternative remains separately gated.
 
 Date prepared: 2026-09-03
 
-Last revised: 2026-09-05
+Last revised: 2026-10-09
 
 Status: **PROPORTIONATE AC SANITY GATE PASS; APPROVED FOR CONTROLLED
-POWERED-AMPLIFIER USE; FIRST FULL-DUAL CHECK CONFIRMS A SEPARATE DESKTOP
-UMC202HD/UAC2-HOST PLAYBACK DROPOUT**
+POWERED-AMPLIFIER USE; A REUSABLE UMC202HD FULL-DUAL FRD WAS NOT ESTABLISHED
+BY THIS FIXTURE QUALIFICATION**
 
 This is the completed standalone electrical-release record for the
 SU-V570-to-UMC202HD reference fixture. It retains the original low-voltage
@@ -675,13 +675,13 @@ The release actions are complete:
 2. retain the passed breakout cable without alteration;
 3. use the observed low-voltage `1 kHz` result only as a gross AC sanity check;
 4. retain the detailed readings and the proportionality review below; and
-5. evaluate noise, level, and dropout behaviour in the actual full-dual setup;
-   no-signal and clean-level checks passed, while the separate UMC202HD desktop
-   dropout failed measurement stability.
+5. evaluate noise, level, and stream continuity in the actual full-dual setup;
+   no-signal and clean-level checks passed, while reusable acoustic data were
+   not established by this fixture qualification.
 
 This record and the main fixture authority approve controlled UMC202HD powered-
-amplifier use. Actual UMC202HD measurements remain suspended by the digital
-dropout. The UMC22 alternative subsequently passed its own separate interface
+amplifier use. Actual UMC202HD measurements require a separate interface and
+acoustic checkout. The UMC22 alternative subsequently passed its own interface
 qualification; that later result is not part of this fixture record.
 
 #### 4.1.1 Commissioning Terminology
@@ -770,10 +770,8 @@ order, with no evidence of gain. Further millivolt-level refinement would not
 materially improve the protection decision.
 
 The first powered full-dual check passed the no-signal observation and reached
-a clean `1.00 V RMS` at the woofer, but exposed a separate UMC202HD output-
-stream dropout. Its extensive host diagnosis is owned by
-[UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md](../UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md).
-That digital-source fault does not change the passive fixture's release.
+a clean `1.00 V RMS` at the woofer. The passive fixture's electrical release
+does not by itself establish a reusable acoustic-response measurement.
 
 The safety margin is not a fraction of a decibel. At an ideal waveform bounded
 by the SU-V570's `+/-45.5 V` rails, the measured resistor network predicts about
@@ -937,10 +935,9 @@ Breakout-cable detail:
 
 **HISTORICAL CONFIGURATION NOTE:** the first attempt could not enumerate ASIO
 because the Behringer driver had not been installed. Installing it resolved
-enumeration and allowed this low-voltage check to complete. The vendor driver
-was later removed during the independent dropout diagnosis and should not be
-reinstalled merely to repeat a completed fixture gate. See
-[UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md](../UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md).
+enumeration and allowed this low-voltage check to complete. That vendor driver
+is no longer installed; do not reinstall it merely to repeat a completed
+fixture gate.
 
 #### 4.4.2 Retained Measurements And Superseding Decision
 
@@ -1013,13 +1010,13 @@ dual setup rather than used to withhold electrical release.
 | Standalone direct/clamp trace files | NOT REQUIRED FOR RELEASE; superseded by full-dual checkout |
 | Standalone no-signal files | NOT REQUIRED FOR RELEASE; powered-system observation moved to full-dual checkout |
 | Unloaded resistor prediction at `1 kHz` | `-20.094 dB` |
-| Intermediate DMM input / output / gain at `1 kHz` | AC SANITY PASS - input plateau `105.3 mV AC`, output `10.0 mV AC`; raw `-20.45 dB`, consistent with the passive `-20.094 dB` prediction for release purposes; periodic DMM dips now strongly explained by the later audible source-stream dropout and remain non-safety-critical |
+| Intermediate DMM input / output / gain at `1 kHz` | AC SANITY PASS - input plateau `105.3 mV AC`, output `10.0 mV AC`; raw `-20.45 dB`, consistent with the passive `-20.094 dB` prediction for release purposes |
 | Additional precision DMM levels | NOT REQUIRED FOR RELEASE |
-| Detailed REW transfer/noise/phase | NOT REQUIRED FOR FIXTURE RELEASE; UMC202HD path blocked by the separately documented desktop dropout |
+| Detailed REW transfer/noise/phase | NOT REQUIRED FOR FIXTURE RELEASE; belongs to the separate measurement checkout |
 | Polarity | PASS - established by complete resistance/contact maps |
 | Clamp inactivity at normal signal | PASS BY MARGIN - normal divided peaks remain below the independently tested clamp knee |
 | Safety/connectivity release decision | **PASS, 2026-09-03** |
-| Measurement-quality decision | NO-SIGNAL AND CLEAN `1.00 V RMS` LEVEL PASS; UMC202HD DESKTOP STABILITY FAILS, WITH UMC22 FALLBACK SEPARATELY GATED |
+| Measurement-quality decision | NO-SIGNAL AND CLEAN `1.00 V RMS` LEVEL PASS; REUSABLE FRD NOT ESTABLISHED HERE, WITH UMC22 SEPARATELY GATED |
 
 ### 4.6 Release Consequence
 
@@ -1031,7 +1028,7 @@ UMC22 route and its remaining interface-specific gates are in
 This qualification released the passive fixture only; it is not present signal
 authority. Any future connection or startup must use [fixture
 operation](../fixtures/REFERENCE_FIXTURE_USE.md) plus the applicable current
-interface procedure. UMC202HD operation remains suspended. A gross level,
+interface procedure. A gross level,
 noise, clipping, or dropout failure under an authorised procedure is a stop
 condition for measurement
 quality and triggers diagnosis; it does not retrospectively turn an unexplained

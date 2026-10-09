@@ -23,14 +23,14 @@ under matched conditions. On speaker two, capture a valid immediate hot
 repeats. Speaker one's wrong-angle hot trace remains excluded; retest it only if
 speaker two reveals an anomaly.
 
-**Last reviewed:** 2026-09-15
+**Last reviewed:** 2026-10-09
 
 | Subsystem | Current consequence | Detailed authority |
 | --- | --- | --- |
 | Cabinet | One representative sealed prototype is complete; speaker two should match it. | [Cabinet design](doc/CABINET_DESIGN.md) |
 | Drivers | The original cooled installed ZMAs remain model baselines; a cooled post-conditioning woofer check is lower priority. | [Driver analysis](doc/DRIVER_ANALYSIS.md) |
 | Crossover | Seed A passes the bounded hardware and acoustic gates; keep it external through pair matching. | [Crossover design](doc/CROSSOVER_DESIGN.md) |
-| Measurement | StarTech load and UMC22 raw-driver routes pass; desktop UMC202HD sweeps remain suspended. | [REW dispatcher](doc/rew/README.md) |
+| Measurement | StarTech load and UMC22 raw-driver routes pass; the UMC202HD full-dual checkout remains separately gated. | [REW dispatcher](doc/rew/README.md) |
 | Room | Near-wall placement candidates remain measurement trials. | [Room summary](doc/ROOM_DETAILS.md) |
 
 ## 2. Project Goal And Locked Architecture
@@ -71,7 +71,7 @@ route below. Files labelled history or qualification are not routine context.
 | Review or deliberately repeat Seed A full-system level/thermal validation | [Seed A level/thermal qualification](doc/rew/qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md), [crossover design](doc/CROSSOVER_DESIGN.md) | [Completed procedure](doc/rew/procedures/UMC22_SEED_A_LEVEL_AND_THERMAL.md) only for a deliberate repeat; [fixture use](doc/rew/fixtures/REFERENCE_FIXTURE_USE.md) only after reconnection or a changed route |
 | Reconnect or operate the reference fixture | [Fixture use](doc/rew/fixtures/REFERENCE_FIXTURE_USE.md) and the applicable interface procedure | [Fixture specification](doc/rew/fixtures/REFERENCE_FIXTURE_SPECIFICATION.md) if rebuilding or redesigning |
 | Audit UMC22 or fixture qualification | [REW dispatcher](doc/rew/README.md), then the named record under `doc/rew/qualification/` | Chronological records under `doc/rew/history/` only for superseded attempts or provenance questions |
-| Diagnose or resume UMC202HD | [Dropout diagnosis](doc/rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md) | [Suspended UMC202HD procedure](doc/rew/procedures/UMC202HD_FRD_SUSPENDED.md) when preparing to resume |
+| Plan UMC202HD full-dual checkout | [UMC202HD checkout route](doc/rew/procedures/UMC202HD_FRD_CHECKOUT.md) | [Fixture use](doc/rew/fixtures/REFERENCE_FIXTURE_USE.md) for physical connection and startup |
 | Room placement | [Room summary](doc/ROOM_DETAILS.md), [placement and measurement](doc/room/ROOM_PLACEMENT_AND_MEASUREMENT.md) | [Geometry and screening](doc/room/ROOM_GEOMETRY_AND_SCREENING.md) for CAD, coupled-space, or modal questions |
 | FRD, ZMA, impulse, or VituixCAD file inspection/comparison | [Measurement data tooling](doc/MEASUREMENT_DATA_TOOLING.md) | [Measurement workflow](doc/MEASUREMENT_WORKFLOW.md) only when interpreting evidence or changing measurement policy |
 | REW API status or session snapshot | [REW API client](doc/REW_API_CLIENT.md) | Its qualification record only for maintenance or audit |

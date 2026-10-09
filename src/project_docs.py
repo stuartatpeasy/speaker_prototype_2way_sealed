@@ -31,7 +31,8 @@ def tracked_markdown(root: Path) -> list[Path]:
     new = subprocess.run(["git", "ls-files", "--others", "--exclude-standard", "-z",
                           "--", "doc/*.md"], cwd=root, capture_output=True, check=True)
     files.extend(root / name.decode() for name in new.stdout.split(b"\0") if name)
-    return list(dict.fromkeys(files))
+    # git ls-files still lists tracked paths deleted or renamed in the worktree.
+    return [path for path in dict.fromkeys(files) if path.is_file()]
 
 
 def strip_code(text: str) -> str:

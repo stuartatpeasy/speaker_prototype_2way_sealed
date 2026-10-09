@@ -473,7 +473,6 @@ This short list is not the acoustic-source inventory; Section 1.3 and the
 - [Completed UMC22 installed-woofer runbook](rew/procedures/UMC22_INSTALLED_WOOFER_FRD.md)
 - [UMC22 qualification evidence](rew/qualification/UMC22_FRD_QUALIFICATION.md)
 - [Seed A full-system level and thermal qualification](rew/qualification/SEED_A_FULL_SYSTEM_LEVEL_AND_THERMAL_QUALIFICATION_2026-09-10.md)
-- [UMC202HD desktop-dropout diagnosis](rew/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md)
 - [Driver-impact change history](history/DRIVER_ANALYSIS_CHANGELOG.md)
 
 ## 11. Change history

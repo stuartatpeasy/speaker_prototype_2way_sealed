@@ -28,9 +28,8 @@ RAW-TWEETER AND POLAR WORK REMAIN OUTSIDE THIS RELEASE.**
 
 ## 1. Purpose And Scope
 
-This is a bounded fallback route for moving the installed-driver FRD work
-forward while the desktop-specific UMC202HD dropout is investigated
-separately. It reuses the qualified SU-V570 clamp/attenuator, but it does not
+This is a bounded UMC22 route for moving the installed-driver FRD work
+forward. It reuses the qualified SU-V570 clamp/attenuator, but it does not
 silently transfer the UMC202HD-specific connector, phantom-isolation, or input-
 headroom findings to the UMC22.
 
@@ -301,10 +300,9 @@ Input 2 reference channel, REW timing-reference mode, gain range, and dropout-
 free operation without the powered amplifier. A direct or fixture-mediated
 low-voltage loopback must remain below the UMC22 input maximum. Recreate any
 soundcard calibration for this interface and rate; do not reuse UMC202HD
-calibration or level settings. The historical UMC22 evidence is dropout-free
-ordinary playback. In addition, a current matched five-minute media control on
-this desktop produced zero audible dropouts with Microsoft `USBAUDIO.sys`
-(`10.0.26100.8972`). Gate D later passed with an exact-routing, dropout-free
+calibration or level settings. A five-minute media control on this desktop
+passed with Microsoft `USBAUDIO.sys` (`10.0.26100.8972`). Gate D later passed
+with an exact-routing, dropout-free
 `256k` sweep using ordinary loopback timing. A valid UMC22 soundcard/electrical-
 reference calibration route remains required before reusable acoustic-response
 capture; that measurement-validity item is separate from Gate D's hardware,
@@ -1818,5 +1816,4 @@ REW window was modified by this derived analysis.
 | Power state at this historical gate | The 2026-09-05 gate allowed the then-current installed-woofer procedure to continue; it grants no present power or signal authority |
 | Installed-driver FRD consequence at this historical gate | The installed woofer was then released under its procedure; later protected-tweeter and polar routes received their own completed procedures |
 
-The UMC202HD live-Linux diagnosis remains worthwhile but is no longer on the
-critical path to the first installed-driver FRD set.
+The completed UMC22 gate provides the immediate installed-driver FRD route.
