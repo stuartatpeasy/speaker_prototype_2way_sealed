@@ -7,7 +7,7 @@
 > - **Current decision:** retain same-polarity third-order Seed A as the reversible external prototype; measured acoustic, load, bounded level/distortion, and external-component surface-thermal gates pass
 > - **Next gate:** build and test speaker two under matched conditions, including a correct immediate hot `0-degree` comparison and a check that the narrow approximately `1.28 dB` high-level shape change near `2.18 kHz` repeats
 > - **Limitations:** one speaker only; approximate rather than steady sweep-voltage readings; generic rather than absolute-SPL microphone calibration; the attempted post-thermal trace is excluded because it was captured at `60 degrees`; positive-side sparse-horizontal evidence only; the parked undamped tweeter-only mechanism and possible ultrasonic behaviour remain unproved
-> - **As of:** 2026-09-15
+> - **As of:** 2026-10-09
 
 This is the current passive-crossover authority. Read the [design-development
 history](history/CROSSOVER_DESIGN_DEVELOPMENT_2026-09-07_TO_08.md) only to
@@ -68,18 +68,9 @@ raw software baseline, not a listening network.
 **DERIVED PRACTICAL MODEL / SIGNAL-FREE GATES PASSED:**
 [`vituixcad/Prototype loudspeaker crossover Seed A practical measured 2026-09-08.vxp`](../vituixcad/Prototype%20loudspeaker%20crossover%20Seed%20A%20practical%20measured%202026-09-08.vxp)
 retains the verified sparse-polar source assignments, topology, normal polarity,
-and C2 scale multiplier `3.605786`, while using the completed measurements:
-
-| Part | Practical value |
-|---|---:|
-| L(W1) | `0.724 mH`, `0.292 ohm` DCR, `1.8 mm` wire |
-| C(W1) | `17.96 uF`, `0.04 ohm` ESR |
-| L(W2) | `0.111 mH`, `0.172 ohm` DCR, `1.8 mm` wire |
-| C(T1) | `12.22 uF`, `0.04 ohm` ESR |
-| L(T1) | `0.219 mH`, `0.193 ohm` DCR, `1.8 mm` wire |
-| C(T2) | `22.59 uF`, `0.04 ohm` ESR |
-| R(Tser) | `1.401 ohm`; aggregate bank power field `20 W` |
-| R(Tpar) | `39.032 ohm`; aggregate bank power field `15 W` |
+and C2 scale multiplier `3.605786`. Its eight measured component values and
+construction are owned by [Crossover component development](CROSSOVER_COMPONENT_DEVELOPMENT.md#2-current-seed-a-component-set);
+the VXP is the exact model source.
 
 The current practical file is `26,354` bytes with SHA-256
 `16676944a98b625bb59effa4757f4224e0da763b36293679ace8dc0c67861a04`.

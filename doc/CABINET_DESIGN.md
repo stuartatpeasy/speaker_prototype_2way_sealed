@@ -8,15 +8,22 @@
 | Current decision | Retain the completed approximately `280 x 430 x 300 mm`, `21.7 L` geometric-net sealed prototype as speaker one's representative enclosure |
 | Next gate | Build speaker two to the same verified physical geometry, recording any fitted or manufacturing-dependent dimensions that differ |
 | Limitations | The prototype itself remains authoritative for empirically fitted details not yet back-annotated into CAD; damping quantity, final finish, crossover mounting, and repeat-build cutting/joinery detail remain open |
-| Last reviewed | 2026-09-15 |
+| Last reviewed | 2026-10-09 |
 
 This file is the detailed mechanical source for the prototype enclosure. The high-level project state and documentation index are in [README.md](../README.md); driver and alignment evidence is in [DRIVER_ANALYSIS.md](DRIVER_ANALYSIS.md).
 
 ## 1. Prototype mechanical baseline
 
-The enclosure geometry in **`3d_models/Prototype loudspeaker cabinet.dae`** records the design basis of the completed acoustically representative prototype. Further enclosure resizing or structural redesign is not planned before measurement of this build.
+The [cabinet DAE](../3d_models/Prototype%20loudspeaker%20cabinet.dae) records
+the design basis of the completed acoustically representative prototype. The
+physical speaker remains authoritative for fitted details not yet recorded in
+CAD. Further enclosure resizing or structural redesign is not planned before
+the matched speaker-two comparison.
 
-The prototype itself remains the dimensional authority for details that depend on actual purchased parts or manufacturing. Countersinks will be fitted to the actual screws, tweeter body and terminal clearance will be adjusted empirically, and the rear-panel centre landing will be fitted to the measured working compression of the actual gasket. Confirmed adjustments should be back-annotated into the CAD model.
+For speaker two, measure speaker one's fitted countersinks, tweeter clearance,
+and rear-panel centre landing against the actual screws and gasket. Their
+as-built dimensions have not yet been back-annotated into CAD; record confirmed
+dimensions before repeating the machining.
 
 This baseline freezes the initial enclosure design, not the damping distribution, finish, crossover, or later production refinements.
 
@@ -70,20 +77,20 @@ All baffle edges use approximately **25 mm radius roundovers**. The side roundov
 
 ### 4.3 Driver mounting status
 
-For the selected Ø8.5 mm **Type E non-flanged M4 inserts**, retain about **5 mm of sound plywood beyond the insert OD** to any free or cut edge—roughly **9.25 mm insert-axis-to-edge**—with 6 mm preferred and less than 4 mm high-risk. The modelled **Ø5.5 mm pilot is a deliberate, slightly undersized prototype choice**, not a drafting error; confirm insertion behaviour, holding strength, and resistance to ply splitting or delamination in an offcut of the actual plywood before machining the cabinet.
+For the selected Ø8.5 mm **Type E non-flanged M4 inserts**, retain about **5 mm of sound plywood beyond the insert OD** to any free or cut edge—roughly **9.25 mm insert-axis-to-edge**—with 6 mm preferred and less than 4 mm high-risk. The modelled **Ø5.5 mm pilot is a deliberate, slightly undersized choice**, not a drafting error. Before machining speaker two, check speaker one's actual pilot and insert fit; if that evidence is unavailable, test insertion, holding strength, and resistance to ply splitting or delamination in an offcut of the intended plywood.
 
 Tweeter mounting:
 
-- recessed Type E non-flanged M4 inserts will be installed from the enclosure side of the baffle, behind the driver-body region; retention relies on their external thread rather than a flange;
+- recessed Type E non-flanged M4 inserts are the repeat-build choice, installed from the enclosure side of the baffle behind the driver-body region; retention relies on their external thread rather than a flange;
 - the front portion uses M4 clearance bores and the insert-sized pilots are confined to the rear portion;
 - the rear opening includes local clearance around the two terminal “ears” without unnecessarily enlarging the opening around the rest of the tweeter body;
-- exact body, terminal, connector, and wiring clearance will be fitted to the physical tweeter because the available 3D model is not a manufacturing drawing.
+- check actual body, terminal, connector, and wiring clearance against speaker one and the physical tweeter; the available 3D model is not a manufacturing drawing.
 
 Prototype woofer mounting:
 
 - basket, airflow, and edge-clearance constraints prevent suitable local mounting islands or conventional M4 wood inserts;
-- the specified No. 8 × 1 in screws will be used directly in the plywood for the prototype;
-- the accepted CAD uses approximately Ø3.0 mm pilots, slightly below the representative 3.10 mm thread-root diameter; confirm the actual screws in the complete plywood laminate;
+- the specified No. 8 × 1 in screws are the direct-into-plywood repeat-build choice;
+- the accepted CAD uses approximately Ø3.0 mm pilots, slightly below the representative 3.10 mm thread-root diameter; confirm speaker one's actual pilot and screw fit before copying it;
 - metal backing plates, captive nuts, or another repeatable fastening system remain possible later production refinements.
 
 The woofer fasteners need only compress the flange gasket evenly. They should not be tightened to general-purpose metal-fastener torque.
@@ -110,7 +117,7 @@ the fabrication record before speaker two is cut.
 
 ## 6. Rear panel and prototype access
 
-For the prototype, the rear panel should be:
+The rear-panel repeat-build design is:
 
 - removable, flush or slightly recessed rather than proud;
 - provided with deliberate peripheral assembly clearance for manufacturing tolerance and finish;
@@ -122,9 +129,9 @@ Current rear-panel details:
 
 - the approximately **242 × 392 mm** panel has about **1 mm clearance per edge** within the approximately 244 × 394 mm opening;
 - 16 perimeter inserts are centred in approximately 20 mm-wide frame rails, about 10 mm from either rail edge;
-- the panel screw holes use approximately **Ø4.5 mm shank clearance**; countersink angle, mouth diameter, and depth will be cut to the actual 90° M4 screw heads during the prototype build rather than copied literally from the current CAD representation;
+- the panel screw holes use approximately **Ø4.5 mm shank clearance**; record speaker one's fitted countersink angle, mouth diameter, and depth before repeating them with the actual 90° M4 screw heads, rather than copying the CAD representation literally;
 - the main horizontal brace has no compressible centre gasket: it should meet the panel at a rigid central landing, with deliberate clearance elsewhere;
-- the modelled central landing is approximately **40 mm wide**, uses the full brace thickness, and is fitted to the panel position only after the actual neoprene reaches a comfortable, repeatable working compression; the single central M4 screw supplies preload rather than bending the panel into contact or crushing the gasket to a nominal dimension.
+- the modelled central landing is approximately **40 mm wide** and uses the full brace thickness. Copy the as-built panel position and comfortable, repeatable gasket compression after checking speaker one; the single central M4 screw supplies preload rather than bending the panel into contact or crushing the gasket to a nominal dimension.
 
 The final production version may use a permanently glued rear panel after the crossover and damping are settled.
 
@@ -161,7 +168,11 @@ Provisional use:
 - keep clear of the woofer basket, cone, surround, pole-piece vent, terminals, and tweeter connections;
 - do not compress it flat.
 
-The amount and distribution must be recorded and adjusted using repeatable impedance and acoustic measurements. Treat the geometric 21.7 L volume separately from any damping-induced effective-volume increase.
+Speaker one's exact as-built fill has not been documented in its ZMA headers.
+Record its current amount and distribution before matching speaker two, then
+adjust only against repeatable impedance and acoustic measurements. Treat the
+geometric 21.7 L volume separately from any damping-induced effective-volume
+increase.
 
 ## 10. Feet and support
 

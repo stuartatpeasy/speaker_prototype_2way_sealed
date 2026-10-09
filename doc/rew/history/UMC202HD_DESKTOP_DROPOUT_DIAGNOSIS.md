@@ -360,7 +360,7 @@ BIOS on the current evidence.
 
 The hardware fault needs no further diagnostic test or live Linux boot. The
 separately qualified UMC22 route remains available for speaker measurements.
-The [UMC202HD checkout route](procedures/UMC202HD_FRD_CHECKOUT.md) owns any
+The [UMC202HD checkout route](../procedures/UMC202HD_FRD_CHECKOUT.md) owns any
 future REW measurement gates; the clean media-playback tests do not by
 themselves qualify an acoustic response.
 
@@ -373,7 +373,7 @@ details; record only decision-relevant results here.
 
 ## 8. Related Records
 
-- [Current UMC22 installed-woofer procedure](procedures/UMC22_INSTALLED_WOOFER_FRD.md)
-- [UMC202HD FRD checkout route](procedures/UMC202HD_FRD_CHECKOUT.md)
-- [Current passive-fixture use](fixtures/REFERENCE_FIXTURE_USE.md)
-- [Completed fixture qualification and release](qualification/REFERENCE_FIXTURE_QUALIFICATION_2026-09-01_TO_03.md)
+- [Current UMC22 installed-woofer procedure](../procedures/UMC22_INSTALLED_WOOFER_FRD.md)
+- [UMC202HD FRD checkout route](../procedures/UMC202HD_FRD_CHECKOUT.md)
+- [Current passive-fixture use](../fixtures/REFERENCE_FIXTURE_USE.md)
+- [Completed fixture qualification and release](../qualification/REFERENCE_FIXTURE_QUALIFICATION_2026-09-01_TO_03.md)

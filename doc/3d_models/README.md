@@ -8,7 +8,7 @@
 | Source tree | [`src/3d_models/`](../../src/3d_models/) |
 | Artefact tree | [`3d_models/`](../../3d_models/) |
 | Regeneration, preview, printer, and retention | [Regeneration and retention](REGENERATION_AND_RETENTION.md) |
-| Last reviewed | 2026-09-15 |
+| Last reviewed | 2026-10-09 |
 
 ## 1. Collection catalogue
 
@@ -22,7 +22,7 @@
 | Neutrik NL4MPXX | DAE converted from retained STEP | [NL4MPXX connector](Neutrik_NL4MPXX/README.md) |
 | SB Acoustics SB17NRX2C35-8 | DAE; legacy STL fallback retained | [Woofer](SB_Acoustics_SB17NRX2C35-8/README.md) |
 | SB Acoustics SB26STWGC-4 | One DAE | [Tweeter](SB_Acoustics_SB26STWGC-4/README.md) |
-| Crossover-coil formers and brackets | Five retained SketchUp-exported fabrication STLs | [Crossover coils](Crossover_Coils/README.md) |
+| Crossover-coil formers and brackets | Six retained SketchUp-exported fabrication STLs | [Crossover coils](Crossover_Coils/README.md) |
 
 Canonical cabinet and room assemblies, fabrication STLs, and printer jobs also live under [`3d_models/`](../../3d_models/), but are not members of this scripted component catalogue.
 

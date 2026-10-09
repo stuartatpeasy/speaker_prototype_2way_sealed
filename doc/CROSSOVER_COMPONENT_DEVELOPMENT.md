@@ -7,7 +7,7 @@
 > - **Current decision:** Seed A's measured external component set passes; match speaker two to its completed values, then validate the new network acoustically and electrically
 > - **Next gate:** recount/procure parts, build the second measured network, and retain both networks externally through pair evidence
 > - **Limitations:** holdings have not been recounted; measurements are user-reported; AADE inductance frequency and signed DCR measurement pairs for completed coils are unavailable; PCB/manufacturing release is unqualified; surface temperatures do not reveal winding or voice-coil temperature
-> - **As of:** 2026-09-15
+> - **As of:** 2026-10-09
 
 The [component-build evidence](history/CROSSOVER_COMPONENT_BUILD_EVIDENCE_2026-09-07_TO_08.md)
 holds superseded stock inventories, sample readings, arithmetic, donor-coil
@@ -96,6 +96,15 @@ crossover-coil models](3d_models/Crossover_Coils/README.md) and an ABS former
 printed with suitable enclosed-printer ventilation.
 
 ## 5. Resistors, thermal, and PCB rules
+
+The retained [Rev 0 schematic](../diptrace/4pole_crossover_rev0.dch) and
+[PCB](../diptrace/4pole_crossover_rev0.dip), and the newer [Rev 1
+schematic](../diptrace/4pole_crossover_rev1.dch) and
+[PCB](../diptrace/4pole_crossover_rev1.dip), are editable DipTrace sources.
+Rev 1 is **work in progress**, not a manufacturing release or evidence that
+speaker two matches Seed A. Before fabrication, compare the actual native
+circuit and layout against this measured component set, the required resistor
+bank topology, footprints, and the final mechanical/thermal checks below.
 
 R(Tser) is four parallel parts and R(Tpar) is three parts in **series**. Do not
 copy the old all-parallel L-pad footprint. Match completed Seed A values for

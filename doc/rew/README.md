@@ -52,7 +52,7 @@ The lifecycle labels mean:
 
 ## 3. Evidence And History
 
-- **Closed hardware issue, 2026-10-09:** the UMC202HD desktop playback dropouts ceased after the loose Blu-ray SATA data connection was reseated; the [diagnosis](UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md) retains the evidence and causal limits.
+- **Closed hardware issue, 2026-10-09:** UMC202HD desktop playback dropouts ceased after optical SATA connections were reseated; the [diagnosis](history/UMC202HD_DESKTOP_DROPOUT_DIAGNOSIS.md) retains the evidence and limits. Full-dual FRD checkout remains separate.
 - [`qualification/UMC22_FRD_QUALIFICATION.md`](qualification/UMC22_FRD_QUALIFICATION.md) — **QUALIFICATION EVIDENCE** for UMC22 Gates A-E and the final repeatability release.
 - [`qualification/INSTALLED_DRIVER_ACOUSTIC_SOURCES_2026-09-06_TO_07.md`](qualification/INSTALLED_DRIVER_ACOUSTIC_SOURCES_2026-09-06_TO_07.md) — **QUALIFICATION EVIDENCE** for approved installed-driver on-axis and sparse-polar source selection, exclusions, timing, windows, and protection scale.
 - [`qualification/REFERENCE_FIXTURE_QUALIFICATION_2026-09-01_TO_03.md`](qualification/REFERENCE_FIXTURE_QUALIFICATION_2026-09-01_TO_03.md) — **QUALIFICATION EVIDENCE** for amplifier topology, fixture construction, clamps, ground paths, cables, and AC commissioning.
