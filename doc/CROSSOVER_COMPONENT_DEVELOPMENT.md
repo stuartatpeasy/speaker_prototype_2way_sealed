@@ -28,20 +28,23 @@ The active acoustic authority is [CROSSOVER_DESIGN.md](CROSSOVER_DESIGN.md).
 The current practical values are measured completed banks and coils, not sums of
 individual samples or winding estimates.
 
-| Part | Completed value | Construction / consequence |
-|---|---:|---|
-| C(W1) | `17.96 uF`, `0.04 ohm` ESR | within `-0.222%` of `18.0 uF` |
-| C(T1) | `12.22 uF`, `0.04 ohm` ESR | within `+0.164%` of `12.2 uF` |
-| C(T2) | `22.59 uF`, `0.04 ohm` ESR | within `+0.400%` of `22.5 uF` |
-| L(W1) | `724 uH`, `0.292 ohm` DCR | 167 turns, `1.8 mm` ECW |
-| L(W2) | `111 uH`, `0.172 ohm` DCR | 78 turns, `1.8 mm` ECW |
-| L(T1) | `219 uH`, `0.193 ohm` DCR | 100 turns, `1.8 mm` ECW |
-| R(Tser) | `1.401 ohm` | four selected 5R6 resistors in parallel |
-| R(Tpar) | `39.032 ohm` | three selected 13R resistors in series |
+| Part | Completed value | Copper length / mass (calculated)| Construction / consequence |
+|---|---:|---:|---|
+| C(W1) | `17.96 uF`, `0.04 ohm` ESR | n/a | within `-0.222%` of `18.0 uF` |
+| C(T1) | `12.22 uF`, `0.04 ohm` ESR | n/a | within `+0.164%` of `12.2 uF` |
+| C(T2) | `22.59 uF`, `0.04 ohm` ESR | n/a | within `+0.400%` of `22.5 uF` |
+| L(W1) | `724 uH`, `0.209 ohm` DCR | `29.25 m`, `0.667 kg` | 194 turns, `1.8 mm` ECW |
+| L(W2) | `111 uH`, `0.064 ohm` DCR | `10.51 m`, `0.240 kg` | 82 turns, `1.8 mm` ECW |
+| L(T1) | `219 uH`, `0.096 ohm` DCR | `16.46 m`, `0.375 kg` | 111 turns, `1.8 mm` ECW |
+| R(Tser) | `1.401 ohm` | n/a | four selected 5R6 resistors in parallel |
+| R(Tpar) | `39.032 ohm` | n/a | three selected 13R resistors in series |
 
 All reactive values are within `+/-1%` of their Seed A targets. Model these
 actual values and parasitics; do not unwind, add turns, trim, or dismantle a
 completed bank solely to improve nominal agreement.
+
+Calculated lengths and masses are based on average coil diameter assuming 20 turns
+/ layer and ρ(Cu) = 8960 km/m³.
 
 ## 3. Capacitors
 

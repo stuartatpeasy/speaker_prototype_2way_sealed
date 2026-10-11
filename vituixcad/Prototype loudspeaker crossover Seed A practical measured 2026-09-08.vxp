@@ -4,6 +4,10 @@
 <SPEAKER>
   <Description>Seed A practical model using measured one-channel capacitor banks, resistor banks, inductances, ESRs, and cold DCRs reported 2026-09-08.</Description>
   <ReferenceAngle>0</ReferenceAngle>
+  <DualPlane>True</DualPlane>
+  <KeywordHor>hor</KeywordHor>
+  <KeywordVer>ver</KeywordVer>
+  <AngleMultiplier>1</AngleMultiplier>
   <XMin>20</XMin>
   <XMax>20000</XMax>
   <Interpolate>True</Interpolate>
@@ -414,7 +418,7 @@
       </PARAM>
       <PARAM pi="1">
         <Name>DCR</Name>
-        <Value>0.292</Value>
+        <Value>0.209</Value>
         <Unit>Ω</Unit>
         <Optimize>False</Optimize>
         <Expression />
@@ -482,7 +486,7 @@
       </PARAM>
       <PARAM pi="1">
         <Name>DCR</Name>
-        <Value>0.172</Value>
+        <Value>0.064</Value>
         <Unit>Ω</Unit>
         <Optimize>False</Optimize>
         <Expression />
@@ -729,7 +733,7 @@
       </PARAM>
       <PARAM pi="1">
         <Name>DCR</Name>
-        <Value>0.193</Value>
+        <Value>0.096</Value>
         <Unit>Ω</Unit>
         <Optimize>False</Optimize>
         <Expression />
